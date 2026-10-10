@@ -6,7 +6,11 @@ const LINKS = [
   { label: "Contact", to: "/contact" },
 ];
 
-export default function NavBar() {
+interface NavBarProps {
+  showLinks?: boolean;
+}
+
+export default function NavBar({ showLinks = true }: NavBarProps) {
   const location = useLocation();
 
   return (

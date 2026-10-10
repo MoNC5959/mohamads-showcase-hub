@@ -10,7 +10,7 @@ const ITEMS: [NapBoxItem, NapBoxItem, NapBoxItem] = [
 export default function Index() {
   return (
     <div style={{ minHeight: "100vh", background: "var(--color-bg)", color: "var(--color-text)", fontFamily: "var(--font-body)" }}>
-      <NavBar />
+      <NavBar showLinks={false} />
 
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px, 5vw, 72px) 72px" }}>
         <header style={{ padding: "36px 0 40px", display: "flex", flexDirection: "column", gap: 18 }}>
