@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Serif:ital,opsz,wght@0,32..48,400;0,32..48,600;0,32..48,700;0,32..48,900;1,32..48,400;1,32..48,700;1,32..48,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+/* ─── Color scope ─── */
+.few-seconds-article {
+  --color-primary:                    #86d7ac;
+  --color-secondary:                  #e9c176;
+  --color-surface-container-lowest:   #0b0f0f;
+  --color-surface-container-low:      #111716;
+  --color-surface-container:          #161c1b;
+  --color-surface-container-high:     #1c2322;
+  --color-surface-container-highest:  #222a29;
+  --color-surface-dim:                #0d1312;
+  --color-on-surface:                 #e0e3e2;
+  --color-on-surface-variant:         #bec9c7;
+  --color-outline-variant:            #3d4947;
+
+  background-color: #101414;
+  color: #e0e3e2;
+}
+
+/* ─── Typography helpers ─── */
+.few-seconds-article .serif-display,
+.few-seconds-article .font-headline { font-family: 'Noto Serif', serif; }
+.few-seconds-article .font-body,
+.few-seconds-article .font-label    { font-family: 'Manrope', sans-serif; }
+.few-seconds-article .glass-panel   { background: rgba(16,20,20,0.8); backdrop-filter: blur(20px); }
+
+/* ─── Keyframes ─── */
+@keyframes fs-pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(134,215,172,0); }
+  50%       { box-shadow: 0 0 20px 6px rgba(134,215,172,0.15); }
+}
+@keyframes fs-travelRight {
+  0%   { left: 0;    opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+@keyframes fs-travelLeft {
+  0%   { right: 0;    opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { right: 100%; opacity: 0; }
+}
+@keyframes fs-cardApproach {
+  0%   { transform: translateX(0px)   translateY(0px) rotate(-8deg); }
+  55%  { transform: translateX(118px) translateY(6px) rotate(-8deg); }
+  65%  { transform: translateX(112px) translateY(3px) rotate(-6deg); }
+  80%  { transform: translateX(118px) translateY(6px) rotate(-8deg); }
+  100% { transform: translateX(0px)   translateY(0px) rotate(-8deg); }
+}
+@keyframes fs-ripple1 {
+  0%   { opacity: 0; transform: scale(0.4); }
+  30%  { opacity: 0; }
+  55%  { opacity: 0.7; transform: scale(0.4); }
+  85%  { opacity: 0; transform: scale(1);   }
+  100% { opacity: 0; transform: scale(1);   }
+}
+@keyframes fs-ripple2 {
+  0%   { opacity: 0; transform: scale(0.4); }
+  30%  { opacity: 0; }
+  60%  { opacity: 0.5; transform: scale(0.4); }
+  90%  { opacity: 0; transform: scale(1.3); }
+  100% { opacity: 0; transform: scale(1.3); }
+}
+@keyframes fs-ripple3 {
+  0%   { opacity: 0; transform: scale(0.4); }
+  30%  { opacity: 0; }
+  65%  { opacity: 0.3; transform: scale(0.4); }
+  95%  { opacity: 0; transform: scale(1.6); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+@keyframes fs-posFlash {
+  0%, 50% { opacity: 0; }
+  65%      { opacity: 1; }
+  85%      { opacity: 0; }
+  100%     { opacity: 0; }
+}
+@keyframes fs-approved {
+  0%, 68% { opacity: 0; transform: translateY(6px);  }
+  78%      { opacity: 1; transform: translateY(0);    }
+  92%      { opacity: 1; transform: translateY(0);    }
+  100%     { opacity: 0; transform: translateY(-4px); }
+}
+
+/* ─── Animation classes (scoped) ─── */
+.few-seconds-article .tap-scene    { animation: fs-cardApproach 3.2s cubic-bezier(0.4,0,0.2,1) infinite; }
+.few-seconds-article .tap-ripple-1 { animation: fs-ripple1 3.2s ease-out infinite; }
+.few-seconds-article .tap-ripple-2 { animation: fs-ripple2 3.2s ease-out infinite; }
+.few-seconds-article .tap-ripple-3 { animation: fs-ripple3 3.2s ease-out infinite; }
+.few-seconds-article .pos-flash    { animation: fs-posFlash 3.2s ease-out infinite; }
+.few-seconds-article .tap-approved { animation: fs-approved 3.2s ease-out infinite; }
+.few-seconds-article .node-glow    { animation: fs-pulseGlow 3s ease-in-out infinite; }
+
+.few-seconds-article .flow-line-fwd::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 0;
+  width: 12px; height: 2px;
+  background: #86d7ac;
+  border-radius: 99px;
+  transform: translateY(-50%);
+  animation: fs-travelRight 2.4s ease-in-out infinite;
+}
+.few-seconds-article .flow-line-rev::after {
+  content: '';
+  position: absolute;
+  top: 50%; right: 0;
+  width: 12px; height: 2px;
+  background: #e9c176;
+  border-radius: 99px;
+  transform: translateY(-50%);
+  animation: fs-travelLeft 2.4s ease-in-out infinite 1.2s;
+}
+
+/* ─── Scroll-reveal counter ─── */
+.few-seconds-article .counter-animate          { opacity: 0; transform: translateY(6px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.few-seconds-article .counter-animate.visible  { opacity: 1; transform: translateY(0); }
+
+/* ─── Material Symbols font-variation helper ─── */
+.few-seconds-article .material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
