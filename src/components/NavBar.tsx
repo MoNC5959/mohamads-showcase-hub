@@ -21,11 +21,12 @@ export default function NavBar({ showLinks = true }: NavBarProps) {
       <Link to="/" className="nav-brand" style={{ fontSize: 20, letterSpacing: "0.02em", textTransform: "uppercase" }}>
         Mohamad Noor Chowdhury
       </Link>
-      {LINKS.map((link) => (
-        <Link key={link.to} to={link.to} className={location.pathname === link.to ? "active" : ""}>
-          {link.label}
-        </Link>
-      ))}
+      {showLinks &&
+        LINKS.map((link) => (
+          <Link key={link.to} to={link.to} className={location.pathname === link.to ? "active" : ""}>
+            {link.label}
+          </Link>
+        ))}
     </nav>
   );
 }
