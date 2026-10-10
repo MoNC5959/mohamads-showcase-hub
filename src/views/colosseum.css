@@ -1,0 +1,459 @@
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cyan:        #00c8ff;
+  --cyan-dim:    #006b8a;
+  --cyan-glow:   rgba(0,200,255,0.15);
+  --blue:        #4d8eff;
+  --bg:          #03050c;
+  --bg-2:        #060b14;
+  --bg-3:        #0a1020;
+  --surface:     rgba(10,18,32,0.7);
+  --border:      rgba(0,200,255,0.1);
+  --border-dim:  rgba(255,255,255,0.06);
+  --text:        #e8f4ff;
+  --text-muted:  #6a8fab;
+  --text-dim:    #3a5570;
+  --red:         #ff4060;
+  --white:       #ffffff;
+}
+
+.colosseum-article html { scroll-behavior: smooth; }
+.colosseum-article {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── SCROLLBAR ──────────────────────────────── */
+.colosseum-article ::-webkit-scrollbar { width: 3px; }
+.colosseum-article ::-webkit-scrollbar-track { background: var(--bg); }
+.colosseum-article ::-webkit-scrollbar-thumb { background: var(--cyan-dim); border-radius: 2px; }
+
+/* ─── PROGRESS BAR ───────────────────────────── */
+.colosseum-article #col-progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+  z-index: 300; box-shadow: 0 0 12px var(--cyan);
+  transition: width 0.1s linear;
+}
+
+/* ─── NAV ────────────────────────────────────── */
+.colosseum-article .col-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(3,5,12,0.8);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border-dim);
+}
+.colosseum-article .nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--text-muted);
+}
+.colosseum-article .nav-links { display: flex; gap: 2rem; list-style: none; }
+.colosseum-article .nav-links a {
+  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-dim); text-decoration: none;
+  transition: color 0.2s;
+}
+.colosseum-article .nav-links a:hover { color: var(--cyan); }
+.colosseum-article .nav-tag {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--cyan-dim);
+}
+
+/* ─── SIDE DOTS ──────────────────────────────── */
+.colosseum-article .side-nav {
+  position: fixed; left: 1rem; top: 50%; transform: translateY(-50%);
+  z-index: 100; display: flex; flex-direction: column; gap: 1.25rem;
+  right: auto; padding: 0; background: transparent;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+  border: none; align-items: flex-start; justify-content: flex-start;
+}
+.colosseum-article .side-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--text-dim); cursor: pointer;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  text-decoration: none; display: block;
+}
+.colosseum-article .side-dot.active {
+  background: var(--cyan);
+  transform: scale(1.6);
+  box-shadow: 0 0 10px var(--cyan);
+}
+@media (max-width: 1024px) { .colosseum-article .side-nav { display: none; } }
+
+/* ─── SCROLL REVEAL ──────────────────────────── */
+.colosseum-article .reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.colosseum-article .reveal.up { opacity: 1; transform: translateY(0); }
+.colosseum-article .reveal-l {
+  opacity: 0; transform: translateX(-40px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.colosseum-article .reveal-l.up { opacity: 1; transform: translateX(0); }
+.colosseum-article .reveal-r {
+  opacity: 0; transform: translateX(40px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.colosseum-article .reveal-r.up { opacity: 1; transform: translateX(0); }
+.colosseum-article .d1{transition-delay:0.05s} .colosseum-article .d2{transition-delay:0.12s} .colosseum-article .d3{transition-delay:0.2s}
+.colosseum-article .d4{transition-delay:0.28s} .colosseum-article .d5{transition-delay:0.36s} .colosseum-article .d6{transition-delay:0.44s}
+
+/* ─── GLASS CARD ─────────────────────────────── */
+.colosseum-article .glass {
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.colosseum-article .glass-glow {
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 0 30px var(--cyan-glow), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* ─── TYPE ───────────────────────────────────── */
+.colosseum-article .h-display {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; line-height: 1.0;
+  letter-spacing: -0.03em;
+}
+.colosseum-article .h-section {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600; line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+.colosseum-article .serif { font-family: 'Newsreader', serif; font-style: italic; }
+.colosseum-article .label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--cyan-dim);
+}
+.colosseum-article .cyan { color: var(--cyan); }
+
+/* Gradient text */
+.colosseum-article .grad-cyan {
+  background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.colosseum-article .grad-blue {
+  background: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+/* ─── SECTIONS ───────────────────────────────── */
+.colosseum-article section { position: relative; }
+.colosseum-article .section-inner { max-width: 1100px; margin: 0 auto; padding: 7rem 3rem; }
+@media(max-width:768px) { .colosseum-article .section-inner { padding: 4rem 1.5rem; } }
+
+/* ─── HERO ───────────────────────────────────── */
+.colosseum-article #hero {
+  min-height: 100vh; display: flex; align-items: center;
+  overflow: hidden;
+}
+.colosseum-article #hero-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none;
+}
+.colosseum-article #morph-canvas {
+  position: absolute;
+  right: 3%; top: 50%;
+  transform: translateY(-50%);
+  width: min(420px, 38vw); height: min(400px, 66vh);
+  pointer-events: none; z-index: 1;
+}
+@media(max-width: 900px) { .colosseum-article #morph-canvas { display: none; } }
+.colosseum-article .hero-inner {
+  max-width: 1100px; margin: 0 auto; padding: 8rem 3rem 4rem;
+  position: relative; z-index: 2; width: 100%;
+}
+.colosseum-article .hero-kicker {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+.colosseum-article .hero-kicker-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--cyan);
+  animation: col-pulse-dot 2s ease-in-out infinite;
+}
+@keyframes col-pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(0,200,255,0.4); }
+  50% { opacity: 0.8; transform: scale(1.3); box-shadow: 0 0 0 8px rgba(0,200,255,0); }
+}
+.colosseum-article .hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  margin-bottom: 2rem;
+}
+.colosseum-article .hero-title em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--cyan) 0%, #a0e8ff 60%, var(--white) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.colosseum-article .hero-sub {
+  font-size: 1.125rem; color: var(--text-muted); max-width: 560px;
+  line-height: 1.7; margin-bottom: 3.5rem;
+}
+.colosseum-article .hero-stats {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 1px;
+  background: var(--border-dim); border: 1px solid var(--border-dim);
+  border-radius: 14px; overflow: hidden; max-width: 680px;
+}
+.colosseum-article .hero-stat {
+  background: var(--bg-2); padding: 1.5rem 1.25rem;
+  transition: background 0.25s;
+}
+.colosseum-article .hero-stat:hover { background: var(--bg-3); }
+.colosseum-article .hero-stat-num {
+  font-family: 'Newsreader', serif; font-style: italic;
+  font-size: 2rem; color: var(--cyan); display: block; line-height: 1;
+  margin-bottom: 0.35rem;
+}
+.colosseum-article .hero-stat-label { font-size: 0.7rem; color: var(--text-dim); line-height: 1.4; }
+.colosseum-article .hero-scroll-cue {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  animation: col-float-cue 2.5s ease-in-out infinite;
+}
+@keyframes col-float-cue {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+.colosseum-article .scroll-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, var(--cyan), transparent);
+}
+.colosseum-article .scroll-label { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-dim); }
+
+/* ─── CHAPTER LABEL ──────────────────────────── */
+.colosseum-article .chapter-label {
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+}
+.colosseum-article .chapter-line {
+  flex: 1; height: 1px; background: linear-gradient(to right, var(--cyan-dim), transparent);
+  max-width: 60px;
+}
+
+/* ─── SECTION TITLE ──────────────────────────── */
+.colosseum-article .section-title { font-size: clamp(2.2rem, 4vw, 3.5rem); margin-bottom: 1rem; }
+.colosseum-article .section-lead { font-size: 1rem; color: var(--text-muted); max-width: 600px; line-height: 1.75; margin-bottom: 4rem; }
+
+/* ─── ERA TIMELINE ───────────────────────────── */
+.colosseum-article .era-track {
+  display: flex; overflow-x: auto; gap: 0;
+  scrollbar-width: none; -ms-overflow-style: none;
+  cursor: grab;
+}
+.colosseum-article .era-track:active { cursor: grabbing; }
+.colosseum-article .era-track::-webkit-scrollbar { display: none; }
+.colosseum-article .era-card {
+  min-width: 240px; padding: 2rem 2.5rem 2rem 0;
+  border-top: 1px solid var(--border-dim);
+  transition: border-color 0.3s;
+  flex-shrink: 0;
+}
+.colosseum-article .era-card:hover { border-top-color: var(--cyan); }
+.colosseum-article .era-num {
+  font-family: 'Newsreader', serif; font-style: italic;
+  font-size: 3rem; color: var(--cyan-dim); line-height: 1; margin-bottom: 0.75rem;
+}
+.colosseum-article .era-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.1rem; color: var(--text); margin-bottom: 0.35rem; }
+.colosseum-article .era-tag { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan-dim); margin-bottom: 1rem; }
+.colosseum-article .era-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.65; max-width: 210px; }
+
+/* ─── TWO-COL ────────────────────────────────── */
+.colosseum-article .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media(max-width:768px) { .colosseum-article .two-col { grid-template-columns: 1fr; } .colosseum-article .hero-stats { grid-template-columns: 2fr 2fr; } }
+.colosseum-article .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; }
+.colosseum-article .benefit-item { display: flex; gap: 1rem; align-items: flex-start; }
+.colosseum-article .benefit-bar {
+  width: 2px; flex-shrink: 0; height: 100%; min-height: 48px;
+  background: linear-gradient(to bottom, var(--cyan), transparent);
+  border-radius: 2px; margin-top: 2px;
+}
+.colosseum-article .benefit-title { font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 0.9rem; color: var(--text); margin-bottom: 0.35rem; }
+.colosseum-article .benefit-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
+
+/* ─── BIG STAT ───────────────────────────────── */
+.colosseum-article .big-stat-block {
+  text-align: center; padding: 3.5rem 2rem;
+  position: relative; overflow: hidden;
+}
+.colosseum-article .big-stat-block::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, var(--cyan-glow), transparent);
+  pointer-events: none;
+}
+.colosseum-article .big-num {
+  font-family: 'Newsreader', serif; font-style: italic;
+  font-size: clamp(4rem, 10vw, 7rem);
+  background: linear-gradient(135deg, var(--cyan) 0%, #80e8ff 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  line-height: 1; margin-bottom: 1rem;
+}
+.colosseum-article .big-stat-text { font-size: 1rem; color: var(--text-muted); max-width: 440px; margin: 0 auto; line-height: 1.7; }
+
+/* ─── CANVAS CHART ───────────────────────────── */
+.colosseum-article #scurve { width: 100%; height: 300px; display: block; }
+
+/* ─── 3-CARD STRIP ───────────────────────────── */
+.colosseum-article .card-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-dim); border: 1px solid var(--border-dim); border-radius: 16px; overflow: hidden; }
+@media(max-width:768px) { .colosseum-article .card-strip { grid-template-columns: 1fr; } }
+.colosseum-article .strip-card { background: var(--bg-2); padding: 2.25rem; transition: background 0.25s; }
+.colosseum-article .strip-card:hover { background: var(--bg-3); }
+.colosseum-article .strip-num { font-family: 'Newsreader', serif; font-style: italic; font-size: 2.75rem; color: var(--cyan-dim); line-height: 1; margin-bottom: 0.5rem; }
+.colosseum-article .strip-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1rem; color: var(--text); margin-bottom: 0.5rem; }
+.colosseum-article .strip-val { font-family: 'Newsreader', serif; font-style: italic; font-size: 1.75rem; color: var(--cyan); margin-bottom: 0.75rem; }
+.colosseum-article .strip-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
+
+/* ─── DEAL TABLE ─────────────────────────────── */
+.colosseum-article .deal-table { width: 100%; border-collapse: collapse; }
+.colosseum-article .deal-table thead tr { border-bottom: 1px solid var(--border); }
+.colosseum-article .deal-table th { padding: 1rem 1.25rem; text-align: left; font-size: 0.67rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--cyan-dim); font-weight: 400; }
+.colosseum-article .deal-table td { padding: 1.1rem 1.25rem; font-size: 0.875rem; color: var(--text-muted); border-bottom: 1px solid var(--border-dim); }
+.colosseum-article .deal-table td:first-child { color: var(--text); font-weight: 500; }
+.colosseum-article .deal-val { font-family: 'Newsreader', serif; font-style: italic; font-size: 1.25rem; color: var(--cyan); }
+.colosseum-article .deal-table tbody tr { transition: background 0.2s; }
+.colosseum-article .deal-table tbody tr:hover { background: var(--bg-3); }
+
+/* ─── FLOW CARDS ─────────────────────────────── */
+.colosseum-article .flow-grid { display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr; align-items: center; gap: 0; }
+@media(max-width:900px) { .colosseum-article .flow-grid { grid-template-columns: 1fr; gap: 0; } .colosseum-article .flow-arrow { transform: rotate(90deg); } }
+.colosseum-article .flow-card { padding: 2rem; background: var(--bg-2); border: 1px solid var(--border); border-radius: 12px; transition: border-color 0.3s, background 0.3s; }
+.colosseum-article .flow-card:hover { border-color: var(--cyan); background: var(--bg-3); }
+.colosseum-article .flow-step { font-family: 'Newsreader', serif; font-style: italic; font-size: 2.5rem; color: var(--cyan-dim); line-height: 1; margin-bottom: 0.5rem; }
+.colosseum-article .flow-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1rem; color: var(--text); margin-bottom: 0.35rem; }
+.colosseum-article .flow-amount { font-family: 'Newsreader', serif; font-style: italic; font-size: 1.5rem; color: var(--cyan); margin-bottom: 0.5rem; }
+.colosseum-article .flow-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
+.colosseum-article .flow-arrow { display: flex; align-items: center; justify-content: center; }
+.colosseum-article .flow-arrow svg { width: 24px; height: 24px; }
+
+/* ─── BAR ROWS ───────────────────────────────── */
+.colosseum-article .bar-row { margin-bottom: 2.25rem; }
+.colosseum-article .bar-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.6rem; }
+.colosseum-article .bar-label { font-size: 0.875rem; color: var(--text); }
+.colosseum-article .bar-value { font-family: 'Newsreader', serif; font-style: italic; font-size: 1.4rem; }
+.colosseum-article .bar-track { height: 2px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+.colosseum-article .bar-fill { height: 100%; width: 0%; border-radius: 2px; transition: width 1.4s cubic-bezier(0.16,1,0.3,1); }
+
+/* ─── MINI STAT GRID ─────────────────────────── */
+.colosseum-article .mini-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+.colosseum-article .mini-stat { padding: 1.75rem; text-align: center; }
+.colosseum-article .mini-num { font-family: 'Newsreader', serif; font-style: italic; font-size: 2.75rem; color: var(--cyan); line-height: 1; margin-bottom: 0.4rem; }
+.colosseum-article .mini-label { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ─── PAIN POINTS ────────────────────────────── */
+.colosseum-article .pain-item {
+  padding: 2rem 0; border-bottom: 1px solid var(--border-dim);
+  transition: border-color 0.3s;
+}
+.colosseum-article .pain-item:hover { border-bottom-color: rgba(0,200,255,0.2); }
+.colosseum-article .pain-inner { display: flex; gap: 2.5rem; align-items: flex-start; }
+.colosseum-article .pain-index { font-family: 'Newsreader', serif; font-style: italic; font-size: 2.5rem; color: var(--cyan-dim); line-height: 1; flex-shrink: 0; width: 2.5rem; }
+.colosseum-article .pain-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.1rem; color: var(--text); margin-bottom: 0.5rem; }
+.colosseum-article .pain-body { font-size: 0.875rem; color: var(--text-muted); line-height: 1.75; max-width: 640px; }
+
+/* ─── BILL CARD ──────────────────────────────── */
+.colosseum-article .bill-card { max-width: 460px; }
+.colosseum-article .bill-header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--border); }
+.colosseum-article .bill-header-label { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--cyan-dim); margin-bottom: 0.25rem; }
+.colosseum-article .bill-header-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: var(--text); font-size: 0.95rem; }
+.colosseum-article .bill-body { padding: 0.5rem 2rem 1.5rem; }
+.colosseum-article .bill-row { display: flex; justify-content: space-between; align-items: center; padding: 0.85rem 0; border-bottom: 1px solid var(--border-dim); }
+.colosseum-article .bill-service { font-size: 0.85rem; color: var(--text-muted); }
+.colosseum-article .bill-price { font-family: 'Newsreader', serif; font-style: italic; font-size: 1.1rem; color: var(--text); }
+.colosseum-article .bill-footer { padding: 1.25rem 2rem; border-top: 1px solid var(--cyan-dim); display: flex; justify-content: space-between; align-items: center; }
+.colosseum-article .bill-total-label { font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+.colosseum-article .bill-total-num { font-family: 'Newsreader', serif; font-style: italic; font-size: 2.5rem; color: var(--cyan); }
+
+/* ─── TRADEOFF ───────────────────────────────── */
+.colosseum-article .tradeoff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media(max-width:768px) { .colosseum-article .tradeoff-grid { grid-template-columns: 1fr; } }
+.colosseum-article .tradeoff-card { padding: 2.25rem; border-radius: 14px; }
+.colosseum-article .tradeoff-card.positive { background: rgba(0,200,255,0.04); border: 1px solid rgba(0,200,255,0.15); }
+.colosseum-article .tradeoff-card.negative { background: rgba(255,64,96,0.04); border: 1px solid rgba(255,64,96,0.12); }
+.colosseum-article .tradeoff-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.5rem; }
+.colosseum-article .tradeoff-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.colosseum-article .tradeoff-head-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; }
+.colosseum-article .tradeoff-list { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; }
+.colosseum-article .tradeoff-item { display: flex; gap: 0.75rem; }
+.colosseum-article .tradeoff-sign { font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; line-height: 1.5; }
+.colosseum-article .tradeoff-item-title { font-weight: 500; font-size: 0.875rem; color: var(--text); margin-bottom: 0.2rem; }
+.colosseum-article .tradeoff-item-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; }
+
+/* ─── TWO PATHS ──────────────────────────────── */
+.colosseum-article .path-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media(max-width:768px) { .colosseum-article .path-grid { grid-template-columns: 1fr; } }
+.colosseum-article .path-card {
+  padding: 2.5rem; background: var(--bg-2);
+  border: 1px solid var(--border-dim); border-radius: 14px;
+  transition: border-color 0.3s, background 0.3s;
+}
+.colosseum-article .path-card:hover { border-color: var(--border); background: var(--bg-3); }
+.colosseum-article .path-num { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1.25rem; }
+.colosseum-article .path-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.5rem; color: var(--text); margin-bottom: 1rem; }
+.colosseum-article .path-body { font-size: 0.875rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 1.5rem; }
+.colosseum-article .path-points { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.colosseum-article .path-point { display: flex; gap: 0.65rem; align-items: flex-start; font-size: 0.78rem; color: var(--text-dim); line-height: 1.5; }
+.colosseum-article .path-point::before { content: '→'; color: var(--cyan-dim); flex-shrink: 0; }
+
+/* ─── CLOSING ────────────────────────────────── */
+.colosseum-article #closing { background: var(--bg-2); }
+.colosseum-article .closing-body { font-size: 1.05rem; color: var(--text-muted); line-height: 1.9; max-width: 700px; margin: 0 auto; }
+.colosseum-article .closing-body p + p { margin-top: 1.5rem; }
+.colosseum-article .closing-byline { margin-top: 4rem; text-align: center; }
+.colosseum-article .byline-divider { width: 1px; height: 3rem; background: linear-gradient(to bottom, var(--cyan), transparent); margin: 0 auto 1.5rem; }
+
+/* ─── FOOTER ─────────────────────────────────── */
+.colosseum-article footer {
+  padding: 3rem; border-top: 1px solid var(--border-dim);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+.colosseum-article .footer-series { display: flex; gap: 2rem; flex-wrap: wrap; }
+.colosseum-article .footer-series a { font-size: 0.78rem; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+.colosseum-article .footer-series a:hover { color: var(--cyan); }
+.colosseum-article .footer-copy { font-size: 0.72rem; color: var(--text-dim); }
+
+/* ─── VENU CARD ──────────────────────────────── */
+.colosseum-article .venu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+@media(max-width:768px) { .colosseum-article .venu-grid { grid-template-columns: 1fr; } }
+
+/* ─── CASE STUDY BADGE ───────────────────────── */
+.colosseum-article .blocked-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.3rem 0.75rem; border-radius: 100px;
+  background: rgba(255,64,96,0.1); border: 1px solid rgba(255,64,96,0.25);
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red);
+}
+.colosseum-article .blocked-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--red); }
+
+/* ─── GLOW SECTION DIVIDER ───────────────────── */
+.colosseum-article .glow-divider {
+  height: 1px; max-width: 1100px; margin: 0 auto;
+  background: linear-gradient(to right, transparent, var(--cyan-dim), transparent);
+}
+
+/* ─── ANIMATIONS ─────────────────────────────── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ─── REDUCE MOTION ──────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .colosseum-article *, .colosseum-article *::before, .colosseum-article *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
