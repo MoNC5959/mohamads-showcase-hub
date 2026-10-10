@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Page from "@/views/CognitiveQAHome";
 
-export const Route = createFileRoute("/cognitive-qa")({
+export const Route = createFileRoute("/cognitive-qa/")({
   head: () => ({
     meta: [
       { title: "Cognitive QA — Mohamad Noor Chowdhury" },

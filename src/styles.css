@@ -142,3 +142,157 @@
     color: var(--color-foreground);
   }
 }
+
+/* ---- Imported portfolio styles ---- */
+:root {
+  --color-bg: #faf7f0;
+  --color-text: #1f2422;
+  --color-divider: #ddd7ca;
+  --color-accent-300: #c7622a;
+  --color-accent-400: #e0a458;
+  --color-neutral-100: #f3f4f4;
+  --color-neutral-200: #e3e5e6;
+  --color-neutral-300: #cfd3d4;
+  --color-neutral-400: #aab0b2;
+  --color-neutral-500: #868d90;
+  --color-neutral-600: #6b7174;
+  --color-neutral-700: #52575a;
+  --color-neutral-800: #35393b;
+  --color-neutral-900: #1c1f20;
+  --font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: var(--color-bg);
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+a {
+  color: inherit;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 72%, transparent);
+  transition: color 160ms ease;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--color-accent-300);
+}
+
+.nav .nav-brand {
+  margin-right: auto;
+  font-family: var(--font-heading);
+}
+
+/* "Blueprint" drafting-sheet frame: a hairline box with four corner ticks */
+.blueprint {
+  position: relative;
+  border: 1px solid var(--color-divider);
+}
+
+.blueprint .corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+}
+
+.blueprint .corner.tl {
+  top: -1px;
+  left: -1px;
+  border-top: 1.5px solid var(--color-text);
+  border-left: 1.5px solid var(--color-text);
+}
+
+.blueprint .corner.tr {
+  top: -1px;
+  right: -1px;
+  border-top: 1.5px solid var(--color-text);
+  border-right: 1.5px solid var(--color-text);
+}
+
+.blueprint .corner.bl {
+  bottom: -1px;
+  left: -1px;
+  border-bottom: 1.5px solid var(--color-text);
+  border-left: 1.5px solid var(--color-text);
+}
+
+.blueprint .corner.br {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1.5px solid var(--color-text);
+  border-right: 1.5px solid var(--color-text);
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 1px solid var(--color-text);
+  background: transparent;
+  padding: 10px 20px;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text);
+}
+
+.btn-ghost:hover {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+@keyframes sunnah-float-z {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.8);
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(6px, -22px) scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+  }
+}

@@ -10,33 +10,206 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ColosseumRouteImport } from './routes/colosseum'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FewSecondsRouteImport } from './routes/few-seconds'
+import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as TokenizationRouteImport } from './routes/tokenization'
+import { Route as CognitiveQaIndexRouteImport } from './routes/cognitive-qa.index'
+import { Route as CognitiveQaBoeingRouteImport } from './routes/cognitive-qa.boeing'
+import { Route as CognitiveQaDemoRouteImport } from './routes/cognitive-qa.demo'
+import { Route as CognitiveQaMroRouteImport } from './routes/cognitive-qa.mro'
+import { Route as CognitiveQaStrategyRouteImport } from './routes/cognitive-qa.strategy'
+import { Route as CognitiveQaVisionRouteImport } from './routes/cognitive-qa.vision'
+import { Route as ProjectFintechRouteImport } from './routes/project.fintech'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ColosseumRoute = ColosseumRouteImport.update({
+  id: '/colosseum',
+  path: '/colosseum',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FewSecondsRoute = FewSecondsRouteImport.update({
+  id: '/few-seconds',
+  path: '/few-seconds',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioRoute = PortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TokenizationRoute = TokenizationRouteImport.update({
+  id: '/tokenization',
+  path: '/tokenization',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CognitiveQaIndexRoute = CognitiveQaIndexRouteImport.update({
+  id: '/cognitive-qa/',
+  path: '/cognitive-qa/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CognitiveQaBoeingRoute = CognitiveQaBoeingRouteImport.update({
+  id: '/cognitive-qa/boeing',
+  path: '/cognitive-qa/boeing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CognitiveQaDemoRoute = CognitiveQaDemoRouteImport.update({
+  id: '/cognitive-qa/demo',
+  path: '/cognitive-qa/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CognitiveQaMroRoute = CognitiveQaMroRouteImport.update({
+  id: '/cognitive-qa/mro',
+  path: '/cognitive-qa/mro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CognitiveQaStrategyRoute = CognitiveQaStrategyRouteImport.update({
+  id: '/cognitive-qa/strategy',
+  path: '/cognitive-qa/strategy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CognitiveQaVisionRoute = CognitiveQaVisionRouteImport.update({
+  id: '/cognitive-qa/vision',
+  path: '/cognitive-qa/vision',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectFintechRoute = ProjectFintechRouteImport.update({
+  id: '/project/fintech',
+  path: '/project/fintech',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/colosseum': typeof ColosseumRoute
+  '/contact': typeof ContactRoute
+  '/few-seconds': typeof FewSecondsRoute
+  '/portfolio': typeof PortfolioRoute
+  '/tokenization': typeof TokenizationRoute
+  '/cognitive-qa/boeing': typeof CognitiveQaBoeingRoute
+  '/cognitive-qa/demo': typeof CognitiveQaDemoRoute
+  '/cognitive-qa/mro': typeof CognitiveQaMroRoute
+  '/cognitive-qa/strategy': typeof CognitiveQaStrategyRoute
+  '/cognitive-qa/vision': typeof CognitiveQaVisionRoute
+  '/project/fintech': typeof ProjectFintechRoute
+  '/cognitive-qa/': typeof CognitiveQaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/colosseum': typeof ColosseumRoute
+  '/contact': typeof ContactRoute
+  '/few-seconds': typeof FewSecondsRoute
+  '/portfolio': typeof PortfolioRoute
+  '/tokenization': typeof TokenizationRoute
+  '/cognitive-qa/boeing': typeof CognitiveQaBoeingRoute
+  '/cognitive-qa/demo': typeof CognitiveQaDemoRoute
+  '/cognitive-qa/mro': typeof CognitiveQaMroRoute
+  '/cognitive-qa/strategy': typeof CognitiveQaStrategyRoute
+  '/cognitive-qa/vision': typeof CognitiveQaVisionRoute
+  '/project/fintech': typeof ProjectFintechRoute
+  '/cognitive-qa': typeof CognitiveQaIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/colosseum': typeof ColosseumRoute
+  '/contact': typeof ContactRoute
+  '/few-seconds': typeof FewSecondsRoute
+  '/portfolio': typeof PortfolioRoute
+  '/tokenization': typeof TokenizationRoute
+  '/cognitive-qa/boeing': typeof CognitiveQaBoeingRoute
+  '/cognitive-qa/demo': typeof CognitiveQaDemoRoute
+  '/cognitive-qa/mro': typeof CognitiveQaMroRoute
+  '/cognitive-qa/strategy': typeof CognitiveQaStrategyRoute
+  '/cognitive-qa/vision': typeof CognitiveQaVisionRoute
+  '/project/fintech': typeof ProjectFintechRoute
+  '/cognitive-qa/': typeof CognitiveQaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/colosseum'
+    | '/contact'
+    | '/few-seconds'
+    | '/portfolio'
+    | '/tokenization'
+    | '/cognitive-qa/boeing'
+    | '/cognitive-qa/demo'
+    | '/cognitive-qa/mro'
+    | '/cognitive-qa/strategy'
+    | '/cognitive-qa/vision'
+    | '/project/fintech'
+    | '/cognitive-qa/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/colosseum'
+    | '/contact'
+    | '/few-seconds'
+    | '/portfolio'
+    | '/tokenization'
+    | '/cognitive-qa/boeing'
+    | '/cognitive-qa/demo'
+    | '/cognitive-qa/mro'
+    | '/cognitive-qa/strategy'
+    | '/cognitive-qa/vision'
+    | '/project/fintech'
+    | '/cognitive-qa'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/colosseum'
+    | '/contact'
+    | '/few-seconds'
+    | '/portfolio'
+    | '/tokenization'
+    | '/cognitive-qa/boeing'
+    | '/cognitive-qa/demo'
+    | '/cognitive-qa/mro'
+    | '/cognitive-qa/strategy'
+    | '/cognitive-qa/vision'
+    | '/project/fintech'
+    | '/cognitive-qa/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ColosseumRoute: typeof ColosseumRoute
+  ContactRoute: typeof ContactRoute
+  FewSecondsRoute: typeof FewSecondsRoute
+  PortfolioRoute: typeof PortfolioRoute
+  TokenizationRoute: typeof TokenizationRoute
+  CognitiveQaBoeingRoute: typeof CognitiveQaBoeingRoute
+  CognitiveQaDemoRoute: typeof CognitiveQaDemoRoute
+  CognitiveQaMroRoute: typeof CognitiveQaMroRoute
+  CognitiveQaStrategyRoute: typeof CognitiveQaStrategyRoute
+  CognitiveQaVisionRoute: typeof CognitiveQaVisionRoute
+  ProjectFintechRoute: typeof ProjectFintechRoute
+  CognitiveQaIndexRoute: typeof CognitiveQaIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +221,115 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/colosseum': {
+      id: '/colosseum'
+      path: '/colosseum'
+      fullPath: '/colosseum'
+      preLoaderRoute: typeof ColosseumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/few-seconds': {
+      id: '/few-seconds'
+      path: '/few-seconds'
+      fullPath: '/few-seconds'
+      preLoaderRoute: typeof FewSecondsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portfolio': {
+      id: '/portfolio'
+      path: '/portfolio'
+      fullPath: '/portfolio'
+      preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tokenization': {
+      id: '/tokenization'
+      path: '/tokenization'
+      fullPath: '/tokenization'
+      preLoaderRoute: typeof TokenizationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cognitive-qa/': {
+      id: '/cognitive-qa/'
+      path: '/cognitive-qa'
+      fullPath: '/cognitive-qa/'
+      preLoaderRoute: typeof CognitiveQaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cognitive-qa/boeing': {
+      id: '/cognitive-qa/boeing'
+      path: '/cognitive-qa/boeing'
+      fullPath: '/cognitive-qa/boeing'
+      preLoaderRoute: typeof CognitiveQaBoeingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cognitive-qa/demo': {
+      id: '/cognitive-qa/demo'
+      path: '/cognitive-qa/demo'
+      fullPath: '/cognitive-qa/demo'
+      preLoaderRoute: typeof CognitiveQaDemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cognitive-qa/mro': {
+      id: '/cognitive-qa/mro'
+      path: '/cognitive-qa/mro'
+      fullPath: '/cognitive-qa/mro'
+      preLoaderRoute: typeof CognitiveQaMroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cognitive-qa/strategy': {
+      id: '/cognitive-qa/strategy'
+      path: '/cognitive-qa/strategy'
+      fullPath: '/cognitive-qa/strategy'
+      preLoaderRoute: typeof CognitiveQaStrategyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cognitive-qa/vision': {
+      id: '/cognitive-qa/vision'
+      path: '/cognitive-qa/vision'
+      fullPath: '/cognitive-qa/vision'
+      preLoaderRoute: typeof CognitiveQaVisionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/project/fintech': {
+      id: '/project/fintech'
+      path: '/project/fintech'
+      fullPath: '/project/fintech'
+      preLoaderRoute: typeof ProjectFintechRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ColosseumRoute: ColosseumRoute,
+  ContactRoute: ContactRoute,
+  FewSecondsRoute: FewSecondsRoute,
+  PortfolioRoute: PortfolioRoute,
+  TokenizationRoute: TokenizationRoute,
+  CognitiveQaBoeingRoute: CognitiveQaBoeingRoute,
+  CognitiveQaDemoRoute: CognitiveQaDemoRoute,
+  CognitiveQaMroRoute: CognitiveQaMroRoute,
+  CognitiveQaStrategyRoute: CognitiveQaStrategyRoute,
+  CognitiveQaVisionRoute: CognitiveQaVisionRoute,
+  ProjectFintechRoute: ProjectFintechRoute,
+  CognitiveQaIndexRoute: CognitiveQaIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
