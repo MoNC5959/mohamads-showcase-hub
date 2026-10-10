@@ -1,13 +1,15 @@
 interface SunnahSleeperProps {
   /** 0 = eyes open, 1 = eyes fully closed */
   sleepiness: number;
+  /** false = still ducked below the rim, true = popped up over it */
+  risen: boolean;
 }
 
 /**
  * Sunnah's head + paws, peeking over the rim of a box. Fades/crossfades
  * in while the standing cat climbs in and settles down for a nap.
  */
-export default function SunnahSleeper({ sleepiness }: SunnahSleeperProps) {
+export default function SunnahSleeper({ sleepiness, risen }: SunnahSleeperProps) {
   return (
     <svg viewBox="0 0 120 100" aria-hidden="true" style={{ display: "block", width: 120, height: 100, overflow: "visible" }}>
       <defs>
@@ -16,7 +18,12 @@ export default function SunnahSleeper({ sleepiness }: SunnahSleeperProps) {
         </clipPath>
       </defs>
       <g clipPath="url(#sunnah-rim)">
-        <g transform="translate(0 -6)">
+        <g
+          style={{
+            transform: risen ? "translateY(-6px)" : "translateY(58px)",
+            transition: "transform 340ms cubic-bezier(.3,1.4,.5,1)",
+          }}
+        >
           <path
             d="M33 34 L29 7 L53 22 Z M87 34 L91 7 L67 22 Z"
             fill="var(--color-neutral-500)"
@@ -69,7 +76,7 @@ export default function SunnahSleeper({ sleepiness }: SunnahSleeperProps) {
         </g>
       </g>
 
-      <g style={{ opacity: sleepiness, transition: "opacity 260ms ease" }}>
+      <g style={{ opacity: risen ? 1 : 0, transition: "opacity 200ms ease 180ms" }}>
         <path
           d="M96 58 C 104 60 106 68 103 76"
           fill="none"
@@ -85,7 +92,7 @@ export default function SunnahSleeper({ sleepiness }: SunnahSleeperProps) {
           strokeLinecap="round"
         />
       </g>
-      <g style={{ opacity: sleepiness, transition: "opacity 260ms ease" }}>
+      <g style={{ opacity: risen ? 1 : 0, transition: "opacity 200ms ease 180ms" }}>
         <ellipse cx={45} cy={61} rx={10.5} ry={6} fill="var(--color-neutral-500)" stroke="var(--color-neutral-800)" strokeWidth={1.25} />
         <ellipse cx={75} cy={61} rx={10.5} ry={6} fill="var(--color-neutral-500)" stroke="var(--color-neutral-800)" strokeWidth={1.25} />
         <path

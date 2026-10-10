@@ -6,6 +6,7 @@ interface NapBoxProps {
   title: string;
   active: boolean;
   onEnter: () => void;
+  onFocusEnter: () => void;
   onLeave: () => void;
   onPick: () => void;
 }
@@ -16,7 +17,7 @@ interface NapBoxProps {
  * as if inviting the cat in.
  */
 const NapBox = forwardRef<HTMLDivElement, NapBoxProps>(function NapBox(
-  { index, sheetLabel, title, active, onEnter, onLeave, onPick },
+  { index, sheetLabel, title, active, onEnter, onFocusEnter, onLeave, onPick },
   boxRef
 ) {
   const flapOpen = active;
@@ -27,7 +28,7 @@ const NapBox = forwardRef<HTMLDivElement, NapBoxProps>(function NapBox(
       aria-label={`Open ${title}`}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
-      onFocus={onEnter}
+      onFocus={onFocusEnter}
       onBlur={onLeave}
       onClick={onPick}
       style={{
