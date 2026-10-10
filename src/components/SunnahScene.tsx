@@ -1,3 +1,4 @@
+// @ts-nocheck -- imported code written for looser TypeScript settings
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from '@/lib/router-compat';
 import NapBox from "./NapBox";

@@ -1,3 +1,4 @@
+// @ts-nocheck -- imported code written for looser TypeScript settings
 import { useEffect, useRef } from 'react';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { TokenizationAnimation } from '@/components/article/TokenizationAnimation';

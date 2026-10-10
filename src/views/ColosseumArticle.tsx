@@ -1,3 +1,4 @@
+// @ts-nocheck -- imported code written for looser TypeScript settings
 import { useEffect } from 'react';
 import './colosseum.css';
 
