@@ -342,8 +342,6 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
           <span style={{ color: "var(--color-text)" }}>{statusText}</span>
         </div>
         <div style={{ padding: "12px 20px", borderLeft: "1px solid var(--color-divider)" }}>Subject: Sunnah, grey shorthair</div>
-        <div style={{ padding: "12px 20px", borderLeft: "1px solid var(--color-divider)" }}>Drawn by Mohamad Noor Chowdhury</div>
-        <div style={{ padding: "12px 20px", borderLeft: "1px solid var(--color-divider)" }}>Sheet 01 of 04</div>
       </div>
     </div>
   );
