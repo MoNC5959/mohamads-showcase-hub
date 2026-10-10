@@ -29,7 +29,7 @@ export function SEOHead({
   const defaultDescription = photographerInfo.heroIntroduction;
   const fullDescription = description || defaultDescription;
   
-  const baseUrl = window.location.origin;
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
   const fullUrl = `${baseUrl}${location.pathname}`;
 
   useEffect(() => {
