@@ -1,5 +1,5 @@
 // @ts-nocheck -- imported code written for looser TypeScript settings
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from "react";
 import { useNavigate } from '@/lib/router-compat';
 import NapBox from "./NapBox";
 import SunnahCat from "./SunnahCat";
@@ -62,7 +62,25 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
   const handleLeave = (index: number) => {
     if (phase !== "idle") return;
     setHoveredIndex((current) => (current === index ? null : current));
-    setCatOffset((current) => (hoveredIndex === index ? 0 : current));
+  };
+
+  // While the cursor isn't over a specific box, Sunnah drifts toward it
+  // continuously instead of sitting still — hovering a box still wins and
+  // snaps her precisely to that box's center (handleEnter, above).
+  const handleStageMouseMove = (event: ReactMouseEvent<HTMLDivElement>) => {
+    if (phase !== "idle" || hoveredIndex !== null) return;
+    const stage = stageRef.current;
+    if (!stage) return;
+    const stageRect = stage.getBoundingClientRect();
+    const stageCenter = stageRect.left + stageRect.width / 2;
+    const maxOffset = stageRect.width / 2 - 70;
+    const raw = event.clientX - stageCenter;
+    setCatOffset(Math.max(-maxOffset, Math.min(maxOffset, raw)));
+  };
+
+  const handleStageMouseLeave = () => {
+    if (phase !== "idle" || hoveredIndex !== null) return;
+    setCatOffset(0);
   };
 
   const handlePick = (index: number) => {
@@ -91,8 +109,7 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
     return () => window.removeEventListener("resize", onResize);
   }, [hoveredIndex, selectedIndex, measureOffset]);
 
-  const activeIndex = selectedIndex ?? hoveredIndex;
-  const lookDirection: -1 | 0 | 1 = activeIndex === 0 ? -1 : activeIndex === 2 ? 1 : 0;
+  const lookDirection: -1 | 0 | 1 = catOffset < -12 ? -1 : catOffset > 12 ? 1 : 0;
   const sleepiness = phase === "napping" ? 1 : 0;
 
   const statusDot = phase === "idle" ? "var(--color-neutral-400)" : "var(--color-accent-300)";
@@ -112,7 +129,12 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
       <i className="corner bl" />
       <i className="corner br" />
 
-      <div ref={stageRef} style={{ position: "relative", paddingTop: 44 }}>
+      <div
+        ref={stageRef}
+        onMouseMove={handleStageMouseMove}
+        onMouseLeave={handleStageMouseLeave}
+        style={{ position: "relative", paddingTop: 44 }}
+      >
         <svg width={0} height={0} aria-hidden="true" style={{ position: "absolute" }}>
           <defs>
             <pattern id="sunnah-hatch" width={6} height={6} patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
@@ -193,7 +215,7 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
               background: "color-mix(in srgb, black 45%, transparent)",
               opacity: phase === "napping" ? 0 : 1,
               transform: `translateX(${catOffset}px)`,
-              transition: "transform 380ms cubic-bezier(.3,1.6,.5,1), opacity 220ms ease",
+              transition: "transform 160ms cubic-bezier(.22,1,.36,1), opacity 220ms ease",
             }}
           />
 
@@ -208,7 +230,7 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
               transformOrigin: "50% 100%",
               opacity: phase === "napping" ? 0 : 1,
               transform: `translateX(${catOffset}px) scale(${phase === "napping" ? 0.85 : 1})`,
-              transition: "transform 380ms cubic-bezier(.3,1.6,.5,1), opacity 220ms ease",
+              transition: "transform 160ms cubic-bezier(.22,1,.36,1), opacity 220ms ease",
             }}
           >
             <SunnahCat lookDirection={lookDirection} />
@@ -224,7 +246,7 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
               marginLeft: -60,
               transform: `translateX(${catOffset}px)`,
               opacity: phase === "napping" ? 1 : 0,
-              transition: "opacity 260ms ease, transform 380ms cubic-bezier(.3,1.6,.5,1)",
+              transition: "opacity 260ms ease, transform 160ms cubic-bezier(.22,1,.36,1)",
             }}
           >
             <SunnahSleeper sleepiness={sleepiness} />

@@ -144,21 +144,26 @@
 }
 
 /* ---- Imported portfolio styles ---- */
+/* Dark, cool-toned "blueprint" scheme: light line-art on a deep navy sheet. */
 :root {
-  --color-bg: #faf7f0;
-  --color-text: #1f2422;
-  --color-divider: #ddd7ca;
-  --color-accent-300: #c7622a;
-  --color-accent-400: #e0a458;
-  --color-neutral-100: #f3f4f4;
-  --color-neutral-200: #e3e5e6;
-  --color-neutral-300: #cfd3d4;
-  --color-neutral-400: #aab0b2;
-  --color-neutral-500: #868d90;
-  --color-neutral-600: #6b7174;
-  --color-neutral-700: #52575a;
-  --color-neutral-800: #35393b;
-  --color-neutral-900: #1c1f20;
+  --color-bg: #0e151b;
+  --color-text: #e7f0f4;
+  --color-divider: #253441;
+  --color-accent-300: #5fd6c4;
+  --color-accent-400: #8fe8da;
+  /* Ramp runs light -> dark for fills (100-500), then flips light again for
+     line/outline detail (600-800) so strokes stay legible against the dark
+     background. --color-neutral-900 is the one fixed point: pupils, always
+     near-black regardless of theme since they sit on the light iris. */
+  --color-neutral-100: #f4f8fa;
+  --color-neutral-200: #d8e2e7;
+  --color-neutral-300: #b7c5cd;
+  --color-neutral-400: #93a4ae;
+  --color-neutral-500: #6d7f8a;
+  --color-neutral-600: #c7d4da;
+  --color-neutral-700: #dde7ea;
+  --color-neutral-800: #eef4f6;
+  --color-neutral-900: #0c1114;
   --font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
