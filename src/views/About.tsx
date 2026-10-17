@@ -1,5 +1,6 @@
 import PageShell from "../components/PageShell";
 import Carousel from "../components/Carousel";
+import CareerTimeline from "../components/CareerTimeline";
 import { photographerInfo as person } from "../data/photographer";
 
 import profilePortrait from "../assets/profile-portrait.jpeg";
@@ -40,64 +41,6 @@ const CATS = [
   { src: sunnah2, alt: "Sunnah the cat", caption: "Sunnah" },
   { src: modu1, alt: "Modu the cat", caption: "Modu" },
   { src: modu2, alt: "Modu the cat", caption: "Modu" },
-];
-
-const TIMELINE = [
-  {
-    period: "What's Next",
-    role: "Looking Ahead",
-    org: "",
-    points: [
-      "Pursuing roles in product management, strategy, or business analysis.",
-      "Aligning cross-functional teams around a shared goal and shipping solutions that move the needle.",
-    ],
-  },
-  {
-    period: "2024 – 2026",
-    role: "Business Analyst Lead",
-    org: "H&H Group",
-    points: [
-      "Built and presented business cases based on pain points discovered from stakeholder interviews.",
-      "Delivered $75K in annual cost savings through software governance improvements and a 50% efficiency gain.",
-      "Led the deployment of a Microsoft Copilot AI Agent to 25 employees.",
-    ],
-  },
-  {
-    period: "2022 – 2024",
-    role: "Technology Consultant",
-    org: "Ernst & Young",
-    points: [
-      "Served as Associate Product Manager and Product Owner on two client engagements in financial services, coordinating delivery across teams of 20-25 people.",
-      "Translated user research into backlog priorities and shipped MVP improvements for a mobile application modernization initiative and a global document repository platform.",
-    ],
-  },
-  {
-    period: "2022",
-    role: "Strategy & Intelligence Analyst",
-    org: "Kinesso",
-    points: [
-      "Conducted a research initiative exploring first-party data strategies as alternatives to third-party cookies, providing insights used by advertising teams to adapt targeting strategies.",
-      "Produced and distributed weekly AdTech intelligence briefings for director-level stakeholders summarizing major market developments.",
-    ],
-  },
-  {
-    period: "2020 – 2021",
-    role: "MSc, Digital Innovation in Marketing",
-    org: "Temple University",
-    points: [
-      "Concentration of MIS and Digital Marketing.",
-      "Every semester challenged me and my classmates to make innovative products, ranging from incorporating AI (this was before the huge AI boom) to reviving a legacy brand with new technology.",
-    ],
-  },
-  {
-    period: "2015 – 2019",
-    role: "BBA, Management Information Systems",
-    org: "Temple University",
-    points: [
-      "This is where I fell in love with the field. Being at the intersection of business and tech is where I thrived, and this program helped me realize that.",
-      "Coursework included business analysis, coding (HTML & JS), project management, and cybersecurity.",
-    ],
-  },
 ];
 
 const bodyTextStyle = {
@@ -151,38 +94,8 @@ export default function About() {
         </div>
       </div>
 
-      <section style={{ width: "100%", marginTop: 12 }}>
-        <h2 style={{ fontFamily: "var(--font-heading)", fontSize: 22, textTransform: "uppercase", margin: "0 0 16px" }}>
-          Where I've Been
-        </h2>
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          {TIMELINE.map((entry) => (
-            <div
-              key={`${entry.period}-${entry.role}`}
-              className="blueprint"
-              style={{ padding: "16px 20px", position: "relative" }}
-            >
-              <i className="corner tl" />
-              <i className="corner tr" />
-              <i className="corner bl" />
-              <i className="corner br" />
-              <p style={{ margin: 0, fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--color-accent-300)" }}>
-                {entry.period}
-              </p>
-              <p style={{ margin: "4px 0 10px", fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: 18, textTransform: "uppercase" }}>
-                {entry.role}
-                {entry.org ? ` — ${entry.org}` : ""}
-              </p>
-              <ul style={{ margin: 0, paddingLeft: 18, display: "flex", flexDirection: "column", gap: 6 }}>
-                {entry.points.map((point) => (
-                  <li key={point.slice(0, 24)} style={{ fontSize: 15, lineHeight: 1.5, color: "color-mix(in srgb, var(--color-text) 80%, transparent)" }}>
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+      <section style={{ width: "100%", marginTop: 48 }}>
+        <CareerTimeline />
       </section>
 
       <section style={{ width: "100%", marginTop: 12 }}>
