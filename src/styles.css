@@ -1140,12 +1140,16 @@ a.contact-row:hover svg {
   color: var(--color-bg);
 }
 
-/* Dragging her with a finger mustn't select text or open the long-press menu. Scrolling up and down still works. */
+/* Dragging her with a finger mustn't select text or open the long-press menu. The scene decides between drag and scroll. */
 .cat-stage {
-  touch-action: pan-y;
+  touch-action: manipulation;
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
+}
+
+.cat-floor {
+  touch-action: none;
 }
 
 .cat-pose {

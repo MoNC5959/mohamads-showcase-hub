@@ -1,5 +1,5 @@
 // @ts-nocheck -- imported code written for looser TypeScript settings
-import { useCallback, useEffect, useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from "react";
 import { useNavigate } from '@/lib/router-compat';
 import NapBox from "./NapBox";
 import SunnahCat from "./SunnahCat";
@@ -38,10 +38,17 @@ const LEAP_DISTANCE = 14;
 const WAKE_DISTANCE = 8;
 const SIT_DELAY_MS = 140;
 const TURN_SECONDS = 0.14;
+// Crossing a narrow floor at full speed is over in a blink, so her pace scales with the stage.
+const WALK_SPEED_PER_STAGE_WIDTH = 0.6;
 // Distance from the stage edge to her center, in drawing units, so she stays on the floor.
-const FLOOR_MARGIN = 95;
+const FLOOR_MARGIN = 66;
 const DRAWING_WIDTH = 120;
 const DRAG_DISTANCE = 10;
+// Holding a finger still this long means she should come, not that a tap is on its way.
+const HOLD_MS = 120;
+const LONG_HOLD_MS = 400;
+// A first movement must be this much more vertical than horizontal to count as scrolling the page.
+const SCROLL_BIAS = 1.5;
 
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 
@@ -70,7 +77,16 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
   const catRef = useRef<HTMLDivElement>(null);
   const floorRef = useRef<HTMLDivElement>(null);
   const walkerRef = useRef<SunnahWalkerHandle>(null);
-  const touch = useRef({ id: null as number | null, startX: 0, dragged: false });
+  const touch = useRef({
+    id: null as number | null,
+    startX: 0,
+    startY: 0,
+    startTime: 0,
+    onFloor: false,
+    mode: "undecided" as "undecided" | "drag" | "scroll",
+    dragged: false,
+    holdTimer: 0,
+  });
   const motion = useRef({
     x: 0,
     velocity: 0,
@@ -124,7 +140,8 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
     const drawnFacing = Math.abs(m.facing) < 0.06 ? Math.sign(m.facing || 1) * 0.06 : m.facing;
 
     const hurry = Math.max(speed - WALK_SPEED, 0) / (RUN_SPEED - WALK_SPEED);
-    const wantedSwing = (16 + 14 * Math.min(speed / WALK_SPEED, 1) + 8 * hurry) * Math.min(speed / 50, 1);
+    const cruising = Math.min(m.topSpeed, WALK_SPEED);
+    const wantedSwing = (16 + 14 * Math.min(speed / cruising, 1) + 8 * hurry) * Math.min(speed / 50, 1);
     m.swing += (wantedSwing - m.swing) * Math.min(dt * 14, 1);
     const scale = (catRef.current?.offsetWidth ?? DRAWING_WIDTH) / DRAWING_WIDTH;
     const strideLength = 4 * WALKER_LEG_LENGTH * Math.sin((Math.max(m.swing, 10) * Math.PI) / 180) * scale;
@@ -211,6 +228,7 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
       const stageRect = stage.getBoundingClientRect();
       const scale = (catRef.current?.offsetWidth ?? DRAWING_WIDTH) / DRAWING_WIDTH;
       const maxOffset = stageRect.width / 2 - FLOOR_MARGIN * scale;
+      motion.current.topSpeed = Math.min(WALK_SPEED, stageRect.width * WALK_SPEED_PER_STAGE_WIDTH);
       walkTo(clamp(clientX - (stageRect.left + stageRect.width / 2), -maxOffset, maxOffset));
     },
     [walkTo]
@@ -228,40 +246,95 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
   useEffect(() => {
     setTouchOnly(window.matchMedia("(hover: none)").matches);
 
-    const onMove = (event: PointerEvent) => {
-      if (phaseRef.current !== "idle") return;
-      if (event.pointerType !== "touch") {
-        followPointer(event.clientX);
-        return;
-      }
-      if (event.pointerId !== touch.current.id) return;
-      if (Math.abs(event.clientX - touch.current.startX) > DRAG_DISTANCE) touch.current.dragged = true;
-      followPointer(event.clientX);
-      setHoveredIndex(boxUnder(event.clientX));
+    const onMouseMove = (event: PointerEvent) => {
+      if (event.pointerType !== "touch" && phaseRef.current === "idle") followPointer(event.clientX);
     };
-    const onRelease = (event: PointerEvent) => {
-      if (event.pointerId !== touch.current.id) return;
-      touch.current.id = null;
+    window.addEventListener("pointermove", onMouseMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onMouseMove);
+  }, [followPointer]);
+
+  // Touch uses its own listeners because only a non-passive touchmove can stop the browser
+  // from claiming the gesture as a scroll, which would cancel the drag partway through.
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    const t = touch.current;
+
+    const beginDrag = (clientX: number) => {
+      t.mode = "drag";
+      setTouching(true);
+      followPointer(clientX);
+      setHoveredIndex(boxUnder(clientX));
+    };
+
+    const finish = () => {
+      window.clearTimeout(t.holdTimer);
+      t.id = null;
+      t.mode = "undecided";
       setTouching(false);
       if (phaseRef.current === "idle") setHoveredIndex(null);
     };
 
-    window.addEventListener("pointermove", onMove, { passive: true });
-    window.addEventListener("pointerup", onRelease);
-    window.addEventListener("pointercancel", onRelease);
+    const onStart = (event: TouchEvent) => {
+      // A second finger is a pinch to zoom, and that belongs to the browser.
+      if (event.touches.length > 1) {
+        finish();
+        return;
+      }
+      if (phaseRef.current !== "idle") return;
+      const point = event.changedTouches[0];
+      window.clearTimeout(t.holdTimer);
+      t.id = point.identifier;
+      t.startX = point.clientX;
+      t.startY = point.clientY;
+      t.startTime = performance.now();
+      // The floor below the boxes is hers: a touch there is always a drag, however the finger drifts.
+      t.onFloor = point.clientY >= (boxRefs[0].current?.getBoundingClientRect().bottom ?? Infinity);
+      t.mode = "undecided";
+      t.dragged = false;
+      t.holdTimer = window.setTimeout(() => {
+        if (t.mode === "undecided" && t.id !== null) beginDrag(t.startX);
+      }, HOLD_MS);
+    };
+
+    const onMove = (event: TouchEvent) => {
+      const point = Array.from(event.changedTouches).find((candidate) => candidate.identifier === t.id);
+      if (!point || t.mode === "scroll") return;
+      const dx = Math.abs(point.clientX - t.startX);
+      const dy = Math.abs(point.clientY - t.startY);
+      if (t.mode === "undecided") {
+        window.clearTimeout(t.holdTimer);
+        if (!t.onFloor && dy > dx * SCROLL_BIAS) {
+          t.mode = "scroll";
+          return;
+        }
+        beginDrag(point.clientX);
+      }
+      if (event.cancelable) event.preventDefault();
+      if (phaseRef.current !== "idle") return;
+      if (dx > DRAG_DISTANCE) t.dragged = true;
+      followPointer(point.clientX);
+      setHoveredIndex(boxUnder(point.clientX));
+    };
+
+    const onEnd = (event: TouchEvent) => {
+      if (!Array.from(event.changedTouches).some((candidate) => candidate.identifier === t.id)) return;
+      if (t.mode === "drag" && performance.now() - t.startTime > LONG_HOLD_MS) t.dragged = true;
+      finish();
+    };
+
+    stage.addEventListener("touchstart", onStart, { passive: true });
+    stage.addEventListener("touchmove", onMove, { passive: false });
+    stage.addEventListener("touchend", onEnd);
+    stage.addEventListener("touchcancel", onEnd);
     return () => {
-      window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerup", onRelease);
-      window.removeEventListener("pointercancel", onRelease);
+      window.clearTimeout(t.holdTimer);
+      stage.removeEventListener("touchstart", onStart);
+      stage.removeEventListener("touchmove", onMove);
+      stage.removeEventListener("touchend", onEnd);
+      stage.removeEventListener("touchcancel", onEnd);
     };
   }, [followPointer, boxUnder]);
-
-  const handleStagePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== "touch" || phase !== "idle") return;
-    touch.current = { id: event.pointerId, startX: event.clientX, dragged: false };
-    setTouching(true);
-    followPointer(event.clientX);
-  };
 
   // Lifting a finger after a drag isn't a tap on whichever box it ended over.
   const handleStageClickCapture = (event: ReactMouseEvent<HTMLDivElement>) => {
@@ -367,7 +440,6 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
 
       <div
         ref={stageRef}
-        onPointerDown={handleStagePointerDown}
         onClickCapture={handleStageClickCapture}
         onContextMenu={(event) => {
           if (touching) event.preventDefault();
@@ -429,7 +501,7 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
           </svg>
         </div>
 
-        <div style={{ height: "clamp(120px, 10vw, 144px)" }} />
+        <div className="cat-floor" style={{ height: "clamp(120px, 10vw, 144px)" }} />
 
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 2 }}>
           <div ref={floorRef} style={{ position: "absolute", left: "50%", bottom: 0, width: 0, height: 0 }}>
@@ -438,9 +510,9 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
                 position: "absolute",
                 left: 0,
                 bottom: -2,
-                width: 92,
+                width: "clamp(70px, 6.5vw, 92px)",
                 height: 7,
-                marginLeft: -46,
+                translate: "-50% 0",
                 borderRadius: "50%",
                 background: "color-mix(in srgb, black 45%, transparent)",
                 opacity: leavingFloor ? 0 : 1,

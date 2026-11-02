@@ -10,7 +10,7 @@ const ITEMS: [NapBoxItem, NapBoxItem, NapBoxItem] = [
 
 export default function Index() {
   return (
-    <div className="sheet">
+    <div className="sheet" style={{ overflowX: "clip" }}>
       <NavBar showLinks={false} />
 
       <div className="sheet-main" style={{ paddingTop: 8 }}>
