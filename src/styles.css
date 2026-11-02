@@ -360,6 +360,10 @@ html:has(.sheet) {
   animation: sheet-title-draft 800ms var(--expo-out) both;
 }
 
+.sheet-title--accent {
+  color: var(--color-accent-300);
+}
+
 @keyframes sheet-title-draft {
   from {
     clip-path: inset(-10% 100% -10% -2%);
@@ -1033,9 +1037,22 @@ html:has(.sheet) {
   border-top: 1px solid var(--color-divider);
 }
 
+.contact-row .sheet-label {
+  color: var(--sheet-muted);
+}
+
+a.contact-row .contact-value {
+  color: var(--color-accent-300);
+}
+
 a.contact-row:hover {
-  background: var(--color-text);
+  background: var(--color-accent-300);
   color: var(--color-bg);
+}
+
+a.contact-row:hover .sheet-label,
+a.contact-row:hover .contact-value {
+  color: inherit;
 }
 
 .contact-value {

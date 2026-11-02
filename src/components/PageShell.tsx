@@ -7,22 +7,22 @@ interface PageShellProps {
   /** Sheet reference, e.g. "Box 02 / Sheet 03 of 04", printed in the title block. */
   sheetRef: string;
   title: string;
-  /** Prints the sheet in reverse: accent ground, dark ink. */
-  accent?: boolean;
+  /** Sets the page title in the accent color. */
+  accentTitle?: boolean;
   children?: ReactNode;
 }
 
 /**
  * Shared "drafting sheet" layout for every page that isn't the home scene.
  */
-export default function PageShell({ sheetRef, title, accent = false, children }: PageShellProps) {
+export default function PageShell({ sheetRef, title, accentTitle = false, children }: PageShellProps) {
   const navigate = useNavigate();
 
   return (
-    <div className={accent ? "sheet sheet--accent" : "sheet"}>
+    <div className="sheet">
       <NavBar />
       <main className="sheet-main">
-        <h1 className="sheet-title">{title}</h1>
+        <h1 className={accentTitle ? "sheet-title sheet-title--accent" : "sheet-title"}>{title}</h1>
 
         {children ?? (
           <p className="sheet-body">Sunnah is still asleep in the box. This sheet is ready for your content.</p>

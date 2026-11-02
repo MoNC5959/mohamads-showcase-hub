@@ -12,7 +12,7 @@ const ROWS = [
 
 export default function Contact() {
   return (
-    <PageShell sheetRef="Box 03 / Sheet 04 of 04" title="Contact" accent>
+    <PageShell sheetRef="Box 03 / Sheet 04 of 04" title="Contact" accentTitle>
       <p className="contact-lede">Hiring for product? Here's how to reach me directly.</p>
 
       <div className="blueprint">
