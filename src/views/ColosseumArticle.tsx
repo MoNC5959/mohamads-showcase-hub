@@ -428,7 +428,7 @@ export default function ColosseumArticle() {
 
       {/* Nav */}
       <nav className="col-nav">
-        <a href="/" className="nav-logo font-sans text-lg" style={{textDecoration:'none',color:'inherit',cursor:'pointer'}}>MOHAMAD NOOR CHOWDHURY</a>
+        <a href="/" className="nav-logo font-sans text-lg" style={{textDecoration:'none',color:'inherit',cursor:'pointer'}}>MOHAMAD NOOR-CHOWDHURY</a>
         <ul className="nav-links">
           <li><a href="#access">Access</a></li>
           <li><a href="#power">Power Play</a></li>

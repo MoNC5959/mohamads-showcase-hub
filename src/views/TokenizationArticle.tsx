@@ -235,7 +235,7 @@ export default function TokenizationArticle() {
       {/* NAV */}
       <nav className="fixed top-1 w-full z-50 bg-[#131313]/95 backdrop-blur-sm flex justify-between items-center px-8 py-6 max-w-[1920px] mx-auto" style={{ left: 0, right: 0 }}>
         <a href="/" className="font-sans tracking-[0.2em] uppercase text-zinc-300 hover:text-white transition-colors no-underline text-lg font-thin">
-          Mohamad Noor Chowdhury
+          Mohamad Noor-Chowdhury
         </a>
         <div className="hidden md:flex items-center gap-10">
           <a className="text-zinc-400 font-sans uppercase text-[12px] tracking-widest hover:text-zinc-300" href="#intro">Theory</a>
