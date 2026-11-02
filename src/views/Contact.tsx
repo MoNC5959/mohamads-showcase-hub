@@ -1,13 +1,34 @@
 import { ArrowUpRight } from "lucide-react";
+import type { ReactNode } from "react";
 import PageShell from "../components/PageShell";
 import { photographerInfo as person } from "../data/photographer";
 
-const ROWS = [
-  { label: "Email", value: person.email, href: `mailto:${person.email}` },
-  { label: "Phone", value: person.phone, href: `tel:${person.phone.replace(/[^+\d]/g, "")}` },
-  { label: "LinkedIn", value: "in/mohamad-noor-chowdhury", href: person.linkedin },
+interface ContactRow {
+  label: string;
+  value: ReactNode;
+  href?: string;
+  note?: string;
+  className?: string;
+}
+
+const ROWS: ContactRow[] = [
+  { label: "Email", value: person.email },
+  { label: "Phone", value: person.phone },
+  {
+    label: "LinkedIn",
+    // The break opportunity keeps the address whole on phones, splitting it only after the domain.
+    value: (
+      <>
+        https://www.linkedin.com/
+        <wbr />
+        <span style={{ whiteSpace: "nowrap" }}>in/mohamad-noor-chowdhury/</span>
+      </>
+    ),
+    note: "LinkedIn doesn't allow direct links from Lovable, so please copy the address above.",
+    className: "contact-value--long",
+  },
   { label: "GitHub", value: "MoNC5959", href: person.github },
-  { label: "Location", value: person.location, href: undefined },
+  { label: "Location", value: person.location, className: "contact-value--plain" },
 ];
 
 export default function Contact() {
@@ -20,26 +41,28 @@ export default function Contact() {
         <i className="corner tr" />
         <i className="corner bl" />
         <i className="corner br" />
-        {ROWS.map((row) =>
-          row.href ? (
-            <a
-              key={row.label}
-              href={row.href}
-              target={row.href.startsWith("http") ? "_blank" : undefined}
-              rel="noreferrer"
-              className="contact-row"
-            >
+        {ROWS.map((row) => {
+          const content = (
+            <>
               <span className="sheet-label">{row.label}</span>
-              <span className="contact-value">{row.value}</span>
+              <div className="contact-detail">
+                <span className={row.className ? `contact-value ${row.className}` : "contact-value"}>{row.value}</span>
+                {row.note && <em className="contact-note">{row.note}</em>}
+              </div>
+            </>
+          );
+
+          return row.href ? (
+            <a key={row.label} href={row.href} target="_blank" rel="noreferrer" className="contact-row">
+              {content}
               <ArrowUpRight size={24} strokeWidth={1.5} aria-hidden="true" />
             </a>
           ) : (
             <div key={row.label} className="contact-row">
-              <span className="sheet-label">{row.label}</span>
-              <span className="contact-value">{row.value}</span>
+              {content}
             </div>
-          )
-        )}
+          );
+        })}
       </div>
     </PageShell>
   );

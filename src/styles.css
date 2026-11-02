@@ -1041,18 +1041,48 @@ html:has(.sheet) {
   color: var(--sheet-muted);
 }
 
-a.contact-row .contact-value {
+.contact-row .contact-value {
+  display: block;
   color: var(--color-accent-300);
 }
 
-a.contact-row:hover {
+.contact-row .contact-value--plain {
+  color: inherit;
+}
+
+.contact-row .contact-value--long {
+  font-size: clamp(14px, 3cqw, 40px);
+  overflow-wrap: normal;
+}
+
+.contact-detail {
+  min-width: 0;
+}
+
+.contact-note {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--sheet-muted);
+}
+
+.contact-row:hover {
   background: var(--color-accent-300);
   color: var(--color-bg);
 }
 
-a.contact-row:hover .sheet-label,
-a.contact-row:hover .contact-value {
+.contact-row:hover .sheet-label,
+.contact-row:hover .contact-value,
+.contact-row:hover .contact-note {
   color: inherit;
+}
+
+/* The address gets copied by hand, so a selection has to show up on a highlighted row too. */
+.contact-row:hover ::selection {
+  background: var(--color-bg);
+  color: var(--color-accent-300);
 }
 
 .contact-value {
@@ -1085,8 +1115,13 @@ a.contact-row:hover svg {
     grid-row: 1;
     grid-column: 2;
   }
-  .contact-value {
+  .contact-detail {
     grid-column: 1 / -1;
+  }
+  .contact-value {
+    font-size: 4.7cqw;
+  }
+  .contact-row .contact-value--long {
     font-size: 4.7cqw;
   }
 }
