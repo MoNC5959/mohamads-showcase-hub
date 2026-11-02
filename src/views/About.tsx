@@ -3,24 +3,23 @@ import Carousel from "../components/Carousel";
 import CareerTimeline from "../components/CareerTimeline";
 import { photographerInfo as person } from "../data/photographer";
 
-import profilePortrait from "../assets/profile-portrait.jpeg";
+import profilePortrait from "../assets/profile-portrait.webp";
 
-import biscoffCookies from "../assets/desserts/biscoff-cookies.jpeg";
-import blackWhiteCookies from "../assets/desserts/black-white-cookies.jpeg";
-import brownies from "../assets/desserts/brownies.jpeg";
-import cake from "../assets/desserts/cake.jpeg";
-import mangoCheesecake from "../assets/desserts/mango-cheesecake.jpeg";
-import miniCheesecakes from "../assets/desserts/mini-cheesecakes.jpeg";
-import muffins from "../assets/desserts/muffins.jpeg";
-import peachCheesecake from "../assets/desserts/peach-cheesecake.jpeg";
-import peachCheesecake2 from "../assets/desserts/peach-cheesecake-2.jpeg";
-import strawberryCheesecake from "../assets/desserts/strawberry-cheesecake.jpeg";
-import tiramisu from "../assets/desserts/tiramisu.jpeg";
+import biscoffCookies from "../assets/gallery/biscoff-cookies.webp";
+import blackWhiteCookies from "../assets/gallery/black-white-cookies.webp";
+import brownies from "../assets/gallery/brownies.webp";
+import cake from "../assets/gallery/cake.webp";
+import mangoCheesecake from "../assets/gallery/mango-cheesecake.webp";
+import miniCheesecakes from "../assets/gallery/mini-cheesecakes.webp";
+import muffins from "../assets/gallery/muffins.webp";
+import peachCheesecake from "../assets/gallery/peach-cheesecake.webp";
+import strawberryCheesecake from "../assets/gallery/strawberry-cheesecake.webp";
+import tiramisu from "../assets/gallery/tiramisu.webp";
 
-import modu1 from "../assets/cats/modu-1.jpeg";
-import modu2 from "../assets/cats/modu-2.jpeg";
-import sunnah1 from "../assets/cats/sunnah-1.jpeg";
-import sunnah2 from "../assets/cats/sunnah-2.jpeg";
+import modu1 from "../assets/gallery/modu-1.webp";
+import modu2 from "../assets/gallery/modu-2.webp";
+import sunnah1 from "../assets/gallery/sunnah-1.webp";
+import sunnah2 from "../assets/gallery/sunnah-2.webp";
 
 const DESSERTS = [
   { src: biscoffCookies, alt: "Biscoff cookies" },
@@ -31,7 +30,6 @@ const DESSERTS = [
   { src: miniCheesecakes, alt: "Mini cheesecakes" },
   { src: muffins, alt: "Muffins" },
   { src: peachCheesecake, alt: "Peach cheesecake" },
-  { src: peachCheesecake2, alt: "Peach cheesecake, take two" },
   { src: strawberryCheesecake, alt: "Strawberry cheesecake" },
   { src: tiramisu, alt: "Tiramisu" },
 ];
@@ -95,7 +93,7 @@ export default function About() {
       <section className="about-section about-galleries">
         <div className="about-gallery">
           <h2 className="sheet-h2">The Dessert Gallery</h2>
-          <Carousel items={DESSERTS} aspectRatio="1 / 1" />
+          <Carousel items={DESSERTS} label="Dessert gallery" aspectRatio="1 / 1" />
         </div>
         <div className="about-gallery">
           <h2 className="sheet-h2">The Cat Tax</h2>
@@ -103,7 +101,7 @@ export default function About() {
             And because the internet demands it, the cat tax has been paid below. Meet Sunnah the beautiful diva and Modu
             the gluttonous yet adorable demon.
           </p>
-          <Carousel items={CATS} aspectRatio="1 / 1" />
+          <Carousel items={CATS} label="Cat photos" aspectRatio="1 / 1" firstTurnMs={2500} />
         </div>
       </section>
     </PageShell>
