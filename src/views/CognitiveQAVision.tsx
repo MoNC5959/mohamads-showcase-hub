@@ -2,6 +2,8 @@
 import { Link } from '@/lib/router-compat';
 import { useEffect, useState } from 'react';
 import './cognitive-qa-amber.css';
+import BackToTop from '@/components/BackToTop';
+import CognitiveQANav from '@/components/CognitiveQANav';
 
 export default function CognitiveQAVision() {
   const [activeTab, setActiveTab] = useState('boeing');
@@ -113,19 +115,7 @@ export default function CognitiveQAVision() {
     <div className="cqa-amber cqa-vision">
       <div id="cqa-progress" className="progress-bar" aria-hidden="true"></div>
 
-      <div className="top-bar top-bar-sticky">
-        <Link to="/cognitive-qa" className="back-link" aria-label="Back to home">
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-            <path d="M7 1L3 5L7 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          BACK
-        </Link>
-        <Link to="/cognitive-qa" className="brand brand-sm">
-          <div className="brand-dot-sm"></div>
-          COGNITIVE QA
-        </Link>
-        <span className="top-bar-right">VISION BRIEF</span>
-      </div>
+      <CognitiveQANav />
 
       <header className="hero" aria-label="Vision Brief opening">
         <div className="hero-bg-grid" aria-hidden="true"></div>
@@ -418,6 +408,7 @@ export default function CognitiveQAVision() {
         <span className="status-online">CONCEPT DEMO</span>
         <span>COGNITIVE QA / VISION</span>
       </div>
+      <BackToTop ground="var(--amber)" ink="var(--w-bg)" />
     </div>
   );
 }

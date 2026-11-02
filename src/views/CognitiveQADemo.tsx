@@ -1,5 +1,6 @@
 import { Link } from '@/lib/router-compat';
 import './cognitive-qa-amber.css';
+import CognitiveQANav from '@/components/CognitiveQANav';
 
 export default function CognitiveQADemo() {
   return (
@@ -172,14 +173,7 @@ export default function CognitiveQADemo() {
 
       <div className="cqa-demo" style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
 
-        <div className="top-bar">
-          <Link to="/cognitive-qa" className="back-link">BACK</Link>
-          <Link to="/cognitive-qa" className="brand">
-            <div className="brand-dot"></div>
-            COGNITIVE QA
-          </Link>
-          <div className="top-bar-right">DEMO</div>
-        </div>
+        <CognitiveQANav />
 
         <div className="demo-wrap">
           <div className="scene" aria-hidden="true">

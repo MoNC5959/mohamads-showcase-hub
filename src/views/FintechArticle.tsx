@@ -1,6 +1,7 @@
 import { ArrowLeft } from 'lucide-react';
 import { Link } from '@/lib/router-compat';
 import { SEOHead } from '@/components/seo/SEOHead';
+import BackToTop from '@/components/BackToTop';
 import NavBar from '@/components/NavBar';
 import ProjectCover from '@/components/ProjectCover';
 
@@ -163,6 +164,7 @@ export default function FintechArticle() {
             </footer>
           </article>
         </main>
+        <BackToTop />
       </div>
     </>
   );

@@ -14,19 +14,18 @@ export default function NavBar({ showLinks = true }: NavBarProps) {
   const location = useLocation();
 
   return (
-    <nav
-      className="nav"
-      style={{ maxWidth: 1440, margin: "0 auto", padding: "16px clamp(20px, 5vw, 72px)", gap: "clamp(14px, 3vw, 28px)" }}
-    >
-      <Link to="/" className="nav-brand" style={{ fontSize: 20, letterSpacing: "0.02em", textTransform: "uppercase" }}>
-        Mohamad Noor-Chowdhury
-      </Link>
-      {showLinks &&
-        LINKS.map((link) => (
-          <Link key={link.to} to={link.to} className={location.pathname === link.to ? "active" : ""}>
-            {link.label}
-          </Link>
-        ))}
-    </nav>
+    <header className="site-header">
+      <nav className="nav">
+        <Link to="/" className="nav-brand" style={{ letterSpacing: "0.02em", textTransform: "uppercase" }}>
+          Mohamad Noor-Chowdhury
+        </Link>
+        {showLinks &&
+          LINKS.map((link) => (
+            <Link key={link.to} to={link.to} className={location.pathname === link.to ? "active" : ""}>
+              {link.label}
+            </Link>
+          ))}
+      </nav>
+    </header>
   );
 }

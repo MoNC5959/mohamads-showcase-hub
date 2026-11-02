@@ -1989,3 +1989,76 @@
   .cqa-amber .btn-row { width: 100%; padding-inline: 20px; }
   .cqa-amber .nav-btn { width: 100%; height: auto; padding: 18px 20px; }
 }
+
+/* The frozen bar shared by Vision, Strategy, and Demo. The selectors outrank each page's own reset. */
+header.cqa-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  height: 52px;
+  padding: 0 28px;
+  background: var(--w-surface);
+  border-bottom: 1px solid var(--border-w);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+}
+.cqa-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.cqa-nav a:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+.cqa-nav .cqa-nav-back {
+  gap: 8px;
+  padding-right: 20px;
+  margin-right: 20px;
+  border-right: 1px solid var(--border-w);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--muted-w);
+}
+.cqa-nav .cqa-nav-back:hover { color: var(--amber); }
+.cqa-nav .cqa-nav-brand {
+  gap: 9px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--amber);
+}
+.cqa-nav .cqa-nav-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+.cqa-nav .cqa-nav-sections {
+  display: flex;
+  gap: clamp(16px, 2.6vw, 32px);
+  margin-left: auto;
+}
+.cqa-nav .cqa-nav-sections a {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-w);
+}
+.cqa-nav .cqa-nav-sections a:hover,
+.cqa-nav .cqa-nav-sections a[aria-current="page"] { color: var(--amber); }
+.cqa-nav .cqa-nav-sections a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+@media (max-width: 560px) {
+  header.cqa-nav { padding: 0 16px; }
+  .cqa-nav .cqa-nav-brand { display: none; }
+  .cqa-nav .cqa-nav-back { padding-right: 14px; margin-right: 14px; }
+}

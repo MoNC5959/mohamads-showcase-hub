@@ -1,5 +1,6 @@
 // @ts-nocheck -- imported code written for looser TypeScript settings
 import { useEffect } from 'react';
+import BackToTop from '@/components/BackToTop';
 import './colosseum.css';
 
 export default function ColosseumArticle() {
@@ -1135,6 +1136,7 @@ export default function ColosseumArticle() {
         </div>
         <span className="footer-copy">© 2025 Mo NC</span>
       </footer>
+      <BackToTop ground="var(--cyan)" ink="var(--bg)" />
     </div>
   );
 }

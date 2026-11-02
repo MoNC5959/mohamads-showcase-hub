@@ -1,5 +1,6 @@
 import { useNavigate } from '@/lib/router-compat';
 import type { ReactNode } from "react";
+import BackToTop from "./BackToTop";
 import NavBar from "./NavBar";
 
 interface PageShellProps {
@@ -52,6 +53,7 @@ export default function PageShell({ sheetRef, title, accent = false, children }:
           </div>
         </footer>
       </main>
+      <BackToTop />
     </div>
   );
 }

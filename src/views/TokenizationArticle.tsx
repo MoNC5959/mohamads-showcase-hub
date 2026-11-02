@@ -1,5 +1,6 @@
 // @ts-nocheck -- imported code written for looser TypeScript settings
 import { useEffect, useRef } from 'react';
+import BackToTop from '@/components/BackToTop';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { TokenizationAnimation } from '@/components/article/TokenizationAnimation';
 import './tokenization.css';
@@ -233,7 +234,7 @@ export default function TokenizationArticle() {
       <div id="progress-bar" />
 
       {/* NAV */}
-      <nav className="fixed top-1 w-full z-50 bg-[#131313]/95 backdrop-blur-sm flex justify-between items-center px-8 py-6 max-w-[1920px] mx-auto" style={{ left: 0, right: 0 }}>
+      <nav className="fixed top-0 w-full z-50 bg-[#131313]/95 backdrop-blur-sm flex justify-between items-center px-8 py-6 max-w-[1920px] mx-auto" style={{ left: 0, right: 0 }}>
         <a href="/" className="font-sans tracking-[0.2em] uppercase text-zinc-300 hover:text-white transition-colors no-underline text-lg font-thin">
           Mohamad Noor-Chowdhury
         </a>
@@ -967,6 +968,7 @@ export default function TokenizationArticle() {
           </div>
         </div>
       </footer>
+      <BackToTop ground="#f2dfd2" ink="#131313" />
 
     </div>
     </>

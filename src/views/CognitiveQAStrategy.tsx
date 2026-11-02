@@ -3,6 +3,8 @@ import { Link } from '@/lib/router-compat';
 import { useEffect } from 'react';
 import './cognitive-qa-amber.css';
 import ProjectCover from '@/components/ProjectCover';
+import BackToTop from '@/components/BackToTop';
+import CognitiveQANav from '@/components/CognitiveQANav';
 
 export default function CognitiveQAStrategy() {
   useEffect(() => {
@@ -148,14 +150,7 @@ export default function CognitiveQAStrategy() {
     <div className="cqa-amber cqa-s-wrap" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <div className="progress-bar" id="cqa-s-progress"></div>
 
-      <div className="top-bar">
-        <Link to="/cognitive-qa" className="back-link">← BACK</Link>
-        <Link to="/cognitive-qa" className="brand">
-          <div className="brand-dot"></div>
-          COGNITIVE QA
-        </Link>
-        <div className="top-bar-right">PRODUCT STRATEGY</div>
-      </div>
+      <CognitiveQANav />
 
       {/* ── HERO ── */}
       <section className="hero" aria-label="Strategy overview">
@@ -556,6 +551,7 @@ export default function CognitiveQAStrategy() {
         <span className="status-online">CONCEPT DEMO</span>
         <span>COGNITIVE QA / STRATEGY</span>
       </div>
+      <BackToTop ground="var(--amber)" ink="var(--w-bg)" />
     </div>
   );
 }

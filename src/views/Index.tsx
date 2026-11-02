@@ -1,3 +1,4 @@
+import BackToTop from "../components/BackToTop";
 import NavBar from "../components/NavBar";
 import SunnahScene, { type NapBoxItem } from "../components/SunnahScene";
 
@@ -27,6 +28,7 @@ export default function Index() {
 
         <SunnahScene items={ITEMS} />
       </div>
+      <BackToTop />
     </div>
   );
 }
