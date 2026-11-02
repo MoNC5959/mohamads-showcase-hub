@@ -70,7 +70,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Mohamad Noor-Chowdhury | Portfolio" },
-      { name: "description", content: "Pick a box. Sunnah will nap in it." },
+      { name: "description", content: "View Mohamad's portfolio to explore his work across product demos, research, and case studies." },
       { name: "author", content: "Mohamad Noor-Chowdhury" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
