@@ -3,7 +3,7 @@ import './cognitive-qa-amber.css';
 
 export default function CognitiveQADemo() {
   return (
-    <div style={{ background: 'var(--w-bg)', color: 'var(--text-w)', fontFamily: 'var(--font)', minHeight: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+    <div style={{ background: 'var(--w-bg)', color: 'var(--text-w)', fontFamily: 'var(--font-heading)', minHeight: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 
       <style>{`
         :root {
@@ -29,22 +29,22 @@ export default function CognitiveQADemo() {
         }
         .cqa-demo .back-link {
           display: flex; align-items: center; gap: 8px; color: var(--muted-w);
-          text-decoration: none; font-size: 0.78rem; letter-spacing: 0.14em;
+          text-decoration: none; font-size: 0.78rem; letter-spacing: 0.08em;
           padding-right: 20px; border-right: 1px solid var(--border-w); margin-right: 20px;
           transition: color 0.15s; min-height: 44px;
         }
         .cqa-demo .back-link:hover { color: var(--amber); }
         .cqa-demo .brand {
           display: flex; align-items: center; gap: 9px; color: var(--amber);
-          font-size: 0.9rem; letter-spacing: 0.2em; text-decoration: none;
+          font-size: 0.9rem; letter-spacing: 0.08em; text-decoration: none;
         }
         .cqa-demo .brand-dot {
           width: 10px; height: 10px; border-radius: 50%; background: var(--amber);
-          box-shadow: 0 0 10px var(--amber); animation: cqa-pulse 2s infinite;
+           animation: cqa-pulse 2s infinite;
         }
         @keyframes cqa-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
         .cqa-demo .top-bar-right {
-          margin-left: auto; font-size: 0.78rem; letter-spacing: 0.18em; color: var(--muted-w);
+          margin-left: auto; font-size: 0.78rem; letter-spacing: 0.08em; color: var(--muted-w);
         }
         .cqa-demo .scene {
           position: absolute; inset: 0; pointer-events: none; overflow: hidden;
@@ -82,22 +82,22 @@ export default function CognitiveQADemo() {
         }
         .cqa-demo .eyebrow {
           display: flex; align-items: center; gap: 12px; font-size: 0.88rem;
-          letter-spacing: 0.32em; color: var(--muted-w); margin-bottom: 22px;
+          letter-spacing: 0.08em; color: var(--muted-w); margin-bottom: 22px;
           opacity: 0; animation: cqa-fadeUp 0.6s ease-out 0.1s forwards;
         }
         .cqa-demo .eyebrow-line { width: 36px; height: 1px; background: var(--border-w); }
         .cqa-demo .demo-title {
-          font-size: clamp(2.4rem, 6vw, 4.8rem); letter-spacing: 0.28em; text-transform: uppercase;
+          font-size: clamp(3.2rem, 13vw, 12rem); font-weight: 700; line-height: 0.9; letter-spacing: -0.02em; text-transform: uppercase;
           line-height: 1; text-align: center; color: var(--text-w); margin-bottom: 10px;
           opacity: 0; animation: cqa-fadeUp 0.7s ease-out 0.3s forwards;
         }
         .cqa-demo .demo-title .accent {
           color: var(--amber);
-          text-shadow: 0 0 30px rgba(245,166,35,0.4), 0 0 80px rgba(245,166,35,0.15);
-          animation: cqa-glowBreathe 3s ease-in-out 1.4s infinite;
+          
+          
         }
         .cqa-demo .demo-sub {
-          font-size: 0.88rem; letter-spacing: 0.28em; color: var(--muted-w); margin-bottom: 56px;
+          font-size: 0.88rem; letter-spacing: 0.08em; color: var(--muted-w); margin-bottom: 56px;
           opacity: 0; animation: cqa-fadeUp 0.6s ease-out 0.5s forwards;
         }
         .cqa-demo .card-row {
@@ -129,19 +129,19 @@ export default function CognitiveQADemo() {
         }
         .cqa-demo .demo-card:hover .demo-card-shimmer { left: 160%; transition: left 0.5s ease-in-out; }
         .cqa-demo .demo-card-tag {
-          font-size: 0.65rem; letter-spacing: 0.28em; color: var(--muted-w); margin-bottom: 24px; transition: color 0.2s;
+          font-size: 0.65rem; letter-spacing: 0.08em; color: var(--muted-w); margin-bottom: 24px; transition: color 0.2s;
         }
         .cqa-demo .demo-card:hover .demo-card-tag { color: var(--amber); opacity: 0.7; }
         .cqa-demo .demo-card-icon { margin-bottom: 28px; }
         .cqa-demo .demo-card-icon svg { width: 48px; height: 48px; stroke: var(--amber); opacity: 0.55; transition: opacity 0.2s; }
         .cqa-demo .demo-card:hover .demo-card-icon svg { opacity: 1; }
         .cqa-demo .demo-card-title {
-          font-size: 1.25rem; letter-spacing: 0.18em; color: var(--text-w); margin-bottom: 12px; transition: color 0.2s;
+          font-size: clamp(1.5rem, 2.4vw, 2.1rem); font-weight: 700; letter-spacing: 0.08em; color: var(--text-w); margin-bottom: 12px; transition: color 0.2s;
         }
         .cqa-demo .demo-card:hover .demo-card-title { color: var(--amber); }
         .cqa-demo .demo-card-desc { font-size: 0.8rem; letter-spacing: 0.06em; line-height: 1.65; color: var(--muted-w); flex: 1; }
         .cqa-demo .demo-card-enter {
-          margin-top: 28px; font-size: 0.78rem; letter-spacing: 0.18em; color: var(--muted-w);
+          margin-top: 28px; font-size: 0.78rem; letter-spacing: 0.08em; color: var(--muted-w);
           display: flex; align-items: center; gap: 8px; transition: color 0.2s, gap 0.2s;
         }
         .cqa-demo .demo-card:hover .demo-card-enter { color: var(--amber); gap: 14px; }
@@ -152,7 +152,7 @@ export default function CognitiveQADemo() {
         }
         .cqa-demo .status-dot {
           width: 8px; height: 8px; border-radius: 50%; background: var(--amber);
-          box-shadow: 0 0 6px var(--amber); animation: cqa-pulse 2s infinite;
+           animation: cqa-pulse 2s infinite;
         }
         .cqa-demo .status-online { color: var(--amber); }
         .cqa-demo .status-right  { margin-left: auto; }
@@ -161,8 +161,8 @@ export default function CognitiveQADemo() {
           to   { opacity: 1; transform: translateY(0); }
         }
         @keyframes cqa-glowBreathe {
-          0%, 100% { text-shadow: 0 0 30px rgba(245,166,35,0.4), 0 0 80px rgba(245,166,35,0.15); }
-          50%       { text-shadow: 0 0 50px rgba(245,166,35,0.7), 0 0 120px rgba(245,166,35,0.28); }
+          0%, 100% {  }
+          50%       {  }
         }
         @media (max-width: 680px) {
           .cqa-demo .card-row { flex-direction: column; gap: 12px; }
@@ -173,7 +173,7 @@ export default function CognitiveQADemo() {
       <div className="cqa-demo" style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
 
         <div className="top-bar">
-          <Link to="/cognitive-qa" className="back-link">&#8592; BACK</Link>
+          <Link to="/cognitive-qa" className="back-link">BACK</Link>
           <Link to="/cognitive-qa" className="brand">
             <div className="brand-dot"></div>
             COGNITIVE QA
@@ -191,12 +191,6 @@ export default function CognitiveQADemo() {
 
           <div className="demo-inner">
 
-            <div className="eyebrow">
-              <div className="eyebrow-line"></div>
-              SELECT INSPECTION VIEW
-              <div className="eyebrow-line"></div>
-            </div>
-
             <h1 className="demo-title">LIVE <span className="accent">DEMO</span></h1>
             <p className="demo-sub">CHOOSE A ROLE TO ENTER THE SIMULATION</p>
 
@@ -204,33 +198,18 @@ export default function CognitiveQADemo() {
 
               <Link to="/cognitive-qa/boeing" className="demo-card">
                 <div className="demo-card-bar"></div>
-                <div className="demo-card-shimmer"></div>
                 <div className="demo-card-tag">01 / MANUFACTURER</div>
-                <div className="demo-card-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M3 17l5-10 3 6 2-3 4 7H3z"/>
-                    <path d="M17 7l2 2M19 5l-2 2"/>
-                    <circle cx="19" cy="5" r="2"/>
-                  </svg>
-                </div>
                 <div className="demo-card-title">BOEING INSPECTOR</div>
                 <div className="demo-card-desc">Assembly line quality control. Real-time AI scan of wing components against the digital twin. Defects flagged spatially as they occur.</div>
-                <div className="demo-card-enter">ENTER VIEW &#8594;</div>
+                <div className="demo-card-enter">ENTER VIEW </div>
               </Link>
 
               <Link to="/cognitive-qa/mro" className="demo-card">
                 <div className="demo-card-bar"></div>
-                <div className="demo-card-shimmer"></div>
                 <div className="demo-card-tag">02 / MAINTENANCE</div>
-                <div className="demo-card-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
-                  </svg>
-                </div>
                 <div className="demo-card-title">MRO INSPECTOR</div>
                 <div className="demo-card-desc">In-service maintenance verification. Full inspection history at a glance. Every prior check, every variance, every sign-off in one verified record.</div>
-                <div className="demo-card-enter">ENTER VIEW &#8594;</div>
+                <div className="demo-card-enter">ENTER VIEW </div>
               </Link>
 
             </div>
@@ -239,9 +218,8 @@ export default function CognitiveQADemo() {
 
         <div className="status-bar">
           <div className="status-dot"></div>
-          <span className="status-online">PLATFORM ONLINE</span>
+          <span className="status-online">CONCEPT DEMO</span>
           <span>COGNITIVE QA / DEMO</span>
-          <span className="status-right">v2.4.1</span>
         </div>
 
       </div>

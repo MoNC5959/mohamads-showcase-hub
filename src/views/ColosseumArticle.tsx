@@ -85,77 +85,6 @@ export default function ColosseumArticle() {
     if (dataBars) barObs.observe(dataBars);
 
     /* ══════════════════════════════════════════════════════
-       HERO CANVAS: PARTICLE NETWORK
-    ══════════════════════════════════════════════════════ */
-    let particleRafId: number | null = null;
-    let resizeHandler1: () => void;
-    (function() {
-      const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d')!;
-      let W: number, H: number;
-      interface Particle { x: number; y: number; vx: number; vy: number; r: number; a: number; }
-      let particles: Particle[];
-
-      function resize() {
-        W = canvas.width = canvas.offsetWidth;
-        H = canvas.height = canvas.offsetHeight;
-      }
-      resizeHandler1 = resize;
-      resize();
-      window.addEventListener('resize', resizeHandler1, { passive: true });
-
-      const COUNT = 60;
-      particles = Array.from({ length: COUNT }, () => ({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-        r: Math.random() * 1.5 + 0.5,
-        a: Math.random() * 0.5 + 0.1,
-      }));
-
-      function draw() {
-        ctx.clearRect(0, 0, W, H);
-
-        const grad = ctx.createRadialGradient(W * 0.5, H * 0.35, 0, W * 0.5, H * 0.35, H * 0.6);
-        grad.addColorStop(0, 'rgba(0,200,255,0.04)');
-        grad.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, W, H);
-
-        for (let i = 0; i < particles.length; i++) {
-          for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 140) {
-              ctx.beginPath();
-              ctx.moveTo(particles[i].x, particles[i].y);
-              ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.strokeStyle = `rgba(0,200,255,${0.04 * (1 - dist / 140)})`;
-              ctx.lineWidth = 0.5;
-              ctx.stroke();
-            }
-          }
-        }
-
-        particles.forEach(p => {
-          p.x += p.vx; p.y += p.vy;
-          if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
-          if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(0,200,255,${p.a})`;
-          ctx.fill();
-        });
-
-        particleRafId = requestAnimationFrame(draw);
-      }
-      draw();
-    })();
-
-    /* ══════════════════════════════════════════════════════
        S-CURVE CHART
     ══════════════════════════════════════════════════════ */
     let resizeHandler2: () => void;
@@ -475,14 +404,12 @@ export default function ColosseumArticle() {
 
     return () => {
       window.removeEventListener('scroll', scrollHandler);
-      if (resizeHandler1) window.removeEventListener('resize', resizeHandler1);
       if (resizeHandler2) window.removeEventListener('resize', resizeHandler2);
       if (resizeHandler3) window.removeEventListener('resize', resizeHandler3);
       revObs.disconnect();
       sNavObs.disconnect();
       counterObs.disconnect();
       barObs.disconnect();
-      if (particleRafId !== null) cancelAnimationFrame(particleRafId);
       if (morphRafId !== null) cancelAnimationFrame(morphRafId);
       if (track) {
         if (eraMouseDownHandler) track.removeEventListener('mousedown', eraMouseDownHandler);
@@ -529,7 +456,6 @@ export default function ColosseumArticle() {
 
         {/* ═══════════════════════════════════════ HERO */}
         <section id="hero">
-          <canvas id="hero-canvas" aria-hidden="true"></canvas>
           <canvas id="morph-canvas" aria-hidden="true"></canvas>
           <div className="hero-inner">
             <div className="hero-kicker reveal d1">

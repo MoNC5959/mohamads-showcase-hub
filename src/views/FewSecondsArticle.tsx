@@ -151,16 +151,16 @@ export default function FewSecondsArticle() {
 
         {/* Hero */}
         <header className="max-w-screen-xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-end mb-24">
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-12">
             <p className="font-label text-secondary font-bold tracking-[0.3em] uppercase mb-4 text-sm">Case Study</p>
-            <h1 className="serif-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black leading-[0.95] tracking-tighter text-on-surface">
+            <h1 className="serif-display text-[clamp(3rem,9.4vw,9.5rem)] font-black leading-[0.92] tracking-tighter text-on-surface">
               The Few Seconds That <span className="italic text-primary">Move Your Money</span>
             </h1>
             <p className="mt-6 md:mt-8 font-body text-base sm:text-lg md:text-xl text-on-surface-variant max-w-2xl leading-relaxed">
               Every day, billions of people tap a card without thinking twice about what happens next. A small financial miracle unfolds across a web of banks, networks, and technology companies, all silently agreeing to move your money before you've even picked up your receipt.
             </p>
           </div>
-          <div className="lg:col-span-4 hidden lg:block pb-4 text-right">
+          <div className="lg:col-span-12 hidden lg:block pb-4 text-right">
             <div className="text-on-surface-variant font-label text-xs uppercase tracking-widest leading-loose">
               Published Apr 2026<br />
               10 Minute Read
@@ -168,7 +168,7 @@ export default function FewSecondsArticle() {
           </div>
         </header>
 
-        {/* Featured Image — card tap animation */}
+        {/* Featured Image: card tap animation */}
         <section className="max-w-screen-2xl mx-auto px-4 mb-24">
           <div className="relative h-[440px] sm:h-[560px] md:h-[680px] lg:h-[780px] rounded-xl overflow-hidden shadow-2xl group bg-surface-container-low flex items-center justify-center">
             <div className="absolute inset-0 bg-gradient-to-br from-surface-container-lowest via-surface-container to-primary/5"></div>
@@ -362,7 +362,7 @@ export default function FewSecondsArticle() {
           </div>
         </section>
 
-        {/* How It Works — Two-Act Play */}
+        {/* How It Works: Two-Act Play */}
         <section id="how-it-works" className="max-w-screen-2xl mx-auto px-4 mb-32">
           <div className="bg-surface-container-lowest rounded-3xl overflow-hidden border border-outline-variant/5 shadow-[inset_0_2px_40px_rgba(0,0,0,0.8)]">
             <div className="p-12 lg:p-16 text-center border-b border-outline-variant/10">
@@ -462,7 +462,7 @@ export default function FewSecondsArticle() {
           {/* Decision divider */}
           <div className="flex items-center gap-4 my-8">
             <div className="flex-1 h-px bg-outline-variant/15"></div>
-            <div className="px-5 py-2 rounded-full bg-surface-container border border-outline-variant/20 flex items-center gap-2 whitespace-nowrap">
+            <div className="px-5 py-2 rounded-full bg-surface-container border border-outline-variant/20 flex items-center gap-2 min-w-0">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse inline-block"></span>
               <span className="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Issuer decides in under 2 seconds, response returns in reverse</span>
             </div>

@@ -28,7 +28,7 @@ export default function CognitiveQABoeing() {
           { t: 1100, type: 'scan', text: 'Scanning spar cap geometry...' },
           { t: 1700, type: 'scan', text: 'Measuring alignment delta...' },
           { t: 2300, type: 'pass', text: 'Alignment within tolerance: +0.008mm' },
-          { t: 2600, type: 'pass', text: 'CHECKPOINT PASS — Spar Cap Alignment' },
+          { t: 2600, type: 'pass', text: 'CHECKPOINT PASS: Spar Cap Alignment' },
         ]
       },
       {
@@ -50,9 +50,9 @@ export default function CognitiveQABoeing() {
           { t: 200,  type: 'scan', text: 'Scanning Rib Station 4 fastener pattern...' },
           { t: 700,  type: 'info', text: 'Locating Bolt A7-R4...' },
           { t: 1200, type: 'scan', text: 'Reading torque signature via AI...' },
-          { t: 1750, type: 'fail', text: '!! ANOMALY DETECTED — Torque variance' },
-          { t: 2100, type: 'fail', text: 'Measured: 12 Nm — Required: 35 Nm' },
-          { t: 2400, type: 'fail', text: 'DEFECT LOGGED: DEF-2847 — CRITICAL' },
+          { t: 1750, type: 'fail', text: '!! ANOMALY DETECTED: Torque variance' },
+          { t: 2100, type: 'fail', text: 'Measured: 12 Nm, Required: 35 Nm' },
+          { t: 2400, type: 'fail', text: 'DEFECT LOGGED: DEF-2847, CRITICAL' },
         ],
         action:     'Bolt A7-R4 at Rib Station 4 installed at incorrect torque. Measured 12 Nm vs. required 35 Nm. Re-torque and re-verify before assembly proceeds.',
         actionType: 'fail'
@@ -76,9 +76,9 @@ export default function CognitiveQABoeing() {
           { t: 200,  type: 'scan', text: 'Scanning leading edge skin contour...' },
           { t: 700,  type: 'info', text: 'Comparing against surface spec: LE-SKIN-737' },
           { t: 1300, type: 'scan', text: 'Checking panel fastener count...' },
-          { t: 1800, type: 'pass', text: 'Surface deviation: 0.003mm — within spec' },
+          { t: 1800, type: 'pass', text: 'Surface deviation: 0.003mm, within spec' },
           { t: 2200, type: 'pass', text: 'All 24 fasteners detected and verified' },
-          { t: 2500, type: 'pass', text: 'CHECKPOINT PASS — Leading Edge Skin Panel' },
+          { t: 2500, type: 'pass', text: 'CHECKPOINT PASS: Leading Edge Skin Panel' },
         ]
       },
       {
@@ -97,19 +97,19 @@ export default function CognitiveQABoeing() {
           conf:     '96.4%'
         },
         logLines: [
-          { t: 200,  type: 'scan', text: 'Scanning Rear Spar — Rib Station 6...' },
+          { t: 200,  type: 'scan', text: 'Scanning Rear Spar: Rib Station 6...' },
           { t: 700,  type: 'info', text: 'Counting upper skin fastener pattern...' },
           { t: 1200, type: 'scan', text: 'Spatial mapping fastener positions...' },
           { t: 1700, type: 'fail', text: '!! INCOMPLETE PATTERN DETECTED' },
-          { t: 2050, type: 'fail', text: 'Found: 9 fasteners — Required: 12' },
-          { t: 2350, type: 'fail', text: 'DEFECT LOGGED: DEF-2849 — CRITICAL' },
+          { t: 2050, type: 'fail', text: 'Found: 9 fasteners, Required: 12' },
+          { t: 2350, type: 'fail', text: 'DEFECT LOGGED: DEF-2849, CRITICAL' },
         ],
         action:     'Fastener pattern at Rib Station 6 upper skin incomplete. 9 of 12 fasteners installed. Missing fasteners must be installed and torqued to spec.',
         actionType: 'fail'
       },
       {
         name:     'FUEL SEAL INTEGRITY',
-        location: 'Wing Box, Station 3 — Station 7',
+        location: 'Wing Box, Station 3: Station 7',
         zoneIdx:  4,
         scanPct:  { from: 0.22, to: 0.68 },
         result:   'warning',
@@ -126,9 +126,9 @@ export default function CognitiveQABoeing() {
           { t: 200,  type: 'scan', text: 'Initiating wide-area wing box scan...' },
           { t: 600,  type: 'info', text: 'Checking rear spar cap gap tolerances...' },
           { t: 1100, type: 'scan', text: 'Measuring spar cap gap at Station 5...' },
-          { t: 1650, type: 'warn', text: '! VARIANCE DETECTED — Gap out of tolerance' },
-          { t: 2000, type: 'warn', text: 'Gap measured: 2.3mm — Tolerance: 0.02mm' },
-          { t: 2300, type: 'warn', text: 'DEFECT LOGGED: DEF-2848 — WARNING' },
+          { t: 1650, type: 'warn', text: '! VARIANCE DETECTED: Gap out of tolerance' },
+          { t: 2000, type: 'warn', text: 'Gap measured: 2.3mm, Tolerance: 0.02mm' },
+          { t: 2300, type: 'warn', text: 'DEFECT LOGGED: DEF-2848, WARNING' },
         ],
         action:     'Spar cap gap at Rear Spar Station 5 exceeds tolerance. Measured 2.3mm vs. 0.02mm max. Re-inspect after torque sequence.',
         actionType: 'warn'
@@ -248,10 +248,10 @@ export default function CognitiveQABoeing() {
     function showHud(step: any) {
       hudComp.textContent    = step.hud.comp;
       hudSpec.textContent    = step.hud.spec;
-      hudReading.textContent = '—';
+      hudReading.textContent = ': ';
       hudStatus.textContent  = 'SCANNING';
       hudStatus.style.color  = 'var(--cyan)';
-      hudConf.textContent    = '—';
+      hudConf.textContent    = ': ';
       dataHud.classList.add('show');
     }
 
@@ -345,11 +345,11 @@ export default function CognitiveQABoeing() {
         topBadge.className       = 'badge badge-red';
         topBadge.textContent     = `${defectCount} DEFECT(S) FOUND`;
         statusInspection.className   = 'status-fail';
-        statusInspection.textContent = `✕ DEFECT FOUND — STEP ${stepIdx + 1}`;
+        statusInspection.textContent = `✕ DEFECT FOUND: STEP ${stepIdx + 1}`;
       } else if (step.result === 'warning') {
         statusVariance.style.display = '';
         statusInspection.className   = 'status-warn';
-        statusInspection.textContent = `▲ VARIANCE — STEP ${stepIdx + 1}`;
+        statusInspection.textContent = `▲ VARIANCE: STEP ${stepIdx + 1}`;
       } else {
         if (statusInspection.className !== 'status-fail') {
           statusInspection.className   = 'status-active';
@@ -397,7 +397,7 @@ export default function CognitiveQABoeing() {
       (progressFill as HTMLElement).style.width  = '100%';
       stepCounter.textContent   = 'ALL STEPS COMPLETE';
       stepName.textContent      = 'INSPECTION FINISHED';
-      stepLocation.textContent  = '2 defects — 1 variance — 2 passed';
+      stepLocation.textContent  = '2 defects: 1 variance, 2 passed';
       setStepBadge('done', 'COMPLETE');
       scanBtn.textContent       = 'INSPECTION COMPLETE';
       scanBtn.className         = 'scan-btn complete-btn';
@@ -406,7 +406,7 @@ export default function CognitiveQABoeing() {
       topBadge.className        = 'badge badge-red';
       topBadge.textContent      = '2 DEFECTS FOUND';
       statusInspection.className   = 'status-fail';
-      statusInspection.textContent = '✕ INSPECTION COMPLETE — 2 FAILED';
+      statusInspection.textContent = '✕ INSPECTION COMPLETE: 2 FAILED';
       appendLog('Inspection sequence complete. Report generated.', 'info');
       appendLog('2 critical defects logged. Assembly hold active.', 'fail');
 
@@ -415,14 +415,14 @@ export default function CognitiveQABoeing() {
       hudSpec.textContent    = 'ALL CLEAR';
       hudStatus.textContent  = 'HOLD';
       hudStatus.style.color  = 'var(--red)';
-      hudConf.textContent    = '—';
+      hudConf.textContent    = ': ';
     }
 
     function openDefectPanel(defectId: string, anchorEl: HTMLElement) {
       const d = DEFECT_DATA[defectId];
       if (!d) return;
 
-      (document.getElementById('dpId') as HTMLElement).textContent       = `DEFECT — ${d.id}`;
+      (document.getElementById('dpId') as HTMLElement).textContent       = `DEFECT: ${d.id}`;
       (document.getElementById('dpTitle') as HTMLElement).textContent    = d.title;
       (document.getElementById('dpLocation') as HTMLElement).textContent = d.location;
       (document.getElementById('dpSpec') as HTMLElement).textContent     = d.spec;
@@ -476,9 +476,9 @@ export default function CognitiveQABoeing() {
 
       auditMeta.innerHTML = `
         <div class="audit-meta-row"><span class="audit-meta-key">AIRCRAFT PART</span><span class="audit-meta-val">737-WNG-042</span></div>
-        <div class="audit-meta-row"><span class="audit-meta-key">SCAN START</span><span class="audit-meta-val">${scanStartTime ? fmtTime(scanStartTime) : '—'}</span></div>
+        <div class="audit-meta-row"><span class="audit-meta-key">SCAN START</span><span class="audit-meta-val">${scanStartTime ? fmtTime(scanStartTime) : ': '}</span></div>
         <div class="audit-meta-row"><span class="audit-meta-key">SCAN END</span><span class="audit-meta-val">${fmtTime(now)}</span></div>
-        <div class="audit-meta-row"><span class="audit-meta-key">PLATFORM</span><span class="audit-meta-val">Cognitive QA v2.4.1</span></div>
+        <div class="audit-meta-row"><span class="audit-meta-key">PLATFORM</span><span class="audit-meta-val">Cognitive QA</span></div>
         <div class="audit-meta-row"><span class="audit-meta-key">INSPECTOR</span><span class="audit-meta-val">CGQ-INS-0472</span></div>
       `;
 
@@ -495,7 +495,7 @@ export default function CognitiveQABoeing() {
             <div class="audit-step-num">${String(i + 1).padStart(2, '0')}</div>
             <div class="audit-step-info">
               <div class="audit-step-name">${step.name}</div>
-              <div class="audit-step-detail">${step.location}${defect ? ` — ${defect.id}` : ''}</div>
+              <div class="audit-step-detail">${step.location}${defect ? `: ${defect.id}` : ''}</div>
               <span class="audit-step-badge ${bc}">${bl}</span>
             </div>
             <div class="audit-step-ts">${fmtTime(entry.timestamp)}</div>
@@ -514,7 +514,7 @@ export default function CognitiveQABoeing() {
           <div class="audit-stat"><div class="audit-stat-num wa">${warnings}</div><div class="audit-stat-label">WARNINGS</div></div>
           <div class="audit-stat"><div class="audit-stat-num">${auditLog.length}</div><div class="audit-stat-label">TOTAL</div></div>
         </div>
-        <div class="audit-hold">DISPOSITION: ASSEMBLY HOLD — Defects DEF-2847 and DEF-2849 require corrective action before flight release.</div>
+        <div class="audit-hold">DISPOSITION: ASSEMBLY HOLD, Defects DEF-2847 and DEF-2849 require corrective action before flight release.</div>
       `;
 
       signoffTs.textContent = fmtTime(now);
@@ -602,7 +602,7 @@ export default function CognitiveQABoeing() {
     setChecklistState(0, 'active');
     appendLog('HoloLens 2 connected. Digital twin loaded.', 'scan');
     appendLog('Blueprint: 737-880 Wing Assy 737-WNG-042', 'info');
-    appendLog('Ready — click BEGIN SCAN to start.', 'info');
+    appendLog('Ready: click BEGIN SCAN to start.', 'info');
 
     return () => {
       scanBtn.removeEventListener('click', onScanClick);
@@ -685,10 +685,10 @@ export default function CognitiveQABoeing() {
               <line x1="80" y1="370" x2="820" y2="370" strokeWidth="0.5" opacity="0.3"/>
               <line x1="80" y1="365" x2="80" y2="375" strokeWidth="0.5" opacity="0.3"/>
               <line x1="820" y1="365" x2="820" y2="375" strokeWidth="0.5" opacity="0.3"/>
-              <text x="450" y="385" fill="#00e5ff" fontSize="9" textAnchor="middle" opacity="0.4" fontFamily="monospace">737-880 WING SPAN SECTION — 18.4m</text>
               <line x1="40" y1="200" x2="40" y2="310" strokeWidth="0.5" opacity="0.3"/>
-              <text x="28" y="260" fill="#00e5ff" fontSize="9" textAnchor="middle" opacity="0.4" fontFamily="monospace" transform="rotate(-90,28,260)">2.6m</text>
             </g>
+              <text x="450" y="385" fill="#00e5ff" fontSize="9" textAnchor="middle" opacity="0.85" fontFamily="monospace">737-880 WING SPAN SECTION: 18.4m</text>
+              <text x="28" y="260" fill="#00e5ff" fontSize="9" textAnchor="middle" opacity="0.85" fontFamily="monospace" transform="rotate(-90,28,260)">2.6m</text>
           </svg>
 
           <div className="spec-zones" id="specZones">
@@ -706,7 +706,7 @@ export default function CognitiveQABoeing() {
           <div className="spec-card">
             <strong>DESIGN SPECIFICATION</strong>
             737-880 Wing Assembly<br/>
-            Station: RIB 4 — Upper Spar<br/>
+            Station: RIB 4, Upper Spar<br/>
             Spec Rev: 4.2.1 · FAA AC 43.13
           </div>
 
@@ -716,11 +716,11 @@ export default function CognitiveQABoeing() {
               LIVE SCAN DATA
             </div>
             <div className="hud-rows">
-              <div className="hud-row"><span className="hud-key">COMPONENT</span><span className="hud-val" id="hudComp">—</span></div>
-              <div className="hud-row"><span className="hud-key">READING</span><span className="hud-val live" id="hudReading">—</span></div>
-              <div className="hud-row"><span className="hud-key">SPEC</span><span className="hud-val" id="hudSpec">—</span></div>
-              <div className="hud-row"><span className="hud-key">STATUS</span><span className="hud-val" id="hudStatus">—</span></div>
-              <div className="hud-row"><span className="hud-key">CONFIDENCE</span><span className="hud-val" id="hudConf">—</span></div>
+              <div className="hud-row"><span className="hud-key">COMPONENT</span><span className="hud-val" id="hudComp">: </span></div>
+              <div className="hud-row"><span className="hud-key">READING</span><span className="hud-val live" id="hudReading">: </span></div>
+              <div className="hud-row"><span className="hud-key">SPEC</span><span className="hud-val" id="hudSpec">: </span></div>
+              <div className="hud-row"><span className="hud-key">STATUS</span><span className="hud-val" id="hudStatus">: </span></div>
+              <div className="hud-row"><span className="hud-key">CONFIDENCE</span><span className="hud-val" id="hudConf">: </span></div>
             </div>
           </div>
 
@@ -730,25 +730,25 @@ export default function CognitiveQABoeing() {
 
           <div className="defect-panel" id="defectPanel" style={{ display:'none' }} role="dialog" aria-labelledby="dpTitle">
             <div className="dp-header">
-              <div className="dp-id" id="dpId">DEFECT — DEF-0000</div>
+              <div className="dp-id" id="dpId">DEFECT: DEF-0000</div>
               <button className="dp-close" id="dpClose" aria-label="Close">&#10005;</button>
             </div>
             <div className="dp-body">
               <span className="dp-severity-badge" id="dpBadge">CRITICAL</span>
-              <div className="dp-title"    id="dpTitle">—</div>
-              <div className="dp-location" id="dpLocation">—</div>
+              <div className="dp-title"    id="dpTitle">: </div>
+              <div className="dp-location" id="dpLocation">: </div>
               <div className="dp-measurements">
-                <div className="dp-meas-row"><span className="dp-meas-label">SPECIFICATION</span><span className="dp-meas-value spec" id="dpSpec">—</span></div>
-                <div className="dp-meas-row"><span className="dp-meas-label">MEASURED</span><span className="dp-meas-value measured" id="dpMeasured">—</span></div>
+                <div className="dp-meas-row"><span className="dp-meas-label">SPECIFICATION</span><span className="dp-meas-value spec" id="dpSpec">: </span></div>
+                <div className="dp-meas-row"><span className="dp-meas-label">MEASURED</span><span className="dp-meas-value measured" id="dpMeasured">: </span></div>
                 <div className="dp-tol-track">
                   <div className="dp-tol-fill" id="dpTolFill" style={{ width:'0%' }}></div>
                   <div className="dp-tol-spec-marker" id="dpTolSpec" style={{ left:'100%' }}></div>
                 </div>
-                <div className="dp-variance-label" id="dpVariance">—</div>
+                <div className="dp-variance-label" id="dpVariance">: </div>
               </div>
               <div className="dp-action-label">REQUIRED ACTION</div>
-              <div className="dp-action" id="dpAction">—</div>
-              <div className="dp-ref"    id="dpRef">—</div>
+              <div className="dp-action" id="dpAction">: </div>
+              <div className="dp-ref"    id="dpRef">: </div>
             </div>
           </div>
 
@@ -832,13 +832,13 @@ export default function CognitiveQABoeing() {
                 </div>
                 <div className="signoff-field">
                   <div className="signoff-field-label">TIMESTAMP</div>
-                  <div className="signoff-field-val" id="signoffTs">—</div>
+                  <div className="signoff-field-val" id="signoffTs">: </div>
                 </div>
               </div>
               <button className="signoff-btn" id="signoffBtn">SIGN OFF AND LOCK RECORD</button>
               <div className="signoff-locked" id="signoffLocked">
                 <strong>RECORD LOCKED</strong>
-                Signed by CGQ-INS-0472 — Assembly hold confirmed. Defects DEF-2847 and DEF-2849 require corrective action before flight release.
+                Signed by CGQ-INS-0472: Assembly hold confirmed. Defects DEF-2847 and DEF-2849 require corrective action before flight release.
               </div>
             </div>
           </div>

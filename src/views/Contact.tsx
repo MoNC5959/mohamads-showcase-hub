@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import PageShell from "../components/PageShell";
 import { photographerInfo as person } from "../data/photographer";
 
@@ -11,57 +12,34 @@ const ROWS = [
 
 export default function Contact() {
   return (
-    <PageShell kicker="Box 03 / Sheet 04 of 04" title="Contact">
-      <p
-        style={{
-          margin: 0,
-          maxWidth: "58ch",
-          fontSize: 17,
-          lineHeight: 1.6,
-          color: "color-mix(in srgb, var(--color-text) 80%, transparent)",
-        }}
-      >
-        Let's discuss your next project. Here's how to reach me directly.
-      </p>
+    <PageShell sheetRef="Box 03 / Sheet 04 of 04" title="Contact" accent>
+      <p className="contact-lede">Hiring for product? Here's how to reach me directly.</p>
 
-      <div className="blueprint" style={{ width: "100%", maxWidth: 520, position: "relative" }}>
+      <div className="blueprint">
         <i className="corner tl" />
         <i className="corner tr" />
         <i className="corner bl" />
         <i className="corner br" />
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          {ROWS.map((row, i) => (
-            <div
+        {ROWS.map((row) =>
+          row.href ? (
+            <a
               key={row.label}
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                gap: 16,
-                padding: "14px 20px",
-                borderTop: i === 0 ? "none" : "1px solid var(--color-divider)",
-              }}
+              href={row.href}
+              target={row.href.startsWith("http") ? "_blank" : undefined}
+              rel="noreferrer"
+              className="contact-row"
             >
-              <span
-                style={{
-                  fontSize: 12,
-                  fontWeight: 600,
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  color: "color-mix(in srgb, var(--color-text) 65%, transparent)",
-                }}
-              >
-                {row.label}
-              </span>
-              {row.href ? (
-                <a href={row.href} target={row.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" style={{ color: "var(--color-accent-300)", fontWeight: 600, textAlign: "right" }}>
-                  {row.value}
-                </a>
-              ) : (
-                <span style={{ fontWeight: 600, textAlign: "right" }}>{row.value}</span>
-              )}
+              <span className="sheet-label">{row.label}</span>
+              <span className="contact-value">{row.value}</span>
+              <ArrowUpRight size={24} strokeWidth={1.5} aria-hidden="true" />
+            </a>
+          ) : (
+            <div key={row.label} className="contact-row">
+              <span className="sheet-label">{row.label}</span>
+              <span className="contact-value">{row.value}</span>
             </div>
-          ))}
-        </div>
+          )
+        )}
       </div>
     </PageShell>
   );

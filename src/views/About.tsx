@@ -43,88 +43,68 @@ const CATS = [
   { src: modu2, alt: "Modu the cat", caption: "Modu" },
 ];
 
-const bodyTextStyle = {
-  margin: 0,
-  maxWidth: "62ch",
-  fontSize: 17,
-  lineHeight: 1.6,
-  color: "color-mix(in srgb, var(--color-text) 80%, transparent)",
-};
-
 export default function About() {
   return (
-    <PageShell kicker="Box 01 / Sheet 02 of 04" title="About">
-      <div style={{ display: "flex", gap: 32, flexWrap: "wrap", alignItems: "flex-start", width: "100%" }}>
-        <img
-          src={profilePortrait}
-          alt={person.name}
-          style={{
-            width: 180,
-            height: 180,
-            borderRadius: "50%",
-            objectFit: "cover",
-            border: "1px solid var(--color-divider)",
-            flexShrink: 0,
-          }}
-        />
-        <div style={{ display: "flex", flexDirection: "column", gap: 14, minWidth: 260 }}>
-          <div>
-            <p style={{ margin: 0, fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: 24, textTransform: "uppercase" }}>
-              {person.name}
-            </p>
-            <p style={{ margin: 0, fontSize: 15, color: "var(--color-accent-300)", fontWeight: 600 }}>{person.tagline}</p>
-          </div>
-          {person.biography.map((paragraph) => (
-            <p key={paragraph.slice(0, 24)} style={bodyTextStyle}>
-              {paragraph}
-            </p>
-          ))}
-          <div style={{ display: "flex", gap: 16, flexWrap: "wrap", fontSize: 14 }}>
-            <a href={`mailto:${person.email}`} style={{ color: "var(--color-accent-300)", fontWeight: 600 }}>
-              {person.email}
-            </a>
-            <a href={person.linkedin} target="_blank" rel="noreferrer" style={{ color: "var(--color-accent-300)", fontWeight: 600 }}>
-              LinkedIn
-            </a>
-            <a href={person.github} target="_blank" rel="noreferrer" style={{ color: "var(--color-accent-300)", fontWeight: 600 }}>
-              GitHub
-            </a>
-            <span style={{ color: "color-mix(in srgb, var(--color-text) 65%, transparent)" }}>{person.location}</span>
+    <PageShell sheetRef="Box 01 / Sheet 02 of 04" title="About">
+      <div className="about-intro">
+        <div className="blueprint">
+          <i className="corner tl" />
+          <i className="corner tr" />
+          <i className="corner bl" />
+          <i className="corner br" />
+          <img src={profilePortrait} alt={person.name} width={1440} height={1920} decoding="async" className="about-portrait" />
+        </div>
+        <div>
+          <p className="about-name">{person.name}</p>
+          <p className="about-role">{person.tagline}</p>
+          <div className="about-copy">
+            {person.biography.map((paragraph) => (
+              <p key={paragraph.slice(0, 24)} className="sheet-body">
+                {paragraph}
+              </p>
+            ))}
+            <div className="about-links">
+              <a href={`mailto:${person.email}`}>{person.email}</a>
+              <a href={person.linkedin} target="_blank" rel="noreferrer">
+                LinkedIn
+              </a>
+              <a href={person.github} target="_blank" rel="noreferrer">
+                GitHub
+              </a>
+              <span>{person.location}</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <section style={{ width: "100%", marginTop: 48 }}>
+      <section className="about-section">
         <CareerTimeline />
       </section>
 
-      <section style={{ width: "100%", marginTop: 12 }}>
-        <h2 style={{ fontFamily: "var(--font-heading)", fontSize: 22, textTransform: "uppercase", margin: "0 0 16px" }}>
-          Off the Clock
-        </h2>
-        {person.interests.map((paragraph) => (
-          <p key={paragraph.slice(0, 24)} style={{ ...bodyTextStyle, maxWidth: "70ch", marginBottom: 14 }}>
-            {paragraph}
+      <section className="about-section about-offclock">
+        <h2 className="sheet-h2">Off the Clock</h2>
+        <div className="about-copy">
+          {person.interests.map((paragraph) => (
+            <p key={paragraph.slice(0, 24)} className="sheet-body">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      </section>
+
+      <section className="about-section about-galleries">
+        <div className="about-gallery">
+          <h2 className="sheet-h2">The Dessert Gallery</h2>
+          <Carousel items={DESSERTS} aspectRatio="1 / 1" />
+        </div>
+        <div className="about-gallery">
+          <h2 className="sheet-h2">The Cat Tax</h2>
+          <p className="sheet-body">
+            And because the internet demands it, the cat tax has been paid below. Meet Sunnah the beautiful diva and Modu
+            the gluttonous yet adorable demon.
           </p>
-        ))}
-      </section>
-
-      <section style={{ width: "100%", marginTop: 12, maxWidth: 480 }}>
-        <h2 style={{ fontFamily: "var(--font-heading)", fontSize: 18, textTransform: "uppercase", margin: "0 0 12px" }}>
-          The Dessert Gallery
-        </h2>
-        <Carousel items={DESSERTS} />
-      </section>
-
-      <section style={{ width: "100%", marginTop: 12, maxWidth: 480 }}>
-        <h2 style={{ fontFamily: "var(--font-heading)", fontSize: 18, textTransform: "uppercase", margin: "0 0 12px" }}>
-          The Cat Tax
-        </h2>
-        <p style={{ ...bodyTextStyle, marginBottom: 12 }}>
-          And because the internet demands it, the cat tax has been paid below. Meet Sunnah the beautiful diva and Modu
-          the gluttonous yet adorable demon.
-        </p>
-        <Carousel items={CATS} />
+          <Carousel items={CATS} aspectRatio="1 / 1" />
+        </div>
       </section>
     </PageShell>
   );

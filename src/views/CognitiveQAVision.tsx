@@ -137,9 +137,9 @@ export default function CognitiveQAVision() {
             COGNITIVE QA / VISION BRIEF / 2025
           </div>
 
-          <p className="hero-setup">The System Isn't Just</p>
+          <p className="hero-setup">The System Is</p>
           <h1 className="hero-broken" aria-label="BROKEN.">BROKEN.</h1>
-          <span className="hero-suffix">It Has Been Broken for Years.</span>
+          <span className="hero-suffix">It Has Been for Years.</span>
 
           <div className="hero-body">
             <p>2024 was a difficult year for aviation. A door plug blew out mid-flight over Oregon. A Dreamliner suddenly plunged, injuring 50 passengers. And on December 29th, Jeju Air Flight 2216 crashed in South Korea, killing 179 of 181 people on board.</p>
@@ -220,7 +220,7 @@ export default function CognitiveQAVision() {
 
           <div className="pull-quote reveal">
             <p className="pull-quote-text">But what if the inspector <span className="hi">never missed a thing?</span> What if every bolt, fastener, and bracket was verified in real time, on the factory floor, before the aircraft ever left the ground?</p>
-            <p className="pull-quote-tagline">WHERE AI MEETS THE GOLD STANDARD OF SAFETY</p>
+            <p className="pull-quote-tagline">EVERY PART CHECKED AGAINST ITS BLUEPRINT, AS THE WORK HAPPENS</p>
           </div>
         </div>
       </section>
@@ -325,7 +325,7 @@ export default function CognitiveQAVision() {
             <div className={`tab-panel${activeTab === 'chain' ? ' active' : ''}`} id="tab-chain" role="tabpanel" aria-labelledby="btn-chain">
               <p className="tab-panel-heading">The Unbroken Chain</p>
               <div className="tab-panel-body">
-                <p>Cognitive QA does not just close one of those gaps. It creates a <strong>single, unbroken, tamper-proof chain of verified truth</strong> that every party in that chain can rely on.</p>
+                <p>Cognitive QA closes those gaps with a <strong>single, unbroken, tamper-proof chain of verified truth</strong> that every party in that chain can rely on.</p>
                 <p>Boeing's verification travels to the FAA. The FAA's record travels to the airline. The airline's history travels to MRO. For the first time, quality does not have to be rediscovered at every step.</p>
                 <p><strong>It travels with the aircraft.</strong></p>
               </div>
@@ -341,8 +341,8 @@ export default function CognitiveQAVision() {
           <span className="amber">defect-free aviation</span><br/>
           the global standard.
         </p>
-        <p className="mission-sub">NOT AS AN AMBITION. AS A PROCESS.</p>
-        <p className="mission-tagline">WHERE AI MEETS THE GOLD STANDARD OF SAFETY</p>
+        <p className="mission-sub">VERIFIED AT EVERY STEP</p>
+        <p className="mission-tagline">EVERY PART CHECKED AGAINST ITS BLUEPRINT, AS THE WORK HAPPENS</p>
       </div>
 
       <section className="section">
@@ -378,11 +378,11 @@ export default function CognitiveQAVision() {
           <div className="whynow-points reveal">
             <div className="whynow-point">
               <span className="whynow-tag">AI</span>
-              <p className="whynow-text"><strong>AI has matured.</strong> The models, the vision processing, the real-time inference — it all exists now in a form that can run on a wearable device on a factory floor.</p>
+              <p className="whynow-text"><strong>AI has matured.</strong> The models, the vision processing, the real-time inference: it all exists now in a form that can run on a wearable device on a factory floor.</p>
             </div>
             <div className="whynow-point">
               <span className="whynow-tag">HOLOLENS</span>
-              <p className="whynow-text"><strong>The Microsoft HoloLens 2</strong> has become a proven enterprise platform, already deployed in defense aircraft manufacturing. The hardware is not experimental.</p>
+              <p className="whynow-text"><strong>The Microsoft HoloLens 2</strong> has become a proven enterprise platform, already deployed in defense aircraft manufacturing. The hardware works today.</p>
             </div>
             <div className="whynow-point">
               <span className="whynow-tag">PRECEDENT</span>
@@ -394,30 +394,29 @@ export default function CognitiveQAVision() {
             </div>
             <div className="whynow-point">
               <span className="whynow-tag">THE COST</span>
-              <p className="whynow-text">The cost of doing nothing has become impossible to ignore. The question is not whether this technology will come to commercial aviation. <strong>The question is who builds it first.</strong></p>
+              <p className="whynow-text">The cost of doing nothing has become impossible to ignore. This technology will come to commercial aviation. <strong>What's still open is who builds it first.</strong></p>
             </div>
           </div>
 
           <div className="body-text reveal">
-            <p>This is not about reimagining aviation from scratch. It is about giving the people who build and maintain aircraft the tools they actually need to do their jobs with complete confidence.</p>
+            <p>Cognitive QA gives the people who build and maintain aircraft the tools they actually need to do their jobs with complete confidence.</p>
           </div>
         </div>
       </section>
 
       <footer className="closing" aria-label="Closing statement">
         <div className="closing-lines">
-          <p className="closing-line lit"  id="cl1">The technology is here.</p>
-          <p className="closing-line lit"  id="cl2">The need is clear.</p>
-          <p className="closing-line amber" id="cl3">The time to act is now.</p>
+          <p className="closing-line lit"  id="cl1">The hardware exists.</p>
+          <p className="closing-line lit"  id="cl2">The failures keep happening.</p>
+          <p className="closing-line amber" id="cl3">Nobody has built this layer yet.</p>
         </div>
-        <p className="closing-tagline" id="cltag">WHERE AI MEETS THE GOLD STANDARD OF SAFETY</p>
+        <p className="closing-tagline" id="cltag">EVERY PART CHECKED AGAINST ITS BLUEPRINT, AS THE WORK HAPPENS</p>
       </footer>
 
       <div className="status-bar status-bar-sm">
         <div className="status-dot"></div>
-        <span className="status-online">PLATFORM ONLINE</span>
+        <span className="status-online">CONCEPT DEMO</span>
         <span>COGNITIVE QA / VISION</span>
-        <span className="status-right">v2.4.1</span>
       </div>
     </div>
   );

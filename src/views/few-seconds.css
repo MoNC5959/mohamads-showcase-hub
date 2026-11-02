@@ -1,6 +1,9 @@
 
 /* ─── Color scope ─── */
 .few-seconds-article {
+  /* Tailwind's text-primary reads --primary, so the scope has to set it too. */
+  --primary:                          #86d7ac;
+  --secondary:                        #e9c176;
   --color-primary:                    #86d7ac;
   --color-secondary:                  #e9c176;
   --color-surface-container-lowest:   #0b0f0f;

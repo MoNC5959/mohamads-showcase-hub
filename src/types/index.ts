@@ -16,7 +16,6 @@ export interface Project {
   category: ProjectCategory;
   projectType?: "case-study" | "product-demo";
   year: string;
-  coverImage: string;
   images: ProjectImage[];
   description: string;
   client?: string;

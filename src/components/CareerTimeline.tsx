@@ -119,8 +119,7 @@ export default function CareerTimeline() {
   return (
     <div className="ctl">
       <header className="ctl-header">
-        <div className="ctl-eyebrow">Mohamad Noor-Chowdhury</div>
-        <h2 className="ctl-title">Timeline</h2>
+        <h2 className="sheet-h2">Timeline</h2>
         <p className="ctl-lede">
           Where I'm headed, where I've worked and where I studied. Select any milestone to read more.
         </p>

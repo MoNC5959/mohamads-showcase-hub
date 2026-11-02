@@ -4,7 +4,7 @@ import type { PersonInfo } from "@/types";
  * Real content only. The source project this was migrated from carried
  * leftover fields (awards, clients, "MFA Photography" education, a stock
  * portrait URL, fake Instagram/Behance links) from the photography template
- * it started life as — those were dropped rather than migrated.
+ * it started life as; those were dropped rather than migrated.
  */
 export const photographerInfo: PersonInfo = {
   name: "Mohamad Noor-Chowdhury",

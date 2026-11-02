@@ -2,6 +2,7 @@
 import { Link } from '@/lib/router-compat';
 import { useEffect } from 'react';
 import './cognitive-qa-amber.css';
+import ProjectCover from '@/components/ProjectCover';
 
 export default function CognitiveQAStrategy() {
   useEffect(() => {
@@ -171,7 +172,7 @@ export default function CognitiveQAStrategy() {
             <p>Cognitive QA is the first AI-powered inspection platform that creates a <span className="hi">verified, tamper-proof record</span> of aircraft quality at every stage of its life. From the assembly line to the maintenance hangar.</p>
             <p>For the first time, quality does not have to be rediscovered at every handoff. It travels with the aircraft.</p>
           </div>
-          <p className="hero-tagline">WHERE AI MEETS THE GOLD STANDARD OF SAFETY</p>
+          <p className="hero-tagline">EVERY PART CHECKED AGAINST ITS BLUEPRINT, AS THE WORK HAPPENS</p>
         </div>
         <div className="hero-scroll-cue" aria-hidden="true">▼ SCROLL</div>
       </section>
@@ -200,7 +201,7 @@ export default function CognitiveQAStrategy() {
       <section className="section">
         <div className="section-inner">
           <div className="section-label reveal">The Problem We Are Solving</div>
-          <h2 className="section-heading reveal">Aviation does not have a safety<br/><span className="red">ambition problem.</span> It has a process problem.</h2>
+          <h2 className="section-heading reveal">Aviation has a <span className="red">process problem.</span><br/>Everyone already wants safety.</h2>
           <div className="body-text reveal">
             <p>Boeing, MRO companies, airlines, and regulators all want the same outcome. An aircraft that is safe to fly. But each of them has to verify that independently, from scratch, because no shared, trustworthy record of quality has ever existed.</p>
           </div>
@@ -242,7 +243,7 @@ export default function CognitiveQAStrategy() {
       <section className="section">
         <div className="section-inner">
           <div className="section-label reveal">What Cognitive QA Replaces</div>
-          <h2 className="section-heading reveal">Not an upgrade to the old process.<br/><span className="amber">A replacement of it.</span></h2>
+          <h2 className="section-heading reveal"><span className="amber">This replaces the old process.</span></h2>
           <div className="body-text reveal">
             <p>Today, inspectors work from printed or digital checklists, verify components by eye, and sign off based on training and experience. When the aircraft moves from one party to the next, that record does not move with it. Cognitive QA replaces that process entirely.</p>
           </div>
@@ -274,9 +275,9 @@ export default function CognitiveQAStrategy() {
       <section className="section">
         <div className="section-inner">
           <div className="section-label reveal">The Platform</div>
-          <h2 className="section-heading reveal">An inspector that never forgets,<br/>never overlooks, <span className="amber">never assumes.</span></h2>
+          <h2 className="section-heading reveal">An inspector that checks<br/><span className="amber">every part, every time.</span></h2>
           <div className="body-text reveal">
-            <p>Cognitive QA is not a standalone application. It is a platform built on two of the most powerful enterprise technologies available today. Together, they create something the aviation industry has never had before.</p>
+            <p>Cognitive QA is a platform built on two enterprise technologies. Together, they create something the aviation industry has never had before.</p>
           </div>
 
           <div className="platform-grid reveal">
@@ -313,7 +314,7 @@ export default function CognitiveQAStrategy() {
       <div className="infographic-section reveal">
         <div className="infographic-label">COGNITIVE QA / REAL-TIME DIAGNOSTIC SCAN</div>
         <div className="infographic-wrap">
-          <img src="/cognitive-qa/Cognitive%20QA%20Inforgraphic.png" alt="Cognitive QA: The Future of Aerospace Inspection — Real-Time Diagnostic Scan" className="infographic-img" />
+          <div className="infographic-drawing"><ProjectCover slug="cognitive-qa" title="Side elevation of an airliner with one fuselage section flagged by the inspector's scan" /></div>
         </div>
       </div>
 
@@ -323,7 +324,7 @@ export default function CognitiveQAStrategy() {
           <div className="section-label reveal">Proven Where It Matters Most</div>
           <h2 className="section-heading reveal">Defense grade.<br/><span className="amber">Commercial scale.</span></h2>
           <div className="body-text reveal">
-            <p>The Microsoft HoloLens 2 is not untested in aviation. <strong>Boeing has already deployed it in partnership with the government</strong> to improve defense aircraft manufacturing. Airbus is moving toward AR-assisted inspection on the commercial side. The technology has proven itself in the most demanding, high-stakes environments the industry has to offer.</p>
+            <p>The Microsoft HoloLens 2 is already proven in aviation. <strong>Boeing has already deployed it in partnership with the government</strong> to improve defense aircraft manufacturing. Airbus is moving toward AR-assisted inspection on the commercial side. The technology has proven itself in the most demanding, high-stakes environments the industry has to offer.</p>
             <p>But there is a gap. That same proven technology has never been applied to commercial aircraft manufacturing. The aircraft that carry millions of passengers every single day are still being inspected with manual processes that defense aviation left behind years ago.</p>
             <p>Defense aircraft operate under some of the strictest quality standards in the world. Every component verified. Every system tested. Every deviation documented. Commercial aviation deserves that same standard. Not because regulators require it. Because the public depends on it.</p>
             <p><strong>Cognitive QA brings the rigor of defense-grade quality control to the commercial manufacturing floor for the first time.</strong></p>
@@ -395,7 +396,7 @@ export default function CognitiveQAStrategy() {
           <div className="section-label reveal">Total Addressable Market</div>
           <h2 className="section-heading reveal">A <span className="amber">$471 billion</span> opportunity<br/>that no one has addressed.</h2>
           <div className="body-text reveal">
-            <p>The combined opportunity across commercial aircraft manufacturing, global MRO, and MRO software is not theoretical. These are active markets under pressure, with operators already investing in AI and regulators demanding higher standards.</p>
+            <p>The combined opportunity across commercial aircraft manufacturing, global MRO, and MRO software is real. These are active markets under pressure, with operators already investing in AI and regulators demanding higher standards.</p>
           </div>
 
           <div className="tam-rows reveal" id="tamRows">
@@ -418,7 +419,7 @@ export default function CognitiveQAStrategy() {
             <div className="tam-row" style={{ ['--bar-w' as string]: '2.3%' }}>
               <div className="tam-amount">$7.7B</div>
               <div>
-                <div className="tam-label">MRO Software Segment — projected $11.68B by 2032</div>
+                <div className="tam-label">MRO Software Segment: projected $11.68B by 2032</div>
                 <div className="tam-bar-wrap"><div className="tam-bar"></div></div>
               </div>
               <div style={{ fontSize: '0.68rem', letterSpacing: '0.12em', color: 'var(--muted-w)', whiteSpace: 'nowrap' }}>TO $11.68B</div>
@@ -505,7 +506,7 @@ export default function CognitiveQAStrategy() {
       <section className="section">
         <div className="section-inner">
           <div className="section-label reveal">Why Now</div>
-          <h2 className="section-heading reveal">The question is not <span className="red">whether</span> this comes<br/>to commercial aviation.</h2>
+          <h2 className="section-heading reveal">This is coming to commercial aviation.<br/>The open question is <span className="red">who builds it.</span></h2>
           <div className="body-text reveal">
             <p>There is a reason this solution exists now and not ten years ago. The convergence of technology, regulatory pressure, and industry failure has created a window that did not exist before.</p>
           </div>
@@ -513,7 +514,7 @@ export default function CognitiveQAStrategy() {
           <div className="why-items reveal">
             <div className="why-item">
               <span className="why-tag">AI</span>
-              <div className="why-text">Artificial intelligence has matured to the point where real-time spatial inspection against a digital twin is not a research project. It is a deployable enterprise system.</div>
+              <div className="why-text">Artificial intelligence has matured to the point where real-time spatial inspection against a digital twin is now a deployable enterprise system.</div>
             </div>
             <div className="why-item">
               <span className="why-tag">HOLOLENS</span>
@@ -533,7 +534,7 @@ export default function CognitiveQAStrategy() {
             </div>
             <div className="why-item">
               <span className="why-tag">FIRST MOVER</span>
-              <div className="why-text">The question is not whether this comes to commercial aviation. The question is who builds it first. The company that establishes this standard owns the network effect, the data flywheel, and the regulatory relationship that follows.</div>
+              <div className="why-text">This is coming to commercial aviation. The open question is who builds it first. The company that establishes this standard owns the network effect, the data flywheel, and the regulatory relationship that follows.</div>
             </div>
           </div>
         </div>
@@ -542,19 +543,18 @@ export default function CognitiveQAStrategy() {
       {/* ── CLOSING ── */}
       <footer className="closing-strategy" aria-label="Closing statement">
         <div className="closing-lines">
-          <p className="closing-line" id="cl1">The technology is here.</p>
-          <p className="closing-line" id="cl2">The need is clear.</p>
-          <p className="closing-line amber" id="cl3">The time to act is now.</p>
+          <p className="closing-line" id="cl1">The hardware exists.</p>
+          <p className="closing-line" id="cl2">The failures keep happening.</p>
+          <p className="closing-line amber" id="cl3">Nobody has built this layer yet.</p>
         </div>
-        <p className="closing-tagline" id="cltag">WHERE AI MEETS THE GOLD STANDARD OF SAFETY</p>
+        <p className="closing-tagline" id="cltag">EVERY PART CHECKED AGAINST ITS BLUEPRINT, AS THE WORK HAPPENS</p>
       </footer>
 
       {/* ── STATUS BAR ── */}
       <div className="status-bar" style={{ marginTop: 'auto' }}>
         <div className="status-dot"></div>
-        <span className="status-online">PLATFORM ONLINE</span>
+        <span className="status-online">CONCEPT DEMO</span>
         <span>COGNITIVE QA / STRATEGY</span>
-        <span className="status-right">v2.4.1</span>
       </div>
     </div>
   );

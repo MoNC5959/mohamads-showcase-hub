@@ -35,7 +35,7 @@ export const TIMELINE_ITEMS: TimelineItem[] = [
   {
     type: "work",
     typeLabel: "Work",
-    kicker: "Jun 2026 — Present",
+    kicker: "Jun 2026 – Present",
     title: "Product Analyst & Product Owner",
     org: "Independence Blue Cross (Contract)",
     place: "Philadelphia, PA",
@@ -56,7 +56,7 @@ export const TIMELINE_ITEMS: TimelineItem[] = [
   {
     type: "work",
     typeLabel: "Work",
-    kicker: "Oct 2024 — Jan 2026",
+    kicker: "Oct 2024 – Jan 2026",
     title: "Business Analyst Lead",
     org: "H&H Group",
     place: "Orlando, FL / Remote",
@@ -76,7 +76,7 @@ export const TIMELINE_ITEMS: TimelineItem[] = [
   {
     type: "work",
     typeLabel: "Work",
-    kicker: "Sept 2022 — Oct 2024",
+    kicker: "Sept 2022 – Oct 2024",
     title: "Technology Consultant",
     org: "Ernst & Young",
     place: "Philadelphia, PA",
@@ -94,7 +94,7 @@ export const TIMELINE_ITEMS: TimelineItem[] = [
   {
     type: "work",
     typeLabel: "Work",
-    kicker: "Jan 2022 — Aug 2022",
+    kicker: "Jan 2022 – Aug 2022",
     title: "Strategy & Intelligence Analyst",
     org: "Kinesso (IPG) (Contract)",
     place: "New York, NY / Remote",

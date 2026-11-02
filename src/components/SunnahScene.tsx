@@ -159,14 +159,14 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
     phase === "idle"
       ? hoveredIndex === null
         ? "Awaiting your cursor"
-        : `Sizing up Box 0${hoveredIndex + 1} — ${items[hoveredIndex].title}`
+        : `Sizing up Box 0${hoveredIndex + 1}: ${items[hoveredIndex].title}`
       : phase === "walking"
       ? "On her way..."
       : phase === "jumping"
       ? "Climbing in..."
       : phase === "settling"
       ? "Getting comfortable..."
-      : "Sunnah is asleep — taking you there";
+      : "Sunnah is asleep. Taking you there";
 
   return (
     <div className="blueprint">
@@ -179,7 +179,7 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
         ref={stageRef}
         onMouseMove={handleStageMouseMove}
         onMouseLeave={handleStageMouseLeave}
-        style={{ position: "relative", paddingTop: 44 }}
+        style={{ position: "relative", paddingTop: 8 }}
       >
         <svg width={0} height={0} aria-hidden="true" style={{ position: "absolute" }}>
           <defs>
@@ -189,18 +189,6 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
             </pattern>
           </defs>
         </svg>
-
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            inset: 0,
-            pointerEvents: "none",
-            backgroundImage:
-              "linear-gradient(to right, color-mix(in srgb, var(--color-text) 5%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in srgb, var(--color-text) 5%, transparent) 1px, transparent 1px)",
-            backgroundSize: "24px 24px",
-          }}
-        />
 
         <div
           style={{
@@ -247,7 +235,7 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
           </svg>
         </div>
 
-        <div style={{ height: 168 }} />
+        <div style={{ height: "clamp(120px, 10vw, 144px)" }} />
 
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 2 }}>
           <div
@@ -255,9 +243,9 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
               position: "absolute",
               left: "50%",
               bottom: -2,
-              width: 84,
+              width: 92,
               height: 7,
-              marginLeft: -42,
+              marginLeft: -46,
               borderRadius: "50%",
               background: "color-mix(in srgb, black 45%, transparent)",
               opacity: leavingFloor ? 0 : 1,
@@ -271,9 +259,9 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
               position: "absolute",
               left: "50%",
               bottom: 0,
-              width: 112,
-              height: 123,
-              marginLeft: -56,
+              width: "clamp(92px, 8.5vw, 120px)",
+              aspectRatio: "120 / 132",
+              translate: "-50% 0",
               transformOrigin: "50% 100%",
               opacity: leavingFloor ? 0 : 1,
               transform: leavingFloor

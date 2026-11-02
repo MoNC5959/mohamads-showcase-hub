@@ -73,7 +73,7 @@ export default function CognitiveQAHome() {
         <Link to="/" className="brand" style={{ color: '#f5a623', letterSpacing: '0.12em', fontSize: '0.85rem', textTransform: 'uppercase' }}>
           Mohamad Noor-Chowdhury
         </Link>
-        <span className="top-bar-tag">INSPECTION INTELLIGENCE PLATFORM</span>
+        <span className="top-bar-tag">AIRCRAFT INSPECTION CONCEPT</span>
       </div>
 
       <div className="home-wrap">
@@ -105,25 +105,19 @@ export default function CognitiveQAHome() {
         </div>
 
         <div className="home-inner">
-          <div className="eyebrow">
-            <div className="eyebrow-line"></div>
-            SYSTEM READY
-            <div className="eyebrow-line"></div>
-          </div>
-
           <h1 className="home-title">
             COGNITIVE
             <span className="accent">QA</span>
           </h1>
 
-          <p className="home-desc">WHERE AI MEETS THE GOLD STANDARD OF SAFETY</p>
+          <p className="home-desc">EVERY PART CHECKED AGAINST ITS BLUEPRINT, AS THE WORK HAPPENS</p>
 
           <div className="btn-row">
             <Link to="/cognitive-qa/vision" className="nav-btn">
               <div className="nav-btn-shimmer"></div>
               <span className="nav-btn-num">01</span>
               <span className="nav-btn-label">VISION</span>
-              <span className="nav-btn-arrow">ENTER →</span>
+              <span className="nav-btn-arrow">ENTER</span>
               <div className="nav-btn-bar"></div>
             </Link>
 
@@ -131,7 +125,7 @@ export default function CognitiveQAHome() {
               <div className="nav-btn-shimmer"></div>
               <span className="nav-btn-num">02</span>
               <span className="nav-btn-label">STRATEGY</span>
-              <span className="nav-btn-arrow">ENTER →</span>
+              <span className="nav-btn-arrow">ENTER</span>
               <div className="nav-btn-bar"></div>
             </Link>
 
@@ -139,7 +133,7 @@ export default function CognitiveQAHome() {
               <div className="nav-btn-shimmer"></div>
               <span className="nav-btn-num">03</span>
               <span className="nav-btn-label">DEMO</span>
-              <span className="nav-btn-arrow">ENTER →</span>
+              <span className="nav-btn-arrow">ENTER</span>
               <div className="nav-btn-bar"></div>
             </Link>
           </div>
@@ -148,9 +142,7 @@ export default function CognitiveQAHome() {
 
       <div className="status-bar">
         <div className="status-dot"></div>
-        <span className="status-online">PLATFORM ONLINE</span>
-        <span>v2.4.1</span>
-        <span className="status-right">COGNITIVE QA SYSTEMS</span>
+        <span className="status-online">CONCEPT DEMO</span>
       </div>
     </div>
   );

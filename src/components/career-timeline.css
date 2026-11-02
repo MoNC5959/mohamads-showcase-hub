@@ -16,15 +16,9 @@
   display: flex; flex-direction: column; align-items: center; text-align: center;
   gap: 8px; margin: 0 auto 56px; max-width: 640px;
 }
-.ctl-eyebrow, .ctl .kicker {
-  font-family: var(--font-heading); font-weight: 600;
+.ctl .kicker {
+  font-family: var(--font-heading); font-weight: 600; font-size: 13px;
   letter-spacing: 0.16em; text-transform: uppercase; color: var(--tl-accent);
-}
-.ctl-eyebrow { font-size: 14px; letter-spacing: 0.18em; }
-.ctl .kicker { font-size: 13px; }
-.ctl-title {
-  margin: 0; font-family: var(--font-heading); font-weight: 600; text-transform: uppercase;
-  font-size: clamp(44px, 7vw, 64px); line-height: 0.95; color: var(--tl-title);
 }
 .ctl-lede { margin: 8px 0 0; font-size: 17px; line-height: 1.5; color: var(--tl-muted); text-wrap: pretty; }
 

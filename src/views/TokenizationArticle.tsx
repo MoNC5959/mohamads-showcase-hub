@@ -223,7 +223,7 @@ export default function TokenizationArticle() {
     <>
       <SEOHead
         title="The Tokenization of Assets"
-        description="How tokenization is turning analog assets into programmable value — rewriting the rules of ownership, settlement, and access for every asset class on earth."
+        description="How tokenization turns analog assets into programmable ones, and what that changes about ownership, settlement, and access."
         image="/og-tokenization.png"
         type="article"
       />
@@ -238,10 +238,10 @@ export default function TokenizationArticle() {
           Mohamad Noor Chowdhury
         </a>
         <div className="hidden md:flex items-center gap-10">
-          <a className="text-zinc-500 font-sans uppercase text-[12px] tracking-widest hover:text-zinc-300" href="#intro">Theory</a>
-          <a className="text-zinc-500 font-sans uppercase text-[12px] tracking-widest hover:text-zinc-300" href="#process">Process</a>
-          <a className="text-zinc-500 font-sans uppercase text-[12px] tracking-widest hover:text-zinc-300" href="#assets">Markets</a>
-          <a className="text-zinc-500 font-sans uppercase text-[12px] tracking-widest hover:text-zinc-300" href="#road-ahead">Outlook</a>
+          <a className="text-zinc-400 font-sans uppercase text-[12px] tracking-widest hover:text-zinc-300" href="#intro">Theory</a>
+          <a className="text-zinc-400 font-sans uppercase text-[12px] tracking-widest hover:text-zinc-300" href="#process">Process</a>
+          <a className="text-zinc-400 font-sans uppercase text-[12px] tracking-widest hover:text-zinc-300" href="#assets">Markets</a>
+          <a className="text-zinc-400 font-sans uppercase text-[12px] tracking-widest hover:text-zinc-300" href="#road-ahead">Outlook</a>
         </div>
         <div />
       </nav>
@@ -271,14 +271,14 @@ export default function TokenizationArticle() {
       <main className="pt-24">
 
         {/* ── HERO ── */}
-        <section id="intro" className="min-h-screen flex flex-col justify-center px-8 md:px-24 lg:px-48 pb-24 relative">
-          <h1 className="font-serif italic sm:text-5xl md:text-6xl lg:text-8xl leading-[0.85] tracking-tighter text-white mb-12 max-w-5xl reveal text-5xl" style={{ fontFamily: "'Newsreader',serif" }}>
-            The Tokenization<br />of<br /><span className="text-zinc-500">Assets.</span>
+        <section id="intro" className="min-h-screen flex flex-col justify-center px-8 md:px-24 pb-24 relative">
+          <h1 className="font-serif italic text-[clamp(3.2rem,10vw,10.5rem)] leading-[0.92] tracking-tighter text-white mb-12 reveal" style={{ fontFamily: "'Newsreader',serif" }}>
+            The Tokenization<br />of <span className="text-[#f2dfd2]">Assets.</span>
           </h1>
           <div className="flex flex-col md:flex-row items-end justify-between gap-12">
             <div className="reveal reveal-delay-2">
               <p className="font-sans text-sm md:text-base text-zinc-400 max-w-md leading-relaxed mb-6">
-                How tokenization is turning analog assets into programmable value rewriting the rules of ownership, settlement, and access for every asset class on earth.
+                How tokenization turns analog assets into programmable ones, and what that changes about ownership, settlement, and access.
               </p>
               <div className="flex items-center gap-4">
                 <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-400">By</span>
@@ -287,11 +287,7 @@ export default function TokenizationArticle() {
                 <span className="font-sans text-[11px] tracking-[0.15em] uppercase text-zinc-400">18 min read</span>
               </div>
             </div>
-            <div className="flex flex-col items-end reveal reveal-delay-3">
-              <span className="font-sans text-[12px] tracking-widest text-zinc-500 uppercase mb-2">Scroll to explore</span>
-              <div className="w-px h-24 bg-gradient-to-b from-white to-transparent" />
             </div>
-          </div>
           <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: -1 }}>
             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
               <defs>
@@ -332,7 +328,7 @@ export default function TokenizationArticle() {
                 Unlike cryptocurrency, which creates entirely new asset classes, tokenization brings existing value real estate, bonds, gold, private equity into the on-chain economy. Real estate that once required a $5M minimum becomes accessible at $1,000 per token. Private credit funds closed to all but institutional desks open to algorithmically-compliant global investors.
               </p>
               <p className="font-sans text-base text-zinc-400 leading-relaxed reveal reveal-delay-3">
-                This shift is as transformative to money as the move from DVDs to streaming was for television turning static, clunky assets into liquid, programmable digital streams.
+                Think of what streaming did to DVDs. Tokenization does the same to money, turning static, clunky assets into liquid, programmable ones.
               </p>
               <div className="mt-12 border-l-2 border-[#f2dfd2] pl-6 reveal reveal-delay-4">
                 <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-400 block mb-2">The Legal Wrapper</span>
@@ -344,7 +340,7 @@ export default function TokenizationArticle() {
               <div className="border-l-2 border-[#f2dfd2] pl-8">
                 <span className="font-sans font-bold text-[11px] tracking-widest uppercase text-zinc-400 block mb-3">McKinsey Projection</span>
                 <span className="font-serif italic leading-none block mb-4 text-[#f2dfd2]" style={{ fontFamily: "'Newsreader',serif", fontSize: 'clamp(4rem,8vw,7rem)' }}>$2T</span>
-                <span className="font-sans text-sm text-zinc-500 leading-relaxed block max-w-xs">Conservative tokenized market estimate by 2030. Upper bound (BCG): $30 trillion.</span>
+                <span className="font-sans text-sm text-zinc-400 leading-relaxed block max-w-xs">Conservative tokenized market estimate by 2030. Upper bound (BCG): $30 trillion.</span>
               </div>
             </div>
           </div>
@@ -376,9 +372,9 @@ export default function TokenizationArticle() {
                 <line x1="158" y1="163" x2="166" y2="163" stroke="rgba(242,223,210,0.15)" strokeWidth="0.5" />
               </svg>
               <div className="text-center">
-                <span className="font-sans text-[12px] tracking-[0.25em] uppercase text-zinc-500 block mb-2">Step 01</span>
+                <span className="font-sans text-[12px] tracking-[0.25em] uppercase text-zinc-400 block mb-2">Step 01</span>
                 <span className="font-serif italic text-2xl text-zinc-200" style={{ fontFamily: "'Newsreader',serif" }}>The Asset</span>
-                <p className="font-sans text-sm text-zinc-500 mt-3 leading-relaxed">Real estate, bonds,<br />gold, art, private credit</p>
+                <p className="font-sans text-sm text-zinc-400 mt-3 leading-relaxed">Real estate, bonds,<br />gold, art, private credit</p>
               </div>
             </div>
             {/* Arrow 1 */}
@@ -409,9 +405,9 @@ export default function TokenizationArticle() {
                 <polygon points="100,190 95,178 105,178" fill="rgba(242,223,210,0.3)" />
               </svg>
               <div className="text-center">
-                <span className="font-sans text-[12px] tracking-[0.25em] uppercase text-zinc-500 block mb-2">Step 02</span>
+                <span className="font-sans text-[12px] tracking-[0.25em] uppercase text-zinc-400 block mb-2">Step 02</span>
                 <span className="font-serif italic text-2xl text-zinc-200" style={{ fontFamily: "'Newsreader',serif" }}>The Ledger</span>
-                <p className="font-sans text-sm text-zinc-500 mt-3 leading-relaxed">Smart contract encodes<br />rights, compliance, yield</p>
+                <p className="font-sans text-sm text-zinc-400 mt-3 leading-relaxed">Smart contract encodes<br />rights, compliance, yield</p>
               </div>
             </div>
             {/* Arrow 2 */}
@@ -445,9 +441,9 @@ export default function TokenizationArticle() {
                 <polygon points="82,114 100,123 100,141 82,132" fill="rgba(242,223,210,0.05)" stroke="rgba(242,223,210,0.25)" strokeWidth="0.75" />
               </svg>
               <div className="text-center">
-                <span className="font-sans text-[12px] tracking-[0.25em] uppercase text-zinc-500 block mb-2">Step 03</span>
+                <span className="font-sans text-[12px] tracking-[0.25em] uppercase text-zinc-400 block mb-2">Step 03</span>
                 <span className="font-serif italic text-2xl text-[#f2dfd2]" style={{ fontFamily: "'Newsreader',serif" }}>The Token</span>
-                <p className="font-sans text-sm text-zinc-500 mt-3 leading-relaxed">Fractional, liquid,<br />24/7 globally tradeable</p>
+                <p className="font-sans text-sm text-zinc-400 mt-3 leading-relaxed">Fractional, liquid,<br />24/7 globally tradeable</p>
               </div>
             </div>
           </div>
@@ -459,17 +455,17 @@ export default function TokenizationArticle() {
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-zinc-800">
             <div className="flex flex-col items-center justify-center py-16 px-12 text-center reveal">
               <span className="stat-number text-6xl text-white mb-3" data-target="30" data-prefix="$" data-suffix="T">$0T</span>
-              <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-zinc-500 leading-loose">Upper-bound tokenized market<br />projection by 2030</span>
+              <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-zinc-400 leading-loose">Upper-bound tokenized market<br />projection by 2030</span>
               <span className="font-sans text-[11px] text-zinc-700 mt-3 uppercase tracking-widest">Source: BCG / McKinsey</span>
             </div>
             <div className="flex flex-col items-center justify-center py-16 px-12 text-center reveal reveal-delay-2">
               <span className="stat-number text-6xl text-white mb-3" data-target="85" data-suffix="%">0%</span>
-              <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-zinc-500 leading-loose">Reduction in settlement time<br />vs. traditional T+2 systems</span>
+              <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-zinc-400 leading-loose">Reduction in settlement time<br />vs. traditional T+2 systems</span>
               <span className="font-sans text-[11px] text-zinc-700 mt-3 uppercase tracking-widest">Atomic Settlement Standard</span>
             </div>
             <div className="flex flex-col items-center justify-center py-16 px-12 text-center reveal reveal-delay-3">
               <span className="stat-number text-6xl text-white mb-3" data-target="61" data-suffix="%">0%</span>
-              <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-zinc-500 leading-loose">Of tokenized asset volume<br />is Private Credit in 2025</span>
+              <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-zinc-400 leading-loose">Of tokenized asset volume<br />is Private Credit in 2025</span>
               <span className="font-sans text-[11px] text-zinc-700 mt-3 uppercase tracking-widest">Source: RWA.xyz, 2025</span>
             </div>
           </div>
@@ -478,38 +474,38 @@ export default function TokenizationArticle() {
         {/* ── COMPARISON TABLE ── */}
         <section className="py-24 px-8 md:px-24 lg:px-48 bg-[#1c1b1b]">
           <div className="mb-16 reveal">
-            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-500 block mb-4">Side by Side</span>
+            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 block mb-4">Side by Side</span>
             <h2 className="font-serif italic text-4xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>The Old World vs. The Agility of the New</h2>
           </div>
           <div className="border border-zinc-800 reveal overflow-x-auto">
             <div style={{ minWidth: '700px' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderBottom: '1px solid #27272a' }}>
               <div className="comp-cell font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-700" />
-              <div className="comp-cell font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-500">Legacy Infrastructure</div>
+              <div className="comp-cell font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-400">Legacy Infrastructure</div>
               <div className="comp-cell font-sans text-[11px] tracking-[0.2em] uppercase text-[#f2dfd2]">Tokenized Networks</div>
             </div>
             <div className="comp-row">
-              <div className="comp-cell text-zinc-500 font-bold text-[13px] tracking-wider uppercase">Market Hours</div>
+              <div className="comp-cell text-zinc-400 font-bold text-[13px] tracking-wider uppercase">Market Hours</div>
               <div className="comp-cell text-zinc-400">Mon–Fri, 9–5. Trading halts on weekends, holidays, and after hours.</div>
               <div className="comp-cell text-[#f2dfd2] font-medium">24/7/365 global availability, no scheduled downtime.</div>
             </div>
             <div className="comp-row">
-              <div className="comp-cell text-zinc-500 font-bold text-[13px] tracking-wider uppercase">Settlement Speed</div>
+              <div className="comp-cell text-zinc-400 font-bold text-[13px] tracking-wider uppercase">Settlement Speed</div>
               <div className="comp-cell text-zinc-400">T+2 to T+5 days. Manual reconciliation, custody chains, correspondent banks.</div>
               <div className="comp-cell text-[#f2dfd2] font-medium">Near-instant Atomic Settlement. Payment and asset transfer in one transaction or neither.</div>
             </div>
             <div className="comp-row">
-              <div className="comp-cell text-zinc-500 font-bold text-[13px] tracking-wider uppercase">Accessibility</div>
+              <div className="comp-cell text-zinc-400 font-bold text-[13px] tracking-wider uppercase">Accessibility</div>
               <div className="comp-cell text-zinc-400">Institutional-only entry points. A $100M PE fund requires a $1M minimum commitment.</div>
               <div className="comp-cell text-[#f2dfd2] font-medium">Democratized & fractional. A $100M asset split into 100,000 tokens at $1,000 each.</div>
             </div>
             <div className="comp-row">
-              <div className="comp-cell text-zinc-500 font-bold text-[13px] tracking-wider uppercase">Asset Mobility</div>
+              <div className="comp-cell text-zinc-400 font-bold text-[13px] tracking-wider uppercase">Asset Mobility</div>
               <div className="comp-cell text-zinc-400">Siloed & fragmented. Assets locked in jurisdiction-specific, custodian-specific silos.</div>
               <div className="comp-cell text-[#f2dfd2] font-medium">Composable & interoperable. Use a tokenized gold bar as collateral to borrow a tokenized bond.</div>
             </div>
             <div className="comp-row" style={{ borderBottom: 'none' }}>
-              <div className="comp-cell text-zinc-500 font-bold text-[13px] tracking-wider uppercase">Compliance</div>
+              <div className="comp-cell text-zinc-400 font-bold text-[13px] tracking-wider uppercase">Compliance</div>
               <div className="comp-cell text-zinc-400">Manual & audited after the fact. Compliance failures discovered weeks later.</div>
               <div className="comp-cell text-[#f2dfd2] font-medium">Automated via smart contracts. A trade that fails compliance never executes.</div>
             </div>
@@ -525,7 +521,7 @@ export default function TokenizationArticle() {
               <blockquote className="font-serif italic text-4xl md:text-6xl text-white leading-tight mb-12" style={{ fontFamily: "'Newsreader',serif" }}>
                 "I believe the next generation of markets, the next generation of securities, will be <span className="text-[#f2dfd2]">tokenized securities</span>. Every asset can be tokenized."
               </blockquote>
-              <cite className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-500">: Larry Fink, CEO, BlackRock</cite>
+              <cite className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400">: Larry Fink, CEO, BlackRock</cite>
             </div>
           </div>
         </section>
@@ -533,7 +529,7 @@ export default function TokenizationArticle() {
         {/* ── 5-STAGE PROCESS ── */}
         <section id="process" className="py-32 px-8 md:px-24 lg:px-48 bg-[#131313]">
           <div className="mb-24 flex flex-col items-start reveal">
-            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-500 mb-4">Digital Alchemy</span>
+            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 mb-4">Digital Alchemy</span>
             <h2 className="font-serif italic text-5xl text-white max-w-2xl leading-tight" style={{ fontFamily: "'Newsreader',serif" }}>How an Asset Moves from the Physical World to the Digital Ledger</h2>
           </div>
 
@@ -546,10 +542,10 @@ export default function TokenizationArticle() {
               <div className="lg:col-span-4 flex flex-col justify-center">
                 <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-400 block mb-3">Asset Identification &amp; Selection</span>
                 <h3 className="font-serif italic text-2xl text-white mb-4" style={{ fontFamily: "'Newsreader',serif" }}>Choosing What Gets Tokenized</h3>
-                <p className="font-sans text-sm text-zinc-500 leading-relaxed">The journey begins in the physical world. While almost anything with definable ownership can be tokenized, four primary classes currently lead the market each solving a specific liquidity or accessibility problem.</p>
+                <p className="font-sans text-sm text-zinc-400 leading-relaxed">The journey begins in the physical world. While almost anything with definable ownership can be tokenized, four primary classes currently lead the market each solving a specific liquidity or accessibility problem.</p>
               </div>
               <div className="lg:col-span-6 flex flex-col">
-                <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-600 mb-3">Source: RWA.xyz — Tokenized asset volume breakdown, 2025</p>
+                <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-400 mb-3">Source: RWA.xyz, Tokenized asset volume breakdown, 2025</p>
                 <div style={{ display: 'grid', gridTemplateColumns: '61fr 39fr', gap: '2px', flex: 1, minHeight: '220px' }}>
                   <div className="treemap-block flex flex-col justify-end p-6" style={{ background: '#1a2535' }}>
                     <span className="font-serif italic text-5xl text-white/80 mb-2 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>61%</span>
@@ -566,12 +562,12 @@ export default function TokenizationArticle() {
                       <div className="treemap-block flex flex-col justify-end p-3" style={{ background: '#2a1f14' }}>
                         <span className="font-serif italic text-lg text-white/80 mb-1 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>7%</span>
                         <h3 className="font-sans font-bold text-[11px] tracking-wider uppercase text-zinc-400 mb-1">Commodities</h3>
-                        <p className="font-sans text-[11px] text-zinc-500 leading-snug">Tokenized gold, $6B+ market cap.</p>
+                        <p className="font-sans text-[11px] text-zinc-400 leading-snug">Tokenized gold, $6B+ market cap.</p>
                       </div>
                       <div className="treemap-block flex flex-col justify-end p-3" style={{ background: '#242424' }}>
                         <span className="font-serif italic text-base text-white/60 mb-1 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>2%</span>
                         <h3 className="font-sans font-bold text-[10px] tracking-wider uppercase text-zinc-400 mb-1">Funds</h3>
-                        <p className="font-sans text-[10px] text-zinc-500 leading-snug">Institutional</p>
+                        <p className="font-sans text-[10px] text-zinc-400 leading-snug">Institutional</p>
                       </div>
                     </div>
                   </div>
@@ -589,7 +585,7 @@ export default function TokenizationArticle() {
               <div className="lg:col-span-4">
                 <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-400 block mb-3">Digital Representation &amp; Compliance</span>
                 <h3 className="font-serif italic text-2xl text-white mb-4" style={{ fontFamily: "'Newsreader',serif" }}>Building the Digital Blueprint</h3>
-                <p className="font-sans text-sm text-zinc-500 leading-relaxed mb-6">This isn't just an entry on a list. The digital blueprint is sophisticated software that acts as a container for the asset's rights. By integrating ISO-20022 messaging standards, tokens speak the same language as traditional banking systems like SWIFT enabling real-time reconciliation across institutional networks.</p>
+                <p className="font-sans text-sm text-zinc-400 leading-relaxed mb-6">The digital blueprint is software that acts as a container for the asset's rights. By integrating ISO-20022 messaging standards, tokens speak the same language as traditional banking systems like SWIFT enabling real-time reconciliation across institutional networks.</p>
                 <ul className="space-y-3">
                   <li className="flex gap-3">
                     <span className="text-[#f2dfd2] mt-0.5 flex-shrink-0">·</span>
@@ -628,10 +624,10 @@ export default function TokenizationArticle() {
               <div className="lg:col-span-4">
                 <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-400 block mb-3">The Logic Layer</span>
                 <h3 className="font-serif italic text-2xl text-white mb-4" style={{ fontFamily: "'Newsreader',serif" }}>Smart Contracts as Execution Engine</h3>
-                <p className="font-sans text-sm text-zinc-500 leading-relaxed">A smart contract is code that runs automatically when conditions are met, removing the friction of manual approval entirely. Think of tokenized assets like apps on a smartphone. They all run on the same operating system, so they can share data, talk to each other, and combine in ways a single app never could alone. Use your tokenized gold to back a loan, earn yield on a tokenized bond, and settle in a stablecoin, all in one transaction.</p>
+                <p className="font-sans text-sm text-zinc-400 leading-relaxed">A smart contract is code that runs automatically when conditions are met, removing the friction of manual approval entirely. Think of tokenized assets like apps on a smartphone. They all run on the same operating system, so they can share data, talk to each other, and combine in ways a single app never could alone. Use your tokenized gold to back a loan, earn yield on a tokenized bond, and settle in a stablecoin, all in one transaction.</p>
                 <div className="mt-6 border-l-2 border-[#f2dfd2] pl-4">
                   <span className="font-sans text-[11px] tracking-widest uppercase text-zinc-400 block mb-1">Atomic Settlement</span>
-                  <p className="font-sans text-sm text-zinc-500">Simultaneous delivery of asset and payment. If the payment isn't there, the asset never moves. Settlement risk: eliminated.</p>
+                  <p className="font-sans text-sm text-zinc-400">Simultaneous delivery of asset and payment. If the payment isn't there, the asset never moves. Settlement risk: eliminated.</p>
                 </div>
               </div>
               <div className="lg:col-span-6">
@@ -665,15 +661,15 @@ export default function TokenizationArticle() {
                 <h3 className="font-serif italic text-2xl text-white mb-6" style={{ fontFamily: "'Newsreader',serif" }}>Solving the Double-Spend Problem</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div>
-                    <p className="font-sans text-sm text-zinc-500 leading-relaxed">To ensure trust, the physical asset must be secured so it cannot be sold in the real world while simultaneously being traded as a token. Reference-backed tokenization places a gold bar in a secure vault the token becomes the only tradeable digital receipt for that gold.</p>
+                    <p className="font-sans text-sm text-zinc-400 leading-relaxed">To ensure trust, the physical asset must be secured so it cannot be sold in the real world while simultaneously being traded as a token. Reference-backed tokenization places a gold bar in a secure vault the token becomes the only tradeable digital receipt for that gold.</p>
                   </div>
                   <div>
                     <h4 className="font-sans font-bold text-[12px] tracking-wider uppercase text-zinc-400 mb-3">On-Chain Issuance</h4>
-                    <p className="font-sans text-sm text-zinc-500 leading-relaxed">Native digital bonds are born entirely on the blockchain with no physical counterpart no vault required. The ledger <em>is</em> the asset's existence.</p>
+                    <p className="font-sans text-sm text-zinc-400 leading-relaxed">Native digital bonds are born entirely on the blockchain with no physical counterpart no vault required. The ledger <em>is</em> the asset's existence.</p>
                   </div>
                   <div className="border border-zinc-800 p-6">
                     <h4 className="font-sans font-bold text-[12px] tracking-wider uppercase text-[#f2dfd2] mb-3">Bankruptcy Remoteness</h4>
-                    <p className="font-sans text-sm text-zinc-500 leading-relaxed">Critical for investor protection. In jurisdictions without clear digital-asset laws, tokens risk being pooled with a bankrupt issuer's general debts. A bankruptcy-remote structure ensures the physical asset belongs to token holders not the company's creditors.</p>
+                    <p className="font-sans text-sm text-zinc-400 leading-relaxed">Critical for investor protection. In jurisdictions without clear digital-asset laws, tokens risk being pooled with a bankrupt issuer's general debts. A bankruptcy-remote structure ensures the physical asset belongs to token holders not the company's creditors.</p>
                   </div>
                 </div>
               </div>
@@ -689,7 +685,7 @@ export default function TokenizationArticle() {
               <div className="lg:col-span-5">
                 <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-400 block mb-3">Minting, Distribution &amp; Lifecycle</span>
                 <h3 className="font-serif italic text-2xl text-white mb-4" style={{ fontFamily: "'Newsreader',serif" }}>The Token Goes Live</h3>
-                <p className="font-sans text-sm text-zinc-500 leading-relaxed">Minting is the official creation of tokens on the ledger. They are distributed to investors' digital wallets and enter a lifecycle of 24/7 secondary trading automatically collecting coupons until maturity, when the token is burned in exchange for the underlying physical value. The market is currently split between two competing infrastructure models.</p>
+                <p className="font-sans text-sm text-zinc-400 leading-relaxed">Minting is the official creation of tokens on the ledger. They are distributed to investors' digital wallets and enter a lifecycle of 24/7 secondary trading automatically collecting coupons until maturity, when the token is burned in exchange for the underlying physical value. The market is currently split between two competing infrastructure models.</p>
               </div>
               <div className="lg:col-span-5">
                 <div className="space-y-0.5">
@@ -725,7 +721,7 @@ export default function TokenizationArticle() {
               <div key={i} className={`pillar-card bg-[#1c1b1b] p-12 hover:bg-[#2a2a2a] transition-colors group cursor-default reveal reveal-delay-${item.delay}`}>
                 <span className="material-symbols-outlined text-[#f2dfd2] text-4xl mb-8 group-hover:scale-110 transition-transform inline-block">{item.icon}</span>
                 <h3 className="font-serif italic text-2xl text-white mb-6" style={{ fontFamily: "'Newsreader',serif" }}>{item.title}</h3>
-                <p className="font-sans text-sm text-zinc-500 leading-relaxed mb-8">{item.text}</p>
+                <p className="font-sans text-sm text-zinc-400 leading-relaxed mb-8">{item.text}</p>
                 <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-700">{item.tag}</span>
               </div>
             ))}
@@ -738,7 +734,7 @@ export default function TokenizationArticle() {
               <div key={i} className={`pillar-card bg-[#1c1b1b] p-12 hover:bg-[#2a2a2a] transition-colors group cursor-default reveal reveal-delay-${item.delay}`}>
                 <span className="material-symbols-outlined text-[#f2dfd2] text-4xl mb-8 group-hover:scale-110 transition-transform inline-block">{item.icon}</span>
                 <h3 className="font-serif italic text-2xl text-white mb-6" style={{ fontFamily: "'Newsreader',serif" }}>{item.title}</h3>
-                <p className="font-sans text-sm text-zinc-500 leading-relaxed">{item.text}</p>
+                <p className="font-sans text-sm text-zinc-400 leading-relaxed">{item.text}</p>
               </div>
             ))}
           </div>
@@ -759,10 +755,10 @@ export default function TokenizationArticle() {
         <section id="assets" className="py-32 px-8 md:px-24 lg:px-48 bg-[#131313]">
           <div className="mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
             <div className="reveal">
-              <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-500 block mb-4">Tokenizable Universe</span>
+              <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 block mb-4">Tokenizable Universe</span>
               <h2 className="font-serif italic text-5xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>Every Asset Class,<br />On-Chain</h2>
             </div>
-            <p className="font-sans text-sm text-zinc-500 max-w-xs leading-relaxed reveal reveal-delay-2">
+            <p className="font-sans text-sm text-zinc-400 max-w-xs leading-relaxed reveal reveal-delay-2">
               The tokenization thesis extends far beyond real estate. Six primary classes are being rewritten by distributed ledger technology each with different drivers, market sizes, and stages of adoption.
             </p>
           </div>
@@ -794,7 +790,7 @@ export default function TokenizationArticle() {
         {/* ── TIMELINE ── */}
         <section id="milestones" className="py-32 bg-[#1c1b1b] overflow-hidden">
           <div className="px-8 md:px-24 lg:px-48 mb-20">
-            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-500 block mb-4 reveal">Chronology</span>
+            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 block mb-4 reveal">Chronology</span>
             <h2 className="font-serif italic text-5xl text-white reveal" style={{ fontFamily: "'Newsreader',serif" }}>The Tokenization<br />Timeline</h2>
           </div>
           <div className="pl-8 md:pl-24 lg:pl-48 reveal">
@@ -827,13 +823,13 @@ export default function TokenizationArticle() {
         {/* ── THE ARCHITECTS ── */}
         <section className="py-32 px-8 md:px-24 lg:px-48 bg-[#131313]">
           <div className="mb-16 reveal">
-            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-500 block mb-4">The Incumbent Halo Effect</span>
+            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 block mb-4">The Incumbent Halo Effect</span>
             <h2 className="font-serif italic text-5xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>The Architects of the<br />New Master Ledger</h2>
           </div>
 
           <div className="mb-16 reveal">
             <div style={{ borderRadius: '4px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)', boxShadow: '0 24px 64px rgba(0,0,0,0.55)' }}>
-              <img src="/masterledger.png" alt="The Architects of the New Master Ledger — layered infrastructure diagram" style={{ width: '100%', height: 'auto', display: 'block', filter: 'brightness(0.92) contrast(1.04)' }} />
+              <img src="/masterledger.png" alt="The Architects of the New Master Ledger: layered infrastructure diagram" style={{ width: '100%', height: 'auto', display: 'block', filter: 'brightness(0.92) contrast(1.04)' }} />
             </div>
           </div>
 
@@ -844,7 +840,7 @@ export default function TokenizationArticle() {
             ].map((item, i) => (
               <div key={i} className={`arch-card bg-[#131313] p-10 hover:bg-[#1c1b1b] cursor-default reveal reveal-delay-${item.delay}`}>
                 <div className="flex items-start justify-between mb-6">
-                  <span className="font-sans font-bold text-[12px] tracking-wider uppercase text-zinc-500">{item.name}</span>
+                  <span className="font-sans font-bold text-[12px] tracking-wider uppercase text-zinc-400">{item.name}</span>
                   <span className="font-sans text-[11px] tracking-widest uppercase text-[#f2dfd2]">{item.tag}</span>
                 </div>
                 <p className="font-sans text-sm text-zinc-400 leading-relaxed">{item.text}</p>
@@ -859,7 +855,7 @@ export default function TokenizationArticle() {
             ].map((item, i) => (
               <div key={i} className={`arch-card bg-[#131313] p-10 hover:bg-[#1c1b1b] cursor-default reveal reveal-delay-${item.delay}`}>
                 <div className="flex items-start justify-between mb-6">
-                  <span className="font-sans font-bold text-[12px] tracking-wider uppercase text-zinc-500">{item.name}</span>
+                  <span className="font-sans font-bold text-[12px] tracking-wider uppercase text-zinc-400">{item.name}</span>
                   <span className="font-sans text-[11px] tracking-widest uppercase text-[#f2dfd2]">{item.tag}</span>
                 </div>
                 <p className="font-sans text-sm text-zinc-400 leading-relaxed">{item.text}</p>
@@ -877,7 +873,7 @@ export default function TokenizationArticle() {
               <blockquote className="font-serif italic text-4xl md:text-6xl text-white leading-tight mb-12" style={{ fontFamily: "'Newsreader',serif" }}>
                 "Tokenization is not about replacing the global financial system. It is about <span className="text-[#f2dfd2]">rebuilding it</span> with superior, programmable infrastructure."
               </blockquote>
-              <cite className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-500">: The Tokenization Research Consensus, 2025</cite>
+              <cite className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400">: The Tokenization Research Consensus, 2025</cite>
             </div>
           </div>
         </section>
@@ -885,7 +881,7 @@ export default function TokenizationArticle() {
         {/* ── ROAD AHEAD ── */}
         <section id="road-ahead" className="py-32 px-8 md:px-24 lg:px-48 bg-[#0e0e0e]">
           <div className="mb-24 reveal">
-            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-500 block mb-4">Outlook</span>
+            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 block mb-4">Outlook</span>
             <h2 className="font-serif italic text-5xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>The Road Ahead</h2>
           </div>
 
@@ -918,7 +914,7 @@ export default function TokenizationArticle() {
                 {[
                   { label: 'Legislative Clarity', text: 'The GENIUS Act (2025) and Clarity Act (2026) establish long-awaited "rules of the road" for digital assets and stablecoins removing compliance fears and unlocking the largest pools of institutional capital.' },
                   { label: 'Cross-Network Interoperability', text: 'Swift is actively testing cross-network asset transfers with Chainlink and major banks BNY Mellon, Citi to connect fragmented blockchains. Network effects are achieved only when external catalysts force the flywheel to turn.' },
-                  { label: 'Settlement Infrastructure', text: 'ISO-20022 integration is enabling seamless communication between traditional bank messaging and on-chain activities the universal translator that lets tokenized markets speak to the $8 trillion/day SWIFT network.' },
+                  { label: 'Settlement Infrastructure', text: 'ISO-20022 integration is enabling communication between traditional bank messaging and on-chain activities the universal translator that lets tokenized markets speak to the $8 trillion/day SWIFT network.' },
                   { label: 'The $27B Savings Argument', text: 'Estimated $27 billion in annual operational savings for banks by 2030. At that scale, tokenization is no longer a strategic experiment it is a fiduciary requirement. Institutions that delay face structural cost disadvantages.' },
                 ].map((item, i) => (
                   <div key={i} className="flex gap-6">

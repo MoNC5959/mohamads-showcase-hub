@@ -39,7 +39,7 @@ export default function CognitiveQAMRO() {
         id: 'z-aft', overlayId: 'zo-aft', name: 'AFT CABIN',
         status: 'warning', findings: 1,
         lastCheck: '2024-11-18', nextDue: '2025-05-18', flightHrs: '12,842',
-        note: 'DEF-002: Misaligned bracket at Frame 38, L-Bracket B. Offset 3.2mm beyond tolerance. Monitor — repair at next scheduled check.'
+        note: 'DEF-002: Misaligned bracket at Frame 38, L-Bracket B. Offset 3.2mm beyond tolerance. Monitor, repair at next scheduled check.'
       },
       {
         id: 'z-tail', overlayId: 'zo-tail', name: 'TAIL / EMPENNAGE',
@@ -58,22 +58,22 @@ export default function CognitiveQAMRO() {
     const HISTORY = [
       {
         id: 'INS-2025-0004', date: '2025-01-14', type: 'UNSCHEDULED', result: 'open',
-        subtype: 'Discrepancy Report — Frame 12',
+        subtype: 'Discrepancy Report: Frame 12',
         inspector: 'M. REYES', station: 'SEA · Hangar 4',
         findings: [
-          'DEF-003 opened: Hairline crack at Frame 12, Skin Panel C — 4.7mm length',
-          'NDT inspection initiated — pending results',
+          'DEF-003 opened: Hairline crack at Frame 12, Skin Panel C, 4.7mm length',
+          'NDT inspection initiated: pending results',
           'Aircraft placed on ground hold pending engineering disposition'
         ]
       },
       {
         id: 'INS-2025-0002', date: '2025-01-09', type: 'UNSCHEDULED', result: 'open',
-        subtype: 'Discrepancy Report — FWD Cabin',
+        subtype: 'Discrepancy Report: FWD Cabin',
         inspector: 'T. OKAFOR', station: 'SEA · Hangar 4',
         findings: [
           'DEF-001 opened: Missing bolt at Frame 42, Stringer 7',
-          'DEF-004 opened: Loose fastener at Frame 61 door frame — 8 Nm vs 25 Nm required',
-          'Both items logged as open — corrective action pending'
+          'DEF-004 opened: Loose fastener at Frame 61 door frame, 8 Nm vs 25 Nm required',
+          'Both items logged as open: corrective action pending'
         ]
       },
       {
@@ -83,29 +83,29 @@ export default function CognitiveQAMRO() {
         findings: [
           '851 structural components scanned across all 7 zones',
           'Zero critical findings logged',
-          'DEF-002 (Aft bracket offset) noted — within monitor threshold',
-          'Signed off by T. Okafor — Released to service'
+          'DEF-002 (Aft bracket offset) noted: within monitor threshold',
+          'Signed off by T. Okafor: Released to service'
         ]
       },
       {
         id: 'INS-2024-0039', date: '2024-09-03', type: 'UNSCHEDULED', result: 'closed',
-        subtype: 'Bolt Replacement — Frame 42',
+        subtype: 'Bolt Replacement: Frame 42',
         inspector: 'T. OKAFOR', station: 'SEA · Hangar 2',
         findings: [
           'DEF-002 rework: Frame 42 bolt replaced with HI-LOK HL-4118',
-          'Re-torqued to 35 Nm — verified with calibrated torque wrench',
-          'DEF-002 closed — cleared for service'
+          'Re-torqued to 35 Nm: verified with calibrated torque wrench',
+          'DEF-002 closed: cleared for service'
         ]
       },
       {
         id: 'INS-2024-0031', date: '2024-06-22', type: 'B-CHECK', result: 'pass',
-        subtype: 'Structural Inspection — 2,000-hr Check',
+        subtype: 'Structural Inspection: 2,000-hr Check',
         inspector: 'A. SINGH', station: 'LAX · Hangar 7',
         findings: [
-          'Full fuselage structural scan completed — 1,204 points inspected',
+          'Full fuselage structural scan completed: 1,204 points inspected',
           'Frame 38 bracket: 0.8mm offset noted, within tolerance at time of check',
-          'Engine mounts and nacelles inspected — nominal',
-          'Cleared — released to service'
+          'Engine mounts and nacelles inspected: nominal',
+          'Cleared: released to service'
         ]
       },
       {
@@ -113,9 +113,9 @@ export default function CognitiveQAMRO() {
         subtype: 'Routine 500-hr Structural Check',
         inspector: 'M. REYES', station: 'SEA · Hangar 4',
         findings: [
-          'All 7 zones inspected — 0 findings',
+          'All 7 zones inspected: 0 findings',
           'Previous bolt replacement (Frame 42) verified and holding',
-          'Released to service — no open items'
+          'Released to service: no open items'
         ]
       },
       {
@@ -124,19 +124,19 @@ export default function CognitiveQAMRO() {
         inspector: 'D. CHEN', station: 'MHV · Facility B',
         findings: [
           'Full aircraft disassembly and structural inspection',
-          'Engine overhaul completed — 737 CFM56 overhauled to zero-time',
+          'Engine overhaul completed: 737 CFM56 overhauled to zero-time',
           'Fuselage repaint and corrosion treatment applied',
-          'All systems tested — zero open findings at release',
-          'Released to service — signed by D. Chen (DAR #7741-A)'
+          'All systems tested: zero open findings at release',
+          'Released to service: signed by D. Chen (DAR #7741-A)'
         ]
       }
     ];
 
     const DEFECTS: Record<string, any> = {
-      d1: { id: 'DEF-001', title: 'Missing Bolt', detail: 'Frame 42, Stringer 7\nRequires immediate replacement\nFastener spec: HI-LOK HL-4118', severity: 'SEVERITY: CRITICAL — GROUNDING RISK', type: 'critical' },
-      d2: { id: 'DEF-002', title: 'Misaligned Bracket', detail: 'Frame 38, L-Bracket B\nOffset: 3.2mm beyond tolerance\nRequires re-alignment and re-torque', severity: 'SEVERITY: WARNING — REPAIR REQUIRED', type: 'warning' },
-      d3: { id: 'DEF-003', title: 'Hairline Crack', detail: 'Frame 12, Skin Panel C\nCrack length: 4.7mm\nNon-destructive test required', severity: 'SEVERITY: CRITICAL — HOLD REQUIRED', type: 'critical' },
-      d4: { id: 'DEF-004', title: 'Loose Fastener', detail: 'Frame 61, Door Frame\nTorque: 8 Nm (required: 25 Nm)\nMonitor — re-torque at next check', severity: 'SEVERITY: WARNING — MONITOR', type: 'warning' }
+      d1: { id: 'DEF-001', title: 'Missing Bolt', detail: 'Frame 42, Stringer 7\nRequires immediate replacement\nFastener spec: HI-LOK HL-4118', severity: 'SEVERITY: CRITICAL, GROUNDING RISK', type: 'critical' },
+      d2: { id: 'DEF-002', title: 'Misaligned Bracket', detail: 'Frame 38, L-Bracket B\nOffset: 3.2mm beyond tolerance\nRequires re-alignment and re-torque', severity: 'SEVERITY: WARNING, REPAIR REQUIRED', type: 'warning' },
+      d3: { id: 'DEF-003', title: 'Hairline Crack', detail: 'Frame 12, Skin Panel C\nCrack length: 4.7mm\nNon-destructive test required', severity: 'SEVERITY: CRITICAL, HOLD REQUIRED', type: 'critical' },
+      d4: { id: 'DEF-004', title: 'Loose Fastener', detail: 'Frame 61, Door Frame\nTorque: 8 Nm (required: 25 Nm)\nMonitor, re-torque at next check', severity: 'SEVERITY: WARNING, MONITOR', type: 'warning' }
     };
 
     const diagram    = document.getElementById('diagram')!;
@@ -358,7 +358,7 @@ export default function CognitiveQAMRO() {
       if (!d) return;
       popup.className = 'defect-popup' + (d.type === 'warning' ? ' warning' : '');
       popup.innerHTML = `
-        <div class="defect-popup-id">DEFECT — ${d.id}</div>
+        <div class="defect-popup-id">DEFECT: ${d.id}</div>
         <div class="defect-popup-title">${d.title}</div>
         <div class="defect-popup-detail">${d.detail.replace(/\n/g, '<br>')}</div>
         <div class="defect-popup-severity">${d.severity}</div>
@@ -383,28 +383,28 @@ export default function CognitiveQAMRO() {
         sev: 'S1', sevLabel: 'CRITICAL', sevFill: 4,
         action: 'ground', actionLabel: 'AIRCRAFT GROUNDED',
         ref: 'AMM 53-10-11',
-        basis: 'Crack exceeds SRM allowable limit — engineering disposition required before return to service'
+        basis: 'Crack exceeds SRM allowable limit: engineering disposition required before return to service'
       },
       {
         id: 'DEF-001', zone: 'FWD CABIN', location: 'Frame 42 · Stringer 7',
         sev: 'S1', sevLabel: 'CRITICAL', sevFill: 4,
         action: 'ground', actionLabel: 'AIRCRAFT GROUNDED',
         ref: 'AMM 51-40-01',
-        basis: 'Missing primary structural fastener — no dispatch relief available, immediate rectification required'
+        basis: 'Missing primary structural fastener: no dispatch relief available, immediate rectification required'
       },
       {
         id: 'DEF-004', zone: 'FWD CABIN', location: 'Frame 61 · Door Frame',
         sev: 'S2', sevLabel: 'MAJOR', sevFill: 3,
         action: 'preflight', actionLabel: 'REPAIR BEFORE NEXT FLIGHT',
         ref: 'AMM 52-11-09',
-        basis: 'Fastener torque 68% below minimum spec — CDL does not apply, flight safety risk confirmed'
+        basis: 'Fastener torque 68% below minimum spec: CDL does not apply, flight safety risk confirmed'
       },
       {
         id: 'DEF-002', zone: 'AFT CABIN', location: 'Frame 38 · L-Bracket B',
         sev: 'S2', sevLabel: 'MAJOR', sevFill: 3,
-        action: 'monitor', actionLabel: 'MONITOR — REPAIR AT NEXT CHECK',
+        action: 'monitor', actionLabel: 'MONITOR: REPAIR AT NEXT CHECK',
         ref: 'SRM 53-00-05',
-        basis: 'Bracket offset 3.2mm — within MEL monitor threshold, active trend watch required'
+        basis: 'Bracket offset 3.2mm: within MEL monitor threshold, active trend watch required'
       }
     ];
 
@@ -589,7 +589,7 @@ export default function CognitiveQAMRO() {
         <Link to="/cognitive-qa/demo" className="back-link">&#8592; BACK</Link>
         <div className="top-bar-center">
           <div className="brand-dot"></div>
-          <strong>COGNITIVE QA: MRO INSPECTOR v2.4.1</strong>
+          <strong>COGNITIVE QA: MRO INSPECTOR</strong>
           <span>AIRCRAFT: 737-MAX-9</span>
           <span>TAIL: N-4892WL</span>
           <span>CYCLES: 12,842</span>
@@ -697,9 +697,9 @@ export default function CognitiveQAMRO() {
               <line x1="680" y1="186" x2="680" y2="274" strokeWidth="0.4" opacity="0.28"/>
               <line x1="760" y1="186" x2="760" y2="274" strokeWidth="0.4" opacity="0.28"/>
               <line x1="75" y1="230" x2="860" y2="230" strokeWidth="0.3" opacity="0.2" strokeDasharray="8,5"/>
-              <text x="450" y="452" fill="#00e5ff" fontSize="8" textAnchor="middle" opacity="0.28" fontFamily="monospace">BOEING 737-MAX-9 · N-4892WL · TOP-DOWN ZONE HEALTH MAP — CLICK ANY ZONE FOR DETAIL</text>
-              <text x="450" y="463" fill="#00e5ff" fontSize="7" textAnchor="middle" opacity="0.18" fontFamily="monospace">COGNITIVE QA DIGITAL TWIN OVERLAY v2.4.1</text>
             </g>
+              <text x="450" y="452" fill="#00e5ff" fontSize="8" textAnchor="middle" opacity="0.85" fontFamily="monospace">BOEING 737-MAX-9 · N-4892WL · TOP-DOWN ZONE HEALTH MAP: CLICK ANY ZONE FOR DETAIL</text>
+              <text x="450" y="463" fill="#00e5ff" fontSize="7" textAnchor="middle" opacity="0.85" fontFamily="monospace">COGNITIVE QA DIGITAL TWIN OVERLAY</text>
 
             <g id="markers">
               <g id="d3" className="svg-marker crit" data-defect="d3">
@@ -761,7 +761,7 @@ export default function CognitiveQAMRO() {
 
       <div className="status-bar">
         <span><div className="status-bar-dot"></div><span className="status-active">DIGITAL TWIN OVERLAY: ACTIVE</span></span>
-        <span className="status-warn">&#9650; 2 CRITICAL ZONES — IMMEDIATE ATTENTION REQUIRED</span>
+        <span className="status-warn">&#9650; 2 CRITICAL ZONES: IMMEDIATE ATTENTION REQUIRED</span>
         <span style={{ marginLeft:'auto', color:'var(--muted)' }}>N-4892WL &nbsp;·&nbsp; A-CHECK DUE: 2025-05-18</span>
       </div>
 

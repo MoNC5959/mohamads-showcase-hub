@@ -16,7 +16,8 @@
   --muted-w:    #a8845a;
   --text-w:     #f0dfc0;
   --border-w:   rgba(245,166,35,0.22);
-  --font:       'Share Tech Mono', 'Courier New', monospace;
+  --font:       'Space Grotesk', ui-sans-serif, sans-serif;
+  --mono:       'Share Tech Mono', 'Courier New', monospace;
 
   box-sizing: border-box;
   background: var(--w-bg);
@@ -53,7 +54,7 @@
   color: var(--muted-w);
   text-decoration: none;
   font-size: 0.78rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.08em;
   padding-right: 20px;
   border-right: 1px solid var(--border-w);
   margin-right: 20px;
@@ -68,20 +69,20 @@
   gap: 9px;
   color: var(--amber);
   font-size: 0.9rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.08em;
   text-decoration: none;
 }
 
 .cqa-amber .brand-sm {
   font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.08em;
 }
 
 .cqa-amber .brand-dot {
   width: 10px; height: 10px;
   border-radius: 50%;
   background: var(--amber);
-  box-shadow: 0 0 10px var(--amber);
+  
   animation: cqa-pulse 2s infinite;
   flex-shrink: 0;
 }
@@ -90,7 +91,7 @@
   width: 7px; height: 7px;
   border-radius: 50%;
   background: var(--amber);
-  box-shadow: 0 0 7px var(--amber);
+  
   animation: cqa-pulse 2s infinite;
   flex-shrink: 0;
 }
@@ -102,14 +103,14 @@
 
 .cqa-amber .top-bar-tag {
   font-size: 0.78rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
 }
 
 .cqa-amber .top-bar-right {
   margin-left: auto;
   font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
 }
 
@@ -224,7 +225,7 @@
   width: 8px; height: 8px;
   border-radius: 50%;
   background: var(--amber);
-  box-shadow: 0 0 6px var(--amber);
+  
   animation: cqa-pulse 2s infinite;
 }
 
@@ -255,7 +256,7 @@
   align-items: center;
   gap: 12px;
   font-size: 0.88rem;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   margin-bottom: 22px;
 }
@@ -267,7 +268,7 @@
 
 .cqa-amber .home-title {
   font-size: clamp(3.8rem, 10vw, 7.5rem);
-  letter-spacing: 0.3em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   line-height: 0.95;
   text-align: center;
@@ -278,22 +279,20 @@
 .cqa-amber .home-title .accent {
   display: block;
   color: var(--amber);
-  text-shadow:
-    0 0 30px rgba(245,166,35,0.35),
-    0 0 80px rgba(245,166,35,0.12);
-  animation: cqa-glow-breathe 3s ease-in-out 1.4s infinite;
+  
+  
 }
 
 .cqa-amber .home-desc {
   font-size: 1.6rem;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   margin-bottom: 64px;
 }
 
 @keyframes cqa-glow-breathe {
-  0%, 100% { text-shadow: 0 0 30px rgba(245,166,35,0.35), 0 0 80px rgba(245,166,35,0.12); }
-  50%       { text-shadow: 0 0 50px rgba(245,166,35,0.65), 0 0 120px rgba(245,166,35,0.25); }
+  0%, 100% {  }
+  50%       {  }
 }
 
 /* ── NAV BUTTONS (home) ── */
@@ -325,14 +324,14 @@
   position: absolute;
   top: 14px; left: 22px;
   font-size: 0.78rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   transition: color 0.18s;
 }
 
 .cqa-amber .nav-btn-label {
   font-size: 1.4rem;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.08em;
   transition: color 0.18s;
 }
 
@@ -505,7 +504,7 @@
   align-items: center;
   gap: 12px;
   font-size: 0.78rem;
-  letter-spacing: 0.35em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   margin-bottom: 36px;
 }
@@ -514,7 +513,7 @@
   width: 5px; height: 5px;
   border-radius: 50%;
   background: var(--red);
-  box-shadow: 0 0 6px var(--red);
+  
   animation: cqa-pulse 1.5s infinite;
 }
 
@@ -522,7 +521,7 @@
   width: 5px; height: 5px;
   border-radius: 50%;
   background: var(--amber);
-  box-shadow: 0 0 6px var(--amber);
+  
   animation: cqa-pulse 1.5s infinite;
 }
 
@@ -540,15 +539,15 @@
   letter-spacing: 0.04em;
   line-height: 0.9;
   color: var(--red);
-  text-shadow: 0 0 40px rgba(255,60,60,0.5), 0 0 100px rgba(255,60,60,0.2);
+  
   position: relative;
   display: inline-block;
-  animation: cqa-broken-pulse 3s ease-in-out infinite;
+  
 }
 
 @keyframes cqa-broken-pulse {
-  0%, 100% { text-shadow: 0 0 40px rgba(255,60,60,0.5), 0 0 100px rgba(255,60,60,0.2); }
-  50%       { text-shadow: 0 0 60px rgba(255,60,60,0.8), 0 0 140px rgba(255,60,60,0.35); }
+  0%, 100% {  }
+  50%       {  }
 }
 
 .cqa-amber .hero-broken::before,
@@ -590,7 +589,7 @@
 .cqa-amber .hero-suffix {
   display: block;
   font-size: clamp(0.9rem, 2.2vw, 1.25rem);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   margin-top: 16px;
   text-transform: uppercase;
@@ -612,20 +611,20 @@
   letter-spacing: 0.04em;
   line-height: 0.9;
   color: var(--amber);
-  text-shadow: 0 0 40px rgba(245,166,35,0.45), 0 0 100px rgba(245,166,35,0.18);
+  
   display: inline-block;
-  animation: cqa-amber-pulse 3.5s ease-in-out infinite;
+  
 }
 
 @keyframes cqa-amber-pulse {
-  0%, 100% { text-shadow: 0 0 40px rgba(245,166,35,0.45), 0 0 100px rgba(245,166,35,0.18); }
-  50%       { text-shadow: 0 0 60px rgba(245,166,35,0.7),  0 0 140px rgba(245,166,35,0.3); }
+  0%, 100% {  }
+  50%       {  }
 }
 
 .cqa-amber .hero-subword {
   display: block;
   font-size: clamp(0.9rem, 2.2vw, 1.2rem);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   margin-top: 16px;
   text-transform: uppercase;
@@ -647,7 +646,7 @@
 .cqa-amber .hero-tagline {
   margin-top: 28px;
   font-size: 0.72rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   text-transform: uppercase;
   display: flex;
@@ -669,7 +668,7 @@
   align-items: center;
   gap: 10px;
   font-size: 0.58rem;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   animation: cqa-scroll-cue 2s ease-in-out infinite;
 }
@@ -710,14 +709,14 @@
   font-size: clamp(1.8rem, 4vw, 3rem);
   letter-spacing: 0.02em;
   color: var(--amber);
-  text-shadow: 0 0 24px rgba(245,166,35,0.35);
+  
   line-height: 1;
   display: block;
 }
 
 .cqa-amber .stat-label {
   font-size: 0.78rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   margin-top: 10px;
   line-height: 1.5;
@@ -734,7 +733,7 @@
 
 .cqa-amber .section-label {
   font-size: 0.75rem;
-  letter-spacing: 0.38em;
+  letter-spacing: 0.08em;
   color: var(--amber);
   text-transform: uppercase;
   margin-bottom: 28px;
@@ -833,7 +832,7 @@
 
 .cqa-amber .incident-badge {
   font-size: 0.7rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.08em;
   padding: 3px 8px;
   margin-bottom: 16px;
   display: inline-block;
@@ -881,7 +880,7 @@
 /* ── PULL QUOTE (vision) ── */
 .cqa-amber .pull-quote {
   background: var(--w-surface);
-  border-left: 3px solid var(--amber);
+  border: 1px solid var(--amber);
   padding: 32px 36px;
   margin: 48px 0 0;
 }
@@ -898,7 +897,7 @@
 .cqa-amber .pull-quote-tagline {
   margin-top: 20px;
   font-size: 0.82rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.08em;
   color: var(--amber);
 }
 
@@ -931,7 +930,7 @@
 
 .cqa-amber .chain-node-party {
   font-size: 1.1rem;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.08em;
   color: var(--amber);
   margin-bottom: 14px;
 }
@@ -957,7 +956,7 @@
 
 .cqa-amber .chain-gap-label {
   font-size: 0.68rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.08em;
   color: var(--red);
   margin-top: 6px;
   white-space: nowrap;
@@ -991,7 +990,7 @@
   color: var(--muted-w);
   font-family: var(--font);
   font-size: 0.8rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.08em;
   cursor: pointer;
   transition: background 0.15s, color 0.15s, border-color 0.15s;
   text-align: center;
@@ -1050,7 +1049,7 @@
 
 .cqa-amber .mission-kicker {
   font-size: 0.75rem;
-  letter-spacing: 0.38em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   margin-bottom: 32px;
 }
@@ -1068,16 +1067,16 @@
 .cqa-amber .mission-sub {
   margin-top: 24px;
   font-size: 0.85rem;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
 }
 
 .cqa-amber .mission-tagline {
   margin-top: 36px;
   font-size: clamp(0.85rem, 1.6vw, 1.1rem);
-  letter-spacing: 0.3em;
+  letter-spacing: 0.08em;
   color: var(--amber);
-  text-shadow: 0 0 20px rgba(245,166,35,0.4);
+  
 }
 
 /* ── WORLD GRID (vision) ── */
@@ -1137,7 +1136,7 @@
 
 .cqa-amber .whynow-tag {
   font-size: 0.75rem;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.08em;
   color: var(--amber);
   flex-shrink: 0;
   padding-top: 3px;
@@ -1173,14 +1172,14 @@
 }
 
 .cqa-amber .closing-line.lit   { color: var(--text-w); }
-.cqa-amber .closing-line.amber { color: var(--amber); text-shadow: 0 0 30px rgba(245,166,35,0.4); }
+.cqa-amber .closing-line.amber { color: var(--amber);  }
 .cqa-amber .closing-line.visible { opacity: 1; transform: translateY(0); }
 
 .cqa-amber .closing-tagline {
   font-size: clamp(0.85rem, 1.7vw, 1.1rem);
-  letter-spacing: 0.35em;
+  letter-spacing: 0.08em;
   color: var(--amber);
-  text-shadow: 0 0 20px rgba(245,166,35,0.4);
+  
   opacity: 0;
   transition: opacity 0.8s ease-out 0.6s;
   display: flex;
@@ -1216,7 +1215,7 @@
 .cqa-amber .closing-strategy .closing-tagline {
   margin-top: 48px;
   font-size: 0.72rem;
-  letter-spacing: 0.35em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   transition: opacity 0.6s ease 0.2s;
 }
@@ -1225,14 +1224,14 @@
 .cqa-amber .gap-callout {
   margin: 40px 0;
   padding: 28px 32px;
-  border-left: 3px solid var(--red);
+  border: 1px solid var(--red);
   background: var(--red-dim);
   border-radius: 0 4px 4px 0;
 }
 
 .cqa-amber .gap-callout-label {
   font-size: 0.68rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.08em;
   color: var(--red);
   margin-bottom: 10px;
 }
@@ -1256,7 +1255,7 @@
 
 .cqa-amber .inc-badge {
   font-size: 0.65rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.08em;
   padding: 3px 8px;
   margin-bottom: 12px;
   display: inline-block;
@@ -1264,7 +1263,7 @@
 
 .cqa-amber .inc-flight {
   font-size: 0.7rem;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   margin-bottom: 8px;
   position: relative;
@@ -1310,7 +1309,7 @@
 
 .cqa-amber .replace-col-label {
   font-size: 0.65rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   margin-bottom: 20px;
 }
@@ -1382,7 +1381,7 @@
 
 .cqa-amber .platform-num {
   font-size: 0.65rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   margin-bottom: 16px;
   position: relative;
@@ -1391,7 +1390,7 @@
 
 .cqa-amber .platform-title {
   font-size: 0.88rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.08em;
   color: var(--amber);
   margin-bottom: 10px;
   line-height: 1.3;
@@ -1401,7 +1400,7 @@
 
 .cqa-amber .platform-tech {
   font-size: 0.7rem;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   margin-bottom: 20px;
   position: relative;
@@ -1472,7 +1471,7 @@
 
 .cqa-amber .phase-tag {
   font-size: 0.62rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   margin-bottom: 8px;
 }
@@ -1496,7 +1495,7 @@
   border-color: var(--amber);
   color: var(--amber);
   background: rgba(245,166,35,0.08);
-  box-shadow: 0 0 16px rgba(245,166,35,0.25);
+  
 }
 
 .cqa-amber .phase-row.active .phase-heading { color: var(--amber); }
@@ -1533,7 +1532,7 @@
   font-size: clamp(1.1rem, 2vw, 1.6rem);
   letter-spacing: 0.04em;
   color: var(--amber);
-  text-shadow: 0 0 16px rgba(245,166,35,0.3);
+  
   white-space: nowrap;
 }
 
@@ -1625,7 +1624,7 @@
 
 .cqa-amber .beyond-name {
   font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.08em;
   color: var(--amber);
   margin-bottom: 8px;
 }
@@ -1659,7 +1658,7 @@
 .cqa-amber .why-tag {
   flex-shrink: 0;
   font-size: 0.6rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.08em;
   padding: 4px 8px;
   border: 1px solid var(--border-w);
   color: var(--amber);
@@ -1686,7 +1685,7 @@
 
 .cqa-amber .infographic-label {
   font-size: 0.65rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   margin-bottom: 14px;
   text-align: center;
@@ -1698,7 +1697,7 @@
   border: 1px solid var(--border-w);
   border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 0 60px rgba(245,166,35,0.08), 0 0 120px rgba(245,166,35,0.03);
+  
 }
 
 .cqa-amber .infographic-img {
@@ -1727,7 +1726,7 @@
 
 .cqa-amber .demo-title {
   font-size: clamp(2.4rem, 6vw, 4.8rem);
-  letter-spacing: 0.28em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   line-height: 1;
   text-align: center;
@@ -1737,13 +1736,13 @@
 
 .cqa-amber .demo-title .accent {
   color: var(--amber);
-  text-shadow: 0 0 30px rgba(245,166,35,0.4), 0 0 80px rgba(245,166,35,0.15);
-  animation: cqa-glow-breathe 3s ease-in-out 1.4s infinite;
+  
+  
 }
 
 .cqa-amber .demo-sub {
   font-size: 0.88rem;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   margin-bottom: 56px;
 }
@@ -1813,7 +1812,7 @@
 
 .cqa-amber .demo-card-tag {
   font-size: 0.65rem;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   margin-bottom: 24px;
   transition: color 0.2s;
@@ -1836,7 +1835,7 @@
 
 .cqa-amber .demo-card-title {
   font-size: 1.25rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.08em;
   color: var(--text-w);
   margin-bottom: 12px;
   transition: color 0.2s;
@@ -1855,7 +1854,7 @@
 .cqa-amber .demo-card-enter {
   margin-top: 28px;
   font-size: 0.78rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.08em;
   color: var(--muted-w);
   display: flex;
   align-items: center;
@@ -1921,4 +1920,72 @@
 @media (max-width: 480px) {
   .cqa-amber .beyond-grid { grid-template-columns: repeat(2, 1fr); }
   .cqa-amber .stats-band  { grid-template-columns: 1fr 1fr; }
+}
+
+/* Bolder pass: size and weight in place of glow, wide tracking, and shimmer. */
+.cqa-amber .particle,
+.cqa-amber .nav-btn-shimmer,
+.cqa-amber .nav-btn-num,
+.cqa-amber .status-dot,
+.cqa-amber .hero-bg-glow,
+.cqa-amber .hero-scroll-cue { display: none; }
+
+.cqa-amber .home-title {
+  font-size: clamp(3.2rem, 14.4vw, 14rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.86;
+  margin-bottom: clamp(28px, 3.4vw, 48px);
+}
+.cqa-amber .home-desc {
+  max-width: 34ch;
+  margin-inline: auto;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  line-height: 1.25;
+  text-align: center;
+  letter-spacing: 0;
+  color: var(--text-w);
+}
+.cqa-amber .nav-btn-label {
+  font-size: clamp(1.5rem, 2.6vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.cqa-amber .hero-broken {
+  font-size: clamp(4.2rem, 19vw, 20rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.85;
+}
+.cqa-amber .hero-word {
+  font-size: clamp(3.4rem, 15vw, 16rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.85;
+}
+.cqa-amber .section-heading {
+  font-size: clamp(2.2rem, 4.8vw, 4.4rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+.cqa-amber .stat-num {
+  font-family: var(--mono);
+  font-size: clamp(2.4rem, 5.4vw, 4.8rem);
+}
+.cqa-amber .status-bar,
+.cqa-amber .status-bar-sm { font-family: var(--mono); }
+.cqa-amber .infographic-drawing {
+  --color-text: var(--text-w);
+  --color-accent-300: var(--amber);
+  --color-bg: var(--w-bg);
+}
+
+@media (max-width: 640px) {
+  .cqa-amber .home-inner { padding-top: 28px; }
+  .cqa-amber .home-title { font-size: 15.6vw; }
+  .cqa-amber .home-desc { padding-inline: 20px; margin-bottom: 28px; }
+  .cqa-amber .btn-row { width: 100%; padding-inline: 20px; }
+  .cqa-amber .nav-btn { width: 100%; height: auto; padding: 18px 20px; }
 }

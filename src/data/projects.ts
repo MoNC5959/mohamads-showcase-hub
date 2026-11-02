@@ -1,9 +1,4 @@
 import type { Project } from "@/types";
-import cognitiveQaImage from "@/assets/cognitive-qa-infographic.png";
-import finTechImage from "@/assets/FinTech.jpg";
-import tokenizationImage from "@/assets/tokenization-cover.png";
-import colosseumImage from "@/assets/colosseum-cover.png";
-import fewSecondsImage from "@/assets/few-seconds-cover.png";
 
 export const projects: Project[] = [
   {
@@ -14,9 +9,8 @@ export const projects: Project[] = [
     year: "2026",
     slug: "cognitive-qa",
     externalUrl: "/cognitive-qa",
-    coverImage: cognitiveQaImage,
     description:
-      "An AI-powered quality assurance platform designed to streamline testing workflows and improve software reliability.",
+      "An AR inspection concept for aircraft. HoloLens 2 checks every part against its digital blueprint as the work happens, from the assembly line to the maintenance hangar.",
     images: [],
   },
   {
@@ -27,7 +21,6 @@ export const projects: Project[] = [
     year: "2026",
     slug: "fintech",
     externalUrl: "/project/fintech",
-    coverImage: finTechImage,
     description:
       "You don't need to be a banker or a tech wizard to understand what's happening to the world's financial system. Here's a plain-English breakdown of the biggest shifts underway and why they'll likely affect your wallet, your bank, and your job.",
     client: "Editorial Series",
@@ -41,9 +34,8 @@ export const projects: Project[] = [
     year: "2026",
     slug: "tokenization",
     externalUrl: "/tokenization",
-    coverImage: tokenizationImage,
     description:
-      "How tokenization is turning analog assets into programmable value — rewriting the rules of ownership, settlement, and access for every asset class on earth.",
+      "How tokenization turns analog assets into programmable ones, and what that changes about ownership, settlement, and access.",
     client: "Editorial Series",
     images: [],
   },
@@ -55,9 +47,8 @@ export const projects: Project[] = [
     year: "2026",
     slug: "colosseum",
     externalUrl: "/colosseum",
-    coverImage: colosseumImage,
     description:
-      "From the Colosseum to the Cloud — tracing the evolution of infrastructure, governance, and digital transformation in sports media rights.",
+      "How leagues and streaming giants built a lucrative partnership, and left the fan holding the bill.",
     images: [],
   },
   {
@@ -68,9 +59,8 @@ export const projects: Project[] = [
     year: "2026",
     slug: "few-seconds",
     externalUrl: "/few-seconds",
-    coverImage: fewSecondsImage,
     description:
-      "A short exploration of how the smallest units of time shape attention, decisions, and product experience in modern payments.",
+      "What happens in the seconds after you tap a card: the banks, networks, and fees behind every purchase, and why Capital One bought Discover.",
     images: [],
   },
 ];
