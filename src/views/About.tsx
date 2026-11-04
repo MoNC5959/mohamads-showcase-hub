@@ -1,6 +1,7 @@
 import PageShell from "../components/PageShell";
 import Carousel from "../components/Carousel";
 import CareerTimeline from "../components/CareerTimeline";
+import FadeContent from "../components/FadeContent/FadeContent";
 import { photographerInfo as person } from "../data/photographer";
 
 import profilePortrait from "../assets/profile-portrait.webp";
@@ -41,10 +42,18 @@ const CATS = [
   { src: modu2, alt: "Modu the cat", caption: "Modu" },
 ];
 
+const FADE = {
+  effect: "mist",
+  duration: 1.8,
+  ease: "power2.out",
+  stagger: 0.1,
+  threshold: 0.1,
+} as const;
+
 export default function About() {
   return (
     <PageShell sheetRef="Box 01 / Sheet 02 of 04" title="About">
-      <div className="about-intro">
+      <FadeContent {...FADE} className="about-intro">
         <div className="blueprint">
           <i className="corner tl" />
           <i className="corner tr" />
@@ -73,36 +82,42 @@ export default function About() {
             </div>
           </div>
         </div>
-      </div>
+      </FadeContent>
 
       <section className="about-section">
-        <CareerTimeline />
+        <FadeContent {...FADE}>
+          <CareerTimeline />
+        </FadeContent>
       </section>
 
-      <section className="about-section about-offclock">
-        <h2 className="sheet-h2">Off the Clock</h2>
-        <div className="about-copy">
-          {person.interests.map((paragraph) => (
-            <p key={paragraph.slice(0, 24)} className="sheet-body">
-              {paragraph}
+      <section className="about-section">
+        <FadeContent {...FADE} className="about-offclock">
+          <h2 className="sheet-h2">Off the Clock</h2>
+          <div className="about-copy">
+            {person.interests.map((paragraph) => (
+              <p key={paragraph.slice(0, 24)} className="sheet-body">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </FadeContent>
+      </section>
+
+      <section className="about-section">
+        <FadeContent {...FADE} className="about-galleries">
+          <div className="about-gallery">
+            <h2 className="sheet-h2">The Dessert Gallery</h2>
+            <Carousel items={DESSERTS} label="Dessert gallery" aspectRatio="1 / 1" />
+          </div>
+          <div className="about-gallery">
+            <h2 className="sheet-h2">The Cat Tax</h2>
+            <p className="sheet-body">
+              And because the internet demands it, the cat tax has been paid below. Meet Sunnah the
+              beautiful diva and Modu the gluttonous yet adorable demon.
             </p>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-section about-galleries">
-        <div className="about-gallery">
-          <h2 className="sheet-h2">The Dessert Gallery</h2>
-          <Carousel items={DESSERTS} label="Dessert gallery" aspectRatio="1 / 1" />
-        </div>
-        <div className="about-gallery">
-          <h2 className="sheet-h2">The Cat Tax</h2>
-          <p className="sheet-body">
-            And because the internet demands it, the cat tax has been paid below. Meet Sunnah the beautiful diva and Modu
-            the gluttonous yet adorable demon.
-          </p>
-          <Carousel items={CATS} label="Cat photos" aspectRatio="1 / 1" firstTurnMs={2500} />
-        </div>
+            <Carousel items={CATS} label="Cat photos" aspectRatio="1 / 1" firstTurnMs={2500} />
+          </div>
+        </FadeContent>
       </section>
     </PageShell>
   );
