@@ -68,7 +68,7 @@ export default function Carousel({ items, label, aspectRatio = "4 / 3", firstTur
   const current = items[index];
 
   return (
-    <div ref={rootRef} className="blueprint" role="group" aria-roledescription="carousel" aria-label={label} style={{ position: "relative" }}>
+    <div ref={rootRef} data-reveal="photo" className="blueprint" role="group" aria-roledescription="carousel" aria-label={label} style={{ position: "relative" }}>
       <i className="corner tl" style={{ zIndex: 1 }} />
       <i className="corner tr" style={{ zIndex: 1 }} />
       <i className="corner bl" />

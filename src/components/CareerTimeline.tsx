@@ -118,7 +118,7 @@ export default function CareerTimeline() {
 
   return (
     <div className="ctl">
-      <header className="ctl-header">
+      <header className="ctl-header" data-reveal>
         <h2 className="sheet-h2">Timeline</h2>
         <p className="ctl-lede">
           Where I'm headed, where I've worked and where I studied. Select any milestone to read more.
@@ -136,6 +136,7 @@ export default function CareerTimeline() {
                 key={`${it.kicker}-${it.title}`}
                 className={`tl-row${selected ? " is-selected" : ""}`}
                 data-side={i % 2 === 0 ? "left" : "right"}
+                data-reveal
               >
                 <div className="tl-dot" aria-hidden="true" />
                 <button

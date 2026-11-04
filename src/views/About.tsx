@@ -1,8 +1,8 @@
 import PageShell from "../components/PageShell";
 import Carousel from "../components/Carousel";
 import CareerTimeline from "../components/CareerTimeline";
-import FadeContent from "../components/FadeContent/FadeContent";
 import { photographerInfo as person } from "../data/photographer";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
 import profilePortrait from "../assets/profile-portrait.webp";
 
@@ -42,19 +42,13 @@ const CATS = [
   { src: modu2, alt: "Modu the cat", caption: "Modu" },
 ];
 
-const FADE = {
-  effect: "mist",
-  duration: 1.8,
-  ease: "power2.out",
-  stagger: 0.1,
-  threshold: 0.1,
-} as const;
-
 export default function About() {
+  useScrollReveal();
+
   return (
     <PageShell sheetRef="Box 01 / Sheet 02 of 04" title="About">
-      <FadeContent {...FADE} className="about-intro">
-        <div className="blueprint">
+      <div className="about-intro">
+        <div className="blueprint" data-reveal="photo">
           <i className="corner tl" />
           <i className="corner tr" />
           <i className="corner bl" />
@@ -62,15 +56,15 @@ export default function About() {
           <img src={profilePortrait} alt={person.name} width={1440} height={1920} decoding="async" className="about-portrait" />
         </div>
         <div>
-          <p className="about-name">{person.name}</p>
-          <p className="about-role">{person.tagline}</p>
+          <p className="about-name" data-reveal>{person.name}</p>
+          <p className="about-role" data-reveal>{person.tagline}</p>
           <div className="about-copy">
             {person.biography.map((paragraph) => (
-              <p key={paragraph.slice(0, 24)} className="sheet-body">
+              <p key={paragraph.slice(0, 24)} className="sheet-body" data-reveal>
                 {paragraph}
               </p>
             ))}
-            <div className="about-links">
+            <div className="about-links" data-reveal>
               <a href={`mailto:${person.email}`}>{person.email}</a>
               <a href={person.linkedin} target="_blank" rel="noreferrer">
                 LinkedIn
@@ -82,42 +76,36 @@ export default function About() {
             </div>
           </div>
         </div>
-      </FadeContent>
+      </div>
 
       <section className="about-section">
-        <FadeContent {...FADE}>
-          <CareerTimeline />
-        </FadeContent>
+        <CareerTimeline />
       </section>
 
-      <section className="about-section">
-        <FadeContent {...FADE} className="about-offclock">
-          <h2 className="sheet-h2">Off the Clock</h2>
-          <div className="about-copy">
-            {person.interests.map((paragraph) => (
-              <p key={paragraph.slice(0, 24)} className="sheet-body">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </FadeContent>
-      </section>
-
-      <section className="about-section">
-        <FadeContent {...FADE} className="about-galleries">
-          <div className="about-gallery">
-            <h2 className="sheet-h2">The Dessert Gallery</h2>
-            <Carousel items={DESSERTS} label="Dessert gallery" aspectRatio="1 / 1" />
-          </div>
-          <div className="about-gallery">
-            <h2 className="sheet-h2">The Cat Tax</h2>
-            <p className="sheet-body">
-              And because the internet demands it, the cat tax has been paid below. Meet Sunnah the
-              beautiful diva and Modu the gluttonous yet adorable demon.
+      <section className="about-section about-offclock">
+        <h2 className="sheet-h2" data-reveal>Off the Clock</h2>
+        <div className="about-copy">
+          {person.interests.map((paragraph) => (
+            <p key={paragraph.slice(0, 24)} className="sheet-body" data-reveal>
+              {paragraph}
             </p>
-            <Carousel items={CATS} label="Cat photos" aspectRatio="1 / 1" firstTurnMs={2500} />
-          </div>
-        </FadeContent>
+          ))}
+        </div>
+      </section>
+
+      <section className="about-section about-galleries">
+        <div className="about-gallery">
+          <h2 className="sheet-h2" data-reveal>The Dessert Gallery</h2>
+          <Carousel items={DESSERTS} label="Dessert gallery" aspectRatio="1 / 1" />
+        </div>
+        <div className="about-gallery">
+          <h2 className="sheet-h2" data-reveal>The Cat Tax</h2>
+          <p className="sheet-body" data-reveal>
+            And because the internet demands it, the cat tax has been paid below. Meet Sunnah the beautiful diva and Modu
+            the gluttonous yet adorable demon.
+          </p>
+          <Carousel items={CATS} label="Cat photos" aspectRatio="1 / 1" firstTurnMs={2500} />
+        </div>
       </section>
     </PageShell>
   );

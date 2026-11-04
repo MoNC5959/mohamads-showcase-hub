@@ -810,6 +810,23 @@ html:has(.sheet) {
   }
 }
 
+/* Scroll reveal: see useScrollReveal. Opacity and transform only. */
+.reveal-waiting {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+}
+
+.reveal-playing {
+  transition: opacity 600ms var(--expo-out), transform 800ms var(--expo-out);
+}
+
+@media print {
+  .reveal-waiting {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* About */
 .about-intro {
   display: grid;
