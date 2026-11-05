@@ -31,7 +31,7 @@ function Dimension({ x1, x2, y }: { x1: number; x2: number; y: number }) {
   );
 }
 
-function Aircraft() {
+function Aircraft({ labelled }: { labelled: boolean }) {
   const fuselage = "M70 290C90 250 140 222 210 218L770 218C800 218 860 200 900 190L900 205C860 250 800 330 720 342L210 342C140 342 90 330 70 290Z";
   return (
     <>
@@ -59,12 +59,16 @@ function Aircraft() {
       <path d="M352 366V406M412 366V406" style={thin} />
       <path d="M544 66L500 218M544 66L588 218" style={dashed} />
       <circle cx={544} cy={58} r={9} style={{ fill: ACCENT }} />
-      <text x={566} y={50} style={label}>
-        FRAME 38
-      </text>
-      <text x={566} y={72} style={{ ...label, fontWeight: 400 }}>
-        3.2 MM OFFSET
-      </text>
+      {labelled && (
+        <>
+          <text x={566} y={50} style={label}>
+            FRAME 38
+          </text>
+          <text x={566} y={72} style={{ ...label, fontWeight: 400 }}>
+            3.2 MM OFFSET
+          </text>
+        </>
+      )}
       <Dimension x1={70} x2={900} y={490} />
     </>
   );
@@ -198,7 +202,7 @@ function CardToTerminal() {
   );
 }
 
-const DRAWINGS: Record<string, () => ReactNode> = {
+const DRAWINGS: Record<string, (props: { labelled: boolean }) => ReactNode> = {
   "cognitive-qa": Aircraft,
   fintech: VaultToPhone,
   tokenization: BuildingToTokens,
@@ -226,7 +230,7 @@ export default function ProjectCover({ slug, title }: ProjectCoverProps) {
       aria-hidden={title ? undefined : true}
       style={{ display: "block", width: "100%", height: "auto" }}
     >
-      {Drawing ? <Drawing /> : null}
+      {Drawing ? <Drawing labelled={Boolean(title)} /> : null}
     </svg>
   );
 }

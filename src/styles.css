@@ -157,8 +157,20 @@
 }
 
 /* ---- Imported portfolio styles ---- */
-/* Dark, cool-toned "blueprint" scheme: light line-art on a deep navy sheet. */
+/* The four palette colors. Hub pages map them to roles in .sheet below. */
 :root {
+  --toffee: #401f22;
+  --oat: #faf2d1;
+  --strawberry: #eaa6a1;
+  --olive: #a48f60;
+}
+
+/* The original cool blueprint scheme, which the FinTech article keeps. */
+:root,
+.sheet.sheet--original {
+  --reverse-bg: #5fd6c4;
+  --reverse-ink: #0e151b;
+  --sheet-support: color-mix(in srgb, var(--color-text) 80%, transparent);
   --color-bg: #0e151b;
   --color-text: #e7f0f4;
   --color-divider: #253441;
@@ -302,8 +314,25 @@ a {
   outline-offset: 3px;
 }
 
-/* Full-page drafting sheet: the shared ground of every hub page. */
+/* Full-page drafting sheet: the shared ground of every hub page.
+   Toffee is the sheet, oat the ink, strawberry the one accent, olive the quiet support. */
 .sheet {
+  --color-bg: var(--toffee);
+  --color-text: var(--oat);
+  --color-divider: color-mix(in srgb, var(--olive) 48%, var(--toffee));
+  --color-accent-300: var(--strawberry);
+  --color-accent-400: color-mix(in srgb, var(--olive) 55%, var(--oat));
+  --sheet-support: var(--olive);
+  /* Warm neutrals for the line art and Sunnah's grey coat. Light to dark for fills, then light again for lines. */
+  --color-neutral-100: #fbf6e6;
+  --color-neutral-200: #e8dfcb;
+  --color-neutral-300: #cfc4ad;
+  --color-neutral-400: #a89e8d;
+  --color-neutral-500: #847a6e;
+  --color-neutral-600: #dbd0b8;
+  --color-neutral-700: #ece2c9;
+  --color-neutral-800: #f6edd3;
+  --color-neutral-900: #241012;
   --sheet-muted: color-mix(in srgb, var(--color-text) 80%, transparent);
   --expo-out: cubic-bezier(0.16, 1, 0.3, 1);
   min-height: 100svh;
@@ -320,15 +349,21 @@ a {
 
 /* The same sheet printed in reverse: every token flips, so children need no overrides. */
 .sheet--accent {
-  --color-bg: #5fd6c4;
-  --color-text: #0e151b;
-  --color-divider: color-mix(in srgb, #0e151b 30%, transparent);
-  --color-accent-300: #0e151b;
+  --color-bg: var(--reverse-bg);
+  --color-text: var(--reverse-ink);
+  --color-divider: color-mix(in srgb, var(--reverse-ink) 30%, transparent);
+  --color-accent-300: var(--reverse-ink);
 }
 
 html:has(.sheet) {
   scroll-padding-top: 96px;
   scrollbar-color: var(--color-neutral-500) var(--color-bg);
+}
+
+/* What shows past the page edges on a hub page, including overscroll. */
+html:has(.sheet:not(.sheet--original)) {
+  --color-bg: var(--toffee);
+  scrollbar-color: var(--olive) var(--toffee);
 }
 
 .sheet ::selection {
@@ -549,18 +584,8 @@ html:has(.sheet) {
   color: inherit;
 }
 
-.work-item:nth-child(odd):not(.work-item--lead) .work-cover {
+.work-item:nth-child(odd) .work-cover {
   order: 2;
-}
-
-.work-item--lead {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  row-gap: clamp(20px, 3cqw, 32px);
-  align-items: start;
-}
-
-.work-item--lead .work-cover {
-  grid-column: 1 / -1;
 }
 
 .work-cover {
@@ -575,11 +600,11 @@ html:has(.sheet) {
 }
 
 /* A hovered drawing prints in reverse, the same move as a hovered box. */
-.work-item:hover .work-cover:not(.sheet--accent) {
-  --color-bg: #5fd6c4;
-  --color-text: #0e151b;
-  --color-divider: color-mix(in srgb, #0e151b 30%, transparent);
-  --color-accent-300: #0e151b;
+.work-item:hover .work-cover {
+  --color-bg: var(--strawberry);
+  --color-text: var(--toffee);
+  --color-divider: color-mix(in srgb, var(--toffee) 30%, transparent);
+  --color-accent-300: var(--toffee);
 }
 
 .work-title {
@@ -592,11 +617,6 @@ html:has(.sheet) {
   text-transform: uppercase;
   text-wrap: balance;
   transition: color 160ms ease;
-}
-
-.work-item--lead .work-title {
-  font-size: clamp(44px, 9.4cqw, 128px);
-  line-height: 0.9;
 }
 
 .work-item:hover .work-title {
@@ -633,11 +653,10 @@ html:has(.sheet) {
 }
 
 @media (max-width: 760px) {
-  .work-item,
-  .work-item--lead {
+  .work-item {
     grid-template-columns: minmax(0, 1fr);
   }
-  .work-item:nth-child(odd):not(.work-item--lead) .work-cover {
+  .work-item:nth-child(odd) .work-cover {
     order: 0;
   }
 }
@@ -1054,8 +1073,9 @@ html:has(.sheet) {
   border-top: 1px solid var(--color-divider);
 }
 
-.contact-row .sheet-label {
-  color: var(--sheet-muted);
+.contact-row .sheet-label,
+.title-block {
+  color: var(--sheet-support);
 }
 
 .contact-row .contact-value {

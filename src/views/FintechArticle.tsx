@@ -24,7 +24,7 @@ export default function FintechArticle() {
         type="article"
       />
 
-      <div className="sheet">
+      <div className="sheet sheet--original">
         <NavBar />
         <main className="sheet-main">
           <article>

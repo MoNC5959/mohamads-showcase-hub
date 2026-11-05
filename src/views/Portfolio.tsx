@@ -22,25 +22,23 @@ function WorkLink({ href, className, children }: { href: string; className: stri
   );
 }
 
-function WorkItem({ project, lead }: { project: Project; lead: boolean }) {
+function WorkItem({ project }: { project: Project }) {
   const isDemo = project.projectType === "product-demo";
-  const title = <h2 className="work-title">{project.title}</h2>;
 
   return (
-    <WorkLink href={project.externalUrl ?? `/project/${project.slug}`} className={lead ? "work-item work-item--lead" : "work-item"}>
-      <div className={lead ? "work-cover blueprint sheet--accent" : "work-cover blueprint"}>
+    <WorkLink href={project.externalUrl ?? `/project/${project.slug}`} className="work-item">
+      <div className="work-cover blueprint">
         <i className="corner tl" />
         <i className="corner tr" />
         <i className="corner bl" />
         <i className="corner br" />
         <ProjectCover slug={project.slug} />
       </div>
-      {lead && title}
       <div>
         <p className="work-meta sheet-label">
           {isDemo ? "Demo" : "Case Study"} · {project.category} · {project.year}
         </p>
-        {!lead && title}
+        <h2 className="work-title">{project.title}</h2>
         <p className="work-summary">{project.description}</p>
         <span className="work-action sheet-label">
           {isDemo ? "Open the demo" : "Read the case study"}
@@ -60,8 +58,8 @@ export default function Portfolio() {
       </p>
 
       <div className="work-list">
-        {projects.map((project, i) => (
-          <WorkItem key={project.id} project={project} lead={i === 0} />
+        {projects.map((project) => (
+          <WorkItem key={project.id} project={project} />
         ))}
       </div>
     </PageShell>
