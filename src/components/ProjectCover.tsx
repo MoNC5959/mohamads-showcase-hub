@@ -228,7 +228,7 @@ export default function ProjectCover({ slug, title }: ProjectCoverProps) {
       role={title ? "img" : undefined}
       aria-label={title}
       aria-hidden={title ? undefined : true}
-      style={{ display: "block", width: "100%", height: "auto" }}
+      style={{ display: "block", width: "100%" }}
     >
       {Drawing ? <Drawing labelled={Boolean(title)} /> : null}
     </svg>

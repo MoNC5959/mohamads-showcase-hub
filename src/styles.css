@@ -157,12 +157,11 @@
 }
 
 /* ---- Imported portfolio styles ---- */
-/* The four palette colors. Hub pages map them to roles in .sheet below. */
+/* The hub's three colors. Hub pages map them to roles in .sheet below. */
 :root {
   --toffee: #401f22;
   --oat: #faf2d1;
   --strawberry: #eaa6a1;
-  --olive: #a48f60;
 }
 
 /* The original cool blueprint scheme, which the FinTech article keeps. */
@@ -243,6 +242,8 @@ a {
 .nav .nav-brand {
   margin-right: auto;
   font-family: var(--font-heading);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 /* The hub's frozen top bar. */
@@ -314,25 +315,27 @@ a {
   outline-offset: 3px;
 }
 
-/* Full-page drafting sheet: the shared ground of every hub page.
-   Toffee is the sheet, oat the ink, strawberry the one accent, olive the quiet support. */
+/* Full-page sheet: the shared ground of every hub page.
+   Cream ink on toffee stock, with strawberry as the one accent. Tints are mixed from those colors. */
 .sheet {
   --color-bg: var(--toffee);
   --color-text: var(--oat);
-  --color-divider: color-mix(in srgb, var(--olive) 48%, var(--toffee));
+  --color-divider: color-mix(in srgb, var(--oat) 24%, var(--toffee));
   --color-accent-300: var(--strawberry);
-  --color-accent-400: color-mix(in srgb, var(--olive) 55%, var(--oat));
-  --sheet-support: var(--olive);
-  /* Warm neutrals for the line art and Sunnah's grey coat. Light to dark for fills, then light again for lines. */
-  --color-neutral-100: #fbf6e6;
-  --color-neutral-200: #e8dfcb;
-  --color-neutral-300: #cfc4ad;
-  --color-neutral-400: #a89e8d;
-  --color-neutral-500: #847a6e;
-  --color-neutral-600: #dbd0b8;
-  --color-neutral-700: #ece2c9;
-  --color-neutral-800: #f6edd3;
-  --color-neutral-900: #241012;
+  --color-accent-400: var(--oat);
+  --sheet-support: color-mix(in srgb, var(--oat) 72%, var(--toffee));
+  --font-heading: "Young Serif", Georgia, serif;
+  --font-body: "Literata", Georgia, serif;
+  /* Tints for the line art and Sunnah's coat. Light to dark for fills, then light again for lines. */
+  --color-neutral-100: color-mix(in srgb, var(--oat) 96%, var(--toffee));
+  --color-neutral-200: color-mix(in srgb, var(--oat) 82%, var(--toffee));
+  --color-neutral-300: color-mix(in srgb, var(--oat) 68%, var(--toffee));
+  --color-neutral-400: color-mix(in srgb, var(--oat) 56%, var(--toffee));
+  --color-neutral-500: color-mix(in srgb, var(--oat) 42%, var(--toffee));
+  --color-neutral-600: color-mix(in srgb, var(--oat) 78%, var(--toffee));
+  --color-neutral-700: color-mix(in srgb, var(--oat) 88%, var(--toffee));
+  --color-neutral-800: color-mix(in srgb, var(--oat) 95%, var(--toffee));
+  --color-neutral-900: color-mix(in srgb, var(--toffee) 70%, black);
   --sheet-muted: color-mix(in srgb, var(--color-text) 80%, transparent);
   --expo-out: cubic-bezier(0.16, 1, 0.3, 1);
   min-height: 100svh;
@@ -363,7 +366,7 @@ html:has(.sheet) {
 /* What shows past the page edges on a hub page, including overscroll. */
 html:has(.sheet:not(.sheet--original)) {
   --color-bg: var(--toffee);
-  scrollbar-color: var(--olive) var(--toffee);
+  scrollbar-color: color-mix(in srgb, var(--oat) 42%, var(--toffee)) var(--toffee);
 }
 
 .sheet ::selection {
@@ -552,7 +555,7 @@ html:has(.sheet:not(.sheet--original)) {
 .nap-box-title {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 12.2cqw;
+  font-size: 11.2cqw;
   line-height: 1;
   letter-spacing: -0.01em;
   text-transform: uppercase;
@@ -571,21 +574,18 @@ html:has(.sheet:not(.sheet--original)) {
 .work-list {
   display: flex;
   flex-direction: column;
-  gap: clamp(40px, 6cqw, 80px);
-  margin-top: clamp(32px, 5cqw, 64px);
+  gap: clamp(72px, 11cqw, 160px);
+  margin-top: clamp(48px, 7cqw, 96px);
 }
 
 .work-item {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: clamp(20px, 3.5cqw, 48px);
-  align-items: center;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(14px, 2cqw, 28px);
+  row-gap: clamp(20px, 2.6cqw, 36px);
+  align-items: start;
   text-decoration: none;
   color: inherit;
-}
-
-.work-item:nth-child(odd) .work-cover {
-  order: 2;
 }
 
 .work-cover {
@@ -610,11 +610,9 @@ html:has(.sheet:not(.sheet--original)) {
 .work-title {
   margin: 0;
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: clamp(34px, 5cqw, 64px);
+  font-weight: 400;
   line-height: 0.98;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
+  letter-spacing: -0.015em;
   text-wrap: balance;
   transition: color 160ms ease;
 }
@@ -623,41 +621,134 @@ html:has(.sheet:not(.sheet--original)) {
   color: var(--color-accent-300);
 }
 
-.work-meta {
-  margin: 0 0 10px;
-  color: var(--color-accent-300);
-}
-
 .work-summary {
-  margin: 14px 0 0;
-  font-size: 16px;
+  margin: 0;
+  font-size: 17px;
   line-height: 1.55;
   color: var(--sheet-muted);
   text-wrap: pretty;
+}
+
+.work-meta {
+  margin: 16px 0 0;
+  color: var(--sheet-support);
 }
 
 .work-action {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 18px;
+  margin-top: 14px;
   color: var(--color-accent-300);
 }
 
-.work-action svg {
-  transition: transform 300ms var(--expo-out);
-}
+/* Each project gets its own page layout. */
+@media (min-width: 761px) {
+  /* The demo: the drawing leads, with the name set beside it. */
+  .work-item--cognitive-qa {
+    grid-template-rows: 1fr auto;
+  }
+  .work-item--cognitive-qa .work-cover {
+    grid-column: 6 / 13;
+    grid-row: 1 / 3;
+  }
+  .work-item--cognitive-qa .work-title {
+    grid-column: 1 / 6;
+    grid-row: 1;
+    align-self: end;
+    font-size: 7.6cqw;
+  }
+  .work-item--cognitive-qa .work-copy {
+    grid-column: 1 / 5;
+    grid-row: 2;
+  }
 
-.work-item:hover .work-action svg {
-  transform: translateX(6px);
+  /* A headline across the full measure, like an article opener. */
+  .work-item--fintech .work-title {
+    grid-column: 1 / 13;
+    grid-row: 1;
+    font-size: 8.5cqw;
+  }
+  .work-item--fintech .work-cover {
+    grid-column: 1 / 8;
+    grid-row: 2;
+  }
+  .work-item--fintech .work-copy {
+    grid-column: 9 / 13;
+    grid-row: 2;
+    align-self: end;
+  }
+
+  /* The words lead and the drawing drops below them, off to the side. */
+  .work-item--tokenization .work-title {
+    grid-column: 6 / 13;
+    grid-row: 1;
+    font-size: 6cqw;
+  }
+  .work-item--tokenization .work-copy {
+    grid-column: 6 / 11;
+    grid-row: 2;
+  }
+  .work-item--tokenization .work-cover {
+    grid-column: 1 / 6;
+    grid-row: 1 / 3;
+    align-self: end;
+  }
+
+  /* A panorama: the one drawing given the whole width. */
+  .work-item--colosseum .work-cover {
+    grid-column: 1 / 13;
+    grid-row: 1;
+    aspect-ratio: 21 / 9;
+  }
+  .work-item--colosseum .work-cover svg {
+    height: 100%;
+  }
+  .work-item--colosseum .work-title {
+    grid-column: 1 / 8;
+    grid-row: 2;
+    font-size: 6.8cqw;
+  }
+  .work-item--colosseum .work-copy {
+    grid-column: 8 / 12;
+    grid-row: 2;
+    padding-top: 0.6cqw;
+  }
+
+  /* Type at full size, with the drawing small in the corner. */
+  .work-item--few-seconds .work-title {
+    grid-column: 1 / 10;
+    grid-row: 1;
+    font-size: 10.6cqw;
+    line-height: 0.92;
+  }
+  .work-item--few-seconds .work-cover {
+    grid-column: 10 / 13;
+    grid-row: 1 / 3;
+    align-self: end;
+  }
+  .work-item--few-seconds .work-copy {
+    grid-column: 3 / 8;
+    grid-row: 2;
+  }
 }
 
 @media (max-width: 760px) {
-  .work-item {
-    grid-template-columns: minmax(0, 1fr);
+  .work-item > * {
+    grid-column: 1 / -1;
   }
-  .work-item:nth-child(odd) .work-cover {
-    order: 0;
+  .work-title {
+    font-size: 11cqw;
+  }
+  .work-item--fintech .work-title,
+  .work-item--few-seconds .work-title {
+    order: -1;
+  }
+  .work-item--few-seconds .work-title {
+    font-size: 15cqw;
+  }
+  .work-item--few-seconds .work-cover {
+    grid-column: 5 / -1;
   }
 }
 
@@ -1274,6 +1365,92 @@ a.contact-row:hover svg {
   100% {
     opacity: 0;
     transform: translate(6px, -22px) scale(1.05);
+  }
+}
+
+
+/* Warm print: the hub's type and motion. The FinTech article keeps the original sheet. */
+.sheet:not(.sheet--original) {
+  background-image: none;
+  font-synthesis: none;
+}
+
+.sheet:not(.sheet--original) :is(.sheet-title, .sheet-h2, .sheet-hero, .about-name, .contact-value, .contact-lede, .nap-box-title) {
+  font-weight: 400;
+}
+
+.sheet:not(.sheet--original) :is(.sheet-title, .sheet-h2, .sheet-hero, .about-name) {
+  text-transform: none;
+  letter-spacing: -0.015em;
+}
+
+.sheet:not(.sheet--original) .nav .nav-brand {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.sheet:not(.sheet--original) .sheet-title {
+  font-size: 23cqw;
+  line-height: 0.95;
+  animation: press-in 800ms var(--expo-out) both;
+}
+
+.sheet:not(.sheet--original) .sheet-hero-line--nap {
+  font-size: 0.6em;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+/* Page-load stagger: each line comes up in reading order, as if pulled from the press. */
+@keyframes press-in {
+  from {
+    clip-path: inset(-20% -2% 100% -2%);
+    transform: translateY(0.14em);
+  }
+  to {
+    clip-path: inset(-20% -2% -20% -2%);
+    transform: none;
+  }
+}
+
+.sheet:not(.sheet--original) .sheet-hero-line {
+  animation: press-in 800ms var(--expo-out) both;
+}
+
+.sheet:not(.sheet--original) .sheet-hero {
+  --hero-size: min(100cqw / 5.35, 20svh);
+  margin-top: clamp(10px, 1.4cqw, 22px);
+  margin-bottom: clamp(22px, 2.6cqw, 36px);
+}
+
+.sheet:not(.sheet--original) .sheet-hero-line--nap {
+  animation-delay: 120ms;
+}
+
+.sheet:not(.sheet--original) :is(header > .sheet-body, .sheet-main > .sheet-body, .contact-lede) {
+  animation: press-in 800ms var(--expo-out) 240ms both;
+}
+
+/* Hover reveal: the way in appears when a project is under the pointer. Touch screens always show it. */
+@media (hover: hover) {
+  .work-action {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 180ms ease, transform 380ms var(--expo-out);
+  }
+  .work-item:hover .work-action,
+  .work-item:focus-visible .work-action {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+@media (max-width: 700px) {
+  .sheet:not(.sheet--original) .sheet-hero-line--nap {
+    font-size: 0.82em;
   }
 }
 

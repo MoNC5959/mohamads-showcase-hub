@@ -22,11 +22,12 @@ function WorkLink({ href, className, children }: { href: string; className: stri
   );
 }
 
+// Each project sets its own composition in styles.css, keyed by its slug.
 function WorkItem({ project }: { project: Project }) {
   const isDemo = project.projectType === "product-demo";
 
   return (
-    <WorkLink href={project.externalUrl ?? `/project/${project.slug}`} className="work-item">
+    <WorkLink href={project.externalUrl ?? `/project/${project.slug}`} className={`work-item work-item--${project.slug}`}>
       <div className="work-cover blueprint">
         <i className="corner tl" />
         <i className="corner tr" />
@@ -34,12 +35,12 @@ function WorkItem({ project }: { project: Project }) {
         <i className="corner br" />
         <ProjectCover slug={project.slug} />
       </div>
-      <div>
+      <h2 className="work-title">{project.title}</h2>
+      <div className="work-copy">
+        <p className="work-summary">{project.description}</p>
         <p className="work-meta sheet-label">
           {isDemo ? "Demo" : "Case Study"} · {project.category} · {project.year}
         </p>
-        <h2 className="work-title">{project.title}</h2>
-        <p className="work-summary">{project.description}</p>
         <span className="work-action sheet-label">
           {isDemo ? "Open the demo" : "Read the case study"}
           <ArrowRight size={16} strokeWidth={1.5} aria-hidden="true" />

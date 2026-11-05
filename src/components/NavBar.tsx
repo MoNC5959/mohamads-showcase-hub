@@ -16,7 +16,7 @@ export default function NavBar({ showLinks = true }: NavBarProps) {
   return (
     <header className="site-header">
       <nav className="nav">
-        <Link to="/" className="nav-brand" style={{ letterSpacing: "0.02em", textTransform: "uppercase" }}>
+        <Link to="/" className="nav-brand">
           Mohamad Noor-Chowdhury
         </Link>
         {showLinks &&

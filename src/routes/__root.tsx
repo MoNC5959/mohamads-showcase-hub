@@ -79,6 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Young+Serif&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Noto+Serif:ital,opsz,wght@0,32..48,400;0,32..48,600;0,32..48,700;0,32..48,900;1,32..48,400;1,32..48,700;1,32..48,900&display=swap" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" },

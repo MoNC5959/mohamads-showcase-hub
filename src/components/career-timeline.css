@@ -17,7 +17,7 @@
   gap: 8px; margin: 0 auto 56px; max-width: 640px;
 }
 .ctl .kicker {
-  font-family: var(--font-heading); font-weight: 600; font-size: 13px;
+  font-family: var(--font-body); font-weight: 600; font-size: 13px;
   letter-spacing: 0.16em; text-transform: uppercase; color: var(--tl-accent);
 }
 .ctl-lede { margin: 8px 0 0; font-size: 17px; line-height: 1.5; color: var(--tl-muted); text-wrap: pretty; }
