@@ -411,7 +411,7 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
     ? `transform ${JUMP_MS}ms cubic-bezier(.3,.9,.4,1), opacity 120ms ease ${JUMP_MS - 120}ms`
     : "transform 160ms cubic-bezier(.22,1,.36,1), opacity 160ms ease";
 
-  const statusDot = phase === "idle" ? "var(--color-neutral-400)" : "var(--color-accent-300)";
+  const statusDot = phase === "idle" ? "var(--sheet-support)" : "var(--color-accent-300)";
   const statusText =
     phase === "idle"
       ? hoveredIndex !== null
@@ -451,7 +451,7 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
           <defs>
             <pattern id="sunnah-hatch" width={6} height={6} patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
               <rect width={6} height={6} style={{ fill: "var(--color-bg)" }} />
-              <line x1={0} y1={0} x2={0} y2={6} style={{ stroke: "var(--color-neutral-600)", strokeWidth: 1 }} />
+              <line x1={0} y1={0} x2={0} y2={6} style={{ stroke: "color-mix(in srgb, var(--color-text) 78%, var(--color-bg))", strokeWidth: 1 }} />
             </pattern>
           </defs>
         </svg>

@@ -326,16 +326,17 @@ a {
   --sheet-support: color-mix(in srgb, var(--oat) 72%, var(--toffee));
   --font-heading: "Young Serif", Georgia, serif;
   --font-body: "Literata", Georgia, serif;
-  /* Tints for the line art and Sunnah's coat. Light to dark for fills, then light again for lines. */
-  --color-neutral-100: color-mix(in srgb, var(--oat) 96%, var(--toffee));
-  --color-neutral-200: color-mix(in srgb, var(--oat) 82%, var(--toffee));
-  --color-neutral-300: color-mix(in srgb, var(--oat) 68%, var(--toffee));
-  --color-neutral-400: color-mix(in srgb, var(--oat) 56%, var(--toffee));
-  --color-neutral-500: color-mix(in srgb, var(--oat) 42%, var(--toffee));
-  --color-neutral-600: color-mix(in srgb, var(--oat) 78%, var(--toffee));
-  --color-neutral-700: color-mix(in srgb, var(--oat) 88%, var(--toffee));
-  --color-neutral-800: color-mix(in srgb, var(--oat) 95%, var(--toffee));
-  --color-neutral-900: color-mix(in srgb, var(--toffee) 70%, black);
+  /* Sunnah's coat: she's a grey shorthair, so these stay true greys rather than palette tints.
+     Light to dark for fills, then light again for lines. */
+  --color-neutral-100: #f1f1f2;
+  --color-neutral-200: #d7d8da;
+  --color-neutral-300: #bcbec1;
+  --color-neutral-400: #9da0a4;
+  --color-neutral-500: #7b7f84;
+  --color-neutral-600: #c8cacd;
+  --color-neutral-700: #dfe0e2;
+  --color-neutral-800: #eeeff0;
+  --color-neutral-900: #1c1e21;
   --sheet-muted: color-mix(in srgb, var(--color-text) 80%, transparent);
   --expo-out: cubic-bezier(0.16, 1, 0.3, 1);
   min-height: 100svh;
