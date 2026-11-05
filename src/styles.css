@@ -1402,6 +1402,44 @@ a.contact-row:hover svg {
   pointer-events: none;
 }
 
+/* Mirrors the caption strip under Sunnah on the welcome page. */
+.modu-caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.modu-caption p {
+  margin: 0;
+}
+
+.modu-caption > p:first-child {
+  flex: 1 1 320px;
+  padding: 14px 20px 14px 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--sheet-muted);
+  text-wrap: pretty;
+}
+
+.modu-subject {
+  padding: 12px 20px;
+  border-left: 1px solid var(--color-divider);
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 72%, transparent);
+}
+
+@media (max-width: 640px) {
+  .modu-subject {
+    padding: 4px 0 12px;
+    border-left: 0;
+  }
+}
+
 .modu-pose {
   position: absolute;
   inset: 0;
