@@ -10,17 +10,17 @@ export interface SunnahWalkerHandle {
 export const WALKER_LEG_LENGTH = 34;
 
 // A cat's walk: back left, front left, back right, front right, each a quarter stride apart.
-const LEGS = [
+export const LEGS = [
   { x: 27, top: 90, length: 36, offset: 0.5, far: true },
   { x: 72, top: 90, length: 36, offset: 0.75, far: true },
   { x: 13, top: 94, length: WALKER_LEG_LENGTH, offset: 0, far: false },
   { x: 82, top: 94, length: WALKER_LEG_LENGTH, offset: 0.25, far: false },
 ];
 
-const FULL_SWING = 30;
+export const FULL_SWING = 30;
 const FOOT_LIFT = 9;
 
-function legTransform(leg: (typeof LEGS)[number], phase: number, swing: number) {
+export function legTransform(leg: (typeof LEGS)[number], phase: number, swing: number) {
   const turn = 2 * Math.PI * (phase + leg.offset);
   const angle = -swing * Math.sin(turn);
   // The foot travels forward on the lifted half and back along the floor on the planted half.

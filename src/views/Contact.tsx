@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import type { ReactNode } from "react";
+import Modu from "../components/Modu";
 import PageShell from "../components/PageShell";
 import { photographerInfo as person } from "../data/photographer";
 
@@ -64,6 +65,8 @@ export default function Contact() {
           );
         })}
       </div>
+
+      <Modu />
     </PageShell>
   );
 }

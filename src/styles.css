@@ -1371,6 +1371,86 @@ a.contact-row:hover svg {
 .sheet:not(.sheet--original) {
   background-image: none;
   font-synthesis: none;
+  overflow-x: clip;
+}
+
+/* Modu on the Contact page: a floor line across the whole window for him to sit on and run along. */
+.modu-row {
+  position: relative;
+  height: clamp(104px, 9.6vw, 136px);
+  margin-top: clamp(40px, 6cqw, 80px);
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.modu-cat {
+  appearance: none;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: clamp(92px, 8.5vw, 120px);
+  aspect-ratio: 120 / 132;
+  translate: -50% 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.modu-ghost {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modu-pose {
+  position: absolute;
+  inset: 0;
+  display: block;
+  opacity: 0;
+  transform-origin: 50% 100%;
+  transition: opacity 140ms ease, transform 260ms var(--expo-out);
+}
+
+.modu-pose.is-on {
+  opacity: 1;
+}
+
+.modu-pose--sit:not(.is-on) {
+  transform: scale(0.9) rotate(-8deg);
+}
+
+.modu-pose--roll:not(.is-on) {
+  transform: scale(0.9) rotate(10deg);
+}
+
+.modu-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  width: 80%;
+  height: 7px;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, black 40%, transparent);
+}
+
+.modu-paw {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: modu-paw 520ms ease-in-out infinite alternate;
+}
+
+.modu-pose--roll:not(.is-on) .modu-paw {
+  animation: none;
+}
+
+@keyframes modu-paw {
+  from {
+    rotate: -8deg;
+  }
+  to {
+    rotate: 10deg;
+  }
 }
 
 .sheet:not(.sheet--original) :is(.sheet-title, .sheet-h2, .sheet-hero, .about-name, .contact-value, .contact-lede, .nap-box-title) {
