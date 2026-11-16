@@ -1,0 +1,600 @@
+/* The Slow Death of Affordable Gaming: the article's own world, scoped to .gaming-article.
+   Ported from the standalone page; see DESIGN.md in the personal-website repo. */
+.gaming-article { min-height: 100vh; }
+.gaming-article *, .gaming-article *::before, .gaming-article *::after { box-sizing: border-box; margin: 0; padding: 0;
+}
+.gaming-article {
+      --case: #09251C;
+      --case-2: #0E3127;
+      --sticker: #A55704;
+      --sticker-ink: #8A4703;
+      --stock: #F3D2AF;
+      --paper: #F8EADC;
+      --ink: #09251C;
+      --ink-soft: #2E4A40;
+      --seam: rgba(9, 37, 28, 0.16);
+      --seam-strong: rgba(9, 37, 28, 0.42);
+      --seam-case: rgba(243, 210, 175, 0.2);
+      --stock-dim: rgba(243, 210, 175, 0.72);
+
+      --display: 'Archivo', 'Arial Narrow', sans-serif;
+      --read: 'Source Serif 4', Georgia, serif;
+      --data: 'JetBrains Mono', ui-monospace, monospace;
+
+      --gutter: clamp(16px, 5vw, 72px);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gaming-article {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--read);
+      font-size: 19px;
+      line-height: 1.62;
+      font-optical-sizing: auto;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+}
+.gaming-article ::selection { background: var(--stock); color: var(--case);
+}
+.gaming-article .case ::selection { background: var(--stock); color: var(--case);
+}
+.gaming-article a { color: inherit; text-decoration-color: var(--sticker); text-decoration-thickness: 1.5px; text-underline-offset: 3px;
+}
+.gaming-article a:hover { text-decoration-thickness: 2.5px;
+}
+.gaming-article :focus-visible { outline: 2px solid var(--sticker); outline-offset: 3px; border-radius: 2px;
+}
+.gaming-article .case :focus-visible { outline-color: var(--stock);
+}
+.gaming-article .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.gaming-article .skip {
+      position: absolute; left: 16px; top: -60px; z-index: 50;
+      background: var(--stock); color: var(--case); padding: 10px 14px;
+      font: 600 14px var(--display); text-decoration: none;
+}
+.gaming-article .skip:focus { top: 12px;
+}
+.gaming-article .case { background: var(--case); color: var(--paper);
+}
+.gaming-article .masthead { position: relative; padding: 0 var(--gutter);
+}
+.gaming-article .topbar {
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      height: 64px; border-bottom: 1px solid var(--seam-case);
+      font: 500 12px/1 var(--display); font-stretch: 90%;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--stock);
+}
+.gaming-article .topbar a { text-decoration: none;
+}
+.gaming-article .topbar a:hover { color: var(--paper);
+}
+.gaming-article .ga-title {
+      display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+      gap: clamp(24px, 4vw, 72px); align-items: end;
+      padding: clamp(48px, 8vh, 96px) 0 clamp(40px, 6vh, 64px);
+      max-width: 1440px; margin: 0 auto;
+}
+.gaming-article h1 {
+      font-family: var(--display); font-stretch: 66%; font-weight: 850;
+      font-size: clamp(3.25rem, 8.4vw, 6rem); line-height: 0.9;
+      letter-spacing: -0.005em; text-transform: uppercase;
+      text-wrap: balance;
+}
+.gaming-article h1 .lit { color: var(--stock); display: block;
+}
+.gaming-article .dek {
+      font-size: clamp(1.1rem, 1.6vw, 1.35rem); line-height: 1.45;
+      color: var(--stock); max-width: 30ch; padding-bottom: 6px;
+      text-wrap: pretty;
+}
+.gaming-article .shelf { list-style: none;
+}
+.gaming-article .tag {
+      --eye: 15px; --cut: 18px;
+      position: relative; isolation: isolate; color: var(--ink);
+      padding: 14px 16px 16px 36px;
+      min-height: 104px;
+}
+.gaming-article .tag::before {
+      content: ""; position: absolute; inset: 0; z-index: -1; background: var(--paper);
+      clip-path: polygon(var(--cut) 0, 100% 0, 100% 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut));
+      -webkit-mask: radial-gradient(circle 5px at var(--eye) 50%, #0000 96%, #000 100%);
+              mask: radial-gradient(circle 5px at var(--eye) 50%, #0000 96%, #000 100%);
+}
+.gaming-article .shelf { --g: 32px; padding-top: 38px; clip-path: inset(-8px -24px -90px 0);
+}
+.gaming-article .shelf .tag::after {
+      content: ""; position: absolute; z-index: -2;
+      left: calc(var(--g) / -2); right: calc(var(--g) / -2); top: -38px; bottom: 50%;
+      background:
+        linear-gradient(var(--stock), var(--stock)) 0 0 / 100% 6px no-repeat,
+        linear-gradient(var(--stock), var(--stock)) calc(var(--g) / 2 + var(--eye) - 1px) 0 / 2px 100% no-repeat;
+}
+.gaming-article .tag-name {
+      display: block; font: 700 12px/1.2 var(--display); font-stretch: 85%;
+      letter-spacing: 0.12em; text-transform: uppercase;
+}
+.gaming-article .tag-was {
+      display: block; margin-top: 10px;
+      font: 500 clamp(22px, 2.2vw, 28px)/1 var(--data); font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+}
+.gaming-article .tag-was s { text-decoration-thickness: 2px; text-decoration-color: var(--sticker);
+}
+.gaming-article .tag-yr {
+      display: block; margin-top: 6px;
+      font: 400 12px/1 var(--data); color: var(--ink-soft); letter-spacing: 0.04em;
+}
+.gaming-article .sticker {
+      position: absolute; z-index: 2;
+      display: grid; place-items: center; text-align: center;
+      background: var(--sticker); color: var(--paper);
+      font-variant-numeric: tabular-nums;
+      transform: rotate(var(--rot, -8deg));
+      transition: transform 0.55s var(--ease-out), opacity 0.35s var(--ease-out);
+}
+.gaming-article .sticker .st-yr { display: block; font: 700 12px/1 var(--data); letter-spacing: 0.02em;
+}
+.gaming-article .sticker .st-price { display: block; font: 800 24px/1.05 var(--display); font-stretch: 75%; margin-top: 3px;
+}
+.gaming-article .sticker.down { width: 84px; height: 84px; border-radius: 50%; right: -14px; top: -18px;
+}
+.gaming-article .sticker.up {
+      width: 108px; height: 62px; right: -16px; top: -14px; --rot: 6deg;
+      border: 2px solid var(--paper); outline: 1px solid var(--sticker);
+}
+.gaming-article .sticker.up .st-price { font-size: 26px;
+}
+.gaming-article .shelf .sticker.down { top: auto; bottom: -26px;
+}
+.gaming-article .shelf .sticker.up { top: auto; bottom: -20px;
+}
+.gaming-article .shelf .tag-was { padding-right: 70px;
+}
+.gaming-article .legend {
+      display: flex; flex-wrap: wrap; gap: 8px 28px; align-items: center;
+      font: 400 12px/1.3 var(--data); color: var(--stock-dim); letter-spacing: 0.02em;
+}
+.gaming-article .legend span { display: inline-flex; align-items: center; gap: 10px;
+}
+.gaming-article .legend i { display: inline-block; background: var(--sticker);
+}
+.gaming-article .legend .l-down { width: 16px; height: 16px; border-radius: 50%;
+}
+.gaming-article .legend .l-up { width: 22px; height: 13px; transform: rotate(6deg); outline: 1px solid var(--paper); outline-offset: -3px;
+}
+.gaming-article .armed .sticker { opacity: 0; transform: rotate(var(--rot, -8deg)) scale(1.55) translateY(-10px);
+}
+.gaming-article .armed.slapped .sticker { opacity: 1; transform: rotate(var(--rot, -8deg));
+}
+.gaming-article .armed.slapped .sticker { transition-delay: var(--delay, 0s);
+}
+.gaming-article .hero-shelf-wrap { max-width: 1440px; margin: 0 auto; padding: 28px 0 28px;
+}
+.gaming-article .hero-shelf {
+      --g: clamp(24px, 3vw, 48px);
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--g); padding-right: 22px; clip-path: inset(-8px 0 -90px 0);
+}
+.gaming-article .hero-shelf + .legend { margin-top: 52px;
+}
+.gaming-article .layout {
+      display: grid;
+      grid-template-columns: 200px minmax(0, 700px) minmax(0, 1fr);
+      column-gap: 64px;
+      max-width: 1320px; margin: 0 auto;
+      padding: 56px var(--gutter) 96px;
+}
+.gaming-article .rail { grid-column: 1;
+}
+.gaming-article .rail-inner { position: sticky; top: 32px;
+}
+.gaming-article .byline {
+      border-top: 2px solid var(--ink); padding-top: 12px;
+      font: 600 12px/1.6 var(--display); font-stretch: 90%;
+      letter-spacing: 0.12em; text-transform: uppercase;
+}
+.gaming-article .byline .meta { display: block; color: var(--ink-soft); font-weight: 500;
+}
+.gaming-article .toc { margin-top: 40px;
+}
+.gaming-article .toc-h {
+      font: 700 11px/1 var(--display); letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--ink-soft); padding-bottom: 10px; border-bottom: 1px solid var(--seam);
+}
+.gaming-article .toc ol { list-style: none;
+}
+.gaming-article .toc a {
+      display: block; position: relative; padding: 9px 0 9px 18px;
+      border-bottom: 1px solid var(--seam);
+      font: 500 14px/1.3 var(--display); font-stretch: 90%;
+      text-decoration: none; color: var(--ink-soft);
+      transition: color 0.2s;
+}
+.gaming-article .toc a::before {
+      content: ""; position: absolute; left: 0; top: 50%; width: 8px; height: 8px; margin-top: -4px;
+      border-radius: 50%; border: 1px solid var(--seam-strong); transition: background 0.25s, border-color 0.25s;
+}
+.gaming-article .toc a:hover { color: var(--ink);
+}
+.gaming-article .toc a[aria-current="true"] { color: var(--ink); font-weight: 700;
+}
+.gaming-article .toc a[aria-current="true"]::before { background: var(--sticker); border-color: var(--sticker);
+}
+.gaming-article .story { grid-column: 2; min-width: 0;
+}
+.gaming-article .story > * + * { margin-top: 1.1em;
+}
+.gaming-article .story p { text-wrap: pretty; hanging-punctuation: first;
+}
+.gaming-article .story .lede { font-size: 1.22em; line-height: 1.5;
+}
+.gaming-article .story h2 {
+      font-family: var(--display); font-stretch: 70%; font-weight: 800;
+      font-size: clamp(2.1rem, 4vw, 3rem); line-height: 0.98; text-transform: uppercase;
+      letter-spacing: 0; text-wrap: balance;
+      margin-top: 1.8em; padding-top: 22px; border-top: 1px solid var(--seam-strong);
+      scroll-margin-top: 24px;
+}
+.gaming-article .story h2 + * { margin-top: 0.9em;
+}
+.gaming-article sup.ref { font-size: 0.62em; line-height: 0; vertical-align: super; margin-left: 1px;
+}
+.gaming-article sup.ref a {
+      font-family: var(--data); font-weight: 500; color: var(--sticker-ink);
+      text-decoration: none; padding: 0 1px;
+}
+.gaming-article sup.ref a:hover { text-decoration: underline;
+}
+.gaming-article .wide { margin-right: calc(-1 * min(260px, max(0px, 100vw - 1100px)));
+}
+.gaming-article figure { margin-top: 2em !important; margin-bottom: 2em;
+}
+.gaming-article figcaption {
+      margin-top: 14px; font: 400 13px/1.5 var(--data); color: var(--ink-soft); letter-spacing: 0.01em;
+}
+.gaming-article figcaption a { color: var(--sticker-ink); text-decoration: none;
+}
+.gaming-article .case-fig { background: var(--case); color: var(--paper); padding: clamp(24px, 3vw, 40px);
+}
+.gaming-article .case-fig figcaption { color: var(--stock-dim);
+}
+.gaming-article .case-fig figcaption a { color: var(--stock);
+}
+.gaming-article .case-fig .fig-h {
+      font: 800 clamp(20px, 2vw, 24px)/1.05 var(--display); font-stretch: 75%; text-transform: uppercase;
+      letter-spacing: 0.01em; color: var(--paper);
+}
+.gaming-article .case-fig .fig-sub { font: 400 13px/1.4 var(--data); color: var(--stock-dim); margin-top: 6px;
+}
+.gaming-article .lanes { margin-top: 28px;
+}
+.gaming-article .lane {
+      display: grid; grid-template-columns: 136px minmax(0, 1fr); align-items: center; gap: 16px;
+      padding: 22px 0; border-top: 1px solid var(--seam-case);
+}
+.gaming-article .lane:last-of-type { border-bottom: 1px solid var(--seam-case);
+}
+.gaming-article .lane-name { font: 700 13px/1.25 var(--display); font-stretch: 85%; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stock);
+}
+.gaming-article .track { position: relative; height: 92px;
+}
+.gaming-article .track .pin {
+      position: absolute; top: 50%; transform: translate(-50%, -50%);
+}
+.gaming-article .pin.launch {
+      background: var(--paper); color: var(--ink); padding: 8px 10px 8px 22px; white-space: nowrap;
+      font: 500 15px/1.1 var(--data); font-variant-numeric: tabular-nums;
+}
+.gaming-article .pin.launch::before {
+      content: ""; position: absolute; left: 8px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px;
+      border-radius: 50%; background: var(--case);
+}
+.gaming-article .pin.launch s { text-decoration-color: var(--sticker); text-decoration-thickness: 2px;
+}
+.gaming-article .pin.launch small { display: block; font-size: 11px; color: var(--ink-soft); margin-top: 3px;
+}
+.gaming-article .track .sticker.down { position: absolute; right: auto; top: 50%; width: 66px; height: 66px; margin: -33px 0 0 -33px;
+}
+.gaming-article .track .sticker .st-price { font-size: 19px;
+}
+.gaming-article .axis {
+      display: grid; grid-template-columns: 136px minmax(0, 1fr); gap: 16px; margin-top: 10px;
+      font: 400 11px/1 var(--data); color: var(--stock-dim);
+}
+.gaming-article .axis .ticks { position: relative; height: 14px;
+}
+.gaming-article .axis .ticks span { position: absolute; transform: translateX(-50%);
+}
+.gaming-article .slip {
+      background: var(--stock); color: var(--ink);
+      padding: 26px 28px 22px; position: relative;
+      border-top: 1px dashed var(--seam-strong);
+}
+.gaming-article .slip p { font-size: 1.05em; line-height: 1.55; font-style: italic;
+}
+.gaming-article .slip footer {
+      margin-top: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 18px;
+      font: 500 12px/1.3 var(--data); letter-spacing: 0.02em; color: var(--ink-soft);
+}
+.gaming-article .slip footer a { color: var(--sticker-ink); text-decoration: none;
+}
+.gaming-article .slip.small p { font-size: 1.3em; font-style: normal; font-family: var(--display); font-stretch: 80%; font-weight: 700; line-height: 1.15; text-transform: uppercase;
+}
+.gaming-article .gen-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px 24px;
+}
+.gaming-article .switch { display: inline-flex; border: 1px solid var(--seam-case);
+}
+.gaming-article .switch button {
+      appearance: none; border: 0; background: transparent; color: var(--stock);
+      font: 600 12px/1 var(--display); letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 11px 14px; cursor: pointer; transition: background 0.2s, color 0.2s;
+}
+.gaming-article .switch button + button { border-left: 1px solid var(--seam-case);
+}
+.gaming-article .switch button:hover { color: var(--paper);
+}
+.gaming-article .switch button[aria-pressed="true"] { background: var(--stock); color: var(--case);
+}
+.gaming-article .gen-shelf {
+      --g: 36px;
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 72px var(--g); margin-top: 24px; padding-right: 14px;
+}
+.gaming-article .gen-shelf .tag { min-height: 128px;
+}
+.gaming-article .gen-shelf .delta {
+      display: block; margin-top: 12px; padding-top: 8px; border-top: 1px solid var(--seam);
+      font: 700 12px/1 var(--data); color: var(--sticker-ink); letter-spacing: 0.02em;
+      transition: opacity 0.3s;
+}
+.gaming-article .gen-shelf .tag-was s { transition: text-decoration-color 0.3s;
+}
+.gaming-article [data-show="launch"] .gen-shelf .sticker { opacity: 0; transform: rotate(var(--rot)) scale(1.4) translate(14px, -14px); pointer-events: none;
+}
+.gaming-article [data-show="launch"] .gen-shelf .tag-was s { text-decoration-color: transparent;
+}
+.gaming-article [data-show="launch"] .gen-shelf .delta { opacity: 0;
+}
+.gaming-article .gen.scrolly .gen-shelf .tag:not(.on) .sticker { opacity: 0; transform: rotate(var(--rot)) scale(1.5) translateY(-12px);
+}
+.gaming-article .gen.scrolly .gen-shelf .tag:not(.on) .tag-was s { text-decoration-color: transparent;
+}
+.gaming-article .gen.scrolly .gen-shelf .tag:not(.on) .delta { opacity: 0;
+}
+.gaming-article .gen-total {
+      margin-top: 32px; padding-top: 14px; border-top: 1px dashed var(--seam-case);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px;
+      font: 500 13px/1.4 var(--data); color: var(--stock);
+}
+.gaming-article .gen-total b { color: var(--paper); font-weight: 700;
+}
+.gaming-article .bars { margin-top: 18px;
+}
+.gaming-article .bar-group + .bar-group { margin-top: 26px;
+}
+.gaming-article .bar-group-h { font: 700 12px/1 var(--display); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px;
+}
+.gaming-article .bar-row {
+      display: grid; grid-template-columns: 220px minmax(0, 1fr) 92px; gap: 14px; align-items: center;
+      padding: 7px 0; border-top: 1px solid var(--seam);
+      font: 400 13px/1.3 var(--data);
+}
+.gaming-article .bar-row .lbl { color: var(--ink-soft);
+}
+.gaming-article .bar-row .lbl b { color: var(--ink); font-weight: 500;
+}
+.gaming-article .bar { height: 22px; background: var(--seam); position: relative;
+}
+.gaming-article .bar i { position: absolute; inset: 0 auto 0 0; width: var(--w); background: var(--ink); transform-origin: left; transition: transform 0.9s var(--ease-out);
+}
+.gaming-article .bar.hot i { background: var(--sticker);
+}
+.gaming-article .bar-row .val { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums;
+}
+.gaming-article .armed-bars .bar i { transform: scaleX(0);
+}
+.gaming-article .armed-bars.slapped .bar i { transform: scaleX(1);
+}
+.gaming-article .split { margin-top: 18px;
+}
+.gaming-article .split-row { display: grid; grid-template-columns: minmax(0, 1fr) 110px; gap: 14px; align-items: end; padding: 10px 0; border-top: 1px solid var(--seam);
+}
+.gaming-article .split-row .what { font: 500 13px/1.3 var(--data); color: var(--ink-soft); margin-bottom: 8px;
+}
+.gaming-article .split-row .val { font: 800 30px/1 var(--display); font-stretch: 75%; text-align: right; font-variant-numeric: tabular-nums;
+}
+.gaming-article .blocks { height: 48px; display: flex; gap: 2px;
+}
+.gaming-article .blocks i { flex: 1; background: var(--ink);
+}
+.gaming-article .blocks.thin { width: calc(100% * 16 / 193.7); min-width: 14px;
+}
+.gaming-article .blocks.thin i { background: transparent; box-shadow: inset 0 0 0 1.5px var(--ink);
+}
+.gaming-article .mem-stack { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin-top: 30px;
+}
+.gaming-article .mem-tag { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 20px;
+}
+.gaming-article .mem-tag .tag { max-width: 340px; width: 100%;
+}
+.gaming-article .mem-rows { display: grid; gap: 12px;
+}
+.gaming-article .mem-row {
+      display: grid; grid-template-columns: 118px minmax(0, 1fr); align-items: center; gap: 16px;
+      padding: 12px 0; border-top: 1px solid var(--seam-case);
+}
+.gaming-article .mem-row:last-child { border-bottom: 1px solid var(--seam-case);
+}
+.gaming-article .mem-row .when { font: 500 12px/1.3 var(--data); color: var(--stock-dim);
+}
+.gaming-article .mem-row .when b { display: block; color: var(--stock); font-weight: 700; font-size: 13px;
+}
+.gaming-article .mem-bar { position: relative; height: 48px;
+}
+.gaming-article .mem-bar .fill { position: absolute; left: 0; top: 0; bottom: 0; width: var(--w); background: var(--stock); opacity: 1;
+}
+.gaming-article .mem-bar .sticker { position: absolute; top: 50%; left: var(--w); right: auto; margin: -31px 0 0 -54px;
+}
+.gaming-article .mem-bar .sticker.base { background: var(--paper); color: var(--ink); --rot: 0deg; outline: 0; border: 0;
+}
+.gaming-article .counter-list { list-style: none; margin-top: 1.2em; border-top: 2px solid var(--ink);
+}
+.gaming-article .counter-list li { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--seam-strong);
+}
+.gaming-article .counter-list .who { font: 800 20px/1.05 var(--display); font-stretch: 72%; text-transform: uppercase; padding-top: 4px;
+}
+.gaming-article .counter-list p { margin: 0;
+}
+.gaming-article .close { padding: clamp(64px, 10vw, 120px) var(--gutter) clamp(56px, 8vw, 96px);
+}
+.gaming-article .close-inner {
+      max-width: 1320px; margin: 0 auto;
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 700px); gap: clamp(32px, 6vw, 96px); align-items: start;
+}
+.gaming-article .close h2 {
+      font-family: var(--display); font-stretch: 66%; font-weight: 850;
+      font-size: clamp(3rem, 7vw, 6rem); line-height: 0.9; text-transform: uppercase; color: var(--stock);
+      scroll-margin-top: 24px;
+}
+.gaming-article .close .last-tag { margin-top: 48px; max-width: 280px; list-style: none;
+}
+.gaming-article .close p { color: var(--paper);
+}
+.gaming-article .close p + p { margin-top: 1.1em;
+}
+.gaming-article .close .final { font-size: 1.2em; line-height: 1.5; color: var(--stock);
+}
+.gaming-article .receipt-wrap { background: var(--case); border-top: 1px solid var(--seam-case); padding: 0 var(--gutter) clamp(64px, 8vw, 112px);
+}
+.gaming-article .receipt {
+      max-width: 560px; margin: 0 auto; background: var(--paper); color: var(--ink);
+      padding: 40px clamp(20px, 4vw, 40px) 48px; position: relative;
+      font: 400 13px/1.55 var(--data);
+      --zig: 10px;
+      -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / calc(2 * var(--zig)) 100%;
+              mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / calc(2 * var(--zig)) 100%;
+}
+.gaming-article .receipt-head { text-align: center; padding-bottom: 18px; border-bottom: 1px dashed var(--seam-strong);
+}
+.gaming-article .receipt-head h2 { font: 800 28px/1 var(--display); font-stretch: 75%; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.gaming-article .receipt-head p { margin-top: 8px; color: var(--ink-soft);
+}
+.gaming-article .receipt ol { list-style: none; counter-reset: src; padding: 10px 0 14px; border-bottom: 1px dashed var(--seam-strong);
+}
+.gaming-article .receipt li {
+      counter-increment: src; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 8px;
+      padding: 7px 4px; scroll-margin-top: 24px; transition: background 0.4s;
+}
+.gaming-article .receipt li::before { content: counter(src, decimal-leading-zero); color: var(--ink-soft); font-variant-numeric: tabular-nums;
+}
+.gaming-article .receipt li:target { background: var(--stock);
+}
+.gaming-article .receipt li a { color: var(--sticker-ink); overflow-wrap: anywhere;
+}
+.gaming-article .receipt-foot { padding-top: 16px; display: flex; justify-content: space-between; gap: 12px; color: var(--ink-soft);
+}
+.gaming-article .receipt-foot b { color: var(--ink);
+}
+.gaming-article .colophon {
+      text-align: center; margin-top: 40px; font: 500 12px/1.6 var(--display);
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--stock-dim);
+}
+@media (max-width: 1100px) {
+.gaming-article .layout { grid-template-columns: minmax(0, 1fr); max-width: 760px; padding-top: 40px;
+}
+.gaming-article .rail, .gaming-article .story { grid-column: 1;
+}
+.gaming-article .rail-inner { position: static;
+}
+.gaming-article .toc { display: none;
+}
+.gaming-article .story { margin-top: 32px;
+}
+.gaming-article .wide { margin-right: 0;
+}
+.gaming-article .close-inner { grid-template-columns: minmax(0, 1fr); max-width: 760px;
+}
+.gaming-article .close .last-tag { margin-top: 32px;
+}
+}
+@media (max-width: 860px) {
+.gaming-article .ga-title { grid-template-columns: minmax(0, 1fr); align-items: start;
+}
+.gaming-article .hero-shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px;
+}
+.gaming-article .gen-shelf { grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+}
+@media (max-width: 560px) {
+.gaming-article { font-size: 18px;
+}
+.gaming-article .topbar { font-size: 10px; letter-spacing: 0.12em;
+}
+.gaming-article .topbar .meta-long { display: none;
+}
+.gaming-article .hero-shelf { --g: 22px; column-gap: 22px; padding-right: 11px;
+}
+.gaming-article .tag { --eye: 12px; --cut: 14px; padding: 12px 10px 12px 28px; min-height: 96px;
+}
+.gaming-article .sticker.down { width: 70px; height: 70px; right: -10px;
+}
+.gaming-article .sticker.up { width: 88px; height: 54px; right: -10px;
+}
+.gaming-article .shelf .sticker.down { bottom: -50px; right: -6px;
+}
+.gaming-article .shelf .sticker.up { bottom: -40px; right: -8px;
+}
+.gaming-article .shelf .tag-was { padding-right: 0;
+}
+.gaming-article .hero-shelf { row-gap: 92px;
+}
+.gaming-article .hero-shelf + .legend { margin-top: 68px;
+}
+.gaming-article .gen-shelf { --g: 0px; grid-template-columns: minmax(0, 1fr); row-gap: 44px;
+}
+.gaming-article .gen-shelf .tag:not(:first-child)::after { top: -44px; background: linear-gradient(var(--stock), var(--stock)) calc(var(--g) / 2 + var(--eye) - 1px) 0 / 2px 100% no-repeat;
+}
+.gaming-article .gen-shelf .tag { min-height: 0;
+}
+.gaming-article .gen-shelf .sticker.up { bottom: auto; top: 50%; margin-top: -27px; right: 14px;
+}
+.gaming-article .last-tag .sticker.down { bottom: -24px;
+}
+.gaming-article .sticker .st-price, .gaming-article .sticker.up .st-price { font-size: 20px;
+}
+.gaming-article .lane, .gaming-article .axis { grid-template-columns: minmax(0, 1fr); gap: 10px;
+}
+.gaming-article .axis > span:first-child { display: none;
+}
+.gaming-article .track .sticker.down { width: 54px; height: 54px; margin: -27px 0 0 -27px;
+}
+.gaming-article .track .sticker .st-price { font-size: 16px;
+}
+.gaming-article .track .sticker .st-yr { font-size: 11px; letter-spacing: 0;
+}
+.gaming-article .pin.launch { font-size: 13px; padding: 6px 8px 6px 18px;
+}
+.gaming-article .pin.launch::before { left: 6px;
+}
+.gaming-article .bar-row { grid-template-columns: minmax(0, 1fr) 76px;
+}
+.gaming-article .bar-row .lbl { grid-column: 1 / -1;
+}
+.gaming-article .bar-row .bar { grid-column: 1;
+}
+.gaming-article .counter-list li { grid-template-columns: minmax(0, 1fr); gap: 6px;
+}
+.gaming-article .mem-row { grid-template-columns: minmax(0, 1fr); gap: 6px;
+}
+.gaming-article .slip { padding: 22px 20px 18px;
+}
+}
+@media (prefers-reduced-motion: reduce) {
+.gaming-article .sticker, .gaming-article .bar i, .gaming-article .gen-shelf .delta { transition: none !important;
+}
+}

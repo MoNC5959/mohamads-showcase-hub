@@ -202,7 +202,53 @@ function CardToTerminal() {
   );
 }
 
+/** A hang tag die-cut at the eyelet end, its outline traced from the article's price tags. */
+function hangTag(x: number, y: number, w: number, h: number, cut = 40) {
+  return `M${x + cut} ${y}H${x + w}V${y + h}H${x + cut}L${x} ${y + h - cut}V${y + cut}Z`;
+}
+
+function TagsOnRail() {
+  return (
+    <>
+      <path d="M40 78H920" style={{ ...heavy, strokeWidth: 6 }} />
+      {/* the old console: a round markdown sticker over its price */}
+      <path d="M132 78V262" style={mid} />
+      <path d={hangTag(96, 196, 330, 190)} style={heavy} />
+      <circle cx={132} cy={291} r={11} style={mid} />
+      <path d="M186 268H350M186 312H300" style={{ ...mid, strokeWidth: 3 }} />
+      <path d="M178 286L366 252" style={{ ...mid, strokeWidth: 3 }} />
+      <circle cx={404} cy={378} r={66} style={{ fill: ACCENT }} />
+      <path
+        d="M368 384H440"
+        style={{ fill: "none", stroke: SHEET, strokeWidth: 8, strokeLinecap: "round" }}
+      />
+      {/* this generation: a square markup label slapped over a higher price */}
+      <path d="M572 78V214" style={mid} />
+      <path d={hangTag(536, 150, 360, 210)} style={heavy} />
+      <circle cx={572} cy={255} r={11} style={mid} />
+      <path d="M626 224H820M626 270H740" style={{ ...mid, strokeWidth: 3 }} />
+      <path d="M618 244L836 206" style={{ ...mid, strokeWidth: 3 }} />
+      <g transform="rotate(6 820 380)">
+        <rect
+          x={714}
+          y={320}
+          width={212}
+          height={118}
+          style={{ fill: ACCENT, stroke: SHEET, strokeWidth: 4 }}
+        />
+        <path
+          d="M758 386H884"
+          style={{ fill: "none", stroke: SHEET, strokeWidth: 9, strokeLinecap: "round" }}
+        />
+      </g>
+      <path d="M140 470C320 500 620 500 860 452" style={dashed} />
+      <Dimension x1={96} x2={896} y={506} />
+    </>
+  );
+}
+
 const DRAWINGS: Record<string, (props: { labelled: boolean }) => ReactNode> = {
+  "affordable-gaming": TagsOnRail,
   "cognitive-qa": Aircraft,
   fintech: VaultToPhone,
   tokenization: BuildingToTokens,

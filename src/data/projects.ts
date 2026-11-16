@@ -63,6 +63,18 @@ export const projects: Project[] = [
       "What happens in the seconds after you tap a card: the banks, networks, and fees behind every purchase, and why Capital One bought Discover.",
     images: [],
   },
+  {
+    id: "6",
+    title: "The Slow Death of Affordable Gaming",
+    category: "Gaming",
+    projectType: "case-study",
+    year: "2026",
+    slug: "affordable-gaming",
+    externalUrl: "/affordable-gaming",
+    description:
+      "Consoles used to get cheaper as they aged. This generation went the other way. How the AI boom's hunger for memory is pricing out everyday gamers.",
+    images: [],
+  },
 ];
 
 export const getProjectBySlug = (slug: string) => projects.find((p) => p.slug === slug);

@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AffordableGamingRouteImport } from './routes/affordable-gaming'
 import { Route as ColosseumRouteImport } from './routes/colosseum'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FewSecondsRouteImport } from './routes/few-seconds'
@@ -32,6 +33,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AffordableGamingRoute = AffordableGamingRouteImport.update({
+  id: '/affordable-gaming',
+  path: '/affordable-gaming',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ColosseumRoute = ColosseumRouteImport.update({
@@ -98,6 +104,7 @@ const ProjectFintechRoute = ProjectFintechRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/affordable-gaming': typeof AffordableGamingRoute
   '/colosseum': typeof ColosseumRoute
   '/contact': typeof ContactRoute
   '/few-seconds': typeof FewSecondsRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/affordable-gaming': typeof AffordableGamingRoute
   '/colosseum': typeof ColosseumRoute
   '/contact': typeof ContactRoute
   '/few-seconds': typeof FewSecondsRoute
@@ -131,6 +139,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/affordable-gaming': typeof AffordableGamingRoute
   '/colosseum': typeof ColosseumRoute
   '/contact': typeof ContactRoute
   '/few-seconds': typeof FewSecondsRoute
@@ -149,6 +158,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/affordable-gaming'
     | '/colosseum'
     | '/contact'
     | '/few-seconds'
@@ -165,6 +175,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/affordable-gaming'
     | '/colosseum'
     | '/contact'
     | '/few-seconds'
@@ -181,6 +192,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/affordable-gaming'
     | '/colosseum'
     | '/contact'
     | '/few-seconds'
@@ -198,6 +210,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AffordableGamingRoute: typeof AffordableGamingRoute
   ColosseumRoute: typeof ColosseumRoute
   ContactRoute: typeof ContactRoute
   FewSecondsRoute: typeof FewSecondsRoute
@@ -226,6 +239,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/affordable-gaming': {
+      id: '/affordable-gaming'
+      path: '/affordable-gaming'
+      fullPath: '/affordable-gaming'
+      preLoaderRoute: typeof AffordableGamingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/colosseum': {
@@ -318,6 +338,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AffordableGamingRoute: AffordableGamingRoute,
   ColosseumRoute: ColosseumRoute,
   ContactRoute: ContactRoute,
   FewSecondsRoute: FewSecondsRoute,

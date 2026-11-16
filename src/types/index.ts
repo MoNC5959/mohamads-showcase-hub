@@ -1,4 +1,5 @@
-export type ProjectCategory = "FinTech" | "Tokenization" | "Payments" | "strategy" | "Sports Media";
+export type ProjectCategory =
+  "FinTech" | "Tokenization" | "Payments" | "strategy" | "Sports Media" | "Gaming";
 
 export type AspectRatio = "portrait" | "landscape" | "square";
 

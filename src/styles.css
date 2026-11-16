@@ -732,6 +732,22 @@ html:has(.sheet:not(.sheet--original)) {
     grid-column: 2 / 7;
     grid-row: 2;
   }
+
+  /* A headline across the shelf, the tags hanging below it to the right. */
+  .work-item--affordable-gaming .work-title {
+    grid-column: 1 / 13;
+    grid-row: 1;
+    font-size: 7.4cqw;
+  }
+  .work-item--affordable-gaming .work-cover {
+    grid-column: 5 / 13;
+    grid-row: 2;
+  }
+  .work-item--affordable-gaming .work-copy {
+    grid-column: 1 / 5;
+    grid-row: 2;
+    align-self: end;
+  }
 }
 
 @media (max-width: 760px) {
@@ -742,7 +758,8 @@ html:has(.sheet:not(.sheet--original)) {
     font-size: 11cqw;
   }
   .work-item--fintech .work-title,
-  .work-item--few-seconds .work-title {
+  .work-item--few-seconds .work-title,
+  .work-item--affordable-gaming .work-title {
     order: -1;
   }
   .work-item--few-seconds .work-title {
