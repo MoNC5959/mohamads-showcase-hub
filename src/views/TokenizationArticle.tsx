@@ -224,7 +224,7 @@ export default function TokenizationArticle() {
     <>
       <SEOHead
         title="The Tokenization of Assets"
-        description="How tokenization turns analog assets into programmable ones, and what that changes about ownership, settlement, and access."
+        description="How tokenization moves real-world assets onto blockchain ledgers, and what that changes about ownership, settlement, and who gets to invest."
         image="/og-tokenization.png"
         type="article"
       />
@@ -279,7 +279,7 @@ export default function TokenizationArticle() {
           <div className="flex flex-col md:flex-row items-end justify-between gap-12">
             <div className="reveal reveal-delay-2">
               <p className="font-sans text-sm md:text-base text-zinc-400 max-w-md leading-relaxed mb-6">
-                How tokenization turns analog assets into programmable ones, and what that changes about ownership, settlement, and access.
+                How tokenization moves real-world assets onto blockchain ledgers, and what that changes about ownership, settlement, and who gets to invest.
               </p>
               <div className="flex items-center gap-4">
                 <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-400">By</span>
@@ -320,20 +320,20 @@ export default function TokenizationArticle() {
             <div className="lg:col-span-5 pt-12">
               <span className="font-sans text-[12px] tracking-[0.3em] uppercase text-zinc-400 block mb-8 reveal">Definition</span>
               <h2 className="font-serif italic text-4xl text-white leading-tight mb-8 reveal" style={{ fontFamily: "'Newsreader',serif" }}>
-                From rigid assets to programmable primitives.
+                From fixed assets to programmable ones.
               </h2>
               <p className="font-sans text-base text-zinc-400 leading-relaxed mb-6 reveal reveal-delay-1">
-                Tokenization is the process of recording the rights to a real-world asset onto a decentralized blockchain ledger. The result: assets become as fluid, composable, and instantly transferable as digital data. Think of it this way: a $10 million building is like a whole pizza. Most people can't buy a whole pizza. Tokenization cuts it into 10,000 slices. The blockchain is the receipt system that proves, irrefutably, which slices belong to whom.
+                Tokenization means recording the rights to a real-world asset on a blockchain ledger, so the asset can be split up and moved about as easily as data. A pizza helps here. A $10 million building is a whole pizza, and most people can't afford a whole pizza. Tokenization cuts it into 10,000 slices, and the blockchain is the receipt that shows who owns which slice.
               </p>
               <p className="font-sans text-base text-zinc-400 leading-relaxed mb-6 reveal reveal-delay-2">
-                Unlike cryptocurrency, which creates entirely new asset classes, tokenization brings existing value real estate, bonds, gold, private equity into the on-chain economy. Real estate that once required a $5M minimum becomes accessible at $1,000 per token. Private credit funds closed to all but institutional desks open to algorithmically-compliant global investors.
+                Cryptocurrency created new assets. Tokenization takes ones that already exist (real estate, bonds, gold, private equity) and puts them on-chain. A property deal with a $5M minimum can sell tokens at $1,000 each. Private credit funds that only took institutional money can open to investors anywhere, as long as the smart contract confirms each buyer is allowed to invest.
               </p>
               <p className="font-sans text-base text-zinc-400 leading-relaxed reveal reveal-delay-3">
-                Think of what streaming did to DVDs. Tokenization does the same to money, turning static, clunky assets into liquid, programmable ones.
+                The closest comparison I can think of is the move from DVDs to streaming. Assets that used to sit in one place, held whole by one owner, start to move like data.
               </p>
               <div className="mt-12 border-l-2 border-[#f2dfd2] pl-6 reveal reveal-delay-4">
                 <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-400 block mb-2">The Legal Wrapper</span>
-                <p className="font-sans text-sm text-zinc-300 leading-relaxed">The <em>Token</em> is the technical proof of ownership. The <em>Legal Wrapper</em> is the proof recognized by courts. These two must be fused so that a digital transfer is legally binding in the physical world.</p>
+                <p className="font-sans text-sm text-zinc-300 leading-relaxed">The <em>token</em> proves ownership on the ledger. The <em>legal wrapper</em> is what a court will recognize. The two have to be tied together, or a transfer on the blockchain means nothing in law.</p>
               </div>
             </div>
 
@@ -341,7 +341,7 @@ export default function TokenizationArticle() {
               <div className="border-l-2 border-[#f2dfd2] pl-8">
                 <span className="font-sans font-bold text-[11px] tracking-widest uppercase text-zinc-400 block mb-3">McKinsey Projection</span>
                 <span className="font-serif italic leading-none block mb-4 text-[#f2dfd2]" style={{ fontFamily: "'Newsreader',serif", fontSize: 'clamp(4rem,8vw,7rem)' }}>$2T</span>
-                <span className="font-sans text-sm text-zinc-400 leading-relaxed block max-w-xs">Conservative tokenized market estimate by 2030. Upper bound (BCG): $30 trillion.</span>
+                <span className="font-sans text-sm text-zinc-400 leading-relaxed block max-w-xs">McKinsey's base-case estimate for the tokenized market by 2030. BCG's higher estimate: $16 trillion.</span>
               </div>
             </div>
           </div>
@@ -455,14 +455,14 @@ export default function TokenizationArticle() {
         <section className="border-t border-b border-zinc-800 bg-[#0e0e0e] py-0" id="stats-section">
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-zinc-800">
             <div className="flex flex-col items-center justify-center py-16 px-12 text-center reveal">
-              <span className="stat-number text-6xl text-white mb-3" data-target="30" data-prefix="$" data-suffix="T">$0T</span>
-              <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-zinc-400 leading-loose">Upper-bound tokenized market<br />projection by 2030</span>
-              <span className="font-sans text-[11px] text-zinc-700 mt-3 uppercase tracking-widest">Source: BCG / McKinsey</span>
+              <span className="stat-number text-6xl text-white mb-3" data-target="16" data-prefix="$" data-suffix="T">$0T</span>
+              <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-zinc-400 leading-loose">Upper-end tokenized market<br />projection by 2030</span>
+              <span className="font-sans text-[11px] text-zinc-700 mt-3 uppercase tracking-widest">Source: BCG / ADDX, 2022</span>
             </div>
             <div className="flex flex-col items-center justify-center py-16 px-12 text-center reveal reveal-delay-2">
-              <span className="stat-number text-6xl text-white mb-3" data-target="85" data-suffix="%">0%</span>
-              <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-zinc-400 leading-loose">Reduction in settlement time<br />vs. traditional T+2 systems</span>
-              <span className="font-sans text-[11px] text-zinc-700 mt-3 uppercase tracking-widest">Atomic Settlement Standard</span>
+              <span className="stat-number text-6xl text-white mb-3" data-target="39" data-prefix="$" data-suffix="B">$0B</span>
+              <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-zinc-400 leading-loose">Tokenized real-world assets on-chain<br />today, not counting stablecoins</span>
+              <span className="font-sans text-[11px] text-zinc-700 mt-3 uppercase tracking-widest">Source: RWA.xyz, Nov 2026</span>
             </div>
             <div className="flex flex-col items-center justify-center py-16 px-12 text-center reveal reveal-delay-3">
               <span className="stat-number text-6xl text-white mb-3" data-target="61" data-suffix="%">0%</span>
@@ -476,7 +476,7 @@ export default function TokenizationArticle() {
         <section className="py-24 px-8 md:px-24 lg:px-48 bg-[#1c1b1b]">
           <div className="mb-16 reveal">
             <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 block mb-4">Side by Side</span>
-            <h2 className="font-serif italic text-4xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>The Old World vs. The Agility of the New</h2>
+            <h2 className="font-serif italic text-4xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>Legacy Markets vs. Tokenized Markets</h2>
           </div>
           <div className="border border-zinc-800 reveal overflow-x-auto">
             <div style={{ minWidth: '700px' }}>
@@ -487,27 +487,27 @@ export default function TokenizationArticle() {
             </div>
             <div className="comp-row">
               <div className="comp-cell text-zinc-400 font-bold text-[13px] tracking-wider uppercase">Market Hours</div>
-              <div className="comp-cell text-zinc-400">Mon–Fri, 9–5. Trading halts on weekends, holidays, and after hours.</div>
-              <div className="comp-cell text-[#f2dfd2] font-medium">24/7/365 global availability, no scheduled downtime.</div>
+              <div className="comp-cell text-zinc-400">Monday to Friday, 9 to 5. Trading stops on weekends, holidays, and after hours.</div>
+              <div className="comp-cell text-[#f2dfd2] font-medium">Open 24/7, every day of the year.</div>
             </div>
             <div className="comp-row">
               <div className="comp-cell text-zinc-400 font-bold text-[13px] tracking-wider uppercase">Settlement Speed</div>
-              <div className="comp-cell text-zinc-400">T+2 to T+5 days. Manual reconciliation, custody chains, correspondent banks.</div>
-              <div className="comp-cell text-[#f2dfd2] font-medium">Near-instant Atomic Settlement. Payment and asset transfer in one transaction or neither.</div>
+              <div className="comp-cell text-zinc-400">One to five days (US stocks moved to T+1 in 2024). Manual reconciliation, custody chains, correspondent banks.</div>
+              <div className="comp-cell text-[#f2dfd2] font-medium">Near-instant atomic settlement: the payment and the asset move in the same transaction, or neither moves.</div>
             </div>
             <div className="comp-row">
               <div className="comp-cell text-zinc-400 font-bold text-[13px] tracking-wider uppercase">Accessibility</div>
               <div className="comp-cell text-zinc-400">Institutional-only entry points. A $100M PE fund requires a $1M minimum commitment.</div>
-              <div className="comp-cell text-[#f2dfd2] font-medium">Democratized & fractional. A $100M asset split into 100,000 tokens at $1,000 each.</div>
+              <div className="comp-cell text-[#f2dfd2] font-medium">Fractional. A $100M asset can be split into 100,000 tokens at $1,000 each.</div>
             </div>
             <div className="comp-row">
               <div className="comp-cell text-zinc-400 font-bold text-[13px] tracking-wider uppercase">Asset Mobility</div>
-              <div className="comp-cell text-zinc-400">Siloed & fragmented. Assets locked in jurisdiction-specific, custodian-specific silos.</div>
-              <div className="comp-cell text-[#f2dfd2] font-medium">Composable & interoperable. Use a tokenized gold bar as collateral to borrow a tokenized bond.</div>
+              <div className="comp-cell text-zinc-400">Assets are stuck with one custodian in one jurisdiction.</div>
+              <div className="comp-cell text-[#f2dfd2] font-medium">Assets can work together. A tokenized gold bar can be collateral for borrowing a tokenized bond.</div>
             </div>
             <div className="comp-row" style={{ borderBottom: 'none' }}>
               <div className="comp-cell text-zinc-400 font-bold text-[13px] tracking-wider uppercase">Compliance</div>
-              <div className="comp-cell text-zinc-400">Manual & audited after the fact. Compliance failures discovered weeks later.</div>
+              <div className="comp-cell text-zinc-400">Checked by hand after the fact, so failures can surface weeks later.</div>
               <div className="comp-cell text-[#f2dfd2] font-medium">Automated via smart contracts. A trade that fails compliance never executes.</div>
             </div>
             </div>
@@ -520,9 +520,9 @@ export default function TokenizationArticle() {
             <div className="reveal">
               <div className="quote-line" />
               <blockquote className="font-serif italic text-4xl md:text-6xl text-white leading-tight mb-12" style={{ fontFamily: "'Newsreader',serif" }}>
-                "I believe the next generation of markets, the next generation of securities, will be <span className="text-[#f2dfd2]">tokenized securities</span>. Every asset can be tokenized."
+                "I believe the next generation for markets, the next generation for securities, will be <span className="text-[#f2dfd2]">tokenization of securities</span>."
               </blockquote>
-              <cite className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400">: Larry Fink, CEO, BlackRock</cite>
+              <cite className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400">Larry Fink, CEO, BlackRock, DealBook Summit 2022</cite>
             </div>
           </div>
         </section>
@@ -530,7 +530,7 @@ export default function TokenizationArticle() {
         {/* ── 5-STAGE PROCESS ── */}
         <section id="process" className="py-32 px-8 md:px-24 lg:px-48 bg-[#131313]">
           <div className="mb-24 flex flex-col items-start reveal">
-            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 mb-4">Digital Alchemy</span>
+            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 mb-4">The Process</span>
             <h2 className="font-serif italic text-5xl text-white max-w-2xl leading-tight" style={{ fontFamily: "'Newsreader',serif" }}>How an Asset Moves from the Physical World to the Digital Ledger</h2>
           </div>
 
@@ -543,27 +543,27 @@ export default function TokenizationArticle() {
               <div className="lg:col-span-4 flex flex-col justify-center">
                 <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-400 block mb-3">Asset Identification &amp; Selection</span>
                 <h3 className="font-serif italic text-2xl text-white mb-4" style={{ fontFamily: "'Newsreader',serif" }}>Choosing What Gets Tokenized</h3>
-                <p className="font-sans text-sm text-zinc-400 leading-relaxed">The journey begins in the physical world. While almost anything with definable ownership can be tokenized, four primary classes currently lead the market each solving a specific liquidity or accessibility problem.</p>
+                <p className="font-sans text-sm text-zinc-400 leading-relaxed">Almost anything with clear ownership can be tokenized, but four asset classes make up nearly all the volume today.</p>
               </div>
               <div className="lg:col-span-6 flex flex-col">
-                <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-400 mb-3">Source: RWA.xyz, Tokenized asset volume breakdown, 2025</p>
+                <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-400 mb-3">Source: RWA.xyz, tokenized asset volume by class, 2025</p>
                 <div style={{ display: 'grid', gridTemplateColumns: '61fr 39fr', gap: '2px', flex: 1, minHeight: '220px' }}>
                   <div className="treemap-block flex flex-col justify-end p-6" style={{ background: '#1a2535' }}>
                     <span className="font-serif italic text-5xl text-white/80 mb-2 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>61%</span>
                     <h3 className="font-sans font-bold text-[11px] tracking-wider uppercase text-zinc-300 mb-1">Private Credit</h3>
-                    <p className="font-sans text-sm text-zinc-400 leading-snug">The dominant tokenized asset class, utilizing smart contracts for automated yields and dynamic collateral.</p>
+                    <p className="font-sans text-sm text-zinc-400 leading-snug">The largest category. Smart contracts pay out the yield and adjust collateral automatically.</p>
                   </div>
                   <div style={{ display: 'grid', gridTemplateRows: '30fr 9fr', gap: '2px' }}>
                     <div className="treemap-block flex flex-col justify-end p-4" style={{ background: '#1e2d1e' }}>
                       <span className="font-serif italic text-3xl text-white/80 mb-1 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>30%</span>
                       <h3 className="font-sans font-bold text-[11px] tracking-wider uppercase text-zinc-300 mb-1">Treasuries</h3>
-                      <p className="font-sans text-sm text-zinc-400 leading-snug">Foundational, yield-bearing liquidity primitives in digital markets.</p>
+                      <p className="font-sans text-sm text-zinc-400 leading-snug">Yield-bearing government debt, the closest thing on-chain markets have to cash.</p>
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: '7fr 2fr', gap: '2px' }}>
                       <div className="treemap-block flex flex-col justify-end p-3" style={{ background: '#2a1f14' }}>
                         <span className="font-serif italic text-lg text-white/80 mb-1 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>7%</span>
                         <h3 className="font-sans font-bold text-[11px] tracking-wider uppercase text-zinc-400 mb-1">Commodities</h3>
-                        <p className="font-sans text-[11px] text-zinc-400 leading-snug">Tokenized gold, $6B+ market cap.</p>
+                        <p className="font-sans text-[11px] text-zinc-400 leading-snug">Mostly tokenized gold.</p>
                       </div>
                       <div className="treemap-block flex flex-col justify-end p-3" style={{ background: '#242424' }}>
                         <span className="font-serif italic text-base text-white/60 mb-1 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>2%</span>
@@ -586,25 +586,25 @@ export default function TokenizationArticle() {
               <div className="lg:col-span-4">
                 <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-400 block mb-3">Digital Representation &amp; Compliance</span>
                 <h3 className="font-serif italic text-2xl text-white mb-4" style={{ fontFamily: "'Newsreader',serif" }}>Building the Digital Blueprint</h3>
-                <p className="font-sans text-sm text-zinc-400 leading-relaxed mb-6">The digital blueprint is software that acts as a container for the asset's rights. By integrating ISO-20022 messaging standards, tokens speak the same language as traditional banking systems like SWIFT enabling real-time reconciliation across institutional networks.</p>
+                <p className="font-sans text-sm text-zinc-400 leading-relaxed mb-6">The token is a piece of software that holds the asset's rights. When it uses the ISO-20022 messaging standard, it can exchange messages with banking systems like SWIFT, so both sides can reconcile their records in real time.</p>
                 <ul className="space-y-3">
                   <li className="flex gap-3">
                     <span className="text-[#f2dfd2] mt-0.5 flex-shrink-0">·</span>
-                    <p className="font-sans text-sm text-zinc-300 leading-relaxed"><span className="text-white font-medium">ISO-20022</span> is the global language banks use to send payment messages. Think of it as a universal translator that lets blockchain tokens talk directly to the world's banking systems.</p>
+                    <p className="font-sans text-sm text-zinc-300 leading-relaxed"><span className="text-white font-medium">ISO-20022</span> is the message format banks use for payments. A token that uses it can talk to bank systems without a custom translation layer.</p>
                   </li>
                   <li className="flex gap-3">
                     <span className="text-[#f2dfd2] mt-0.5 flex-shrink-0">·</span>
-                    <p className="font-sans text-sm text-zinc-300 leading-relaxed"><span className="text-white font-medium">SWIFT</span> is the network that moves $8 trillion between banks every day. Tokenized assets that speak ISO-20022 can plug directly into it with no manual reconciliation required.</p>
+                    <p className="font-sans text-sm text-zinc-300 leading-relaxed"><span className="text-white font-medium">SWIFT</span> is the network banks use to send payment instructions worth trillions of dollars a day. Tokens that use ISO-20022 can connect to it without anyone reconciling records by hand.</p>
                   </li>
                 </ul>
               </div>
               <div className="lg:col-span-6">
                 <div className="space-y-0 border border-zinc-800">
                   {[
-                    { label: 'Key Information', text: 'Asset type, issuer identity, and unique on-chain identifiers that distinguish this token from all others.' },
-                    { label: 'Embedded Rights', text: 'Voter participation rights, interest payment schedules, dividend distributions encoded directly into the token\'s logic.' },
-                    { label: 'Compliance Rules', text: 'Jurisdiction-specific transfer restrictions e.g., accredited investor requirements automatically enforced at the protocol level.' },
-                    { label: 'Provenance', text: 'A complete ownership family tree immutable, tamper-proof, and auditable by any party with ledger access.' },
+                    { label: 'Key Information', text: 'Asset type, who issued it, and an on-chain ID that no other token shares.' },
+                    { label: 'Embedded Rights', text: "Voting rights, interest payment schedules, and dividend payouts, written into the token's code." },
+                    { label: 'Compliance Rules', text: 'Transfer restrictions for each jurisdiction, such as accredited-investor requirements, enforced automatically by the token.' },
+                    { label: 'Provenance', text: 'A full history of every owner. Nobody can edit it, and anyone with access to the ledger can audit it.' },
                   ].map((item, i) => (
                     <div key={i} className={`p-5 ${i < 3 ? 'border-b border-zinc-800' : ''} hover:bg-[#2a2a2a] transition-colors cursor-default`}>
                       <span className="font-sans font-bold text-[12px] tracking-wider uppercase text-zinc-400 block mb-1">{item.label}</span>
@@ -625,18 +625,18 @@ export default function TokenizationArticle() {
               <div className="lg:col-span-4">
                 <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-400 block mb-3">The Logic Layer</span>
                 <h3 className="font-serif italic text-2xl text-white mb-4" style={{ fontFamily: "'Newsreader',serif" }}>Smart Contracts as Execution Engine</h3>
-                <p className="font-sans text-sm text-zinc-400 leading-relaxed">A smart contract is code that runs automatically when conditions are met, removing the friction of manual approval entirely. Think of tokenized assets like apps on a smartphone. They all run on the same operating system, so they can share data, talk to each other, and combine in ways a single app never could alone. Use your tokenized gold to back a loan, earn yield on a tokenized bond, and settle in a stablecoin, all in one transaction.</p>
+                <p className="font-sans text-sm text-zinc-400 leading-relaxed">A smart contract is code that runs on its own when set conditions are met, so nobody has to approve each step by hand. Tokens on the same network share that code, which means they can be combined: you could put up tokenized gold as collateral for a loan, earn yield on a tokenized bond, and settle in a stablecoin, all in one transaction.</p>
                 <div className="mt-6 border-l-2 border-[#f2dfd2] pl-4">
                   <span className="font-sans text-[11px] tracking-widest uppercase text-zinc-400 block mb-1">Atomic Settlement</span>
-                  <p className="font-sans text-sm text-zinc-400">Simultaneous delivery of asset and payment. If the payment isn't there, the asset never moves. Settlement risk: eliminated.</p>
+                  <p className="font-sans text-sm text-zinc-400">The asset and the payment change hands at the same moment. If the payment isn't there, the asset doesn't move, so one side can't pay and then never receive anything.</p>
                 </div>
               </div>
               <div className="lg:col-span-6">
                 <div className="grid grid-cols-1 gap-0.5 bg-zinc-800">
                   {[
-                    { icon: 'bolt', title: 'Automation of Dividends', text: 'Rent or interest is distributed automatically to token holders the moment it is received no fund administrator required.' },
-                    { icon: 'balance', title: 'Real-Time Reconciliation', text: 'The contract keeps the books balanced every second. No overnight settlement batches, no reconciliation failures at month-end.' },
-                    { icon: 'shield', title: 'Compliance Enforcement', text: 'A trade that violates jurisdiction rules or Know Your Customer and Anti-Money Laundering requirements is rejected at the protocol level before it can execute.' },
+                    { icon: 'bolt', title: 'Automation of Dividends', text: 'Rent or interest goes to token holders as soon as it comes in, without a fund administrator in the middle.' },
+                    { icon: 'balance', title: 'Real-Time Reconciliation', text: 'The contract updates the books with every transaction, so there are no overnight batches and no month-end scramble to make the records match.' },
+                    { icon: 'shield', title: 'Compliance Enforcement', text: 'A trade that violates jurisdiction rules or Know Your Customer and Anti-Money Laundering requirements is rejected before it executes.' },
                   ].map((item, i) => (
                     <div key={i} className="bg-[#131313] p-8 hover:bg-[#1c1b1b] transition-colors cursor-default flex gap-6 items-start">
                       <span className="material-symbols-outlined text-[#f2dfd2]" style={{ fontSize: '24px', flexShrink: 0 }}>{item.icon}</span>
@@ -662,15 +662,15 @@ export default function TokenizationArticle() {
                 <h3 className="font-serif italic text-2xl text-white mb-6" style={{ fontFamily: "'Newsreader',serif" }}>Solving the Double-Spend Problem</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div>
-                    <p className="font-sans text-sm text-zinc-400 leading-relaxed">To ensure trust, the physical asset must be secured so it cannot be sold in the real world while simultaneously being traded as a token. Reference-backed tokenization places a gold bar in a secure vault the token becomes the only tradeable digital receipt for that gold.</p>
+                    <p className="font-sans text-sm text-zinc-400 leading-relaxed">The physical asset has to be locked up so nobody can sell it offline while its token trades online. In reference-backed tokenization, a gold bar sits in a vault and the token is the only way to trade it.</p>
                   </div>
                   <div>
                     <h4 className="font-sans font-bold text-[12px] tracking-wider uppercase text-zinc-400 mb-3">On-Chain Issuance</h4>
-                    <p className="font-sans text-sm text-zinc-400 leading-relaxed">Native digital bonds are born entirely on the blockchain with no physical counterpart no vault required. The ledger <em>is</em> the asset's existence.</p>
+                    <p className="font-sans text-sm text-zinc-400 leading-relaxed">Some bonds are issued directly on the blockchain and have no physical counterpart, so there is nothing to lock in a vault. The ledger entry <em>is</em> the bond.</p>
                   </div>
                   <div className="border border-zinc-800 p-6">
                     <h4 className="font-sans font-bold text-[12px] tracking-wider uppercase text-[#f2dfd2] mb-3">Bankruptcy Remoteness</h4>
-                    <p className="font-sans text-sm text-zinc-400 leading-relaxed">Critical for investor protection. In jurisdictions without clear digital-asset laws, tokens risk being pooled with a bankrupt issuer's general debts. A bankruptcy-remote structure ensures the physical asset belongs to token holders not the company's creditors.</p>
+                    <p className="font-sans text-sm text-zinc-400 leading-relaxed">In places without clear digital-asset laws, the asset behind a token can get lumped in with a bankrupt issuer's other property. A bankruptcy-remote structure keeps the asset with the token holders instead of the company's creditors.</p>
                   </div>
                 </div>
               </div>
@@ -686,18 +686,17 @@ export default function TokenizationArticle() {
               <div className="lg:col-span-5">
                 <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-400 block mb-3">Minting, Distribution &amp; Lifecycle</span>
                 <h3 className="font-serif italic text-2xl text-white mb-4" style={{ fontFamily: "'Newsreader',serif" }}>The Token Goes Live</h3>
-                <p className="font-sans text-sm text-zinc-400 leading-relaxed">Minting is the official creation of tokens on the ledger. They are distributed to investors' digital wallets and enter a lifecycle of 24/7 secondary trading automatically collecting coupons until maturity, when the token is burned in exchange for the underlying physical value. The market is currently split between two competing infrastructure models.</p>
+                <p className="font-sans text-sm text-zinc-400 leading-relaxed">Minting creates the tokens on the ledger. They go to investors' wallets, trade around the clock, and collect coupon payments automatically. At maturity the token is burned and the holder receives the underlying value. Right now the market runs on two kinds of network.</p>
               </div>
               <div className="lg:col-span-5">
                 <div className="space-y-0.5">
                   {[
-                    { label: 'Permissioned Networks', pct: '50.6%', desc: 'Private "consortium" ledgers preferred by banks for privacy. JPMorgan Kinexys, Goldman DAP, HSBC Orion operate here.', accent: false },
-                    { label: 'Permissionless Networks', pct: '51.6%', desc: 'Public networks (Ethereum, Polygon, Avalanche) open to global liquidity. Growth rate (CAGR) now exceeds permissioned rails.', accent: true },
+                    { label: 'Permissioned Networks', desc: "Private consortium ledgers that banks prefer for privacy, such as JPMorgan's Kinexys, Goldman's DAP, and HSBC Orion." },
+                    { label: 'Permissionless Networks', desc: 'Public networks such as Ethereum, Polygon, and Avalanche, open to capital from anywhere. They are now growing faster than permissioned networks.' },
                   ].map((item, i) => (
                     <div key={i} className="bg-[#201f1f] p-8 hover:bg-[#2a2a2a] transition-colors cursor-default">
                       <div className="flex items-start justify-between mb-3">
                         <h4 className="font-sans font-bold text-[12px] tracking-wider uppercase text-zinc-300">{item.label}</h4>
-                        <span className="font-serif italic text-2xl" style={{ fontFamily: "'Newsreader',serif", color: item.accent ? '#f2dfd2' : '#a1a1aa' }}>{item.pct}</span>
                       </div>
                       <p className="font-sans text-sm text-zinc-400 leading-relaxed">{item.desc}</p>
                     </div>
@@ -711,13 +710,13 @@ export default function TokenizationArticle() {
         {/* ── HOW IT ACTUALLY WORKS ── */}
         <section className="py-32 px-8 md:px-24 lg:px-48 bg-[#1c1b1b]">
           <div className="mb-24 flex flex-col items-start reveal">
-            <h2 className="font-serif italic text-5xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>How It Actually Works</h2>
+            <h2 className="font-serif italic text-5xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>What Tokenization Changes</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-0.5 bg-zinc-800">
             {[
-              { icon: 'apartment', title: 'Fractional Ownership', text: 'A $100M asset divided into 100,000 programmable tokens at $1,000 each. Lowers the barrier to entry, increases secondary market liquidity by an estimated 30–40%, and broadens investor bases from institutions to individuals.', tag: '$326T addressable market', delay: 1 },
-              { icon: 'contract', title: 'Smart Contract Logic', text: 'Self-executing agreements that enforce ownership rules, automate dividend payments, and govern voting rights with no lawyers, no custodians, no delays. Compliance is embedded in the code, not bolted on afterward.', tag: 'T+0 atomic settlement', delay: 2 },
-              { icon: 'water_drop', title: 'Decentralized Liquidity', text: 'Markets that never close. Permissionless networks open tokenized assets to global capital pools with algorithmic market-makers replacing the floor specialist and DeFi protocols providing on-demand liquidity.', tag: '24/7 global trading', delay: 3 },
+              { icon: 'apartment', title: 'Fractional Ownership', text: 'Split a $100M asset into 100,000 tokens at $1,000 each and individuals can buy in alongside institutions.', tag: '$393T global real estate market', delay: 1 },
+              { icon: 'contract', title: 'Smart Contract Logic', text: 'Agreements that carry out ownership rules, dividend payments, and votes on their own, without waiting on lawyers or custodians. The compliance checks are part of the code from the start.', tag: 'T+0 atomic settlement', delay: 2 },
+              { icon: 'water_drop', title: 'Decentralized Liquidity', text: "Public networks trade around the clock and let in capital from anywhere. Algorithmic market makers do the job floor specialists used to do, and DeFi protocols supply liquidity when it's needed.", tag: '24/7 global trading', delay: 3 },
             ].map((item, i) => (
               <div key={i} className={`pillar-card bg-[#1c1b1b] p-12 hover:bg-[#2a2a2a] transition-colors group cursor-default reveal reveal-delay-${item.delay}`}>
                 <span className="material-symbols-outlined text-[#f2dfd2] text-4xl mb-8 group-hover:scale-110 transition-transform inline-block">{item.icon}</span>
@@ -729,7 +728,7 @@ export default function TokenizationArticle() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0.5 bg-zinc-800 mt-0.5">
             {[
-              { icon: 'security', title: 'ISO-20022 Interoperability', text: 'The universal translator that lets blockchain tokens communicate with traditional banking systems like SWIFT. Real-time reconciliation between on-chain activity and off-chain ledgers the technical bridge that makes institutional adoption possible.', delay: 2 },
+              { icon: 'security', title: 'ISO-20022 Interoperability', text: 'The shared message format that lets tokens communicate with bank systems like SWIFT, so on-chain and off-chain records can be matched in real time. Banks need this before they can use tokenized assets at any scale.', delay: 2 },
               { icon: 'hub', title: 'Composable Finance', text: 'Think of tokenized assets like apps on a smartphone. They all run on the same operating system, so they can share data, talk to each other, and combine in ways a single app never could alone. Use your tokenized gold to back a loan, earn yield on a tokenized bond, and settle in a stablecoin, all in one transaction.', delay: 3 },
             ].map((item, i) => (
               <div key={i} className={`pillar-card bg-[#1c1b1b] p-12 hover:bg-[#2a2a2a] transition-colors group cursor-default reveal reveal-delay-${item.delay}`}>
@@ -760,17 +759,17 @@ export default function TokenizationArticle() {
               <h2 className="font-serif italic text-5xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>Every Asset Class,<br />On-Chain</h2>
             </div>
             <p className="font-sans text-sm text-zinc-400 max-w-xs leading-relaxed reveal reveal-delay-2">
-              The tokenization thesis extends far beyond real estate. Six primary classes are being rewritten by distributed ledger technology each with different drivers, market sizes, and stages of adoption.
+              Real estate gets most of the attention, but six asset classes are moving on-chain, each at its own pace and for its own reasons.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0.5 bg-zinc-800">
             {[
-              { icon: 'apartment', num: '01', title: 'Real Estate', text: 'Commercial towers, residential developments, and REITs fractionalized into micro-shares with automated rental yield distribution. Holds 30.12% of the tokenized asset market solving the "liquidity trap" of property.', label1: 'Global Market', val1: '$326T', label2: 'Token Share', val2: '30.12%', delay: 1 },
-              { icon: 'account_balance', num: '02', title: 'Private Credit', text: 'The dominant tokenized asset class 61% of total volume. Smart contracts automate yields and enable dynamic collateral management. Centrifuge alone has brought billions of private credit on-chain for institutional DeFi borrowers.', label1: 'Volume Share', val1: '61%', label2: 'Growth', val2: 'Dominant', delay: 2 },
-              { icon: 'description', num: '03', title: 'Treasuries & Fixed Income', text: 'Government and corporate bonds issued on-chain. BlackRock\'s BUIDL fund tokenized US Treasuries across Ethereum, Polygon, and Avalanche crossed $500M in 40 days. Franklin Templeton and Ondo Finance are collectively issuing billions in yield-bearing digital assets.', label1: 'Market Share', val1: '30%', label2: 'YoY Growth', val2: '+782%', delay: 3 },
-              { icon: 'diamond', num: '04', title: 'Commodities', text: 'Gold, silver, and carbon credits tokenized for inflation hedging and ESG liability management. Tokenized gold has surpassed a $6 billion market cap enabling fractional ownership of physical bullion with 100% verified custody.', label1: 'Market Share', val1: '7%', label2: 'Gold Market Cap', val2: '$6B+', delay: 1 },
-              { icon: 'palette', num: '05', title: 'Art & Collectibles', text: 'Blue-chip art fractionally owned by thousands, with provenance permanently encoded on-chain. Blockchain provides an unchangeable ownership history eliminating the forgery risk that plagues traditional art markets. Christie\'s is paying attention.', label1: 'Global Market', val1: '$1.7T', label2: 'Tokenized', val2: 'Early Stage', delay: 2 },
-              { icon: 'settings_input_antenna', num: '06', title: 'Infrastructure & Funds', text: 'Toll roads, data centers, and institutional funds tokenized for fractional investor access. Institutional funds currently represent 2% of tokenized volume but the infrastructure layer beneath all tokenization (ledgers, custody, compliance) represents the largest long-term opportunity.', label1: 'Fund Share', val1: '2%', label2: 'Trajectory', val2: 'Accelerating', delay: 3 },
+              { icon: 'apartment', num: '01', title: 'Real Estate', text: 'Office towers, housing developments, and REITs split into small shares that pay out rent automatically. Real estate gets the most attention, but it is still a small slice of tokenized value. Tokens let an owner sell part of a building without selling the whole thing.', label1: 'Global Market', val1: '$393T', label2: 'Tokenized', val2: 'Early Stage', delay: 1 },
+              { icon: 'account_balance', num: '02', title: 'Private Credit', text: 'The largest tokenized asset class in 2025, at 61% of total volume. Smart contracts pay out yield and adjust collateral automatically. Centrifuge alone has brought billions of dollars of private credit on-chain for institutional borrowers.', label1: 'Volume Share', val1: '61%', label2: 'Growth', val2: 'Dominant', delay: 2 },
+              { icon: 'description', num: '03', title: 'Treasuries & Fixed Income', text: "Government and corporate bonds issued on-chain. BlackRock's BUIDL fund, which holds tokenized US Treasuries on Ethereum, Polygon, and Avalanche, crossed $500M in under four months. Franklin Templeton and Ondo Finance have issued billions more between them.", label1: 'Market Share', val1: '30%', label2: '2023 Growth', val2: '+641%', delay: 3 },
+              { icon: 'diamond', num: '04', title: 'Commodities', text: 'Gold, silver, and carbon credits, used to hedge inflation and manage ESG obligations. Tokenized gold passed $6 billion in market cap in early 2026, letting people own a fraction of physical bullion held in fully verified custody.', label1: 'Market Share', val1: '7%', label2: 'Gold Market Cap', val2: '$5B+', delay: 1 },
+              { icon: 'palette', num: '05', title: 'Art & Collectibles', text: "Expensive artworks split among thousands of owners, with the ownership history recorded on-chain where nobody can alter it. That makes provenance much harder to fake, a long-running problem in the art market. Christie's is paying attention.", label1: 'Global Market', val1: '$1.7T', label2: 'Tokenized', val2: 'Early Stage', delay: 2 },
+              { icon: 'settings_input_antenna', num: '06', title: 'Infrastructure & Funds', text: 'Toll roads, data centers, and institutional funds, split into tokens so smaller investors can buy in. Funds are only 2% of tokenized volume today. The bigger long-term opportunity is the infrastructure under all of it: the ledgers, custody, and compliance systems.', label1: 'Fund Share', val1: '2%', label2: 'Trajectory', val2: 'Accelerating', delay: 3 },
             ].map((item, i) => (
               <div key={i} className={`asset-card bg-[#131313] p-10 reveal reveal-delay-${item.delay}`}>
                 <div className="flex items-start justify-between mb-6">
@@ -797,14 +796,14 @@ export default function TokenizationArticle() {
           <div className="pl-8 md:pl-24 lg:pl-48 reveal">
             <div className="timeline-track pb-8">
               {[
-                { year: '2015', title: 'Ethereum Launches', text: 'Programmable smart contracts make tokenization of real-world assets theoretically possible for the first time.' },
-                { year: '2017', title: 'First STOs Emerge', text: 'Security Token Offerings provide the first regulatory-compliant framework for tokenizing traditional securities and equity stakes.' },
-                { year: '2020', title: 'DeFi Summer', text: 'Decentralized Finance protocols prove automated lending and yield distribution at scale. The infrastructure case is proven viable.' },
-                { year: '2022', title: 'Institutional Entry', text: "JPMorgan's Onyx and Goldman Sachs' Digital Asset Platform (DAP) launch tokenized repo transactions for institutional clients. The era of experimentation begins." },
-                { year: '2023–24', title: 'BlackRock Validates', text: "BlackRock's Blockchain USD Institutional Digital Liquidity fund (BUIDL) crosses $500M in 40 days. Franklin Templeton, Ondo, and Centrifuge collectively issue billions. Total tokenized Real World Assets surpass $900 billion. Regulatory clarity arrives in the EU, UAE, and Singapore." },
-                { year: '2025', title: 'The GENIUS Act', text: 'US legislation establishes long-awaited "rules of the road" for digital assets and stablecoins removing compliance fears that had kept the largest capital pools on the sideline.' },
-                { year: '2026', title: 'Clarity Act', text: 'Comprehensive digital asset framework cements the interoperability between on-chain and traditional financial systems. Swift begins live cross-chain transfers with BNY Mellon and Citi.' },
-                { year: '2030 ↗', title: '$16T–$30T Horizon', text: "BCG projects 10% of global GDP held as on-chain tokens. $27B in annual operational savings for banks. The distinction between TradFi and DeFi effectively dissolves.", accent: true },
+                { year: '2015', title: 'Ethereum Launches', text: 'Smart contracts make it possible, at least in theory, to tokenize real-world assets.' },
+                { year: '2017', title: 'First STOs Emerge', text: 'Security Token Offerings give issuers a way to tokenize securities and equity stakes within existing securities law.' },
+                { year: '2020', title: 'DeFi Summer', text: 'Decentralized Finance protocols run automated lending and yield payments at scale, showing the technology can handle real money.' },
+                { year: '2022', title: 'Institutional Entry', text: "JPMorgan's Onyx runs tokenized repo trades for institutional clients, and Goldman Sachs readies its Digital Asset Platform (DAP), which goes live in early 2023. These are the first serious experiments by big banks." },
+                { year: '2023-24', title: 'BlackRock Arrives', text: "BlackRock's Blockchain USD Institutional Digital Liquidity fund (BUIDL) launches in March 2024 and crosses $500M in under four months. Franklin Templeton, Ondo, and Centrifuge issue billions between them, and tokenized Treasuries pass $1 billion. The EU, UAE, and Singapore publish clear rules." },
+                { year: '2025', title: 'The GENIUS Act', text: 'The US passes its first federal rules for stablecoins, easing the compliance worries that had kept the largest pools of capital on the sidelines.' },
+                { year: '2026', title: 'Clarity Act Stalls', text: 'The Clarity Act, a broader federal framework for digital assets, passed the House in July 2025 but fell one vote short of advancing in the Senate in September 2026. Tokenized real-world assets reach about $39 billion on-chain.' },
+                { year: '2030 ↗', title: '$2T to $16T', text: "McKinsey's base case is about $2 trillion. BCG projects up to $16 trillion, roughly 10% of global GDP. By then the line between traditional finance and DeFi may be hard to find.", accent: true },
               ].map((item, i) => (
                 <div key={i} className="timeline-item" style={item.accent ? { borderTopColor: 'rgba(242,223,210,0.3)' } : {}}>
                   <span className="font-sans text-[11px] tracking-[0.3em] uppercase text-[#f2dfd2] block mb-4">{item.year}</span>
@@ -816,7 +815,7 @@ export default function TokenizationArticle() {
             </div>
             <div className="flex items-center gap-3 mt-4 reveal">
               <span className="material-symbols-outlined text-zinc-400 text-base">arrow_forward</span>
-              <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-400">Drag or scroll to traverse timeline</span>
+              <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-400">Drag or scroll to move through the timeline</span>
             </div>
           </div>
         </section>
@@ -824,7 +823,7 @@ export default function TokenizationArticle() {
         {/* ── THE ARCHITECTS ── */}
         <section className="py-32 px-8 md:px-24 lg:px-48 bg-[#131313]">
           <div className="mb-16 reveal">
-            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 block mb-4">The Incumbent Halo Effect</span>
+            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 block mb-4">Who Is Building It</span>
             <h2 className="font-serif italic text-5xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>The Architects of the<br />New Master Ledger</h2>
           </div>
 
@@ -836,8 +835,8 @@ export default function TokenizationArticle() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0.5 bg-zinc-800 max-w-4xl mx-auto mb-0.5">
             {[
-              { name: 'Securitize', tag: 'Platform', text: "Leading the institutional charge: has tokenized over $4 billion in assets and secured a $1.25 billion valuation via SPAC merger. The primary compliance and issuance infrastructure behind BlackRock's BUIDL fund.", footer: '$4B+ tokenized', delay: 1 },
-              { name: 'tZERO', tag: 'ATS', text: 'Expanding compliant secondary trading through its FINRA-approved Alternative Trading System for corporate debt the regulated marketplace where tokenized securities find their secondary liquidity.', delay: 2 },
+              { name: 'Securitize', tag: 'Platform', text: "Has tokenized more than $4 billion in assets and reached a $1.25 billion valuation through a SPAC merger. It handles issuance and compliance for BlackRock's BUIDL fund.", footer: '$4B+ tokenized', delay: 1 },
+              { name: 'tZERO', tag: 'ATS', text: "Runs a FINRA-approved Alternative Trading System for corporate debt, a regulated market where tokenized securities can be resold after they're issued.", delay: 2 },
             ].map((item, i) => (
               <div key={i} className={`arch-card bg-[#131313] p-10 hover:bg-[#1c1b1b] cursor-default reveal reveal-delay-${item.delay}`}>
                 <div className="flex items-start justify-between mb-6">
@@ -851,8 +850,8 @@ export default function TokenizationArticle() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0.5 bg-zinc-800 max-w-4xl mx-auto">
             {[
-              { name: 'Ondo Finance & Franklin Templeton', tag: 'Treasuries', text: 'Pioneers in tokenized US Treasuries collectively issuing billions in yield-bearing digital assets accessible to on-chain investors globally, with T+0 settlement and composability with DeFi protocols.', delay: 1 },
-              { name: 'Centrifuge', tag: 'Private Credit', text: 'Providing the infrastructure to bring real-world private credit on-chain enabling asset originators (trade receivables, mortgages, microfinance) to borrow from DeFi liquidity pools against tokenized collateral.', delay: 2 },
+              { name: 'Ondo Finance & Franklin Templeton', tag: 'Treasuries', text: 'Early issuers of tokenized US Treasuries. Between them they have issued billions in yield-bearing tokens that investors anywhere can hold, settle the same day, and use inside DeFi protocols.', delay: 1 },
+              { name: 'Centrifuge', tag: 'Private Credit', text: 'Brings real-world private credit on-chain. Lenders holding trade receivables, mortgages, or microfinance loans can tokenize them and borrow against them from DeFi liquidity pools.', delay: 2 },
             ].map((item, i) => (
               <div key={i} className={`arch-card bg-[#131313] p-10 hover:bg-[#1c1b1b] cursor-default reveal reveal-delay-${item.delay}`}>
                 <div className="flex items-start justify-between mb-6">
@@ -872,9 +871,8 @@ export default function TokenizationArticle() {
             <div className="reveal">
               <div className="quote-line" />
               <blockquote className="font-serif italic text-4xl md:text-6xl text-white leading-tight mb-12" style={{ fontFamily: "'Newsreader',serif" }}>
-                "Tokenization is not about replacing the global financial system. It is about <span className="text-[#f2dfd2]">rebuilding it</span> with superior, programmable infrastructure."
+                Tokenization keeps the financial system we have and <span className="text-[#f2dfd2]">rebuilds it</span> on programmable infrastructure.
               </blockquote>
-              <cite className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400">: The Tokenization Research Consensus, 2025</cite>
             </div>
           </div>
         </section>
@@ -889,19 +887,21 @@ export default function TokenizationArticle() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
             {/* Friction Points */}
             <div className="reveal reveal-left">
-              <h3 className="font-serif italic text-2xl text-white mb-10 pb-6 border-b border-zinc-800" style={{ fontFamily: "'Newsreader',serif" }}>Friction Remaining in the System</h3>
+              <h3 className="font-serif italic text-2xl text-white mb-10 pb-6 border-b border-zinc-800" style={{ fontFamily: "'Newsreader',serif" }}>What's Still in the Way</h3>
+              <p className="font-sans text-[11px] tracking-[0.15em] uppercase text-zinc-500 mb-10">Percentages: share of 300 financial institutions naming each risk in Broadridge's 2025 Tokenization Survey</p>
               {[
-                { label: 'Regulatory Uncertainty', pct: '73%', width: '73%', text: 'Cited as the top barrier by financial institutions. A tokenized bond compliant in Singapore may be illegal to sell in Germany. Absent global harmonization, arbitrage opportunity and systemic risk grow simultaneously.' },
-                { label: 'Legacy System Integration', pct: '54%', width: '54%', text: 'The severe technical challenge of linking analog back-office systems to decentralized ledgers. Decades of siloed infrastructure don\'t upgrade overnight and the cost of the bridge is significant.' },
-                { label: 'Smart Contract Vulnerabilities', pct: '49%', width: '49%', text: 'Cybersecurity risks inherent in programmable code. A single exploit in a contract managing $200M in tokenized real estate is not an abstraction it is a systemic failure with physical-world consequences.' },
-                { label: 'Market Adoption Inertia', pct: '44%', width: '44%', text: 'Projects trapped in perpetual pilot phases. Many tokens see daily trade volumes below 5% of issued supply the Cold Start Liquidity Paradox: issuers won\'t tokenize without buyers; buyers won\'t come without volume.' },
+                { label: 'Regulatory Uncertainty', pct: '73%', width: '73%', text: 'Unclear or insufficient regulation is the barrier institutions name most often. A tokenized bond that is legal in Singapore may be illegal to sell in Germany, and until countries line up their rules, room for regulatory arbitrage and systemic risk both keep growing.' },
+                { label: 'Technology & Cybersecurity Risk', pct: '54%', width: '54%', text: 'Code has bugs, and bugs get exploited. If a contract managing $200M of tokenized real estate is hacked, the losses land on people who own pieces of real buildings.' },
+                { label: 'Legacy System Integration', text: "Connecting decades-old back-office systems to blockchain ledgers is hard technical work. It won't happen overnight, and building the bridge costs a lot." },
+                { label: 'Thin Secondary Trading', text: "Many projects never get past the pilot stage. In RWA.xyz data, 56% of tokenized asset value saw no transfers at all in a given week. It's a cold-start problem: issuers won't tokenize without buyers, and buyers won't show up without trading volume." },
               ].map((item, i) => (
                 <div key={i} className={i < 3 ? 'mb-10' : ''}>
-                  <div className="mb-3">
+                  <div className="mb-3 flex items-center justify-between">
                     <h4 className="font-sans text-sm font-bold text-zinc-300 uppercase tracking-wider">{item.label}</h4>
+                    {item.pct && <span className="font-serif italic text-xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>{item.pct}</span>}
                   </div>
                   <div className="h-px bg-zinc-800 mb-3">
-                    <div className="friction-bar-fill" style={{ width: '0%' }} data-width={item.width} />
+                    {item.width && <div className="friction-bar-fill" style={{ width: '0%' }} data-width={item.width} />}
                   </div>
                   <p className="font-sans text-sm text-zinc-400 leading-relaxed">{item.text}</p>
                 </div>
@@ -910,13 +910,13 @@ export default function TokenizationArticle() {
 
             {/* Catalysts */}
             <div className="reveal">
-              <h3 className="font-serif italic text-2xl text-white mb-10 pb-6 border-b border-zinc-800" style={{ fontFamily: "'Newsreader',serif" }}>Catalysts Clearing the Path to Scale</h3>
+              <h3 className="font-serif italic text-2xl text-white mb-10 pb-6 border-b border-zinc-800" style={{ fontFamily: "'Newsreader',serif" }}>What's Pushing It Forward</h3>
               <div className="space-y-10">
                 {[
-                  { label: 'Legislative Clarity', text: 'The GENIUS Act (2025) and Clarity Act (2026) establish long-awaited "rules of the road" for digital assets and stablecoins removing compliance fears and unlocking the largest pools of institutional capital.' },
-                  { label: 'Cross-Network Interoperability', text: 'Swift is actively testing cross-network asset transfers with Chainlink and major banks BNY Mellon, Citi to connect fragmented blockchains. Network effects are achieved only when external catalysts force the flywheel to turn.' },
-                  { label: 'Settlement Infrastructure', text: 'ISO-20022 integration is enabling communication between traditional bank messaging and on-chain activities the universal translator that lets tokenized markets speak to the $8 trillion/day SWIFT network.' },
-                  { label: 'The $27B Savings Argument', text: 'Estimated $27 billion in annual operational savings for banks by 2030. At that scale, tokenization is no longer a strategic experiment it is a fiduciary requirement. Institutions that delay face structural cost disadvantages.' },
+                  { label: 'Legislative Clarity', text: 'The GENIUS Act (2025) gave the US clear rules for stablecoins, which removes one of the main reasons large institutions stayed out. The Clarity Act would do the same for the rest of the market, but it stalled in the Senate in September 2026.' },
+                  { label: 'Cross-Network Interoperability', text: 'Swift is testing transfers between blockchains with Chainlink and banks including BNY Mellon and Citi. Separate blockchains only add up to one market once something connects them.' },
+                  { label: 'Settlement Infrastructure', text: 'With ISO-20022, bank messaging systems and blockchains can exchange messages directly, which connects tokenized markets to the trillions of dollars in daily payments that run over SWIFT.' },
+                  { label: 'The $20B Savings Argument', text: 'A GFMA and BCG study estimates that distributed ledgers could save about $20 billion a year in global clearing and settlement costs. Savings that large are hard to treat as an experiment, and banks that wait will be stuck with higher costs than the ones that move.' },
                 ].map((item, i) => (
                   <div key={i} className="flex gap-6">
                     <span className="font-sans text-zinc-700 text-lg leading-none mt-1 flex-shrink-0">+</span>
@@ -938,10 +938,39 @@ export default function TokenizationArticle() {
               </div>
               <div className="lg:col-span-10">
                 <p className="font-serif italic text-2xl text-zinc-300 leading-relaxed text-center" style={{ fontFamily: "'Newsreader',serif" }}>
-                  The era of siloed, paper-heavy systems is ending. The next decade belongs to institutions that embrace a compliance-first, interoperable approach to make capital as fluid and programmable as the data that defines our modern world. This is not a speculative boom it is the mathematical result of scalable infrastructure, clear legislative frameworks, and incumbent capital finally aligning. The question is not <em>whether</em> it happens. The question is who builds the infrastructure that decides <em>who benefits</em>.
+                  Paper-heavy, siloed systems are on their way out. I think the institutions that do well over the next decade will be the ones that build compliance in from the start and make their assets work across networks, so capital moves about as easily as data. The infrastructure scales now, stablecoins finally have US rules, and the big incumbents are putting real money in. The rest of the legislation is still stuck, but I don't have much doubt that this happens. What I'm less sure of is who builds the infrastructure, because whoever does gets to decide <em>who benefits</em>.
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* ── SOURCES ── */}
+        <section id="sources" className="py-24 px-8 md:px-24 lg:px-48 bg-[#0e0e0e] border-t border-zinc-800">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div className="lg:col-span-2">
+              <span className="font-sans text-[11px] tracking-[0.3em] uppercase text-zinc-500">Sources</span>
+            </div>
+            <ol className="lg:col-span-10 list-decimal pl-5 space-y-3 font-sans text-sm text-zinc-400 leading-relaxed [&_a]:text-zinc-300 [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-white">
+              {[
+                { pre: 'McKinsey, ', link: 'From ripples to waves: The transformational power of tokenizing assets', href: 'https://www.mckinsey.com/industries/financial-services/our-insights/from-ripples-to-waves-the-transformational-power-of-tokenizing-assets', post: ' (June 2024). Base case of about $2 trillion by 2030.' },
+                { pre: 'BCG and ADDX, 2022 tokenization report, via ', link: 'Fintech News Singapore', href: 'https://fintechnews.sg/63994/blockchain/bcg-and-addx-project-asset-tokenisation-to-grow-into-us16-trillion-opportunity-by-2030/', post: '. $16 trillion by 2030, about 10% of global GDP.' },
+                { pre: 'RWA.xyz, ', link: 'tokenized asset dashboard', href: 'https://app.rwa.xyz', post: '. About $39 billion on-chain, not counting stablecoins (November 2026), and the 2025 split by asset class.' },
+                { pre: 'Mid-2025 RWA figures, ', link: 'Cointelegraph', href: 'https://cointelegraph.com/news/private-credit-powers-24b-tokenization-market-ethereum-still-dominates-redstone', post: '.' },
+                { pre: 'Stobox, ', link: 'The RWA liquidity gap', href: 'https://www.stobox.io/blog/tokenization-intelligence-rwa-liquidity-gap', post: ', using RWA.xyz data. 56% of tokenized value with no weekly transfers.' },
+                { pre: 'Broadridge, ', link: 'Next-gen markets: The rise and reality of tokenization', href: 'https://www.broadridge.com/_assets/pdf/next-gen-markets-the-rise-and-reality-of-tokenization.pdf', post: ' (2025 Tokenization Survey, 300 institutions). Regulatory uncertainty 73%, technology and cybersecurity risk 54%.' },
+                { pre: 'Larry Fink at the 2022 DealBook Summit, via ', link: 'Kitco', href: 'https://www.kitco.com/news/article/2022-12-01/tokenization-securities-will-be-next-evolution-markets-blackrock-ceo', post: '.' },
+                { pre: 'BlackRock BUIDL passes $500 million, ', link: 'CoinDesk', href: 'https://dev.coindesk.com/it/business/2024/07/08/blackrocks-buidl-fund-tops-500m-as-tokenized-treasury-market-soars', post: ' (July 2024).' },
+                { pre: 'Tokenized Treasuries grew 641% in 2023, CoinGecko via ', link: 'Cointelegraph', href: 'https://cointelegraph.com/news/tokenized-us-treasuries-845-market-cap-2023-coingecko', post: '.' },
+                { pre: 'Securitize SPAC deal at a $1.25 billion valuation, ', link: 'The Block', href: 'https://www.theblock.co/post/376583/tokenization-giant-securitize-to-go-public-via-1-25-billion-spac-deal', post: ' (October 2025).' },
+                { pre: 'Tokenized gold passes $6 billion, ', link: 'Tokenizer.estate', href: 'https://news.tokenizer.estate/tokenized-gold-hits-6b-as-us-iran-crisis-fuels-on-chain-safe-haven-demand', post: ' (2026).' },
+                { pre: 'Savills, ', link: 'The total value of global real estate', href: 'https://impacts.savills.com/market-trends/the-total-value-of-global-real-estate.html', post: '. $393.3 trillion at the end of 2024.' },
+                { pre: 'GFMA and BCG on $20 billion in annual clearing and settlement savings, via ', link: 'Blockworks', href: 'https://blockworks.co/news/tokenized-distributed-ledgers-gfma', post: '.' },
+                { pre: 'Clarity Act status after the September 2026 Senate vote, ', link: 'Triple-A', href: 'https://www.triple-a.io/blog/clarity-act', post: '.' },
+              ].map((s, i) => (
+                <li key={i}>{s.pre}<a href={s.href} target="_blank" rel="noopener noreferrer">{s.link}</a>{s.post}</li>
+              ))}
+            </ol>
           </div>
         </section>
 
