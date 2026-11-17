@@ -1,32 +1,59 @@
 // @ts-nocheck -- imported code written for looser TypeScript settings
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import BackToTop from '@/components/BackToTop';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { TokenizationAnimation } from '@/components/article/TokenizationAnimation';
+import { MintingSequence } from '@/components/article/MintingSequence';
 import './tokenization.css';
 
+const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
+function prefersStill() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    || new URLSearchParams(window.location.search).has('static');
+}
+
 export default function TokenizationArticle() {
+  const rootRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  // Decide on motion before first paint. Anything already on screen stays
+  // exactly where the server put it; only offscreen blocks wait to settle in.
+  useIsoLayoutEffect(() => {
+    const root = rootRef.current;
+    if (!root || prefersStill()) return;
+    root.querySelectorAll('.reveal, .reveal-left').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
+    });
+    root.classList.add('tok-motion');
+  }, []);
+
   useEffect(() => {
-    // 1. Reading Progress Bar
+    const root = rootRef.current;
+    const still = prefersStill();
+
+    // 1. Reading progress, drawn with transform
     const progressBar = document.getElementById('progress-bar');
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (progressBar) progressBar.style.width = docHeight > 0 ? (scrollTop / docHeight * 100) + '%' : '0%';
+      const p = docHeight > 0 ? window.scrollY / docHeight : 0;
+      if (progressBar) progressBar.style.transform = `scaleX(${p})`;
     };
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // 2. Scroll Reveal
+    // 2. Scroll reveal
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal, .reveal-left').forEach(el => revealObserver.observe(el));
+    root?.querySelectorAll('.reveal:not(.visible), .reveal-left:not(.visible)').forEach(el => revealObserver.observe(el));
 
-    // 3. Active Side Nav
+    // 3. Active side nav
     const sections = document.querySelectorAll('section[id]');
     const navDots = document.querySelectorAll('.nav-dot');
     const sectionObserver = new IntersectionObserver((entries) => {
@@ -44,42 +71,64 @@ export default function TokenizationArticle() {
     }, { threshold: 0.4 });
     sections.forEach(s => sectionObserver.observe(s));
 
-    // 4. Animated Stat Counters
+    // 4. Figures that grow with their data: counters and bars run when their
+    //    group comes into view. The server-rendered text already holds the
+    //    final value, so nothing reads as zero if this never runs.
+    const counterFrames = new Set<number>();
     function animateCounter(el: Element) {
-      const target   = parseInt(el.getAttribute('data-target') || '0');
-      const prefix   = el.getAttribute('data-prefix') || '';
-      const suffix   = el.getAttribute('data-suffix') || '';
-      const duration = 1800;
-      const start    = performance.now();
-      function update(now: number) {
-        const elapsed  = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased    = 1 - Math.pow(1 - progress, 3);
-        el.textContent = prefix + Math.floor(eased * target) + suffix;
-        if (progress < 1) requestAnimationFrame(update);
-        else el.textContent = prefix + target + suffix;
-      }
-      requestAnimationFrame(update);
+      const target = parseFloat(el.getAttribute('data-target') || '0');
+      const prefix = el.getAttribute('data-prefix') || '';
+      const suffix = el.getAttribute('data-suffix') || '';
+      const final = prefix + target + suffix;
+      if (still) { el.textContent = final; return; }
+      const duration = 1400;
+      const start = performance.now();
+      const update = (now: number) => {
+        const t = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - t, 4);
+        el.textContent = t < 1 ? prefix + Math.round(eased * target) + suffix : final;
+        if (t < 1) counterFrames.add(requestAnimationFrame(update));
+      };
+      counterFrames.add(requestAnimationFrame(update));
     }
-    const statsObserver = new IntersectionObserver((entries) => {
+    root?.querySelectorAll<HTMLElement>('.friction-bar-fill[data-width]').forEach(bar => {
+      bar.style.setProperty('--share', String(parseFloat(bar.dataset.width || '0') / 100));
+    });
+    const inviewObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('[data-target]').forEach(animateCounter);
-          statsObserver.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in-view');
+        entry.target.querySelectorAll('[data-target]').forEach(animateCounter);
+        inviewObserver.unobserve(entry.target);
       });
-    }, { threshold: 0.5 });
-    const statsSection = document.getElementById('stats-section');
-    if (statsSection) statsObserver.observe(statsSection);
+    }, { threshold: 0.35 });
+    root?.querySelectorAll('[data-inview]').forEach(el => inviewObserver.observe(el));
 
-    // 5. Timeline Drag + Wheel Scroll
+    // Loops run only while on screen
+    const loopObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => entry.target.classList.toggle('in-view', entry.isIntersecting));
+    }, { threshold: 0.2 });
+    root?.querySelectorAll('[data-loop]').forEach(el => loopObserver.observe(el));
+
+    // 5. Timeline: drag, wheel, and a hairline showing where you are in it
     const track = document.querySelector('.timeline-track') as HTMLElement | null;
+    const trackProgress = document.querySelector('.timeline-progress') as HTMLElement | null;
     let isDragging = false, startX = 0, scrollStart = 0;
-    let mouseMoveHandler: (e: MouseEvent) => void;
-    let mouseUpHandler: () => void;
+    let mouseMoveHandler: ((e: MouseEvent) => void) | undefined;
+    let mouseUpHandler: (() => void) | undefined;
+    let trackScrollHandler: (() => void) | undefined;
     if (track) {
+      trackScrollHandler = () => {
+        const max = track.scrollWidth - track.clientWidth;
+        const p = max > 0 ? track.scrollLeft / max : 1;
+        trackProgress?.style.setProperty('--p', String(0.12 + p * 0.88));
+      };
+      trackScrollHandler();
+      track.addEventListener('scroll', trackScrollHandler, { passive: true });
       const wheelHandler = (e: WheelEvent) => {
-        if (e.deltaY !== 0) { e.preventDefault(); track.scrollLeft += e.deltaY; }
+        const max = track.scrollWidth - track.clientWidth;
+        const atEnd = (e.deltaY > 0 && track.scrollLeft >= max - 1) || (e.deltaY < 0 && track.scrollLeft <= 0);
+        if (e.deltaY !== 0 && !atEnd) { e.preventDefault(); track.scrollLeft += e.deltaY; }
       };
       track.addEventListener('wheel', wheelHandler, { passive: false });
       const mouseDownHandler = (e: MouseEvent) => {
@@ -101,107 +150,119 @@ export default function TokenizationArticle() {
       track.style.cursor = 'grab';
     }
 
-    // 6. Friction Bars
-    const frictionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.friction-bar-fill').forEach(bar => {
-            const w = bar.getAttribute('data-width');
-            requestAnimationFrame(() => {
-              setTimeout(() => { (bar as HTMLElement).style.width = w || '0%'; }, 200);
-            });
-          });
-          frictionObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    document.querySelectorAll('#road-ahead').forEach(s => frictionObserver.observe(s));
-
-    // 7. Canvas Network Animation
+    // 6. Ledger chain: pending transactions drift in, gather into a block,
+    //    the block is sealed and linked, and the chain moves on.
     const canvas = canvasRef.current;
-    let animFrame: number;
+    let animFrame = 0;
+    let running = false;
+    let canvasObserver: IntersectionObserver | undefined;
+    let handleCanvasResize: (() => void) | undefined;
     if (canvas) {
       const ctx = canvas.getContext('2d')!;
-      let W: number, H: number;
-      interface Node { x: number; y: number; vx: number; vy: number; r: number; pulse: number; highlight: boolean; }
-      let nodes: Node[];
-      const NODE_COUNT = 55;
-      const MAX_DIST   = 160;
-      const NODE_SPEED = 0.3;
+      let W = 0, H = 0;
+      const BW = 58;        // block size
+      const S = 104;        // block pitch
+      const PERIOD = 4200;  // one block every 4.2s
+      const TX = 4;         // transactions per block
+      const rand = (n: number) => { const x = Math.sin(n * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+      const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+      const arrival = (n: number) => 0.38 + n * 0.13;
 
-      function resizeCanvas() {
-        W = canvas.offsetWidth;
-        H = canvas.offsetHeight;
-        canvas.width  = W;
-        canvas.height = H;
-      }
-      function createNodes() {
-        nodes = Array.from({ length: NODE_COUNT }, () => ({
-          x: Math.random() * W,
-          y: Math.random() * H,
-          vx: (Math.random() - 0.5) * NODE_SPEED,
-          vy: (Math.random() - 0.5) * NODE_SPEED,
-          r:  1 + Math.random() * 2,
-          pulse:     Math.random() * Math.PI * 2,
-          highlight: Math.random() < 0.12,
-        }));
-      }
-      function drawNetwork() {
+      const resize = () => {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = canvas.offsetWidth; H = canvas.offsetHeight;
+        canvas.width = W * dpr; canvas.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+
+      const txBar = (j: number, n: number) => 10 + rand(j * 7 + n) * (BW - 22);
+
+      const drawBlock = (j: number, x: number, cy: number, alpha: number, fresh: number, bars: number) => {
+        const half = BW / 2;
+        ctx.fillStyle = `rgba(242,223,210,${(0.025 + fresh * 0.1) * alpha})`;
+        ctx.fillRect(x - half, cy - half, BW, BW);
+        ctx.strokeStyle = `rgba(242,223,210,${(0.3 + fresh * 0.6) * alpha})`;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(x - half + 0.5, cy - half + 0.5, BW - 1, BW - 1);
+        for (let n = 0; n < bars; n++) {
+          ctx.fillStyle = `rgba(242,223,210,${0.28 * alpha})`;
+          ctx.fillRect(x - half + 10, cy - half + 13 + n * 10, txBar(j, n), 2);
+        }
+        ctx.font = '10px Manrope, sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillStyle = `rgba(212,212,216,${0.45 * alpha})`;
+        ctx.fillText(`#${j}`, x - half, cy - half - 10);
+      };
+
+      const draw = (k: number, f: number) => {
         ctx.clearRect(0, 0, W, H);
-        ctx.fillStyle = '#0e0e0e';
-        ctx.fillRect(0, 0, W, H);
-        for (let i = 0; i < nodes.length; i++) {
-          for (let j = i + 1; j < nodes.length; j++) {
-            const dx   = nodes[i].x - nodes[j].x;
-            const dy   = nodes[i].y - nodes[j].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < MAX_DIST) {
-              const alpha = (1 - dist / MAX_DIST) * 0.25;
-              ctx.strokeStyle = `rgba(242,223,210,${alpha})`;
-              ctx.lineWidth = 0.5;
-              ctx.beginPath();
-              ctx.moveTo(nodes[i].x, nodes[i].y);
-              ctx.lineTo(nodes[j].x, nodes[j].y);
-              ctx.stroke();
-            }
+        const headX = Math.round(W * 0.7);
+        const cy = Math.round(H - 112);
+        const half = BW / 2;
+        const shift = easeOut(Math.min(f / 0.3, 1));
+        const fadeOf = (x: number) => Math.max(0, Math.min(1, (x + BW) / (W * 0.35)));
+
+        // sealed chain, newest first
+        for (let i = 0; ; i++) {
+          const j = k - i;
+          const x = headX - (i + shift) * S;
+          if (x < -BW) break;
+          const fade = fadeOf(x);
+          const fresh = i === 0 ? Math.max(0, 1 - (f * PERIOD) / 900) : 0;
+          // link back to the previous block, drawn in as the block seals
+          const lx0 = x - S + half, lx1 = x - half;
+          const grow = i === 0 ? Math.min(1, (f * PERIOD) / 500) : 1;
+          ctx.strokeStyle = `rgba(242,223,210,${0.3 * fadeOf(lx0)})`;
+          ctx.beginPath();
+          ctx.moveTo(lx1, cy);
+          ctx.lineTo(lx1 - (lx1 - lx0) * grow, cy);
+          ctx.stroke();
+          drawBlock(j, x, cy, fade, fresh, TX);
+        }
+
+        // the next block, gathering transactions
+        if (f > 0.3) {
+          const g = (f - 0.3) / 0.7;
+          const landed = Array.from({ length: TX }, (_, n) => f >= arrival(n)).filter(Boolean).length;
+          ctx.setLineDash([3, 4]);
+          ctx.strokeStyle = `rgba(242,223,210,${0.12 + g * 0.3})`;
+          ctx.strokeRect(headX - half + 0.5, cy - half + 0.5, BW - 1, BW - 1);
+          ctx.setLineDash([]);
+          for (let n = 0; n < landed; n++) {
+            ctx.fillStyle = 'rgba(242,223,210,0.3)';
+            ctx.fillRect(headX - half + 10, cy - half + 13 + n * 10, txBar(k + 1, n), 2);
+          }
+          for (let n = 0; n < TX; n++) {
+            const a = arrival(n);
+            const t = (f - (a - 0.22)) / 0.22;
+            if (t <= 0 || t >= 1) continue;
+            const e = easeOut(t);
+            const sx = W + 12, sy = cy + (rand((k + 1) * 13 + n) - 0.5) * H * 0.55;
+            const tx = headX - half + 10, ty = cy - half + 14 + n * 10;
+            ctx.fillStyle = `rgba(242,223,210,${0.75 * Math.min(1, t * 4)})`;
+            ctx.beginPath();
+            ctx.arc(sx + (tx - sx) * e, sy + (ty - sy) * e, 2, 0, Math.PI * 2);
+            ctx.fill();
           }
         }
-        nodes.forEach(node => {
-          node.pulse += 0.025;
-          const pa = 0.5 + Math.sin(node.pulse) * 0.3;
-          if (node.highlight) {
-            const grad = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, node.r * 6);
-            grad.addColorStop(0, `rgba(242,223,210,${pa * 0.4})`);
-            grad.addColorStop(1, 'rgba(242,223,210,0)');
-            ctx.fillStyle = grad;
-            ctx.beginPath();
-            ctx.arc(node.x, node.y, node.r * 6, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.fillStyle = `rgba(242,223,210,${pa})`;
-          } else {
-            ctx.fillStyle = `rgba(180,170,160,${pa * 0.5})`;
-          }
-          ctx.beginPath();
-          ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-          ctx.fill();
-          node.x += node.vx; node.y += node.vy;
-          if (node.x < -20) node.x = W + 20;
-          if (node.x > W + 20) node.x = -20;
-          if (node.y < -20) node.y = H + 20;
-          if (node.y > H + 20) node.y = -20;
-        });
-      }
-      function animate() { drawNetwork(); animFrame = requestAnimationFrame(animate); }
+      };
 
-      resizeCanvas();
-      createNodes();
-      animate();
+      const t0 = performance.now() - PERIOD * 0.55;
+      const BASE = 812_400; // block heights for the labels
+      const frame = (now: number) => {
+        const t = now - t0;
+        draw(BASE + Math.floor(t / PERIOD), (t % PERIOD) / PERIOD);
+        if (running) animFrame = requestAnimationFrame(frame);
+      };
+      const start = () => { if (!running && !still) { running = true; animFrame = requestAnimationFrame(frame); } };
+      const stop = () => { running = false; cancelAnimationFrame(animFrame); };
 
-      const canvasObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) cancelAnimationFrame(animFrame);
-          else { resizeCanvas(); animate(); }
-        });
+      resize();
+      draw(BASE, 0.62);
+      handleCanvasResize = () => { resize(); if (!running) draw(BASE, 0.62); };
+      window.addEventListener('resize', handleCanvasResize, { passive: true });
+      canvasObserver = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) start(); else stop();
       });
       canvasObserver.observe(canvas);
     }
@@ -210,13 +271,16 @@ export default function TokenizationArticle() {
       window.removeEventListener('scroll', handleScroll);
       revealObserver.disconnect();
       sectionObserver.disconnect();
-      statsObserver.disconnect();
-      frictionObserver.disconnect();
-      if (animFrame) cancelAnimationFrame(animFrame);
-      if (track && mouseMoveHandler && mouseUpHandler) {
-        document.removeEventListener('mousemove', mouseMoveHandler);
-        document.removeEventListener('mouseup', mouseUpHandler);
-      }
+      inviewObserver.disconnect();
+      loopObserver.disconnect();
+      counterFrames.forEach(id => cancelAnimationFrame(id));
+      canvasObserver?.disconnect();
+      running = false;
+      cancelAnimationFrame(animFrame);
+      if (handleCanvasResize) window.removeEventListener('resize', handleCanvasResize);
+      if (track && trackScrollHandler) track.removeEventListener('scroll', trackScrollHandler);
+      if (mouseMoveHandler) document.removeEventListener('mousemove', mouseMoveHandler);
+      if (mouseUpHandler) document.removeEventListener('mouseup', mouseUpHandler);
     };
   }, []);
 
@@ -228,7 +292,7 @@ export default function TokenizationArticle() {
         image="/og-tokenization.png"
         type="article"
       />
-    <div className="bg-[#131313] text-[#e5e2e1] font-sans overflow-x-hidden" style={{ fontFamily: "'Manrope',sans-serif" }}>
+    <div ref={rootRef} className="tok-root bg-[#131313] text-[#e5e2e1] font-sans overflow-x-hidden" style={{ fontFamily: "'Manrope',sans-serif" }}>
 
       {/* Reading Progress Bar */}
       <div id="progress-bar" />
@@ -310,7 +374,7 @@ export default function TokenizationArticle() {
             <span className="font-serif italic text-white/60 leading-tight" style={{ fontFamily: "'Newsreader',serif", fontSize: 'clamp(3rem, 8vw, 7rem)' }}>What Is<br />Tokenization</span>
           </div>
           <div className="absolute bottom-12 left-1/2 -translate-x-1/2 text-center pointer-events-none">
-            <span className="font-sans text-[11px] tracking-[0.35em] uppercase text-zinc-400">Distributed Ledger Network Visualization</span>
+            <span className="font-sans text-[11px] tracking-[0.35em] uppercase text-zinc-400">Transactions gather into blocks, and each block links to the last</span>
           </div>
         </section>
 
@@ -346,7 +410,7 @@ export default function TokenizationArticle() {
             </div>
           </div>
 
-          <TokenizationAnimation />
+          <MintingSequence />
 
           {/* 3-Panel Flow Diagram */}
           <div className="mt-20 reveal overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0">
@@ -452,20 +516,20 @@ export default function TokenizationArticle() {
         </section>
 
         {/* ── STATS STRIP ── */}
-        <section className="border-t border-b border-zinc-800 bg-[#0e0e0e] py-0" id="stats-section">
+        <section className="border-t border-b border-zinc-800 bg-[#0e0e0e] py-0" id="stats-section" data-inview>
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-zinc-800">
             <div className="flex flex-col items-center justify-center py-16 px-12 text-center reveal">
-              <span className="stat-number text-6xl text-white mb-3" data-target="16" data-prefix="$" data-suffix="T">$0T</span>
+              <span className="stat-number text-6xl text-white mb-3" data-target="16" data-prefix="$" data-suffix="T">$16T</span>
               <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-zinc-400 leading-loose">Upper-end tokenized market<br />projection by 2030</span>
               <span className="font-sans text-[11px] text-zinc-700 mt-3 uppercase tracking-widest">Source: BCG / ADDX, 2022</span>
             </div>
             <div className="flex flex-col items-center justify-center py-16 px-12 text-center reveal reveal-delay-2">
-              <span className="stat-number text-6xl text-white mb-3" data-target="39" data-prefix="$" data-suffix="B">$0B</span>
+              <span className="stat-number text-6xl text-white mb-3" data-target="39" data-prefix="$" data-suffix="B">$39B</span>
               <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-zinc-400 leading-loose">Tokenized real-world assets on-chain<br />today, not counting stablecoins</span>
               <span className="font-sans text-[11px] text-zinc-700 mt-3 uppercase tracking-widest">Source: RWA.xyz, Nov 2026</span>
             </div>
             <div className="flex flex-col items-center justify-center py-16 px-12 text-center reveal reveal-delay-3">
-              <span className="stat-number text-6xl text-white mb-3" data-target="61" data-suffix="%">0%</span>
+              <span className="stat-number text-6xl text-white mb-3" data-target="61" data-suffix="%">61%</span>
               <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-zinc-400 leading-loose">Of tokenized asset volume<br />is Private Credit in 2025</span>
               <span className="font-sans text-[11px] text-zinc-700 mt-3 uppercase tracking-widest">Source: RWA.xyz, 2025</span>
             </div>
@@ -547,25 +611,25 @@ export default function TokenizationArticle() {
               </div>
               <div className="lg:col-span-6 flex flex-col">
                 <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-400 mb-3">Source: RWA.xyz, tokenized asset volume by class, 2025</p>
-                <div style={{ display: 'grid', gridTemplateColumns: '61fr 39fr', gap: '2px', flex: 1, minHeight: '220px' }}>
-                  <div className="treemap-block flex flex-col justify-end p-6" style={{ background: '#1a2535' }}>
+                <div data-inview style={{ display: 'grid', gridTemplateColumns: '61fr 39fr', gap: '2px', flex: 1, minHeight: '220px' }}>
+                  <div className="treemap-block flex flex-col justify-end p-6" data-order="1" style={{ background: '#1a2535' }}>
                     <span className="font-serif italic text-5xl text-white/80 mb-2 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>61%</span>
                     <h3 className="font-sans font-bold text-[11px] tracking-wider uppercase text-zinc-300 mb-1">Private Credit</h3>
                     <p className="font-sans text-sm text-zinc-400 leading-snug">The largest category. Smart contracts pay out the yield and adjust collateral automatically.</p>
                   </div>
                   <div style={{ display: 'grid', gridTemplateRows: '30fr 9fr', gap: '2px' }}>
-                    <div className="treemap-block flex flex-col justify-end p-4" style={{ background: '#1e2d1e' }}>
+                    <div className="treemap-block flex flex-col justify-end p-4" data-order="2" style={{ background: '#1e2d1e' }}>
                       <span className="font-serif italic text-3xl text-white/80 mb-1 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>30%</span>
                       <h3 className="font-sans font-bold text-[11px] tracking-wider uppercase text-zinc-300 mb-1">Treasuries</h3>
                       <p className="font-sans text-sm text-zinc-400 leading-snug">Yield-bearing government debt, the closest thing on-chain markets have to cash.</p>
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: '7fr 2fr', gap: '2px' }}>
-                      <div className="treemap-block flex flex-col justify-end p-3" style={{ background: '#2a1f14' }}>
+                      <div className="treemap-block flex flex-col justify-end p-3" data-order="3" style={{ background: '#2a1f14' }}>
                         <span className="font-serif italic text-lg text-white/80 mb-1 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>7%</span>
                         <h3 className="font-sans font-bold text-[11px] tracking-wider uppercase text-zinc-400 mb-1">Commodities</h3>
                         <p className="font-sans text-[11px] text-zinc-400 leading-snug">Mostly tokenized gold.</p>
                       </div>
-                      <div className="treemap-block flex flex-col justify-end p-3" style={{ background: '#242424' }}>
+                      <div className="treemap-block flex flex-col justify-end p-3" data-order="4" style={{ background: '#242424' }}>
                         <span className="font-serif italic text-base text-white/60 mb-1 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>2%</span>
                         <h3 className="font-sans font-bold text-[10px] tracking-wider uppercase text-zinc-400 mb-1">Funds</h3>
                         <p className="font-sans text-[10px] text-zinc-400 leading-snug">Institutional</p>
@@ -629,6 +693,29 @@ export default function TokenizationArticle() {
                 <div className="mt-6 border-l-2 border-[#f2dfd2] pl-4">
                   <span className="font-sans text-[11px] tracking-widest uppercase text-zinc-400 block mb-1">Atomic Settlement</span>
                   <p className="font-sans text-sm text-zinc-400">The asset and the payment change hands at the same moment. If the payment isn't there, the asset doesn't move, so one side can't pay and then never receive anything.</p>
+                  <svg
+                    className="atomic-swap mt-5 block w-full max-w-[320px] h-auto overflow-visible"
+                    viewBox="0 0 320 84"
+                    data-loop
+                    role="img"
+                    aria-label="The asset moves from seller to buyer while the payment moves from buyer to seller, and both land in the same instant."
+                    style={{ ['--travel' as string]: '188px' }}
+                  >
+                    <text x="0" y="10" fill="#71717a" fontSize="9" letterSpacing="1.5" fontFamily="Manrope, sans-serif">SELLER</text>
+                    <text x="320" y="10" fill="#71717a" fontSize="9" letterSpacing="1.5" fontFamily="Manrope, sans-serif" textAnchor="end">BUYER</text>
+                    <line x1="0" y1="34" x2="320" y2="34" stroke="#27272a" />
+                    <line x1="0" y1="66" x2="320" y2="66" stroke="#27272a" />
+                    <line x1="160" y1="20" x2="160" y2="80" stroke="rgba(242,223,210,0.35)" strokeDasharray="2 3" />
+                    <circle className="swap-ring" cx="160" cy="50" r="7" fill="none" stroke="#f2dfd2" />
+                    <g className="swap-asset">
+                      <rect x="6" y="24" width="120" height="20" fill="#f2dfd2" />
+                      <text x="66" y="37.5" fill="#131313" fontSize="9" letterSpacing="1.5" fontFamily="Manrope, sans-serif" textAnchor="middle" fontWeight="700">ASSET</text>
+                    </g>
+                    <g className="swap-pay">
+                      <rect x="194" y="56" width="120" height="20" fill="none" stroke="#f2dfd2" />
+                      <text x="254" y="69.5" fill="#f2dfd2" fontSize="9" letterSpacing="1.5" fontFamily="Manrope, sans-serif" textAnchor="middle" fontWeight="700">PAYMENT</text>
+                    </g>
+                  </svg>
                 </div>
               </div>
               <div className="lg:col-span-6">
@@ -794,6 +881,8 @@ export default function TokenizationArticle() {
             <h2 className="font-serif italic text-5xl text-white reveal" style={{ fontFamily: "'Newsreader',serif" }}>The Tokenization<br />Timeline</h2>
           </div>
           <div className="pl-8 md:pl-24 lg:pl-48 reveal">
+            <div className="relative">
+            <div className="timeline-progress" aria-hidden="true"><span /></div>
             <div className="timeline-track pb-8">
               {[
                 { year: '2015', title: 'Ethereum Launches', text: 'Smart contracts make it possible, at least in theory, to tokenize real-world assets.' },
@@ -812,6 +901,7 @@ export default function TokenizationArticle() {
                 </div>
               ))}
               <div className="min-w-32 md:min-w-48" />
+            </div>
             </div>
             <div className="flex items-center gap-3 mt-4 reveal">
               <span className="material-symbols-outlined text-zinc-400 text-base">arrow_forward</span>
@@ -886,7 +976,7 @@ export default function TokenizationArticle() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
             {/* Friction Points */}
-            <div className="reveal reveal-left">
+            <div className="reveal" data-inview>
               <h3 className="font-serif italic text-2xl text-white mb-10 pb-6 border-b border-zinc-800" style={{ fontFamily: "'Newsreader',serif" }}>What's Still in the Way</h3>
               <p className="font-sans text-[11px] tracking-[0.15em] uppercase text-zinc-500 mb-10">Percentages: share of 300 financial institutions naming each risk in Broadridge's 2025 Tokenization Survey</p>
               {[
@@ -895,13 +985,13 @@ export default function TokenizationArticle() {
                 { label: 'Legacy System Integration', text: "Connecting decades-old back-office systems to blockchain ledgers is hard technical work. It won't happen overnight, and building the bridge costs a lot." },
                 { label: 'Thin Secondary Trading', text: "Many projects never get past the pilot stage. In RWA.xyz data, 56% of tokenized asset value saw no transfers at all in a given week. It's a cold-start problem: issuers won't tokenize without buyers, and buyers won't show up without trading volume." },
               ].map((item, i) => (
-                <div key={i} className={i < 3 ? 'mb-10' : ''}>
+                <div key={i} className={`${item.width ? 'friction-row' : ''} ${i < 3 ? 'mb-10' : ''}`}>
                   <div className="mb-3 flex items-center justify-between">
                     <h4 className="font-sans text-sm font-bold text-zinc-300 uppercase tracking-wider">{item.label}</h4>
-                    {item.pct && <span className="font-serif italic text-xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>{item.pct}</span>}
+                    {item.pct && <span className="font-serif italic text-xl text-white tabular-nums" style={{ fontFamily: "'Newsreader',serif" }} data-target={parseInt(item.pct)} data-suffix="%">{item.pct}</span>}
                   </div>
                   <div className="h-px bg-zinc-800 mb-3">
-                    {item.width && <div className="friction-bar-fill" style={{ width: '0%' }} data-width={item.width} />}
+                    {item.width && <div className="friction-bar-fill" data-width={item.width} />}
                   </div>
                   <p className="font-sans text-sm text-zinc-400 leading-relaxed">{item.text}</p>
                 </div>
