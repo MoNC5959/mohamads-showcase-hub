@@ -18,19 +18,6 @@
  * 2. Register it in @theme inline as --color-<name>: var(--<name>)
  */
 
-/* Surfaces the Few Seconds article is written against. */
-@theme {
-  --color-on-surface: #e0e3e2;
-  --color-on-surface-variant: #bec9c7;
-  --color-outline-variant: #3d4947;
-  --color-surface-dim: #0d1312;
-  --color-surface-container-lowest: #0b0f0f;
-  --color-surface-container-low: #111716;
-  --color-surface-container: #161c1b;
-  --color-surface-container-high: #1c2322;
-  --color-surface-container-highest: #222a29;
-}
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -159,35 +146,35 @@
 /* ---- Imported portfolio styles ---- */
 /* The hub's three colors. Hub pages map them to roles in .sheet below. */
 :root {
-  --toffee: #401f22;
-  --oat: #faf2d1;
-  --strawberry: #eaa6a1;
+  --toffee: oklch(0.286 0.051 15.1);
+  --oat: oklch(0.959 0.044 95.9);
+  --strawberry: oklch(0.789 0.081 23.8);
 }
 
 /* The original cool blueprint scheme, which the FinTech article keeps. */
 :root,
 .sheet.sheet--original {
-  --reverse-bg: #5fd6c4;
-  --reverse-ink: #0e151b;
-  --sheet-support: color-mix(in srgb, var(--color-text) 80%, transparent);
-  --color-bg: #0e151b;
-  --color-text: #e7f0f4;
-  --color-divider: #253441;
-  --color-accent-300: #5fd6c4;
-  --color-accent-400: #8fe8da;
+  --reverse-bg: oklch(0.803 0.111 182.0);
+  --reverse-ink: oklch(0.192 0.016 244.7);
+  --sheet-support: color-mix(in oklch, var(--color-text) 80%, transparent);
+  --color-bg: oklch(0.192 0.016 244.7);
+  --color-text: oklch(0.950 0.011 226.0);
+  --color-divider: color-mix(in oklch, var(--color-text) 16%, transparent);
+  --color-accent-300: oklch(0.803 0.111 182.0);
+  --color-accent-400: oklch(0.871 0.088 183.1);
   /* Ramp runs light -> dark for fills (100-500), then flips light again for
      line/outline detail (600-800) so strokes stay legible against the dark
      background. --color-neutral-900 is the one fixed point: pupils, always
      near-black regardless of theme since they sit on the light iris. */
-  --color-neutral-100: #f4f8fa;
-  --color-neutral-200: #d8e2e7;
-  --color-neutral-300: #b7c5cd;
-  --color-neutral-400: #93a4ae;
-  --color-neutral-500: #6d7f8a;
-  --color-neutral-600: #c7d4da;
-  --color-neutral-700: #dde7ea;
-  --color-neutral-800: #eef4f6;
-  --color-neutral-900: #0c1114;
+  --color-neutral-100: oklch(0.977 0.005 228.8);
+  --color-neutral-200: oklch(0.907 0.013 228.9);
+  --color-neutral-300: oklch(0.815 0.019 232.6);
+  --color-neutral-400: oklch(0.709 0.024 233.5);
+  --color-neutral-500: oklch(0.586 0.027 234.8);
+  --color-neutral-600: oklch(0.862 0.016 227.0);
+  --color-neutral-700: oklch(0.921 0.011 217.5);
+  --color-neutral-800: oklch(0.963 0.007 219.6);
+  --color-neutral-900: oklch(0.174 0.010 234.5);
   --font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
@@ -220,11 +207,9 @@ a {
 .nav a {
   padding-block: 8px;
   text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-text) 72%, transparent);
+  font-size: 15px;
+  font-weight: 500;
+  color: color-mix(in oklch, var(--color-text) 72%, transparent);
   transition: color 160ms ease;
 }
 
@@ -242,8 +227,6 @@ a {
 .nav .nav-brand {
   margin-right: auto;
   font-family: var(--font-heading);
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
 }
 
 /* The hub's frozen top bar. */
@@ -320,33 +303,31 @@ a {
 .sheet {
   --color-bg: var(--toffee);
   --color-text: var(--oat);
-  --color-divider: color-mix(in srgb, var(--oat) 24%, var(--toffee));
+  --color-divider: color-mix(in oklch, var(--oat) 22%, transparent);
   --color-accent-300: var(--strawberry);
   --color-accent-400: var(--oat);
-  --sheet-support: color-mix(in srgb, var(--oat) 72%, var(--toffee));
+  --sheet-support: color-mix(in oklch, var(--oat) 72%, var(--toffee));
   --font-heading: "Young Serif", Georgia, serif;
   --font-body: "Literata", Georgia, serif;
   /* Sunnah's coat: she's a grey shorthair, so these stay true greys rather than palette tints.
      Light to dark for fills, then light again for lines. */
-  --color-neutral-100: #f1f1f2;
-  --color-neutral-200: #d7d8da;
-  --color-neutral-300: #bcbec1;
-  --color-neutral-400: #9da0a4;
-  --color-neutral-500: #7b7f84;
-  --color-neutral-600: #c8cacd;
-  --color-neutral-700: #dfe0e2;
-  --color-neutral-800: #eeeff0;
-  --color-neutral-900: #1c1e21;
-  --sheet-muted: color-mix(in srgb, var(--color-text) 80%, transparent);
+  --color-neutral-100: oklch(0.958 0 0);
+  --color-neutral-200: oklch(0.882 0.003 264.5);
+  --color-neutral-300: oklch(0.801 0.005 258.3);
+  --color-neutral-400: oklch(0.705 0.007 255.5);
+  --color-neutral-500: oklch(0.595 0.009 253.9);
+  --color-neutral-600: oklch(0.838 0.005 258.3);
+  --color-neutral-700: oklch(0.907 0.003 264.5);
+  --color-neutral-800: oklch(0.952 0 0);
+  --color-neutral-900: oklch(0.234 0.007 258.4);
+  --sheet-muted: color-mix(in oklch, var(--color-text) 80%, transparent);
   --expo-out: cubic-bezier(0.16, 1, 0.3, 1);
-  min-height: 100svh;
+  min-height: 100dvh;
   background-color: var(--color-bg);
   background-image:
-    linear-gradient(to right, color-mix(in srgb, var(--color-text) 7%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in srgb, var(--color-text) 7%, transparent) 1px, transparent 1px),
-    linear-gradient(to right, color-mix(in srgb, var(--color-text) 3.5%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in srgb, var(--color-text) 3.5%, transparent) 1px, transparent 1px);
-  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+    linear-gradient(to right, color-mix(in oklch, var(--color-text) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklch, var(--color-text) 7%, transparent) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px;
   color: var(--color-text);
   font-family: var(--font-body);
 }
@@ -355,7 +336,7 @@ a {
 .sheet--accent {
   --color-bg: var(--reverse-bg);
   --color-text: var(--reverse-ink);
-  --color-divider: color-mix(in srgb, var(--reverse-ink) 30%, transparent);
+  --color-divider: color-mix(in oklch, var(--reverse-ink) 30%, transparent);
   --color-accent-300: var(--reverse-ink);
 }
 
@@ -367,7 +348,7 @@ html:has(.sheet) {
 /* What shows past the page edges on a hub page, including overscroll. */
 html:has(.sheet:not(.sheet--original)) {
   --color-bg: var(--toffee);
-  scrollbar-color: color-mix(in srgb, var(--oat) 42%, var(--toffee)) var(--toffee);
+  scrollbar-color: color-mix(in oklch, var(--oat) 42%, var(--toffee)) var(--toffee);
 }
 
 .sheet ::selection {
@@ -394,7 +375,7 @@ html:has(.sheet:not(.sheet--original)) {
   font-weight: 700;
   font-size: 19.9cqw;
   line-height: 0.86;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   text-transform: uppercase;
   animation: sheet-title-draft 800ms var(--expo-out) both;
 }
@@ -418,7 +399,7 @@ html:has(.sheet:not(.sheet--original)) {
   font-weight: 700;
   font-size: clamp(36px, 5.6cqw, 72px);
   line-height: 0.95;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   text-transform: uppercase;
   text-wrap: balance;
 }
@@ -433,10 +414,8 @@ html:has(.sheet:not(.sheet--original)) {
 }
 
 .sheet-label {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
 
@@ -458,8 +437,8 @@ html:has(.sheet:not(.sheet--original)) {
   padding: 10px 16px;
 }
 
-.title-block > span + span {
-  border-left: 1px solid var(--color-divider);
+.title-block {
+  column-gap: 8px;
 }
 
 /* Home */
@@ -470,7 +449,7 @@ html:has(.sheet:not(.sheet--original)) {
   font-weight: 700;
   font-size: var(--hero-size);
   line-height: 0.88;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -481,7 +460,7 @@ html:has(.sheet:not(.sheet--original)) {
 .sheet-hero-line--nap {
   margin-top: 0.1em;
   font-size: 0.491em;
-  letter-spacing: -0.012em;
+  letter-spacing: 0;
   line-height: 1;
   color: var(--color-accent-300);
 }
@@ -548,9 +527,7 @@ html:has(.sheet:not(.sheet--original)) {
 .nap-box-number {
   font-size: 5cqw;
   line-height: 1;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-weight: 500;
 }
 
 .nap-box-title {
@@ -558,8 +535,7 @@ html:has(.sheet:not(.sheet--original)) {
   font-weight: 700;
   font-size: 11.2cqw;
   line-height: 1;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
+  letter-spacing: 0;
 }
 
 @container (max-width: 160px) {
@@ -604,7 +580,7 @@ html:has(.sheet:not(.sheet--original)) {
 .work-item:hover .work-cover {
   --color-bg: var(--strawberry);
   --color-text: var(--toffee);
-  --color-divider: color-mix(in srgb, var(--toffee) 30%, transparent);
+  --color-divider: color-mix(in oklch, var(--toffee) 30%, transparent);
   --color-accent-300: var(--toffee);
 }
 
@@ -613,7 +589,7 @@ html:has(.sheet:not(.sheet--original)) {
   font-family: var(--font-heading);
   font-weight: 400;
   line-height: 0.98;
-  letter-spacing: -0.015em;
+  letter-spacing: 0;
   text-wrap: balance;
   transition: color 160ms ease;
 }
@@ -778,7 +754,7 @@ html:has(.sheet:not(.sheet--original)) {
   font-weight: 700;
   font-size: clamp(30px, 6.2cqw, 84px);
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   color: var(--color-accent-300);
   text-wrap: balance;
 }
@@ -808,7 +784,7 @@ html:has(.sheet:not(.sheet--original)) {
   font-weight: 700;
   font-size: clamp(32px, 3.9cqw, 52px);
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   text-transform: uppercase;
   text-wrap: balance;
 }
@@ -883,7 +859,7 @@ html:has(.sheet:not(.sheet--original)) {
   font-weight: 700;
   font-size: clamp(64px, 15cqw, 200px);
   line-height: 0.9;
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
 }
 
 .article-stats--single .article-stat-value {
@@ -902,11 +878,11 @@ html:has(.sheet:not(.sheet--original)) {
 }
 
 .article-stats--alarm {
-  --color-text: #0e151b;
-  --sheet-muted: color-mix(in srgb, #0e151b 80%, transparent);
+  --color-text: oklch(0.192 0.016 244.7);
+  --sheet-muted: color-mix(in oklch, oklch(0.192 0.016 244.7) 80%, transparent);
   padding-inline: clamp(16px, 2.5cqw, 32px);
-  background: #5fd6c4;
-  color: #0e151b;
+  background: oklch(0.803 0.111 182.0);
+  color: oklch(0.192 0.016 244.7);
   border: 0;
 }
 
@@ -916,7 +892,7 @@ html:has(.sheet:not(.sheet--original)) {
   font-weight: 700;
   font-size: clamp(30px, 5.6cqw, 76px);
   line-height: 1.02;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   text-wrap: balance;
 }
 
@@ -1004,7 +980,7 @@ html:has(.sheet:not(.sheet--original)) {
   font-weight: 700;
   font-size: clamp(36px, 5.6cqw, 72px);
   line-height: 0.95;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -1265,7 +1241,7 @@ html:has(.sheet:not(.sheet--original)) {
   font-weight: 600;
   font-size: clamp(16px, 3.9cqw, 52px);
   line-height: 1.05;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   overflow-wrap: anywhere;
 }
 
@@ -1304,10 +1280,10 @@ a.contact-row:hover svg {
 /* "Blueprint" drafting-sheet frame: a hairline box with four corner ticks */
 .blueprint {
   position: relative;
-  border: 1px solid var(--color-divider);
 }
 
 .blueprint .corner {
+  display: none;
   position: absolute;
   width: 10px;
   height: 10px;
@@ -1344,10 +1320,8 @@ a.contact-row:hover svg {
 
 .btn {
   font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 500;
   border-radius: 999px;
   cursor: pointer;
   border: 1px solid var(--color-text);
@@ -1383,11 +1357,12 @@ a.contact-row:hover svg {
   position: absolute;
   inset: 0;
   transform-origin: 50% 100%;
-  transition: opacity 120ms ease, transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 120ms ease, filter 120ms ease, transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cat-pose.is-hidden {
   opacity: 0;
+  filter: blur(4px);
 }
 
 .cat-pose--sit.is-hidden {
@@ -1473,13 +1448,10 @@ a.contact-row:hover svg {
 
 .modu-subject {
   padding: 12px 20px;
-  border-left: 1px solid var(--color-divider);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 20px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-text) 72%, transparent);
+  font-weight: 500;
+  color: color-mix(in oklch, var(--color-text) 72%, transparent);
 }
 
 @media (max-width: 640px) {
@@ -1495,11 +1467,13 @@ a.contact-row:hover svg {
   display: block;
   opacity: 0;
   transform-origin: 50% 100%;
-  transition: opacity 140ms ease, transform 260ms var(--expo-out);
+  filter: blur(4px);
+  transition: opacity 140ms ease, filter 140ms ease, transform 260ms var(--expo-out);
 }
 
 .modu-pose.is-on {
   opacity: 1;
+  filter: none;
 }
 
 .modu-pose--sit:not(.is-on) {
@@ -1518,7 +1492,7 @@ a.contact-row:hover svg {
   height: 7px;
   translate: -50% 0;
   border-radius: 50%;
-  background: color-mix(in srgb, black 40%, transparent);
+  background: color-mix(in oklch, black 40%, transparent);
 }
 
 .modu-paw {
@@ -1546,7 +1520,7 @@ a.contact-row:hover svg {
 
 .sheet:not(.sheet--original) :is(.sheet-title, .sheet-h2, .sheet-hero, .about-name) {
   text-transform: none;
-  letter-spacing: -0.015em;
+  letter-spacing: 0;
 }
 
 .sheet:not(.sheet--original) .nav .nav-brand {
@@ -1563,9 +1537,8 @@ a.contact-row:hover svg {
 .sheet:not(.sheet--original) .sheet-hero-line--nap {
   font-size: 0.6em;
   font-family: var(--font-body);
-  font-style: italic;
   font-weight: 300;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 /* Page-load stagger: each line comes up in reading order, as if pulled from the press. */

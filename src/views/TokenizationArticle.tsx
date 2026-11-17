@@ -292,53 +292,32 @@ export default function TokenizationArticle() {
         image="/og-tokenization.png"
         type="article"
       />
-    <div ref={rootRef} className="tok-root bg-[#131313] text-[#e5e2e1] font-sans overflow-x-hidden" style={{ fontFamily: "'Manrope',sans-serif" }}>
+    <div ref={rootRef} className="tok-root bg-[oklch(0.187_0_0)] text-[oklch(0.915_0.004_39.5)] font-sans overflow-x-hidden" style={{ fontFamily: "'Manrope',sans-serif" }}>
 
       {/* Reading Progress Bar */}
       <div id="progress-bar" />
 
       {/* NAV */}
-      <nav className="fixed top-0 w-full z-50 bg-[#131313]/95 backdrop-blur-sm flex justify-between items-center px-8 py-6 max-w-[1920px] mx-auto" style={{ left: 0, right: 0 }}>
-        <a href="/" className="font-sans tracking-[0.2em] uppercase text-zinc-300 hover:text-white transition-colors no-underline text-lg font-thin">
+      <nav className="fixed top-0 w-full z-50 bg-[oklch(0.187_0_0)]/95 backdrop-blur-sm flex justify-between items-center px-8 py-6 max-w-[1920px] mx-auto" style={{ left: 0, right: 0 }}>
+        <a href="/" className="font-sans text-zinc-300 hover:text-white transition-colors no-underline text-lg">
           Mohamad Noor-Chowdhury
         </a>
         <div className="hidden md:flex items-center gap-10">
-          <a className="text-zinc-400 font-sans uppercase text-[12px] tracking-widest hover:text-zinc-300" href="#intro">Theory</a>
-          <a className="text-zinc-400 font-sans uppercase text-[12px] tracking-widest hover:text-zinc-300" href="#process">Process</a>
-          <a className="text-zinc-400 font-sans uppercase text-[12px] tracking-widest hover:text-zinc-300" href="#assets">Markets</a>
-          <a className="text-zinc-400 font-sans uppercase text-[12px] tracking-widest hover:text-zinc-300" href="#road-ahead">Outlook</a>
+          <a className="text-zinc-400 font-sans text-[14px] hover:text-zinc-300" href="#intro">Theory</a>
+          <a className="text-zinc-400 font-sans text-[14px] hover:text-zinc-300" href="#process">Process</a>
+          <a className="text-zinc-400 font-sans text-[14px] hover:text-zinc-300" href="#assets">Markets</a>
+          <a className="text-zinc-400 font-sans text-[14px] hover:text-zinc-300" href="#road-ahead">Outlook</a>
         </div>
         <div />
       </nav>
 
-      {/* SIDE NAV */}
-      <aside className="fixed top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-8 bg-transparent pointer-events-none" style={{ left: '10px', width: '20px' }}>
-        <a href="#intro" className="nav-dot flex items-center justify-center cursor-pointer no-underline pointer-events-auto" data-section="intro">
-          <span className="material-symbols-outlined dot-icon text-white" style={{ fontVariationSettings: "'FILL' 1", fontSize: '14px' }}>radio_button_checked</span>
-        </a>
-        <a href="#definition" className="nav-dot flex items-center justify-center cursor-pointer no-underline pointer-events-auto" data-section="definition">
-          <span className="material-symbols-outlined dot-icon" style={{ fontSize: '14px' }}>token</span>
-        </a>
-        <a href="#process" className="nav-dot flex items-center justify-center cursor-pointer no-underline pointer-events-auto" data-section="process">
-          <span className="material-symbols-outlined dot-icon" style={{ fontSize: '14px' }}>schema</span>
-        </a>
-        <a href="#assets" className="nav-dot flex items-center justify-center cursor-pointer no-underline pointer-events-auto" data-section="assets">
-          <span className="material-symbols-outlined dot-icon" style={{ fontSize: '14px' }}>grid_view</span>
-        </a>
-        <a href="#milestones" className="nav-dot flex items-center justify-center cursor-pointer no-underline pointer-events-auto" data-section="milestones">
-          <span className="material-symbols-outlined dot-icon" style={{ fontSize: '14px' }}>timeline</span>
-        </a>
-        <a href="#road-ahead" className="nav-dot flex items-center justify-center cursor-pointer no-underline pointer-events-auto" data-section="road-ahead">
-          <span className="material-symbols-outlined dot-icon" style={{ fontSize: '14px' }}>rocket_launch</span>
-        </a>
-      </aside>
 
       <main className="pt-24">
 
         {/* ── HERO ── */}
         <section id="intro" className="min-h-screen flex flex-col justify-center px-8 md:px-24 pb-24 relative">
-          <h1 className="font-serif italic text-[clamp(3.2rem,10vw,10.5rem)] leading-[0.92] tracking-tighter text-white mb-12 reveal" style={{ fontFamily: "'Newsreader',serif" }}>
-            The Tokenization<br />of <span className="text-[#f2dfd2]">Assets.</span>
+          <h1 className="font-serif text-[clamp(3.2rem,10vw,10.5rem)] leading-[0.92] text-white mb-12 reveal" style={{ fontFamily: "'Newsreader',serif" }}>
+            The Tokenization<br />of <span className="text-[oklch(0.915_0.027_56.7)]">Assets</span>
           </h1>
           <div className="flex flex-col md:flex-row items-end justify-between gap-12">
             <div className="reveal reveal-delay-2">
@@ -346,45 +325,32 @@ export default function TokenizationArticle() {
                 How tokenization moves real-world assets onto blockchain ledgers, and what that changes about ownership, settlement, and who gets to invest.
               </p>
               <div className="flex items-center gap-4">
-                <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-400">By</span>
-                <span className="font-sans text-[12px] tracking-[0.15em] uppercase text-zinc-400">Mohamad Noor-Chowdhury</span>
-                <span className="text-zinc-700">·</span>
-                <span className="font-sans text-[11px] tracking-[0.15em] uppercase text-zinc-400">18 min read</span>
+                <span className="font-sans text-[14px] text-zinc-400">By</span>
+                <span className="font-sans text-[14px] text-zinc-400">Mohamad Noor-Chowdhury</span>
+                <span className="text-zinc-400">·</span>
+                <span className="font-sans text-[14px] text-zinc-400">18 min read</span>
               </div>
             </div>
             </div>
-          <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: -1 }}>
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="hero-grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                  <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#hero-grid)" />
-            </svg>
-          </div>
         </section>
 
         {/* ── BLEED Network Canvas ── */}
         <section className="w-full relative overflow-hidden" style={{ height: '640px' }}>
           <canvas ref={canvasRef} id="network-canvas" className="absolute inset-0 w-full h-full" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#131313]/60 via-transparent to-[#131313]/80 pointer-events-none" />
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center px-8">
-            <span className="font-sans text-[12px] tracking-[0.35em] uppercase text-white/60 block mb-6">01</span>
-            <span className="font-serif italic text-white/60 leading-tight" style={{ fontFamily: "'Newsreader',serif", fontSize: 'clamp(3rem, 8vw, 7rem)' }}>What Is<br />Tokenization</span>
+            <span className="font-serif text-zinc-300 leading-tight" style={{ fontFamily: "'Newsreader',serif", fontSize: 'clamp(3rem, 8vw, 7rem)' }}>What Is<br />Tokenization</span>
           </div>
           <div className="absolute bottom-12 left-1/2 -translate-x-1/2 text-center pointer-events-none">
-            <span className="font-sans text-[11px] tracking-[0.35em] uppercase text-zinc-400">Transactions gather into blocks, and each block links to the last</span>
+            <span className="font-sans text-[14px] text-zinc-400">Transactions gather into blocks, and each block links to the last</span>
           </div>
         </section>
 
         {/* ── DEFINITION ── */}
-        <section id="definition" className="py-32 px-8 md:px-24 lg:px-48 bg-[#131313]">
+        <section id="definition" className="py-32 px-8 md:px-24 lg:px-48 bg-[oklch(0.187_0_0)]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             <div className="lg:col-span-5 pt-12">
-              <span className="font-sans text-[12px] tracking-[0.3em] uppercase text-zinc-400 block mb-8 reveal">Definition</span>
-              <h2 className="font-serif italic text-4xl text-white leading-tight mb-8 reveal" style={{ fontFamily: "'Newsreader',serif" }}>
-                From fixed assets to programmable ones.
+              <h2 className="font-serif text-4xl text-white leading-tight mb-8 reveal" style={{ fontFamily: "'Newsreader',serif" }}>
+                From fixed assets to programmable ones
               </h2>
               <p className="font-sans text-base text-zinc-400 leading-relaxed mb-6 reveal reveal-delay-1">
                 Tokenization means recording the rights to a real-world asset on a blockchain ledger, so the asset can be split up and moved about as easily as data. A pizza helps here. A $10 million building is a whole pizza, and most people can't afford a whole pizza. Tokenization cuts it into 10,000 slices, and the blockchain is the receipt that shows who owns which slice.
@@ -395,16 +361,16 @@ export default function TokenizationArticle() {
               <p className="font-sans text-base text-zinc-400 leading-relaxed reveal reveal-delay-3">
                 The closest comparison I can think of is the move from DVDs to streaming. Assets that used to sit in one place, held whole by one owner, start to move like data.
               </p>
-              <div className="mt-12 border-l-2 border-[#f2dfd2] pl-6 reveal reveal-delay-4">
-                <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-400 block mb-2">The Legal Wrapper</span>
+              <div className="mt-12 rounded-xl bg-white/[0.04] p-6 reveal reveal-delay-4">
+                <span className="font-sans text-[14px] text-zinc-400 block mb-2">The Legal Wrapper</span>
                 <p className="font-sans text-sm text-zinc-300 leading-relaxed">The <em>token</em> proves ownership on the ledger. The <em>legal wrapper</em> is what a court will recognize. The two have to be tied together, or a transfer on the blockchain means nothing in law.</p>
               </div>
             </div>
 
             <div className="lg:col-span-7 flex items-center reveal reveal-delay-3">
-              <div className="border-l-2 border-[#f2dfd2] pl-8">
-                <span className="font-sans font-bold text-[11px] tracking-widest uppercase text-zinc-400 block mb-3">McKinsey Projection</span>
-                <span className="font-serif italic leading-none block mb-4 text-[#f2dfd2]" style={{ fontFamily: "'Newsreader',serif", fontSize: 'clamp(4rem,8vw,7rem)' }}>$2T</span>
+              <div className="rounded-xl bg-white/[0.04] p-6">
+                <span className="font-sans font-bold text-[14px] text-zinc-400 block mb-3">McKinsey Projection</span>
+                <span className="font-serif leading-none block mb-4 text-[oklch(0.915_0.027_56.7)]" style={{ fontFamily: "'Newsreader',serif", fontSize: 'clamp(4rem,8vw,7rem)' }}>$2T</span>
                 <span className="font-sans text-sm text-zinc-400 leading-relaxed block max-w-xs">McKinsey's base-case estimate for the tokenized market by 2030. BCG's higher estimate: $16 trillion.</span>
               </div>
             </div>
@@ -416,7 +382,7 @@ export default function TokenizationArticle() {
           <div className="mt-20 reveal overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 56px 1fr 56px 1fr', alignItems: 'center', gap: 0, minWidth: '800px' }}>
             {/* Panel 1 */}
-            <div className="flex flex-col items-center gap-8 p-12 border border-zinc-800" style={{ background: 'rgba(255,255,255,0.015)' }}>
+            <div className="flex flex-col items-center gap-8 p-12 rounded-2xl" style={{ background: 'oklch(1 0 0 / 0.04)' }}>
               <svg viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', maxWidth: '240px', height: 'auto' }}>
                 <polygon points="100,30 148,57 100,84 52,57" fill="rgba(242,223,210,0.07)" stroke="rgba(242,223,210,0.35)" strokeWidth="1" />
                 <polygon points="100,84 148,57 148,170 100,197" fill="rgba(242,223,210,0.04)" stroke="rgba(242,223,210,0.25)" strokeWidth="1" />
@@ -437,8 +403,7 @@ export default function TokenizationArticle() {
                 <line x1="158" y1="163" x2="166" y2="163" stroke="rgba(242,223,210,0.15)" strokeWidth="0.5" />
               </svg>
               <div className="text-center">
-                <span className="font-sans text-[12px] tracking-[0.25em] uppercase text-zinc-400 block mb-2">Step 01</span>
-                <span className="font-serif italic text-2xl text-zinc-200" style={{ fontFamily: "'Newsreader',serif" }}>The Asset</span>
+                <span className="font-serif text-2xl text-zinc-200" style={{ fontFamily: "'Newsreader',serif" }}>The Asset</span>
                 <p className="font-sans text-sm text-zinc-400 mt-3 leading-relaxed">Real estate, bonds,<br />gold, art, private credit</p>
               </div>
             </div>
@@ -450,7 +415,7 @@ export default function TokenizationArticle() {
               </svg>
             </div>
             {/* Panel 2 */}
-            <div className="flex flex-col items-center gap-8 p-12 border border-zinc-800" style={{ background: 'rgba(255,255,255,0.015)' }}>
+            <div className="flex flex-col items-center gap-8 p-12 rounded-2xl" style={{ background: 'oklch(1 0 0 / 0.04)' }}>
               <svg viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', maxWidth: '240px', height: 'auto' }}>
                 <rect x="28" y="95" width="38" height="120" fill="rgba(242,223,210,0.03)" stroke="rgba(242,223,210,0.25)" strokeWidth="1" />
                 <rect x="134" y="95" width="38" height="120" fill="rgba(242,223,210,0.03)" stroke="rgba(242,223,210,0.25)" strokeWidth="1" />
@@ -470,8 +435,7 @@ export default function TokenizationArticle() {
                 <polygon points="100,190 95,178 105,178" fill="rgba(242,223,210,0.3)" />
               </svg>
               <div className="text-center">
-                <span className="font-sans text-[12px] tracking-[0.25em] uppercase text-zinc-400 block mb-2">Step 02</span>
-                <span className="font-serif italic text-2xl text-zinc-200" style={{ fontFamily: "'Newsreader',serif" }}>The Ledger</span>
+                <span className="font-serif text-2xl text-zinc-200" style={{ fontFamily: "'Newsreader',serif" }}>The Ledger</span>
                 <p className="font-sans text-sm text-zinc-400 mt-3 leading-relaxed">Smart contract encodes<br />rights, compliance, yield</p>
               </div>
             </div>
@@ -483,7 +447,7 @@ export default function TokenizationArticle() {
               </svg>
             </div>
             {/* Panel 3 */}
-            <div className="flex flex-col items-center gap-8 p-12 border border-zinc-800" style={{ background: 'rgba(242,223,210,0.02)' }}>
+            <div className="flex flex-col items-center gap-8 p-12 rounded-2xl" style={{ background: 'oklch(0.91 0.03 58 / 0.06)' }}>
               <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', maxWidth: '240px', height: 'auto' }}>
                 <polygon points="100,51 118,60 100,69 82,60" fill="rgba(242,223,210,0.06)" stroke="rgba(242,223,210,0.2)" strokeWidth="0.5" />
                 <polygon points="100,69 118,60 118,78 100,87" fill="rgba(242,223,210,0.04)" stroke="rgba(242,223,210,0.15)" strokeWidth="0.5" />
@@ -506,8 +470,7 @@ export default function TokenizationArticle() {
                 <polygon points="82,114 100,123 100,141 82,132" fill="rgba(242,223,210,0.05)" stroke="rgba(242,223,210,0.25)" strokeWidth="0.75" />
               </svg>
               <div className="text-center">
-                <span className="font-sans text-[12px] tracking-[0.25em] uppercase text-zinc-400 block mb-2">Step 03</span>
-                <span className="font-serif italic text-2xl text-[#f2dfd2]" style={{ fontFamily: "'Newsreader',serif" }}>The Token</span>
+                <span className="font-serif text-2xl text-[oklch(0.915_0.027_56.7)]" style={{ fontFamily: "'Newsreader',serif" }}>The Token</span>
                 <p className="font-sans text-sm text-zinc-400 mt-3 leading-relaxed">Fractional, liquid,<br />24/7 globally tradeable</p>
               </div>
             </div>
@@ -516,123 +479,117 @@ export default function TokenizationArticle() {
         </section>
 
         {/* ── STATS STRIP ── */}
-        <section className="border-t border-b border-zinc-800 bg-[#0e0e0e] py-0" id="stats-section" data-inview>
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-zinc-800">
+        <section className="border-t border-b border-white/10 bg-[oklch(0.164_0_0)] py-0" id="stats-section" data-inview>
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
             <div className="flex flex-col items-center justify-center py-16 px-12 text-center reveal">
               <span className="stat-number text-6xl text-white mb-3" data-target="16" data-prefix="$" data-suffix="T">$16T</span>
-              <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-zinc-400 leading-loose">Upper-end tokenized market<br />projection by 2030</span>
-              <span className="font-sans text-[11px] text-zinc-700 mt-3 uppercase tracking-widest">Source: BCG / ADDX, 2022</span>
+              <span className="font-sans text-[14px] text-zinc-400 leading-loose">Upper-end tokenized market<br />projection by 2030</span>
+              <span className="font-sans text-[14px] text-zinc-400 mt-3">Source: BCG / ADDX, 2022</span>
             </div>
             <div className="flex flex-col items-center justify-center py-16 px-12 text-center reveal reveal-delay-2">
               <span className="stat-number text-6xl text-white mb-3" data-target="39" data-prefix="$" data-suffix="B">$39B</span>
-              <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-zinc-400 leading-loose">Tokenized real-world assets on-chain<br />today, not counting stablecoins</span>
-              <span className="font-sans text-[11px] text-zinc-700 mt-3 uppercase tracking-widest">Source: RWA.xyz, Nov 2026</span>
+              <span className="font-sans text-[14px] text-zinc-400 leading-loose">Tokenized real-world assets on-chain<br />today, not counting stablecoins</span>
+              <span className="font-sans text-[14px] text-zinc-400 mt-3">Source: RWA.xyz, Nov 2026</span>
             </div>
             <div className="flex flex-col items-center justify-center py-16 px-12 text-center reveal reveal-delay-3">
               <span className="stat-number text-6xl text-white mb-3" data-target="61" data-suffix="%">61%</span>
-              <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-zinc-400 leading-loose">Of tokenized asset volume<br />is Private Credit in 2025</span>
-              <span className="font-sans text-[11px] text-zinc-700 mt-3 uppercase tracking-widest">Source: RWA.xyz, 2025</span>
+              <span className="font-sans text-[14px] text-zinc-400 leading-loose">Of tokenized asset volume<br />is Private Credit in 2025</span>
+              <span className="font-sans text-[14px] text-zinc-400 mt-3">Source: RWA.xyz, 2025</span>
             </div>
           </div>
         </section>
 
         {/* ── COMPARISON TABLE ── */}
-        <section className="py-24 px-8 md:px-24 lg:px-48 bg-[#1c1b1b]">
+        <section className="py-24 px-8 md:px-24 lg:px-48 bg-[oklch(0.223_0_0)]">
           <div className="mb-16 reveal">
-            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 block mb-4">Side by Side</span>
-            <h2 className="font-serif italic text-4xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>Legacy Markets vs. Tokenized Markets</h2>
+            <h2 className="font-serif text-4xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>Legacy Markets vs. Tokenized Markets</h2>
           </div>
-          <div className="border border-zinc-800 reveal overflow-x-auto">
+          <div className="rounded-2xl bg-white/[0.04] reveal overflow-x-auto">
             <div style={{ minWidth: '700px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderBottom: '1px solid #27272a' }}>
-              <div className="comp-cell font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-700" />
-              <div className="comp-cell font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-400">Legacy Infrastructure</div>
-              <div className="comp-cell font-sans text-[11px] tracking-[0.2em] uppercase text-[#f2dfd2]">Tokenized Networks</div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderBottom: '1px solid oklch(1 0 0 / 0.1)' }}>
+              <div className="comp-cell font-sans text-[14px] text-zinc-400" />
+              <div className="comp-cell font-sans text-[14px] text-zinc-400">Legacy Infrastructure</div>
+              <div className="comp-cell font-sans text-[14px] text-[oklch(0.915_0.027_56.7)]">Tokenized Networks</div>
             </div>
             <div className="comp-row">
-              <div className="comp-cell text-zinc-400 font-bold text-[13px] tracking-wider uppercase">Market Hours</div>
+              <div className="comp-cell text-zinc-400 font-bold text-[13px]">Market Hours</div>
               <div className="comp-cell text-zinc-400">Monday to Friday, 9 to 5. Trading stops on weekends, holidays, and after hours.</div>
-              <div className="comp-cell text-[#f2dfd2] font-medium">Open 24/7, every day of the year.</div>
+              <div className="comp-cell text-[oklch(0.915_0.027_56.7)] font-medium">Open 24/7, every day of the year.</div>
             </div>
             <div className="comp-row">
-              <div className="comp-cell text-zinc-400 font-bold text-[13px] tracking-wider uppercase">Settlement Speed</div>
+              <div className="comp-cell text-zinc-400 font-bold text-[13px]">Settlement Speed</div>
               <div className="comp-cell text-zinc-400">One to five days (US stocks moved to T+1 in 2024). Manual reconciliation, custody chains, correspondent banks.</div>
-              <div className="comp-cell text-[#f2dfd2] font-medium">Near-instant atomic settlement: the payment and the asset move in the same transaction, or neither moves.</div>
+              <div className="comp-cell text-[oklch(0.915_0.027_56.7)] font-medium">Near-instant atomic settlement: the payment and the asset move in the same transaction, or neither moves.</div>
             </div>
             <div className="comp-row">
-              <div className="comp-cell text-zinc-400 font-bold text-[13px] tracking-wider uppercase">Accessibility</div>
+              <div className="comp-cell text-zinc-400 font-bold text-[13px]">Accessibility</div>
               <div className="comp-cell text-zinc-400">Institutional-only entry points. A $100M PE fund requires a $1M minimum commitment.</div>
-              <div className="comp-cell text-[#f2dfd2] font-medium">Fractional. A $100M asset can be split into 100,000 tokens at $1,000 each.</div>
+              <div className="comp-cell text-[oklch(0.915_0.027_56.7)] font-medium">Fractional. A $100M asset can be split into 100,000 tokens at $1,000 each.</div>
             </div>
             <div className="comp-row">
-              <div className="comp-cell text-zinc-400 font-bold text-[13px] tracking-wider uppercase">Asset Mobility</div>
+              <div className="comp-cell text-zinc-400 font-bold text-[13px]">Asset Mobility</div>
               <div className="comp-cell text-zinc-400">Assets are stuck with one custodian in one jurisdiction.</div>
-              <div className="comp-cell text-[#f2dfd2] font-medium">Assets can work together. A tokenized gold bar can be collateral for borrowing a tokenized bond.</div>
+              <div className="comp-cell text-[oklch(0.915_0.027_56.7)] font-medium">Assets can work together. A tokenized gold bar can be collateral for borrowing a tokenized bond.</div>
             </div>
             <div className="comp-row" style={{ borderBottom: 'none' }}>
-              <div className="comp-cell text-zinc-400 font-bold text-[13px] tracking-wider uppercase">Compliance</div>
+              <div className="comp-cell text-zinc-400 font-bold text-[13px]">Compliance</div>
               <div className="comp-cell text-zinc-400">Checked by hand after the fact, so failures can surface weeks later.</div>
-              <div className="comp-cell text-[#f2dfd2] font-medium">Automated via smart contracts. A trade that fails compliance never executes.</div>
+              <div className="comp-cell text-[oklch(0.915_0.027_56.7)] font-medium">Automated via smart contracts. A trade that fails compliance never executes.</div>
             </div>
             </div>
           </div>
         </section>
 
         {/* ── PULL QUOTE Larry Fink ── */}
-        <section className="py-48 bg-[#1c1b1b]">
+        <section className="py-48 bg-[oklch(0.223_0_0)]">
           <div className="max-w-5xl mx-auto px-8 text-center">
             <div className="reveal">
               <div className="quote-line" />
-              <blockquote className="font-serif italic text-4xl md:text-6xl text-white leading-tight mb-12" style={{ fontFamily: "'Newsreader',serif" }}>
-                "I believe the next generation for markets, the next generation for securities, will be <span className="text-[#f2dfd2]">tokenization of securities</span>."
+              <blockquote className="font-serif text-4xl md:text-6xl text-white leading-tight mb-12" style={{ fontFamily: "'Newsreader',serif" }}>
+                "I believe the next generation for markets, the next generation for securities, will be <span className="text-[oklch(0.915_0.027_56.7)]">tokenization of securities</span>."
               </blockquote>
-              <cite className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400">Larry Fink, CEO, BlackRock, DealBook Summit 2022</cite>
+              <cite className="font-sans text-[14px] font-bold text-zinc-400">Larry Fink, CEO, BlackRock, DealBook Summit 2022</cite>
             </div>
           </div>
         </section>
 
         {/* ── 5-STAGE PROCESS ── */}
-        <section id="process" className="py-32 px-8 md:px-24 lg:px-48 bg-[#131313]">
+        <section id="process" className="py-32 px-8 md:px-24 lg:px-48 bg-[oklch(0.187_0_0)]">
           <div className="mb-24 flex flex-col items-start reveal">
-            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 mb-4">The Process</span>
-            <h2 className="font-serif italic text-5xl text-white max-w-2xl leading-tight" style={{ fontFamily: "'Newsreader',serif" }}>How an Asset Moves from the Physical World to the Digital Ledger</h2>
+            <h2 className="font-serif text-5xl text-white max-w-2xl leading-tight" style={{ fontFamily: "'Newsreader',serif" }}>How an Asset Moves from the Physical World to the Digital Ledger</h2>
           </div>
 
           {/* Stage 01 */}
           <div className="stage-step reveal" style={{ paddingTop: '4rem', paddingBottom: 0, overflow: 'hidden' }}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-8">
-              <div className="lg:col-span-2">
-                <span className="stage-number text-8xl">01</span>
-              </div>
-              <div className="lg:col-span-4 flex flex-col justify-center">
-                <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-400 block mb-3">Asset Identification &amp; Selection</span>
-                <h3 className="font-serif italic text-2xl text-white mb-4" style={{ fontFamily: "'Newsreader',serif" }}>Choosing What Gets Tokenized</h3>
+              <div className="lg:col-span-6 flex flex-col justify-center">
+                <h3 className="font-serif text-2xl text-white mb-4" style={{ fontFamily: "'Newsreader',serif" }}>Choosing What Gets Tokenized</h3>
                 <p className="font-sans text-sm text-zinc-400 leading-relaxed">Almost anything with clear ownership can be tokenized, but four asset classes make up nearly all the volume today.</p>
               </div>
               <div className="lg:col-span-6 flex flex-col">
-                <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-400 mb-3">Source: RWA.xyz, tokenized asset volume by class, 2025</p>
+                <p className="font-sans text-[14px] text-zinc-400 mb-3">Source: RWA.xyz, tokenized asset volume by class, 2025</p>
                 <div data-inview style={{ display: 'grid', gridTemplateColumns: '61fr 39fr', gap: '2px', flex: 1, minHeight: '220px' }}>
-                  <div className="treemap-block flex flex-col justify-end p-6" data-order="1" style={{ background: '#1a2535' }}>
-                    <span className="font-serif italic text-5xl text-white/80 mb-2 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>61%</span>
-                    <h3 className="font-sans font-bold text-[11px] tracking-wider uppercase text-zinc-300 mb-1">Private Credit</h3>
+                  <div className="treemap-block flex flex-col justify-end p-6" data-order="1" style={{ background: 'oklch(0.262 0.034 257.7)' }}>
+                    <span className="font-serif text-5xl text-zinc-100 mb-2 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>61%</span>
+                    <h3 className="font-sans font-bold text-[14px] text-zinc-300 mb-1">Private Credit</h3>
                     <p className="font-sans text-sm text-zinc-400 leading-snug">The largest category. Smart contracts pay out the yield and adjust collateral automatically.</p>
                   </div>
                   <div style={{ display: 'grid', gridTemplateRows: '30fr 9fr', gap: '2px' }}>
-                    <div className="treemap-block flex flex-col justify-end p-4" data-order="2" style={{ background: '#1e2d1e' }}>
-                      <span className="font-serif italic text-3xl text-white/80 mb-1 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>30%</span>
-                      <h3 className="font-sans font-bold text-[11px] tracking-wider uppercase text-zinc-300 mb-1">Treasuries</h3>
+                    <div className="treemap-block flex flex-col justify-end p-4" data-order="2" style={{ background: 'oklch(0.279 0.034 144.6)' }}>
+                      <span className="font-serif text-3xl text-zinc-100 mb-1 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>30%</span>
+                      <h3 className="font-sans font-bold text-[14px] text-zinc-300 mb-1">Treasuries</h3>
                       <p className="font-sans text-sm text-zinc-400 leading-snug">Yield-bearing government debt, the closest thing on-chain markets have to cash.</p>
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: '7fr 2fr', gap: '2px' }}>
-                      <div className="treemap-block flex flex-col justify-end p-3" data-order="3" style={{ background: '#2a1f14' }}>
-                        <span className="font-serif italic text-lg text-white/80 mb-1 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>7%</span>
-                        <h3 className="font-sans font-bold text-[11px] tracking-wider uppercase text-zinc-400 mb-1">Commodities</h3>
-                        <p className="font-sans text-[11px] text-zinc-400 leading-snug">Mostly tokenized gold.</p>
+                      <div className="treemap-block flex flex-col justify-end p-3" data-order="3" style={{ background: 'oklch(0.249 0.026 66.2)' }}>
+                        <span className="font-serif text-lg text-zinc-100 mb-1 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>7%</span>
+                        <h3 className="font-sans font-bold text-[14px] text-zinc-400 mb-1">Commodities</h3>
+                        <p className="font-sans text-[14px] text-zinc-400 leading-snug">Mostly tokenized gold.</p>
                       </div>
-                      <div className="treemap-block flex flex-col justify-end p-3" data-order="4" style={{ background: '#242424' }}>
-                        <span className="font-serif italic text-base text-white/60 mb-1 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>2%</span>
-                        <h3 className="font-sans font-bold text-[10px] tracking-wider uppercase text-zinc-400 mb-1">Funds</h3>
-                        <p className="font-sans text-[10px] text-zinc-400 leading-snug">Institutional</p>
+                      <div className="treemap-block flex flex-col justify-end p-3" data-order="4" style={{ background: 'oklch(0.260 0 0)' }}>
+                        <span className="font-serif text-base text-zinc-300 mb-1 leading-none" style={{ fontFamily: "'Newsreader',serif" }}>2%</span>
+                        <h3 className="font-sans font-bold text-[13px] text-zinc-400 mb-1">Funds</h3>
+                        <p className="font-sans text-[13px] text-zinc-400 leading-snug">Institutional</p>
                       </div>
                     </div>
                   </div>
@@ -644,34 +601,30 @@ export default function TokenizationArticle() {
           {/* Stage 02 */}
           <div className="stage-step py-16 reveal">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-8">
-              <div className="lg:col-span-2">
-                <span className="stage-number text-8xl">02</span>
-              </div>
-              <div className="lg:col-span-4">
-                <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-400 block mb-3">Digital Representation &amp; Compliance</span>
-                <h3 className="font-serif italic text-2xl text-white mb-4" style={{ fontFamily: "'Newsreader',serif" }}>Building the Digital Blueprint</h3>
+              <div className="lg:col-span-6">
+                <h3 className="font-serif text-2xl text-white mb-4" style={{ fontFamily: "'Newsreader',serif" }}>Building the Digital Blueprint</h3>
                 <p className="font-sans text-sm text-zinc-400 leading-relaxed mb-6">The token is a piece of software that holds the asset's rights. When it uses the ISO-20022 messaging standard, it can exchange messages with banking systems like SWIFT, so both sides can reconcile their records in real time.</p>
                 <ul className="space-y-3">
                   <li className="flex gap-3">
-                    <span className="text-[#f2dfd2] mt-0.5 flex-shrink-0">·</span>
+                    <span className="text-[oklch(0.915_0.027_56.7)] mt-0.5 flex-shrink-0">·</span>
                     <p className="font-sans text-sm text-zinc-300 leading-relaxed"><span className="text-white font-medium">ISO-20022</span> is the message format banks use for payments. A token that uses it can talk to bank systems without a custom translation layer.</p>
                   </li>
                   <li className="flex gap-3">
-                    <span className="text-[#f2dfd2] mt-0.5 flex-shrink-0">·</span>
+                    <span className="text-[oklch(0.915_0.027_56.7)] mt-0.5 flex-shrink-0">·</span>
                     <p className="font-sans text-sm text-zinc-300 leading-relaxed"><span className="text-white font-medium">SWIFT</span> is the network banks use to send payment instructions worth trillions of dollars a day. Tokens that use ISO-20022 can connect to it without anyone reconciling records by hand.</p>
                   </li>
                 </ul>
               </div>
               <div className="lg:col-span-6">
-                <div className="space-y-0 border border-zinc-800">
+                <div className="space-y-0 rounded-2xl">
                   {[
                     { label: 'Key Information', text: 'Asset type, who issued it, and an on-chain ID that no other token shares.' },
                     { label: 'Embedded Rights', text: "Voting rights, interest payment schedules, and dividend payouts, written into the token's code." },
                     { label: 'Compliance Rules', text: 'Transfer restrictions for each jurisdiction, such as accredited-investor requirements, enforced automatically by the token.' },
                     { label: 'Provenance', text: 'A full history of every owner. Nobody can edit it, and anyone with access to the ledger can audit it.' },
                   ].map((item, i) => (
-                    <div key={i} className={`p-5 ${i < 3 ? 'border-b border-zinc-800' : ''} hover:bg-[#2a2a2a] transition-colors cursor-default`}>
-                      <span className="font-sans font-bold text-[12px] tracking-wider uppercase text-zinc-400 block mb-1">{item.label}</span>
+                    <div key={i} className={`p-5 ${i < 3 ? 'border-b border-white/10' : ''} hover:bg-[oklch(0.285_0_0)] transition-colors cursor-default`}>
+                      <span className="font-sans font-bold text-[14px] text-zinc-400 block mb-1">{item.label}</span>
                       <p className="font-sans text-sm text-zinc-400">{item.text}</p>
                     </div>
                   ))}
@@ -683,15 +636,11 @@ export default function TokenizationArticle() {
           {/* Stage 03 */}
           <div className="stage-step py-16 reveal">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-8">
-              <div className="lg:col-span-2">
-                <span className="stage-number text-8xl">03</span>
-              </div>
-              <div className="lg:col-span-4">
-                <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-400 block mb-3">The Logic Layer</span>
-                <h3 className="font-serif italic text-2xl text-white mb-4" style={{ fontFamily: "'Newsreader',serif" }}>Smart Contracts as Execution Engine</h3>
+              <div className="lg:col-span-6">
+                <h3 className="font-serif text-2xl text-white mb-4" style={{ fontFamily: "'Newsreader',serif" }}>Smart Contracts as Execution Engine</h3>
                 <p className="font-sans text-sm text-zinc-400 leading-relaxed">A smart contract is code that runs on its own when set conditions are met, so nobody has to approve each step by hand. Tokens on the same network share that code, which means they can be combined: you could put up tokenized gold as collateral for a loan, earn yield on a tokenized bond, and settle in a stablecoin, all in one transaction.</p>
-                <div className="mt-6 border-l-2 border-[#f2dfd2] pl-4">
-                  <span className="font-sans text-[11px] tracking-widest uppercase text-zinc-400 block mb-1">Atomic Settlement</span>
+                <div className="mt-6 rounded-xl bg-white/[0.04] p-6">
+                  <span className="font-sans text-[14px] text-zinc-400 block mb-1">Atomic Settlement</span>
                   <p className="font-sans text-sm text-zinc-400">The asset and the payment change hands at the same moment. If the payment isn't there, the asset doesn't move, so one side can't pay and then never receive anything.</p>
                   <svg
                     className="atomic-swap mt-5 block w-full max-w-[320px] h-auto overflow-visible"
@@ -701,19 +650,19 @@ export default function TokenizationArticle() {
                     aria-label="The asset moves from seller to buyer while the payment moves from buyer to seller, and both land in the same instant."
                     style={{ ['--travel' as string]: '188px' }}
                   >
-                    <text x="0" y="10" fill="#71717a" fontSize="9" letterSpacing="1.5" fontFamily="Manrope, sans-serif">SELLER</text>
-                    <text x="320" y="10" fill="#71717a" fontSize="9" letterSpacing="1.5" fontFamily="Manrope, sans-serif" textAnchor="end">BUYER</text>
+                    <text x="0" y="10" fill="#71717a" fontSize="11" fontFamily="Manrope, sans-serif">Seller</text>
+                    <text x="320" y="10" fill="#71717a" fontSize="11" fontFamily="Manrope, sans-serif" textAnchor="end">Buyer</text>
                     <line x1="0" y1="34" x2="320" y2="34" stroke="#27272a" />
                     <line x1="0" y1="66" x2="320" y2="66" stroke="#27272a" />
                     <line x1="160" y1="20" x2="160" y2="80" stroke="rgba(242,223,210,0.35)" strokeDasharray="2 3" />
                     <circle className="swap-ring" cx="160" cy="50" r="7" fill="none" stroke="#f2dfd2" />
                     <g className="swap-asset">
                       <rect x="6" y="24" width="120" height="20" fill="#f2dfd2" />
-                      <text x="66" y="37.5" fill="#131313" fontSize="9" letterSpacing="1.5" fontFamily="Manrope, sans-serif" textAnchor="middle" fontWeight="700">ASSET</text>
+                      <text x="66" y="37.5" fill="#131313" fontSize="11" fontFamily="Manrope, sans-serif" textAnchor="middle" fontWeight="700">Asset</text>
                     </g>
                     <g className="swap-pay">
                       <rect x="194" y="56" width="120" height="20" fill="none" stroke="#f2dfd2" />
-                      <text x="254" y="69.5" fill="#f2dfd2" fontSize="9" letterSpacing="1.5" fontFamily="Manrope, sans-serif" textAnchor="middle" fontWeight="700">PAYMENT</text>
+                      <text x="254" y="69.5" fill="#f2dfd2" fontSize="11" fontFamily="Manrope, sans-serif" textAnchor="middle" fontWeight="700">Payment</text>
                     </g>
                   </svg>
                 </div>
@@ -725,10 +674,10 @@ export default function TokenizationArticle() {
                     { icon: 'balance', title: 'Real-Time Reconciliation', text: 'The contract updates the books with every transaction, so there are no overnight batches and no month-end scramble to make the records match.' },
                     { icon: 'shield', title: 'Compliance Enforcement', text: 'A trade that violates jurisdiction rules or Know Your Customer and Anti-Money Laundering requirements is rejected before it executes.' },
                   ].map((item, i) => (
-                    <div key={i} className="bg-[#131313] p-8 hover:bg-[#1c1b1b] transition-colors cursor-default flex gap-6 items-start">
-                      <span className="material-symbols-outlined text-[#f2dfd2]" style={{ fontSize: '24px', flexShrink: 0 }}>{item.icon}</span>
+                    <div key={i} className="bg-[oklch(0.187_0_0)] p-8 hover:bg-[oklch(0.223_0_0)] transition-colors cursor-default flex gap-6 items-start">
+                      <span className="material-symbols-outlined text-[oklch(0.915_0.027_56.7)]" style={{ fontSize: '24px', flexShrink: 0 }}>{item.icon}</span>
                       <div>
-                        <h4 className="font-sans font-bold text-[11px] tracking-wider uppercase text-zinc-300 mb-2">{item.title}</h4>
+                        <h4 className="font-sans font-bold text-[14px] text-zinc-300 mb-2">{item.title}</h4>
                         <p className="font-sans text-sm text-zinc-400 leading-relaxed">{item.text}</p>
                       </div>
                     </div>
@@ -741,22 +690,18 @@ export default function TokenizationArticle() {
           {/* Stage 04 */}
           <div className="stage-step py-16 reveal">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-8">
-              <div className="lg:col-span-2">
-                <span className="stage-number text-8xl">04</span>
-              </div>
-              <div className="lg:col-span-10">
-                <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-400 block mb-3">Immobilization &amp; Asset Locking</span>
-                <h3 className="font-serif italic text-2xl text-white mb-6" style={{ fontFamily: "'Newsreader',serif" }}>Solving the Double-Spend Problem</h3>
+              <div className="lg:col-span-12">
+                <h3 className="font-serif text-2xl text-white mb-6" style={{ fontFamily: "'Newsreader',serif" }}>Solving the Double-Spend Problem</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div>
                     <p className="font-sans text-sm text-zinc-400 leading-relaxed">The physical asset has to be locked up so nobody can sell it offline while its token trades online. In reference-backed tokenization, a gold bar sits in a vault and the token is the only way to trade it.</p>
                   </div>
                   <div>
-                    <h4 className="font-sans font-bold text-[12px] tracking-wider uppercase text-zinc-400 mb-3">On-Chain Issuance</h4>
+                    <h4 className="font-sans font-bold text-[14px] text-zinc-400 mb-3">On-Chain Issuance</h4>
                     <p className="font-sans text-sm text-zinc-400 leading-relaxed">Some bonds are issued directly on the blockchain and have no physical counterpart, so there is nothing to lock in a vault. The ledger entry <em>is</em> the bond.</p>
                   </div>
-                  <div className="border border-zinc-800 p-6">
-                    <h4 className="font-sans font-bold text-[12px] tracking-wider uppercase text-[#f2dfd2] mb-3">Bankruptcy Remoteness</h4>
+                  <div className="border border-white/10 p-6">
+                    <h4 className="font-sans font-bold text-[14px] text-[oklch(0.915_0.027_56.7)] mb-3">Bankruptcy Remoteness</h4>
                     <p className="font-sans text-sm text-zinc-400 leading-relaxed">In places without clear digital-asset laws, the asset behind a token can get lumped in with a bankrupt issuer's other property. A bankruptcy-remote structure keeps the asset with the token holders instead of the company's creditors.</p>
                   </div>
                 </div>
@@ -765,14 +710,10 @@ export default function TokenizationArticle() {
           </div>
 
           {/* Stage 05 */}
-          <div className="stage-step py-16 reveal" style={{ borderBottom: '1px solid #27272a' }}>
+          <div className="stage-step py-16 reveal" style={{ borderBottom: '1px solid oklch(1 0 0 / 0.1)' }}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-8">
-              <div className="lg:col-span-2">
-                <span className="stage-number text-8xl">05</span>
-              </div>
-              <div className="lg:col-span-5">
-                <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-400 block mb-3">Minting, Distribution &amp; Lifecycle</span>
-                <h3 className="font-serif italic text-2xl text-white mb-4" style={{ fontFamily: "'Newsreader',serif" }}>The Token Goes Live</h3>
+              <div className="lg:col-span-6">
+                <h3 className="font-serif text-2xl text-white mb-4" style={{ fontFamily: "'Newsreader',serif" }}>The Token Goes Live</h3>
                 <p className="font-sans text-sm text-zinc-400 leading-relaxed">Minting creates the tokens on the ledger. They go to investors' wallets, trade around the clock, and collect coupon payments automatically. At maturity the token is burned and the holder receives the underlying value. Right now the market runs on two kinds of network.</p>
               </div>
               <div className="lg:col-span-5">
@@ -781,9 +722,9 @@ export default function TokenizationArticle() {
                     { label: 'Permissioned Networks', desc: "Private consortium ledgers that banks prefer for privacy, such as JPMorgan's Kinexys, Goldman's DAP, and HSBC Orion." },
                     { label: 'Permissionless Networks', desc: 'Public networks such as Ethereum, Polygon, and Avalanche, open to capital from anywhere. They are now growing faster than permissioned networks.' },
                   ].map((item, i) => (
-                    <div key={i} className="bg-[#201f1f] p-8 hover:bg-[#2a2a2a] transition-colors cursor-default">
+                    <div key={i} className="bg-[oklch(0.240_0_0)] p-8 hover:bg-[oklch(0.285_0_0)] transition-colors cursor-default">
                       <div className="flex items-start justify-between mb-3">
-                        <h4 className="font-sans font-bold text-[12px] tracking-wider uppercase text-zinc-300">{item.label}</h4>
+                        <h4 className="font-sans font-bold text-[14px] text-zinc-300">{item.label}</h4>
                       </div>
                       <p className="font-sans text-sm text-zinc-400 leading-relaxed">{item.desc}</p>
                     </div>
@@ -795,9 +736,9 @@ export default function TokenizationArticle() {
         </section>
 
         {/* ── HOW IT ACTUALLY WORKS ── */}
-        <section className="py-32 px-8 md:px-24 lg:px-48 bg-[#1c1b1b]">
+        <section className="py-32 px-8 md:px-24 lg:px-48 bg-[oklch(0.223_0_0)]">
           <div className="mb-24 flex flex-col items-start reveal">
-            <h2 className="font-serif italic text-5xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>What Tokenization Changes</h2>
+            <h2 className="font-serif text-5xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>What Tokenization Changes</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-0.5 bg-zinc-800">
             {[
@@ -805,11 +746,11 @@ export default function TokenizationArticle() {
               { icon: 'contract', title: 'Smart Contract Logic', text: 'Agreements that carry out ownership rules, dividend payments, and votes on their own, without waiting on lawyers or custodians. The compliance checks are part of the code from the start.', tag: 'T+0 atomic settlement', delay: 2 },
               { icon: 'water_drop', title: 'Decentralized Liquidity', text: "Public networks trade around the clock and let in capital from anywhere. Algorithmic market makers do the job floor specialists used to do, and DeFi protocols supply liquidity when it's needed.", tag: '24/7 global trading', delay: 3 },
             ].map((item, i) => (
-              <div key={i} className={`pillar-card bg-[#1c1b1b] p-12 hover:bg-[#2a2a2a] transition-colors group cursor-default reveal reveal-delay-${item.delay}`}>
-                <span className="material-symbols-outlined text-[#f2dfd2] text-4xl mb-8 group-hover:scale-110 transition-transform inline-block">{item.icon}</span>
-                <h3 className="font-serif italic text-2xl text-white mb-6" style={{ fontFamily: "'Newsreader',serif" }}>{item.title}</h3>
+              <div key={i} className={`pillar-card bg-[oklch(0.223_0_0)] p-12 hover:bg-[oklch(0.285_0_0)] transition-colors group cursor-default reveal reveal-delay-${item.delay}`}>
+                <span className="material-symbols-outlined text-[oklch(0.915_0.027_56.7)] text-4xl mb-8 group-hover:scale-110 transition-transform inline-block">{item.icon}</span>
+                <h3 className="font-serif text-2xl text-white mb-6" style={{ fontFamily: "'Newsreader',serif" }}>{item.title}</h3>
                 <p className="font-sans text-sm text-zinc-400 leading-relaxed mb-8">{item.text}</p>
-                <span className="font-sans text-[11px] tracking-[0.25em] uppercase text-zinc-700">{item.tag}</span>
+                <span className="font-sans text-[14px] text-zinc-400">{item.tag}</span>
               </div>
             ))}
           </div>
@@ -818,9 +759,9 @@ export default function TokenizationArticle() {
               { icon: 'security', title: 'ISO-20022 Interoperability', text: 'The shared message format that lets tokens communicate with bank systems like SWIFT, so on-chain and off-chain records can be matched in real time. Banks need this before they can use tokenized assets at any scale.', delay: 2 },
               { icon: 'hub', title: 'Composable Finance', text: 'Think of tokenized assets like apps on a smartphone. They all run on the same operating system, so they can share data, talk to each other, and combine in ways a single app never could alone. Use your tokenized gold to back a loan, earn yield on a tokenized bond, and settle in a stablecoin, all in one transaction.', delay: 3 },
             ].map((item, i) => (
-              <div key={i} className={`pillar-card bg-[#1c1b1b] p-12 hover:bg-[#2a2a2a] transition-colors group cursor-default reveal reveal-delay-${item.delay}`}>
-                <span className="material-symbols-outlined text-[#f2dfd2] text-4xl mb-8 group-hover:scale-110 transition-transform inline-block">{item.icon}</span>
-                <h3 className="font-serif italic text-2xl text-white mb-6" style={{ fontFamily: "'Newsreader',serif" }}>{item.title}</h3>
+              <div key={i} className={`pillar-card bg-[oklch(0.223_0_0)] p-12 hover:bg-[oklch(0.285_0_0)] transition-colors group cursor-default reveal reveal-delay-${item.delay}`}>
+                <span className="material-symbols-outlined text-[oklch(0.915_0.027_56.7)] text-4xl mb-8 group-hover:scale-110 transition-transform inline-block">{item.icon}</span>
+                <h3 className="font-serif text-2xl text-white mb-6" style={{ fontFamily: "'Newsreader',serif" }}>{item.title}</h3>
                 <p className="font-sans text-sm text-zinc-400 leading-relaxed">{item.text}</p>
               </div>
             ))}
@@ -828,22 +769,20 @@ export default function TokenizationArticle() {
         </section>
 
         {/* ── BLEED 02 ── */}
-        <section className="w-full relative overflow-hidden noise-overlay" style={{ height: '480px', background: '#0e0e0e' }}>
+        <section className="w-full relative overflow-hidden" style={{ height: '480px', background: 'oklch(0.164 0 0)' }}>
           <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, rgba(242,223,210,0.6) 0%, transparent 70%)', filter: 'blur(60px)', transform: 'translate(-50%,-30%)' }} />
           <div className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full opacity-8" style={{ background: 'radial-gradient(circle, rgba(180,160,140,0.5) 0%, transparent 70%)', filter: 'blur(40px)', transform: 'translate(50%,30%)' }} />
           <div className="absolute inset-0 opacity-15" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center px-8">
-            <span className="font-sans text-[12px] tracking-[0.35em] uppercase text-white/60 block mb-6">02</span>
-            <span className="font-serif italic text-white/60 leading-tight" style={{ fontFamily: "'Newsreader',serif", fontSize: 'clamp(3rem, 8vw, 7rem)' }}>Where Capital<br />Is Flowing</span>
+            <span className="font-serif text-zinc-300 leading-tight" style={{ fontFamily: "'Newsreader',serif", fontSize: 'clamp(3rem, 8vw, 7rem)' }}>Where Capital<br />Is Flowing</span>
           </div>
         </section>
 
         {/* ── ASSET CLASSES ── */}
-        <section id="assets" className="py-32 px-8 md:px-24 lg:px-48 bg-[#131313]">
+        <section id="assets" className="py-32 px-8 md:px-24 lg:px-48 bg-[oklch(0.187_0_0)]">
           <div className="mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
             <div className="reveal">
-              <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 block mb-4">Tokenizable Universe</span>
-              <h2 className="font-serif italic text-5xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>Every Asset Class,<br />On-Chain</h2>
+              <h2 className="font-serif text-5xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>Every Asset Class,<br />On-Chain</h2>
             </div>
             <p className="font-sans text-sm text-zinc-400 max-w-xs leading-relaxed reveal reveal-delay-2">
               Real estate gets most of the attention, but six asset classes are moving on-chain, each at its own pace and for its own reasons.
@@ -858,16 +797,16 @@ export default function TokenizationArticle() {
               { icon: 'palette', num: '05', title: 'Art & Collectibles', text: "Expensive artworks split among thousands of owners, with the ownership history recorded on-chain where nobody can alter it. That makes provenance much harder to fake, a long-running problem in the art market. Christie's is paying attention.", label1: 'Global Market', val1: '$1.7T', label2: 'Tokenized', val2: 'Early Stage', delay: 2 },
               { icon: 'settings_input_antenna', num: '06', title: 'Infrastructure & Funds', text: 'Toll roads, data centers, and institutional funds, split into tokens so smaller investors can buy in. Funds are only 2% of tokenized volume today. The bigger long-term opportunity is the infrastructure under all of it: the ledgers, custody, and compliance systems.', label1: 'Fund Share', val1: '2%', label2: 'Trajectory', val2: 'Accelerating', delay: 3 },
             ].map((item, i) => (
-              <div key={i} className={`asset-card bg-[#131313] p-10 reveal reveal-delay-${item.delay}`}>
+              <div key={i} className={`asset-card bg-[oklch(0.187_0_0)] p-10 reveal reveal-delay-${item.delay}`}>
                 <div className="flex items-start justify-between mb-6">
-                  <span className="material-symbols-outlined text-[#f2dfd2]" style={{ fontSize: '32px' }}>{item.icon}</span>
-                  <span className="font-serif italic text-3xl text-zinc-800" style={{ fontFamily: "'Newsreader',serif" }}>{item.num}</span>
+                  <span className="material-symbols-outlined text-[oklch(0.915_0.027_56.7)]" style={{ fontSize: '32px' }}>{item.icon}</span>
+                  <span className="font-serif text-3xl text-zinc-800" style={{ fontFamily: "'Newsreader',serif" }}>{item.num}</span>
                 </div>
-                <h3 className="font-serif italic text-xl text-white mb-3" style={{ fontFamily: "'Newsreader',serif" }}>{item.title}</h3>
+                <h3 className="font-serif text-xl text-white mb-3" style={{ fontFamily: "'Newsreader',serif" }}>{item.title}</h3>
                 <p className="font-sans text-sm text-zinc-400 leading-relaxed mb-6">{item.text}</p>
-                <div className="flex items-end justify-between border-t border-zinc-800 pt-6 mt-auto">
-                  <div><span className="font-sans text-[10px] tracking-widest uppercase text-zinc-700 block mb-1">{item.label1}</span><span className="font-sans text-sm font-bold text-zinc-300">{item.val1}</span></div>
-                  <div className="text-right"><span className="font-sans text-[10px] tracking-widest uppercase text-zinc-700 block mb-1">{item.label2}</span><span className="font-sans text-sm font-bold text-[#f2dfd2]">{item.val2}</span></div>
+                <div className="flex items-end justify-between border-t border-white/10 pt-6 mt-auto">
+                  <div><span className="font-sans text-[13px] text-zinc-400 block mb-1">{item.label1}</span><span className="font-sans text-sm font-bold text-zinc-300">{item.val1}</span></div>
+                  <div className="text-right"><span className="font-sans text-[13px] text-zinc-400 block mb-1">{item.label2}</span><span className="font-sans text-sm font-bold text-[oklch(0.915_0.027_56.7)]">{item.val2}</span></div>
                 </div>
               </div>
             ))}
@@ -875,10 +814,9 @@ export default function TokenizationArticle() {
         </section>
 
         {/* ── TIMELINE ── */}
-        <section id="milestones" className="py-32 bg-[#1c1b1b] overflow-hidden">
+        <section id="milestones" className="py-32 bg-[oklch(0.223_0_0)] overflow-hidden">
           <div className="px-8 md:px-24 lg:px-48 mb-20">
-            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 block mb-4 reveal">Chronology</span>
-            <h2 className="font-serif italic text-5xl text-white reveal" style={{ fontFamily: "'Newsreader',serif" }}>The Tokenization<br />Timeline</h2>
+            <h2 className="font-serif text-5xl text-white reveal" style={{ fontFamily: "'Newsreader',serif" }}>The Tokenization<br />Timeline</h2>
           </div>
           <div className="pl-8 md:pl-24 lg:pl-48 reveal">
             <div className="relative">
@@ -895,8 +833,8 @@ export default function TokenizationArticle() {
                 { year: '2030 ↗', title: '$2T to $16T', text: "McKinsey's base case is about $2 trillion. BCG projects up to $16 trillion, roughly 10% of global GDP. By then the line between traditional finance and DeFi may be hard to find.", accent: true },
               ].map((item, i) => (
                 <div key={i} className="timeline-item" style={item.accent ? { borderTopColor: 'rgba(242,223,210,0.3)' } : {}}>
-                  <span className="font-sans text-[11px] tracking-[0.3em] uppercase text-[#f2dfd2] block mb-4">{item.year}</span>
-                  <h3 className="font-serif italic text-xl text-white mb-3" style={{ fontFamily: "'Newsreader',serif" }}>{item.title}</h3>
+                  <span className="font-sans text-[14px] text-[oklch(0.915_0.027_56.7)] block mb-4">{item.year}</span>
+                  <h3 className="font-serif text-xl text-white mb-3" style={{ fontFamily: "'Newsreader',serif" }}>{item.title}</h3>
                   <p className="font-sans text-sm text-zinc-400 leading-relaxed">{item.text}</p>
                 </div>
               ))}
@@ -905,16 +843,15 @@ export default function TokenizationArticle() {
             </div>
             <div className="flex items-center gap-3 mt-4 reveal">
               <span className="material-symbols-outlined text-zinc-400 text-base">arrow_forward</span>
-              <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-zinc-400">Drag or scroll to move through the timeline</span>
+              <span className="font-sans text-[14px] text-zinc-400">Drag or scroll to move through the timeline</span>
             </div>
           </div>
         </section>
 
         {/* ── THE ARCHITECTS ── */}
-        <section className="py-32 px-8 md:px-24 lg:px-48 bg-[#131313]">
+        <section className="py-32 px-8 md:px-24 lg:px-48 bg-[oklch(0.187_0_0)]">
           <div className="mb-16 reveal">
-            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 block mb-4">Who Is Building It</span>
-            <h2 className="font-serif italic text-5xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>The Architects of the<br />New Master Ledger</h2>
+            <h2 className="font-serif text-5xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>The Architects of the<br />New Master Ledger</h2>
           </div>
 
           <div className="mb-16 reveal">
@@ -928,13 +865,13 @@ export default function TokenizationArticle() {
               { name: 'Securitize', tag: 'Platform', text: "Has tokenized more than $4 billion in assets and reached a $1.25 billion valuation through a SPAC merger. It handles issuance and compliance for BlackRock's BUIDL fund.", footer: '$4B+ tokenized', delay: 1 },
               { name: 'tZERO', tag: 'ATS', text: "Runs a FINRA-approved Alternative Trading System for corporate debt, a regulated market where tokenized securities can be resold after they're issued.", delay: 2 },
             ].map((item, i) => (
-              <div key={i} className={`arch-card bg-[#131313] p-10 hover:bg-[#1c1b1b] cursor-default reveal reveal-delay-${item.delay}`}>
+              <div key={i} className={`arch-card bg-[oklch(0.187_0_0)] p-10 hover:bg-[oklch(0.223_0_0)] cursor-default reveal reveal-delay-${item.delay}`}>
                 <div className="flex items-start justify-between mb-6">
-                  <span className="font-sans font-bold text-[12px] tracking-wider uppercase text-zinc-400">{item.name}</span>
-                  <span className="font-sans text-[11px] tracking-widest uppercase text-[#f2dfd2]">{item.tag}</span>
+                  <span className="font-sans font-bold text-[14px] text-zinc-400">{item.name}</span>
+                  <span className="font-sans text-[14px] text-[oklch(0.915_0.027_56.7)]">{item.tag}</span>
                 </div>
                 <p className="font-sans text-sm text-zinc-400 leading-relaxed">{item.text}</p>
-                {item.footer && <div className="mt-6 border-t border-zinc-800 pt-4"><span className="font-sans text-[11px] tracking-widest uppercase text-zinc-700">{item.footer}</span></div>}
+                {item.footer && <div className="mt-6 border-t border-white/10 pt-4"><span className="font-sans text-[14px] text-zinc-400">{item.footer}</span></div>}
               </div>
             ))}
           </div>
@@ -943,10 +880,10 @@ export default function TokenizationArticle() {
               { name: 'Ondo Finance & Franklin Templeton', tag: 'Treasuries', text: 'Early issuers of tokenized US Treasuries. Between them they have issued billions in yield-bearing tokens that investors anywhere can hold, settle the same day, and use inside DeFi protocols.', delay: 1 },
               { name: 'Centrifuge', tag: 'Private Credit', text: 'Brings real-world private credit on-chain. Lenders holding trade receivables, mortgages, or microfinance loans can tokenize them and borrow against them from DeFi liquidity pools.', delay: 2 },
             ].map((item, i) => (
-              <div key={i} className={`arch-card bg-[#131313] p-10 hover:bg-[#1c1b1b] cursor-default reveal reveal-delay-${item.delay}`}>
+              <div key={i} className={`arch-card bg-[oklch(0.187_0_0)] p-10 hover:bg-[oklch(0.223_0_0)] cursor-default reveal reveal-delay-${item.delay}`}>
                 <div className="flex items-start justify-between mb-6">
-                  <span className="font-sans font-bold text-[12px] tracking-wider uppercase text-zinc-400">{item.name}</span>
-                  <span className="font-sans text-[11px] tracking-widest uppercase text-[#f2dfd2]">{item.tag}</span>
+                  <span className="font-sans font-bold text-[14px] text-zinc-400">{item.name}</span>
+                  <span className="font-sans text-[14px] text-[oklch(0.915_0.027_56.7)]">{item.tag}</span>
                 </div>
                 <p className="font-sans text-sm text-zinc-400 leading-relaxed">{item.text}</p>
               </div>
@@ -955,30 +892,29 @@ export default function TokenizationArticle() {
         </section>
 
         {/* ── PULL QUOTE 02 ── */}
-        <section className="py-48 bg-[#131313] relative overflow-hidden">
+        <section className="py-48 bg-[oklch(0.187_0_0)] relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(242,223,210,0.04) 0%, transparent 70%)' }} />
           <div className="max-w-5xl mx-auto px-8 text-center">
             <div className="reveal">
               <div className="quote-line" />
-              <blockquote className="font-serif italic text-4xl md:text-6xl text-white leading-tight mb-12" style={{ fontFamily: "'Newsreader',serif" }}>
-                Tokenization keeps the financial system we have and <span className="text-[#f2dfd2]">rebuilds it</span> on programmable infrastructure.
+              <blockquote className="font-serif text-4xl md:text-6xl text-white leading-tight mb-12" style={{ fontFamily: "'Newsreader',serif" }}>
+                Tokenization keeps the financial system we have and <span className="text-[oklch(0.915_0.027_56.7)]">rebuilds it</span> on programmable infrastructure.
               </blockquote>
             </div>
           </div>
         </section>
 
         {/* ── ROAD AHEAD ── */}
-        <section id="road-ahead" className="py-32 px-8 md:px-24 lg:px-48 bg-[#0e0e0e]">
+        <section id="road-ahead" className="py-32 px-8 md:px-24 lg:px-48 bg-[oklch(0.164_0_0)]">
           <div className="mb-24 reveal">
-            <span className="font-sans text-[11px] font-bold tracking-[0.3em] uppercase text-zinc-400 block mb-4">Outlook</span>
-            <h2 className="font-serif italic text-5xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>The Road Ahead</h2>
+            <h2 className="font-serif text-5xl text-white" style={{ fontFamily: "'Newsreader',serif" }}>The Road Ahead</h2>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
             {/* Friction Points */}
             <div className="reveal" data-inview>
-              <h3 className="font-serif italic text-2xl text-white mb-10 pb-6 border-b border-zinc-800" style={{ fontFamily: "'Newsreader',serif" }}>What's Still in the Way</h3>
-              <p className="font-sans text-[11px] tracking-[0.15em] uppercase text-zinc-500 mb-10">Percentages: share of 300 financial institutions naming each risk in Broadridge's 2025 Tokenization Survey</p>
+              <h3 className="font-serif text-2xl text-white mb-10 pb-6 border-b border-white/10" style={{ fontFamily: "'Newsreader',serif" }}>What's Still in the Way</h3>
+              <p className="font-sans text-[14px] text-zinc-500 mb-10">Percentages: share of 300 financial institutions naming each risk in Broadridge's 2025 Tokenization Survey</p>
               {[
                 { label: 'Regulatory Uncertainty', pct: '73%', width: '73%', text: 'Unclear or insufficient regulation is the barrier institutions name most often. A tokenized bond that is legal in Singapore may be illegal to sell in Germany, and until countries line up their rules, room for regulatory arbitrage and systemic risk both keep growing.' },
                 { label: 'Technology & Cybersecurity Risk', pct: '54%', width: '54%', text: 'Code has bugs, and bugs get exploited. If a contract managing $200M of tokenized real estate is hacked, the losses land on people who own pieces of real buildings.' },
@@ -987,8 +923,8 @@ export default function TokenizationArticle() {
               ].map((item, i) => (
                 <div key={i} className={`${item.width ? 'friction-row' : ''} ${i < 3 ? 'mb-10' : ''}`}>
                   <div className="mb-3 flex items-center justify-between">
-                    <h4 className="font-sans text-sm font-bold text-zinc-300 uppercase tracking-wider">{item.label}</h4>
-                    {item.pct && <span className="font-serif italic text-xl text-white tabular-nums" style={{ fontFamily: "'Newsreader',serif" }} data-target={parseInt(item.pct)} data-suffix="%">{item.pct}</span>}
+                    <h4 className="font-sans text-sm font-bold text-zinc-300">{item.label}</h4>
+                    {item.pct && <span className="font-serif text-xl text-white tabular-nums" style={{ fontFamily: "'Newsreader',serif" }} data-target={parseInt(item.pct)} data-suffix="%">{item.pct}</span>}
                   </div>
                   <div className="h-px bg-zinc-800 mb-3">
                     {item.width && <div className="friction-bar-fill" data-width={item.width} />}
@@ -1000,7 +936,7 @@ export default function TokenizationArticle() {
 
             {/* Catalysts */}
             <div className="reveal">
-              <h3 className="font-serif italic text-2xl text-white mb-10 pb-6 border-b border-zinc-800" style={{ fontFamily: "'Newsreader',serif" }}>What's Pushing It Forward</h3>
+              <h3 className="font-serif text-2xl text-white mb-10 pb-6 border-b border-white/10" style={{ fontFamily: "'Newsreader',serif" }}>What's Pushing It Forward</h3>
               <div className="space-y-10">
                 {[
                   { label: 'Legislative Clarity', text: 'The GENIUS Act (2025) gave the US clear rules for stablecoins, which removes one of the main reasons large institutions stayed out. The Clarity Act would do the same for the rest of the market, but it stalled in the Senate in September 2026.' },
@@ -1009,9 +945,9 @@ export default function TokenizationArticle() {
                   { label: 'The $20B Savings Argument', text: 'A GFMA and BCG study estimates that distributed ledgers could save about $20 billion a year in global clearing and settlement costs. Savings that large are hard to treat as an experiment, and banks that wait will be stuck with higher costs than the ones that move.' },
                 ].map((item, i) => (
                   <div key={i} className="flex gap-6">
-                    <span className="font-sans text-zinc-700 text-lg leading-none mt-1 flex-shrink-0">+</span>
+                    <span className="font-sans text-zinc-400 text-lg leading-none mt-1 flex-shrink-0">+</span>
                     <div>
-                      <h4 className="font-sans text-sm font-bold text-zinc-300 mb-2 uppercase tracking-wider">{item.label}</h4>
+                      <h4 className="font-sans text-sm font-bold text-zinc-300 mb-2">{item.label}</h4>
                       <p className="font-sans text-sm text-zinc-400 leading-relaxed">{item.text}</p>
                     </div>
                   </div>
@@ -1021,13 +957,10 @@ export default function TokenizationArticle() {
           </div>
 
           {/* Editorial Closing */}
-          <div className="mt-32 pt-16 border-t border-zinc-800 reveal">
+          <div className="mt-32 pt-16 border-t border-white/10 reveal">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-              <div className="lg:col-span-2">
-                <span className="font-sans text-[11px] tracking-[0.3em] uppercase text-zinc-700"></span>
-              </div>
-              <div className="lg:col-span-10">
-                <p className="font-serif italic text-2xl text-zinc-300 leading-relaxed text-center" style={{ fontFamily: "'Newsreader',serif" }}>
+              <div className="lg:col-span-12">
+                <p className="font-serif text-2xl text-zinc-300 leading-relaxed text-center" style={{ fontFamily: "'Newsreader',serif" }}>
                   Paper-heavy, siloed systems are on their way out. I think the institutions that do well over the next decade will be the ones that build compliance in from the start and make their assets work across networks, so capital moves about as easily as data. The infrastructure scales now, stablecoins finally have US rules, and the big incumbents are putting real money in. The rest of the legislation is still stuck, but I don't have much doubt that this happens. What I'm less sure of is who builds the infrastructure, because whoever does gets to decide <em>who benefits</em>.
                 </p>
               </div>
@@ -1036,10 +969,10 @@ export default function TokenizationArticle() {
         </section>
 
         {/* ── SOURCES ── */}
-        <section id="sources" className="py-24 px-8 md:px-24 lg:px-48 bg-[#0e0e0e] border-t border-zinc-800">
+        <section id="sources" className="py-24 px-8 md:px-24 lg:px-48 bg-[oklch(0.164_0_0)] border-t border-white/10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-2">
-              <span className="font-sans text-[11px] tracking-[0.3em] uppercase text-zinc-500">Sources</span>
+              <span className="font-sans text-[14px] text-zinc-500">Sources</span>
             </div>
             <ol className="lg:col-span-10 list-decimal pl-5 space-y-3 font-sans text-sm text-zinc-400 leading-relaxed [&_a]:text-zinc-300 [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-white">
               {[
@@ -1067,10 +1000,10 @@ export default function TokenizationArticle() {
       </main>
 
       {/* FOOTER */}
-      <footer className="w-full border-t border-zinc-800 bg-[#0e0e0e] text-zinc-400 font-sans text-[12px] tracking-widest uppercase">
+      <footer className="w-full border-t border-white/10 bg-[oklch(0.164_0_0)] text-zinc-400 font-sans text-[14px]">
         <div className="max-w-[1920px] mx-auto px-12 pt-16 pb-12">
           <div className="flex flex-col gap-4 mb-16 pb-16 border-b border-zinc-900">
-            <span className="text-zinc-700 text-[11px]">Series</span>
+            <span className="text-zinc-400 text-[14px]">Series</span>
             <div className="flex flex-wrap gap-8">
               <a className="hover:text-white transition-colors" href="#">The Future of FinTech</a>
               <a className="hover:text-white transition-colors" href="#">DeFi Architecture</a>
@@ -1083,7 +1016,7 @@ export default function TokenizationArticle() {
               <a className="hover:text-white transition-colors" href="#">Privacy Policy</a>
               <a className="hover:text-white transition-colors" href="#">Terms of Service</a>
             </div>
-            <div className="text-zinc-700">© 2025 Mohamad Noor-Chowdhury. All rights reserved.</div>
+            <div className="text-zinc-400">© 2025 Mohamad Noor-Chowdhury. All rights reserved.</div>
           </div>
         </div>
       </footer>

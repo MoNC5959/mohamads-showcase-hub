@@ -130,9 +130,7 @@ export default function FintechArticle() {
             </div>
 
             <section className="article-section">
-              <h2 className="article-heading">
-                <span>1</span> AI Is Inside the Bank
-              </h2>
+              <h2 className="article-heading">AI Is Inside the Bank</h2>
               <div className="article-copy">
                 <p>
                   Most financial firms already use artificial intelligence somewhere in the
@@ -173,9 +171,7 @@ export default function FintechArticle() {
             </div>
 
             <section className="article-section">
-              <h2 className="article-heading">
-                <span>2</span> Your Favorite Apps Are Becoming Your Bank
-              </h2>
+              <h2 className="article-heading">Your Favorite Apps Are Becoming Your Bank</h2>
               <div className="article-copy">
                 <p>
                   More of your money now moves through apps that aren't banks. The term for this is{" "}
@@ -196,9 +192,7 @@ export default function FintechArticle() {
             </blockquote>
 
             <section className="article-section">
-              <h2 className="article-heading">
-                <span>3</span> Digital Dollars Get Rules
-              </h2>
+              <h2 className="article-heading">Digital Dollars Get Rules</h2>
               <div className="article-copy">
                 <p>
                   You've probably heard of Bitcoin, whose price can swing by double digits in a
@@ -241,9 +235,7 @@ export default function FintechArticle() {
             </div>
 
             <section className="article-section">
-              <h2 className="article-heading">
-                <span>4</span> Instant Payments Are Becoming Normal
-              </h2>
+              <h2 className="article-heading">Instant Payments Are Becoming Normal</h2>
               <div className="article-copy">
                 <p>
                   Waiting two or three business days for a bank transfer to clear is becoming less
@@ -275,9 +267,7 @@ export default function FintechArticle() {
             </div>
 
             <section className="article-section">
-              <h2 className="article-heading">
-                <span>5</span> Fraud Is Getting More Expensive
-              </h2>
+              <h2 className="article-heading">Fraud Is Getting More Expensive</h2>
               <div className="article-copy">
                 <p>
                   Better tools help scammers too. Americans reported losing $15.9 billion to fraud

@@ -18,7 +18,7 @@ interface NapBoxProps {
  */
 const NapBox = forwardRef<HTMLDivElement, NapBoxProps>(function NapBox(
   { index, sheetLabel, title, active, onEnter, onFocusEnter, onLeave, onPick },
-  boxRef
+  boxRef,
 ) {
   const flapOpen = active;
 
@@ -46,9 +46,22 @@ const NapBox = forwardRef<HTMLDivElement, NapBoxProps>(function NapBox(
         <svg
           viewBox="0 0 240 210"
           aria-hidden="true"
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible" }}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            overflow: "visible",
+          }}
         >
-          <g style={{ fill: "var(--color-bg)", stroke: "currentColor", strokeWidth: 1.6, strokeLinejoin: "round" }}>
+          <g
+            style={{
+              fill: "var(--color-bg)",
+              stroke: "currentColor",
+              strokeWidth: 1.6,
+              strokeLinejoin: "round",
+            }}
+          >
             <polygon points="50,64 190,64 184,26 56,26" />
             <polygon points="30,80 210,80 190,64 50,64" fill="url(#sunnah-hatch)" />
             <polygon
@@ -80,7 +93,6 @@ const NapBox = forwardRef<HTMLDivElement, NapBoxProps>(function NapBox(
         </svg>
 
         <div className="nap-box-stencil">
-          <span className="nap-box-number">Box {String(index + 1).padStart(2, "0")}</span>
           <span className="nap-box-title">{sheetLabel}</span>
         </div>
       </div>

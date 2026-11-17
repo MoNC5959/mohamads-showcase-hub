@@ -1,6 +1,12 @@
 // @ts-nocheck -- imported code written for looser TypeScript settings
-import { useCallback, useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from "react";
-import { useNavigate } from '@/lib/router-compat';
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type MouseEvent as ReactMouseEvent,
+} from "react";
+import { useNavigate } from "@/lib/router-compat";
 import NapBox from "./NapBox";
 import SunnahCat from "./SunnahCat";
 import SunnahSleeper from "./SunnahSleeper";
@@ -53,14 +59,20 @@ const SCROLL_BIAS = 1.5;
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 
 function prefersReducedMotion() {
-  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return (
+    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
 }
 
 export default function SunnahScene({ items }: SunnahSceneProps) {
   const navigate = useNavigate();
 
   const stageRef = useRef<HTMLDivElement>(null);
-  const boxRefs = [useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null), useRef<HTMLDivElement>(null)];
+  const boxRefs = [
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+  ];
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -125,7 +137,10 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
     m.velocity += clamp(wanted - m.velocity, -accel, accel);
     m.x += m.velocity * dt;
     const remaining = m.target - m.x;
-    if ((Math.abs(remaining) < 1.5 && Math.abs(m.velocity) < 14) || (m.onArrive && Math.abs(remaining) < LEAP_DISTANCE)) {
+    if (
+      (Math.abs(remaining) < 1.5 && Math.abs(m.velocity) < 14) ||
+      (m.onArrive && Math.abs(remaining) < LEAP_DISTANCE)
+    ) {
       m.x = m.target;
       m.velocity = 0;
     }
@@ -141,10 +156,12 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
 
     const hurry = Math.max(speed - WALK_SPEED, 0) / (RUN_SPEED - WALK_SPEED);
     const cruising = Math.min(m.topSpeed, WALK_SPEED);
-    const wantedSwing = (16 + 14 * Math.min(speed / cruising, 1) + 8 * hurry) * Math.min(speed / 50, 1);
+    const wantedSwing =
+      (16 + 14 * Math.min(speed / cruising, 1) + 8 * hurry) * Math.min(speed / 50, 1);
     m.swing += (wantedSwing - m.swing) * Math.min(dt * 14, 1);
     const scale = (catRef.current?.offsetWidth ?? DRAWING_WIDTH) / DRAWING_WIDTH;
-    const strideLength = 4 * WALKER_LEG_LENGTH * Math.sin((Math.max(m.swing, 10) * Math.PI) / 180) * scale;
+    const strideLength =
+      4 * WALKER_LEG_LENGTH * Math.sin((Math.max(m.swing, 10) * Math.PI) / 180) * scale;
     m.stride += (speed * dt) / strideLength;
 
     walkerRef.current?.update(m.stride, m.swing, drawnFacing);
@@ -192,7 +209,7 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
         m.frame = requestAnimationFrame(step);
       }
     },
-    [step]
+    [step],
   );
 
   const measureOffset = useCallback((index: number) => {
@@ -231,7 +248,7 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
       motion.current.topSpeed = Math.min(WALK_SPEED, stageRect.width * WALK_SPEED_PER_STAGE_WIDTH);
       walkTo(clamp(clientX - (stageRect.left + stageRect.width / 2), -maxOffset, maxOffset));
     },
-    [walkTo]
+    [walkTo],
   );
 
   // A finger has nothing to hover with, so the box under it opens as she's dragged along.
@@ -247,7 +264,8 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
     setTouchOnly(window.matchMedia("(hover: none)").matches);
 
     const onMouseMove = (event: PointerEvent) => {
-      if (event.pointerType !== "touch" && phaseRef.current === "idle") followPointer(event.clientX);
+      if (event.pointerType !== "touch" && phaseRef.current === "idle")
+        followPointer(event.clientX);
     };
     window.addEventListener("pointermove", onMouseMove, { passive: true });
     return () => window.removeEventListener("pointermove", onMouseMove);
@@ -298,7 +316,9 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
     };
 
     const onMove = (event: TouchEvent) => {
-      const point = Array.from(event.changedTouches).find((candidate) => candidate.identifier === t.id);
+      const point = Array.from(event.changedTouches).find(
+        (candidate) => candidate.identifier === t.id,
+      );
       if (!point || t.mode === "scroll") return;
       const dx = Math.abs(point.clientX - t.startX);
       const dy = Math.abs(point.clientY - t.startY);
@@ -318,7 +338,8 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
     };
 
     const onEnd = (event: TouchEvent) => {
-      if (!Array.from(event.changedTouches).some((candidate) => candidate.identifier === t.id)) return;
+      if (!Array.from(event.changedTouches).some((candidate) => candidate.identifier === t.id))
+        return;
       if (t.mode === "drag" && performance.now() - t.startTime > LONG_HOLD_MS) t.dragged = true;
       finish();
     };
@@ -417,19 +438,19 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
       ? hoveredIndex !== null
         ? `Sizing up Box 0${hoveredIndex + 1}: ${items[hoveredIndex].title}`
         : touching
-        ? "Following your finger"
-        : walking
-        ? "Following your cursor"
-        : touchOnly
-        ? "Hold and drag to walk her"
-        : "Awaiting your cursor"
+          ? "Following your finger"
+          : walking
+            ? "Following your cursor"
+            : touchOnly
+              ? "Hold and drag to walk her"
+              : "Awaiting your cursor"
       : phase === "walking"
-      ? "On her way..."
-      : phase === "jumping"
-      ? "Climbing in..."
-      : phase === "settling"
-      ? "Getting comfortable..."
-      : "Sunnah is asleep. Taking you there";
+        ? "On her way..."
+        : phase === "jumping"
+          ? "Climbing in..."
+          : phase === "settling"
+            ? "Getting comfortable..."
+            : "Sunnah is asleep. Taking you there";
 
   return (
     <div className="blueprint">
@@ -449,9 +470,24 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
       >
         <svg width={0} height={0} aria-hidden="true" style={{ position: "absolute" }}>
           <defs>
-            <pattern id="sunnah-hatch" width={6} height={6} patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <pattern
+              id="sunnah-hatch"
+              width={6}
+              height={6}
+              patternUnits="userSpaceOnUse"
+              patternTransform="rotate(45)"
+            >
               <rect width={6} height={6} style={{ fill: "var(--color-bg)" }} />
-              <line x1={0} y1={0} x2={0} y2={6} style={{ stroke: "color-mix(in srgb, var(--color-text) 78%, var(--color-bg))", strokeWidth: 1 }} />
+              <line
+                x1={0}
+                y1={0}
+                x2={0}
+                y2={6}
+                style={{
+                  stroke: "color-mix(in srgb, var(--color-text) 78%, var(--color-bg))",
+                  strokeWidth: 1,
+                }}
+              />
             </pattern>
           </defs>
         </svg>
@@ -493,18 +529,57 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
             borderBottom: "1px solid var(--color-divider)",
           }}
         >
-          <svg viewBox="0 0 22 22" aria-hidden="true" style={{ position: "absolute", left: 18, top: 7, width: 22, height: 22, overflow: "visible" }}>
-            <path d="M0 0 H22 L0 22 Z" style={{ fill: "none", stroke: "color-mix(in srgb, var(--color-text) 40%, transparent)", strokeWidth: 1 }} />
+          <svg
+            viewBox="0 0 22 22"
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              left: 18,
+              top: 7,
+              width: 22,
+              height: 22,
+              overflow: "visible",
+            }}
+          >
+            <path
+              d="M0 0 H22 L0 22 Z"
+              style={{
+                fill: "none",
+                stroke: "color-mix(in srgb, var(--color-text) 40%, transparent)",
+                strokeWidth: 1,
+              }}
+            />
           </svg>
-          <svg viewBox="0 0 22 22" aria-hidden="true" style={{ position: "absolute", right: 18, top: 7, width: 22, height: 22, overflow: "visible" }}>
-            <path d="M0 0 H22 V22 Z" style={{ fill: "none", stroke: "color-mix(in srgb, var(--color-text) 40%, transparent)", strokeWidth: 1 }} />
+          <svg
+            viewBox="0 0 22 22"
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              right: 18,
+              top: 7,
+              width: 22,
+              height: 22,
+              overflow: "visible",
+            }}
+          >
+            <path
+              d="M0 0 H22 V22 Z"
+              style={{
+                fill: "none",
+                stroke: "color-mix(in srgb, var(--color-text) 40%, transparent)",
+                strokeWidth: 1,
+              }}
+            />
           </svg>
         </div>
 
         <div className="cat-floor" style={{ height: "clamp(120px, 10vw, 144px)" }} />
 
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 2 }}>
-          <div ref={floorRef} style={{ position: "absolute", left: "50%", bottom: 0, width: 0, height: 0 }}>
+          <div
+            ref={floorRef}
+            style={{ position: "absolute", left: "50%", bottom: 0, width: 0, height: 0 }}
+          >
             <div
               style={{
                 position: "absolute",
@@ -532,14 +607,22 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
                 translate: "-50% 0",
                 transformOrigin: "50% 100%",
                 opacity: leavingFloor ? 0 : 1,
-                transform: leavingFloor ? `translate(0px, ${-nap.lift}px) scale(${0.6 * nap.scale})` : "none",
+                transform: leavingFloor
+                  ? `translate(0px, ${-nap.lift}px) scale(${0.6 * nap.scale})`
+                  : "none",
                 transition: catTransition,
               }}
             >
-              <div className={walking ? "cat-pose cat-pose--sit is-hidden" : "cat-pose cat-pose--sit"}>
+              <div
+                className={walking ? "cat-pose cat-pose--sit is-hidden" : "cat-pose cat-pose--sit"}
+              >
                 <SunnahCat lookDirection={look} />
               </div>
-              <div className={walking ? "cat-pose cat-pose--walk" : "cat-pose cat-pose--walk is-hidden"}>
+              <div
+                className={
+                  walking ? "cat-pose cat-pose--walk" : "cat-pose cat-pose--walk is-hidden"
+                }
+              >
                 <SunnahWalker ref={walkerRef} />
               </div>
             </div>
@@ -572,7 +655,10 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
                     fontSize: 16,
                     lineHeight: 1,
                     color: "var(--color-accent-300)",
-                    animation: phase === "napping" ? `sunnah-float-z 1500ms ease-in-out ${z * 380}ms infinite` : "none",
+                    animation:
+                      phase === "napping"
+                        ? `sunnah-float-z 1500ms ease-in-out ${z * 380}ms infinite`
+                        : "none",
                     opacity: 0,
                   }}
                 >
@@ -588,20 +674,34 @@ export default function SunnahScene({ items }: SunnahSceneProps) {
         style={{
           display: "flex",
           flexWrap: "wrap",
-          borderTop: "1px solid color-mix(in srgb, var(--color-text) 55%, transparent)",
-          fontSize: 12,
-          lineHeight: "20px",
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
-          fontWeight: 600,
-          color: "color-mix(in srgb, var(--color-text) 72%, transparent)",
+          borderTop: "1px solid var(--color-divider)",
+          fontSize: 15,
+          lineHeight: "22px",
+          fontWeight: 500,
+          color: "color-mix(in oklch, var(--color-text) 72%, transparent)",
         }}
       >
-        <div style={{ flex: "1 1 280px", display: "flex", alignItems: "center", gap: 10, padding: "12px 20px" }}>
-          <span style={{ width: 7, height: 7, flex: "none", background: statusDot, borderRadius: "50%" }} />
+        <div
+          style={{
+            flex: "1 1 280px",
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            padding: "12px 20px",
+          }}
+        >
+          <span
+            style={{
+              width: 7,
+              height: 7,
+              flex: "none",
+              background: statusDot,
+              borderRadius: "50%",
+            }}
+          />
           <span style={{ color: "var(--color-text)" }}>{statusText}</span>
         </div>
-        <div style={{ padding: "12px 20px", borderLeft: "1px solid var(--color-divider)" }}>Subject: Sunnah, grey shorthair</div>
+        <div style={{ padding: "12px 20px" }}>Subject: Sunnah, grey shorthair</div>
       </div>
     </div>
   );

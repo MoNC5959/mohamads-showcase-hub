@@ -145,7 +145,7 @@ export default function ColosseumArticle() {
         ctx.strokeStyle = 'rgba(0,200,255,0.3)'; ctx.lineWidth = 1;
         ctx.beginPath(); ctx.arc(cx, yP(55), 9, 0, Math.PI * 2); ctx.stroke();
 
-        ctx.font = 'italic 11px Newsreader, serif'; ctx.textAlign = 'left';
+        ctx.font = '12px Manrope, sans-serif'; ctx.textAlign = 'left';
         ctx.fillStyle = 'rgba(0,200,255,0.7)'; ctx.fillText('Streaming', xP(10) + 6, yP(95) + 4);
         ctx.fillStyle = 'rgba(58,85,112,0.9)'; ctx.fillText('Linear TV', xP(10) + 6, yP(32) + 4);
       }
@@ -429,7 +429,7 @@ export default function ColosseumArticle() {
 
       {/* Nav */}
       <nav className="col-nav">
-        <a href="/" className="nav-logo font-sans text-lg" style={{textDecoration:'none',color:'inherit',cursor:'pointer'}}>MOHAMAD NOOR-CHOWDHURY</a>
+        <a href="/" className="nav-logo font-sans text-lg" style={{textDecoration:'none',color:'inherit',cursor:'pointer'}}>Mohamad Noor-Chowdhury</a>
         <ul className="nav-links">
           <li><a href="#access">Access</a></li>
           <li><a href="#power">Power Play</a></li>
@@ -437,7 +437,6 @@ export default function ColosseumArticle() {
           <li><a href="#victim">The Victim</a></li>
           <li><a href="#reckoning">Reckoning</a></li>
         </ul>
-        <span className="nav-tag">Sports Media</span>
       </nav>
 
       {/* Side nav dots */}
@@ -459,14 +458,10 @@ export default function ColosseumArticle() {
         <section id="hero">
           <canvas id="morph-canvas" aria-hidden="true"></canvas>
           <div className="hero-inner">
-            <div className="hero-kicker reveal d1">
-              <span className="hero-kicker-dot"></span>
-              <span style={{fontSize:'0.72rem',letterSpacing:'0.25em',textTransform:'uppercase',color:'var(--text-dim)'}}>Long Read · Sports &amp; Media</span>
-            </div>
 
             <h1 className="hero-title reveal d2">
               From the<br/>
-              <em>Colosseum</em><br/>
+              <span className="cyan">Colosseum</span><br/>
               to the Cloud
             </h1>
 
@@ -505,10 +500,6 @@ export default function ColosseumArticle() {
         {/* ═══════════════════════════ ERA TIMELINE */}
         <section id="access">
           <div className="section-inner">
-            <div className="chapter-label reveal">
-              <div className="chapter-line"></div>
-              <span className="label">Chapter I</span>
-            </div>
             <h2 className="h-section section-title reveal d1">
               The Unstoppable<br/>
               <span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>March of Access</span>
@@ -632,10 +623,6 @@ export default function ColosseumArticle() {
         {/* ═══════════════════════════ POWER PLAY */}
         <section id="power" style={{background:'var(--bg-2)'}}>
           <div className="section-inner">
-            <div className="chapter-label reveal">
-              <div className="chapter-line"></div>
-              <span className="label">Chapter II</span>
-            </div>
             <h2 className="h-section section-title reveal d1">
               A Mutually Beneficial<br/>
               <span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>Power Play</span>
@@ -677,10 +664,6 @@ export default function ColosseumArticle() {
         {/* ═══════════════════════════ COVID */}
         <section id="covid">
           <div className="section-inner">
-            <div className="chapter-label reveal">
-              <div className="chapter-line"></div>
-              <span className="label">Chapter III</span>
-            </div>
             <h2 className="h-section section-title reveal d1">
               The COVID<br/>
               <span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>Accelerator</span>
@@ -700,17 +683,17 @@ export default function ColosseumArticle() {
 
             <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'1rem'}}>
               <div className="glass reveal d1" style={{padding:'1.75rem'}}>
-                <div style={{fontFamily:"'Newsreader',serif",fontStyle:'italic',fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>+26M</div>
+                <div style={{fontFamily:"'Newsreader',serif",fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>+26M</div>
                 <div style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:600,fontSize:'0.85rem',color:'var(--text)',marginBottom:'0.4rem'}}>New US streaming subscribers in 2020</div>
                 <div style={{fontSize:'0.78rem',color:'var(--text-muted)',lineHeight:'1.6'}}>Added in a single year as lockdowns made streaming the only live entertainment.</div>
               </div>
               <div className="glass reveal d2" style={{padding:'1.75rem'}}>
-                <div style={{fontFamily:"'Newsreader',serif",fontStyle:'italic',fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>–12%</div>
+                <div style={{fontFamily:"'Newsreader',serif",fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>–12%</div>
                 <div style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:600,fontSize:'0.85rem',color:'var(--text)',marginBottom:'0.4rem'}}>Linear TV viewership decline 2020–22</div>
                 <div style={{fontSize:'0.78rem',color:'var(--text-muted)',lineHeight:'1.6'}}>Cord-cutting accelerated permanently. Households that cancelled rarely returned.</div>
               </div>
               <div className="glass reveal d3" style={{padding:'1.75rem'}}>
-                <div style={{fontFamily:"'Newsreader',serif",fontStyle:'italic',fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>2021</div>
+                <div style={{fontFamily:"'Newsreader',serif",fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>2021</div>
                 <div style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:600,fontSize:'0.85rem',color:'var(--text)',marginBottom:'0.4rem'}}>First major sports rights shift to streaming</div>
                 <div style={{fontSize:'0.78rem',color:'var(--text-muted)',lineHeight:'1.6'}}>Amazon had previously aired NFL games, but in 2021 signed the first exclusive streaming rights deal for Thursday Night Football, a watershed moment for the industry.</div>
               </div>
@@ -723,10 +706,6 @@ export default function ColosseumArticle() {
         {/* ═══════════════════════════ AMAZON */}
         <section id="amazon" style={{background:'var(--bg-2)'}}>
           <div className="section-inner">
-            <div className="chapter-label reveal">
-              <div className="chapter-line"></div>
-              <span className="label">Case Study</span>
-            </div>
             <h2 className="h-section section-title reveal d1">
               The Amazon / NFL<br/>
               <span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>Blueprint</span>
@@ -809,10 +788,6 @@ export default function ColosseumArticle() {
         {/* ═══════════════════════════ DATA PAYOFF */}
         <section id="data">
           <div className="section-inner">
-            <div className="chapter-label reveal">
-              <div className="chapter-line"></div>
-              <span className="label">Chapter IV</span>
-            </div>
             <h2 className="h-section section-title reveal d1">
               The Real Payoff<br/>
               <span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>Is Data</span>
@@ -837,7 +812,7 @@ export default function ColosseumArticle() {
                 <div className="bar-meta"><span className="bar-label">First-Party Data Value (modelled)</span><span className="bar-value" style={{color:'#80e8ff'}}>+Strategic</span></div>
                 <div className="bar-track"><div className="bar-fill" style={{background:'linear-gradient(90deg,var(--blue),var(--cyan),#a0f0ff)'}} data-w="82"></div></div>
               </div>
-              <p style={{fontSize:'0.75rem',color:'var(--text-dim)',marginTop:'1.75rem',fontStyle:'italic'}}>* 58 slots. Only accounts for 30 sec ads.</p>
+              <p style={{fontSize:'0.75rem',color:'var(--text-dim)',marginTop:'1.75rem'}}>* 58 slots. Only accounts for 30 sec ads.</p>
             </div>
 
             <div className="mini-grid">
@@ -852,10 +827,6 @@ export default function ColosseumArticle() {
         {/* ═══════════════════════════ DOMINO */}
         <section id="domino" style={{background:'var(--bg-2)'}}>
           <div className="section-inner">
-            <div className="chapter-label reveal">
-              <div className="chapter-line"></div>
-              <span className="label">Chapter V</span>
-            </div>
             <h2 className="h-section section-title reveal d1">
               The Domino<br/>
               <span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>Effect</span>
@@ -878,7 +849,7 @@ export default function ColosseumArticle() {
 
             {/* NBA table */}
             <div className="label reveal" style={{marginBottom:'1rem'}}>NBA: $76B Total Streaming Portfolio</div>
-            <p style={{fontSize:'0.82rem',color:'var(--text-muted)',marginBottom:'1rem',fontStyle:'italic'}} className="reveal d1">All deals below were signed as part of the NBA's new media rights agreement, covering the 2025-2026 season onwards.</p>
+            <p style={{fontSize:'0.82rem',color:'var(--text-muted)',marginBottom:'1rem'}} className="reveal d1">All deals below were signed as part of the NBA's new media rights agreement, covering the 2025-2026 season onwards.</p>
             <div className="glass reveal d2" style={{overflow:'hidden',marginBottom:'2.5rem'}}>
               <table className="deal-table" style={{width:'100%'}}>
                 <thead><tr><th>Platform</th><th>Package</th><th>Term</th><th>Value</th></tr></thead>
@@ -893,17 +864,17 @@ export default function ColosseumArticle() {
             <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'1rem'}} className="reveal d3">
               <div className="glass" style={{padding:'1.75rem'}}>
                 <div className="label" style={{marginBottom:'0.75rem'}}>MLS</div>
-                <div style={{fontFamily:"'Newsreader',serif",fontStyle:'italic',fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>$2.5B</div>
+                <div style={{fontFamily:"'Newsreader',serif",fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>$2.5B</div>
                 <div style={{fontSize:'0.8rem',color:'var(--text-muted)'}}>Apple TV+, 10-year exclusive. Full league package. Global rights.</div>
               </div>
               <div className="glass" style={{padding:'1.75rem'}}>
                 <div className="label" style={{marginBottom:'0.75rem'}}>MLB</div>
-                <div style={{fontFamily:"'Newsreader',serif",fontStyle:'italic',fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>$85M/yr</div>
+                <div style={{fontFamily:"'Newsreader',serif",fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>$85M/yr</div>
                 <div style={{fontSize:'0.8rem',color:'var(--text-muted)'}}>Apple TV+ Friday games. First major broadcast-to-streaming shift in baseball.</div>
               </div>
               <div className="glass" style={{padding:'1.75rem'}}>
                 <div className="label" style={{marginBottom:'0.75rem'}}>WWE / Netflix</div>
-                <div style={{fontFamily:"'Newsreader',serif",fontStyle:'italic',fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>$5B</div>
+                <div style={{fontFamily:"'Newsreader',serif",fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>$5B</div>
                 <div style={{fontSize:'0.8rem',color:'var(--text-muted)'}}>10-year deal. RAW exclusively on Netflix. Combat sport goes mainstream streaming.</div>
               </div>
             </div>
@@ -912,10 +883,10 @@ export default function ColosseumArticle() {
             <div className="reveal d4" style={{marginTop:'2.5rem',border:'1px solid var(--cyan-dim)',borderRadius:'16px',padding:'2.5rem 3rem',background:'linear-gradient(135deg,rgba(0,200,255,0.04) 0%,rgba(0,200,255,0.01) 100%)',display:'flex',alignItems:'center',justifyContent:'space-between',gap:'2rem',flexWrap:'wrap'}}>
               <div>
                 <div className="label" style={{marginBottom:'0.6rem',color:'var(--cyan-dim)'}}>Total Capital Committed to Streaming Rights</div>
-                <div style={{fontFamily:"'Newsreader',serif",fontStyle:'italic',lineHeight:'1',color:'var(--cyan)',fontSize:'clamp(3.5rem,7vw,6rem)'}}>
+                <div style={{fontFamily:"'Newsreader',serif",lineHeight:'1',color:'var(--cyan)',fontSize:'clamp(3.5rem,7vw,6rem)'}}>
                   <span data-count="110" data-prefix="$" data-suffix="B+">$0B+</span>
                 </div>
-                <div style={{fontSize:'0.75rem',color:'var(--text-dim)',marginTop:'0.6rem',letterSpacing:'0.15em',textTransform:'uppercase'}}>NFL · NBA · MLS · MLB · WWE and counting</div>
+                <div style={{fontSize:'0.75rem',color:'var(--text-dim)',marginTop:'0.6rem'}}>NFL · NBA · MLS · MLB · WWE and counting</div>
               </div>
               <div style={{flexShrink:0,maxWidth:'320px'}}>
                 <p style={{fontSize:'0.875rem',color:'var(--text-muted)',lineHeight:'1.75'}}>In just a few years, the four major American sports leagues collectively signed over <strong style={{color:'var(--text)'}}>$110 billion</strong> in streaming rights contracts. Television's century-long monopoly on live sport ended not with a whimper, but with a wire transfer.</p>
@@ -930,10 +901,6 @@ export default function ColosseumArticle() {
         {/* ═══════════════════════════ THE VICTIM */}
         <section id="victim">
           <div className="section-inner">
-            <div className="chapter-label reveal">
-              <div className="chapter-line"></div>
-              <span className="label">Chapter VI</span>
-            </div>
             <h2 className="h-section section-title reveal d1">
               The Victim<br/>
               <span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>in the Room</span>
@@ -956,7 +923,7 @@ export default function ColosseumArticle() {
                   <div>
                     <div className="pain-title">Subscription Fatigue</div>
                     <div style={{display:'flex',alignItems:'baseline',gap:'0.75rem',marginBottom:'0.6rem'}}>
-                      <span style={{fontFamily:"'Newsreader',serif",fontStyle:'italic',fontSize:'2rem',color:'var(--cyan)'}}>60%</span>
+                      <span style={{fontFamily:"'Newsreader',serif",fontSize:'2rem',color:'var(--cyan)'}}>60%</span>
                       <span style={{fontSize:'0.85rem',color:'var(--text-muted)'}}>of subscribers cancel within 3 months of a major sporting event</span>
                     </div>
                     <p className="pain-body">The subscribe-and-cancel cycle is now a documented consumer pattern. Fans sign up for the Super Bowl or the Finals, cancel after, and platforms spend the off-season buying them back with discounts. The economics are unstable.</p>
@@ -1002,10 +969,6 @@ export default function ColosseumArticle() {
         {/* ═══════════════════════════ TRADEOFF */}
         <section style={{background:'var(--bg-2)'}}>
           <div className="section-inner">
-            <div className="chapter-label reveal">
-              <div className="chapter-line"></div>
-              <span className="label">The Calculus</span>
-            </div>
             <h2 className="h-section section-title reveal d1">Innovation vs.<br/><span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>Accessibility</span></h2>
 
             <div className="tradeoff-grid" style={{marginTop:'3rem'}}>
@@ -1042,10 +1005,6 @@ export default function ColosseumArticle() {
         {/* ═══════════════════════════ RECKONING */}
         <section id="reckoning">
           <div className="section-inner">
-            <div className="chapter-label reveal">
-              <div className="chapter-line"></div>
-              <span className="label">Chapter VII</span>
-            </div>
             <h2 className="h-section section-title reveal d1">
               The<br/>
               <span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>Reckoning</span>
@@ -1056,13 +1015,13 @@ export default function ColosseumArticle() {
             <div className="glass reveal d2" style={{padding:'2.5rem',marginBottom:'3rem',borderColor:'rgba(255,64,96,0.15)'}}>
               <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:'1rem',marginBottom:'2rem'}}>
                 <div className="label">Cautionary Tale: Venu Sports</div>
-                <span className="blocked-badge"><span className="blocked-dot"></span>BLOCKED: Antitrust</span>
+                <span className="blocked-badge"><span className="blocked-dot"></span>Blocked on antitrust grounds</span>
               </div>
               <div className="venu-grid">
                 <div>
                   <div style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:600,fontSize:'1rem',color:'var(--text)',marginBottom:'0.75rem'}}>The Proposed Solution</div>
                   <p style={{fontSize:'0.875rem',color:'var(--text-muted)',lineHeight:'1.75',marginBottom:'1rem'}}>ESPN, Fox, and Warner Bros. Discovery proposed a joint streaming venture, "Venu Sports", to offer all major sports on a single platform. A genuine re-aggregation attempt. Industry collaboration over competition.</p>
-                  <div style={{fontFamily:"'Newsreader',serif",fontStyle:'italic',fontSize:'2rem',color:'var(--cyan)'}}>$42.99/mo</div>
+                  <div style={{fontFamily:"'Newsreader',serif",fontSize:'2rem',color:'var(--cyan)'}}>$42.99/mo</div>
                   <div style={{fontSize:'0.75rem',color:'var(--text-dim)'}}>Proposed price point</div>
                 </div>
                 <div>
@@ -1120,8 +1079,8 @@ export default function ColosseumArticle() {
             </div>
             <div className="closing-byline reveal d3">
               <div className="byline-divider"></div>
-              <div style={{fontFamily:"'Space Grotesk',sans-serif",fontSize:'0.72rem',letterSpacing:'0.25em',textTransform:'uppercase',color:'var(--text-muted)',marginBottom:'0.35rem'}}>Mo NC</div>
-              <div style={{fontFamily:"'Newsreader',serif",fontStyle:'italic',fontSize:'0.9rem',color:'var(--text-dim)'}}>The Future of Sports Media · 2025</div>
+              <div style={{fontFamily:"'Space Grotesk',sans-serif",fontSize:'0.95rem',color:'var(--text-muted)',marginBottom:'0.35rem'}}>Mo NC</div>
+              <div style={{fontFamily:"'Newsreader',serif",fontSize:'0.9rem',color:'var(--text-dim)'}}>The Future of Sports Media · 2025</div>
             </div>
           </div>
         </section>

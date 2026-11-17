@@ -7,7 +7,7 @@
   --tl-cols: 0px 56px minmax(0, 1fr);
   --tl-accent: var(--color-accent-300);
   --tl-title: var(--color-text);
-  --tl-muted: color-mix(in srgb, var(--color-text) 68%, transparent);
+  --tl-muted: color-mix(in oklch, var(--color-text) 68%, transparent);
   width: 100%;
   font-family: var(--font-body);
 }
@@ -17,16 +17,16 @@
   gap: 8px; margin: 0 auto 56px; max-width: 640px;
 }
 .ctl .kicker {
-  font-family: var(--font-body); font-weight: 600; font-size: 13px;
-  letter-spacing: 0.16em; text-transform: uppercase; color: var(--tl-accent);
+  font-family: var(--font-body); font-weight: 500; font-size: 14px; color: var(--tl-accent);
 }
 .ctl-lede { margin: 8px 0 0; font-size: 17px; line-height: 1.5; color: var(--tl-muted); text-wrap: pretty; }
 
-/* Registration-mark corners (crosshairs), overriding the site's L-shaped ones. */
-.ctl .blueprint { border: 1px solid var(--color-divider); }
+/* Panels sit on a lighter surface instead of a ruled box. */
+.ctl .blueprint { border: 0; }
 .ctl .blueprint > .corner {
+  display: none;
   position: absolute; width: 11px; height: 11px; border: 0;
-  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+  color: color-mix(in oklch, var(--color-text) 55%, transparent);
 }
 .ctl .blueprint > .corner::before, .ctl .blueprint > .corner::after {
   content: ""; position: absolute; background: currentColor;
@@ -73,7 +73,7 @@
   background: var(--color-bg); color: var(--tl-accent);
   transition: background 160ms ease, color 160ms ease;
 }
-.ctl .tl-icon.blueprint { border-color: var(--tl-accent); }
+.ctl .tl-icon.blueprint { border: 1px solid color-mix(in oklch, var(--tl-accent) 60%, transparent); border-radius: 50%; }
 .tl-dash { flex: 1; height: 0; border-top: 1px dashed var(--tl-accent); }
 .tl-text { display: flex; flex-direction: column; gap: 6px; padding: 0 0 0 28px; max-width: 360px; }
 .tl-title {
@@ -93,7 +93,8 @@
 .tl-panel-wrap { grid-column: 3; grid-row: 2; display: flex; justify-content: flex-start; padding: 16px 0 0 28px; min-width: 0; }
 .tl-panel {
   position: relative; padding: 28px; display: flex; flex-direction: column; gap: 18px;
-  box-sizing: border-box; width: 100%; max-width: 460px; background: var(--color-bg);
+  box-sizing: border-box; width: 100%; max-width: 460px; border-radius: 12px;
+  background: color-mix(in oklch, var(--color-text) 7%, var(--color-bg));
   animation: ctl-panel-in 200ms ease-out;
 }
 @keyframes ctl-panel-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
@@ -104,7 +105,7 @@
   width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center;
   color: var(--tl-accent);
 }
-.tl-panel-btn:hover { background: color-mix(in srgb, var(--tl-accent) 14%, transparent); }
+.tl-panel-btn:hover { background: color-mix(in oklch, var(--tl-accent) 14%, transparent); }
 .tl-panel-btn:disabled { opacity: 0.35; cursor: not-allowed; background: none; }
 .tl-panel-heading { display: flex; flex-direction: column; gap: 6px; }
 .tl-panel-title { margin: 0; font-family: var(--font-heading); font-weight: 600; font-size: 34px; line-height: 1; color: var(--tl-title); }
@@ -115,13 +116,12 @@
 .tl-points { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .tl-points li {
   display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 8px;
-  font-size: 15px; line-height: 1.5; color: color-mix(in srgb, var(--color-text) 85%, transparent);
+  font-size: 15px; line-height: 1.5; color: color-mix(in oklch, var(--color-text) 85%, transparent);
 }
 .tl-points li::before { content: ""; width: 7px; height: 7px; margin-top: 8px; background: var(--tl-accent); }
-.tl-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.tl-tag { display: inline-flex; align-items: center; font-size: 11px; letter-spacing: 0.02em; padding: 3px 10px; }
-.tl-tag--fill { background: color-mix(in srgb, var(--tl-accent) 16%, transparent); color: var(--tl-accent); }
-.tl-tag--outline { border: 1px solid var(--tl-accent); color: var(--tl-accent); }
+.tl-type { font-size: 14px; color: var(--tl-muted); }
+.tl-tags { margin: 0; font-size: 14px; line-height: 1.5; color: var(--tl-muted); }
+.tl-panel-btn { border-radius: 8px; }
 
 /* — alternating layout on wider screens — */
 @media (min-width: 761px) {

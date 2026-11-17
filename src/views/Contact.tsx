@@ -47,14 +47,24 @@ export default function Contact() {
             <>
               <span className="sheet-label">{row.label}</span>
               <div className="contact-detail">
-                <span className={row.className ? `contact-value ${row.className}` : "contact-value"}>{row.value}</span>
-                {row.note && <em className="contact-note">{row.note}</em>}
+                <span
+                  className={row.className ? `contact-value ${row.className}` : "contact-value"}
+                >
+                  {row.value}
+                </span>
+                {row.note && <span className="contact-note">{row.note}</span>}
               </div>
             </>
           );
 
           return row.href ? (
-            <a key={row.label} href={row.href} target="_blank" rel="noreferrer" className="contact-row">
+            <a
+              key={row.label}
+              href={row.href}
+              target="_blank"
+              rel="noreferrer"
+              className="contact-row"
+            >
               {content}
               <ArrowUpRight size={24} strokeWidth={1.5} aria-hidden="true" />
             </a>

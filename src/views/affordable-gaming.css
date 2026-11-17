@@ -1,21 +1,21 @@
 /* The Slow Death of Affordable Gaming: the article's own world, scoped to .gaming-article.
    Ported from the standalone page; see DESIGN.md in the personal-website repo. */
-.gaming-article { min-height: 100vh; }
+.gaming-article { min-height: 100dvh; }
 .gaming-article *, .gaming-article *::before, .gaming-article *::after { box-sizing: border-box; margin: 0; padding: 0;
 }
 .gaming-article {
-      --case: #09251C;
-      --case-2: #0E3127;
-      --sticker: #A55704;
-      --sticker-ink: #8A4703;
-      --stock: #F3D2AF;
-      --paper: #F8EADC;
-      --ink: #09251C;
-      --ink-soft: #2E4A40;
-      --seam: rgba(9, 37, 28, 0.16);
-      --seam-strong: rgba(9, 37, 28, 0.42);
-      --seam-case: rgba(243, 210, 175, 0.2);
-      --stock-dim: rgba(243, 210, 175, 0.72);
+      --case: oklch(0.240 0.038 168.8);
+      --case-2: oklch(0.284 0.044 171.2);
+      --sticker: oklch(0.539 0.129 56.8);
+      --sticker-ink: oklch(0.472 0.114 56.1);
+      --stock: oklch(0.883 0.059 68.6);
+      --paper: oklch(0.944 0.024 67.5);
+      --ink: oklch(0.240 0.038 168.8);
+      --ink-soft: oklch(0.383 0.038 169.8);
+      --seam: oklch(0.240 0.038 168.8 / 0.16);
+      --seam-strong: oklch(0.240 0.038 168.8 / 0.42);
+      --seam-case: oklch(0.883 0.059 68.6 / 0.2);
+      --stock-dim: oklch(0.883 0.059 68.6 / 0.72);
 
       --display: 'Archivo', 'Arial Narrow', sans-serif;
       --read: 'Source Serif 4', Georgia, serif;
@@ -64,8 +64,7 @@
 .gaming-article .topbar {
       display: flex; justify-content: space-between; align-items: center; gap: 16px;
       height: 64px; border-bottom: 1px solid var(--seam-case);
-      font: 500 12px/1 var(--display); font-stretch: 90%;
-      letter-spacing: 0.16em; text-transform: uppercase; color: var(--stock);
+      font: 500 14px/1 var(--display); font-stretch: 90%; color: var(--stock);
 }
 .gaming-article .topbar a { text-decoration: none;
 }
@@ -80,7 +79,7 @@
 .gaming-article h1 {
       font-family: var(--display); font-stretch: 66%; font-weight: 850;
       font-size: clamp(3.25rem, 8.4vw, 6rem); line-height: 0.9;
-      letter-spacing: -0.005em; text-transform: uppercase;
+      letter-spacing: 0; text-transform: uppercase;
       text-wrap: balance;
 }
 .gaming-article h1 .lit { color: var(--stock); display: block;
@@ -114,13 +113,12 @@
         linear-gradient(var(--stock), var(--stock)) calc(var(--g) / 2 + var(--eye) - 1px) 0 / 2px 100% no-repeat;
 }
 .gaming-article .tag-name {
-      display: block; font: 700 12px/1.2 var(--display); font-stretch: 85%;
-      letter-spacing: 0.12em; text-transform: uppercase;
+      display: block; font: 700 14px/1.2 var(--display); font-stretch: 85%;
 }
 .gaming-article .tag-was {
       display: block; margin-top: 10px;
       font: 500 clamp(22px, 2.2vw, 28px)/1 var(--data); font-variant-numeric: tabular-nums;
-      letter-spacing: -0.02em;
+      letter-spacing: 0;
 }
 .gaming-article .tag-was s { text-decoration-thickness: 2px; text-decoration-color: var(--sticker);
 }
@@ -156,7 +154,7 @@
 }
 .gaming-article .legend {
       display: flex; flex-wrap: wrap; gap: 8px 28px; align-items: center;
-      font: 400 12px/1.3 var(--data); color: var(--stock-dim); letter-spacing: 0.02em;
+      font: 400 12px/1.3 var(--display); color: var(--stock-dim);
 }
 .gaming-article .legend span { display: inline-flex; align-items: center; gap: 10px;
 }
@@ -205,15 +203,14 @@
 }
 .gaming-article .byline {
       border-top: 2px solid var(--ink); padding-top: 12px;
-      font: 600 12px/1.6 var(--display); font-stretch: 90%;
-      letter-spacing: 0.12em; text-transform: uppercase;
+      font: 600 14px/1.6 var(--display); font-stretch: 90%;
 }
 .gaming-article .byline .meta { display: block; color: var(--ink-soft); font-weight: 500;
 }
 .gaming-article .toc { margin-top: 40px;
 }
 .gaming-article .toc-h {
-      font: 700 11px/1 var(--display); letter-spacing: 0.16em; text-transform: uppercase;
+      font: 700 14px/1 var(--display);
       color: var(--ink-soft); padding-bottom: 10px; border-bottom: 1px solid var(--seam);
 }
 .gaming-article .toc ol { list-style: none;
@@ -265,7 +262,7 @@
 .gaming-article figure { margin-top: 2em !important; margin-bottom: 2em;
 }
 .gaming-article figcaption {
-      margin-top: 14px; font: 400 13px/1.5 var(--data); color: var(--ink-soft); letter-spacing: 0.01em;
+      margin-top: 14px; font: 400 13px/1.5 var(--display); color: var(--ink-soft);
 }
 .gaming-article figcaption a { color: var(--sticker-ink); text-decoration: none;
 }
@@ -279,7 +276,7 @@
       font: 800 clamp(20px, 2vw, 24px)/1.05 var(--display); font-stretch: 75%; text-transform: uppercase;
       letter-spacing: 0.01em; color: var(--paper);
 }
-.gaming-article .case-fig .fig-sub { font: 400 13px/1.4 var(--data); color: var(--stock-dim); margin-top: 6px;
+.gaming-article .case-fig .fig-sub { font: 400 13px/1.4 var(--display); color: var(--stock-dim); margin-top: 6px;
 }
 .gaming-article .lanes { margin-top: 28px;
 }
@@ -289,7 +286,7 @@
 }
 .gaming-article .lane:last-of-type { border-bottom: 1px solid var(--seam-case);
 }
-.gaming-article .lane-name { font: 700 13px/1.25 var(--display); font-stretch: 85%; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stock);
+.gaming-article .lane-name { font: 700 13px/1.25 var(--display); font-stretch: 85%; color: var(--stock);
 }
 .gaming-article .track { position: relative; height: 92px;
 }
@@ -325,11 +322,11 @@
       padding: 26px 28px 22px; position: relative;
       border-top: 1px dashed var(--seam-strong);
 }
-.gaming-article .slip p { font-size: 1.05em; line-height: 1.55; font-style: italic;
+.gaming-article .slip p { font-size: 1.05em; line-height: 1.55;
 }
 .gaming-article .slip footer {
       margin-top: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 18px;
-      font: 500 12px/1.3 var(--data); letter-spacing: 0.02em; color: var(--ink-soft);
+      font: 500 12px/1.3 var(--display); color: var(--ink-soft);
 }
 .gaming-article .slip footer a { color: var(--sticker-ink); text-decoration: none;
 }
@@ -341,7 +338,7 @@
 }
 .gaming-article .switch button {
       appearance: none; border: 0; background: transparent; color: var(--stock);
-      font: 600 12px/1 var(--display); letter-spacing: 0.12em; text-transform: uppercase;
+      font: 600 14px/1 var(--display);
       padding: 11px 14px; cursor: pointer; transition: background 0.2s, color 0.2s;
 }
 .gaming-article .switch button + button { border-left: 1px solid var(--seam-case);
@@ -387,7 +384,7 @@
 }
 .gaming-article .bar-group + .bar-group { margin-top: 26px;
 }
-.gaming-article .bar-group-h { font: 700 12px/1 var(--display); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px;
+.gaming-article .bar-group-h { font: 700 14px/1 var(--display); margin-bottom: 10px;
 }
 .gaming-article .bar-row {
       display: grid; grid-template-columns: 220px minmax(0, 1fr) 92px; gap: 14px; align-items: center;
@@ -414,7 +411,7 @@
 }
 .gaming-article .split-row { display: grid; grid-template-columns: minmax(0, 1fr) 110px; gap: 14px; align-items: end; padding: 10px 0; border-top: 1px solid var(--seam);
 }
-.gaming-article .split-row .what { font: 500 13px/1.3 var(--data); color: var(--ink-soft); margin-bottom: 8px;
+.gaming-article .split-row .what { font: 500 13px/1.3 var(--display); color: var(--ink-soft); margin-bottom: 8px;
 }
 .gaming-article .split-row .val { font: 800 30px/1 var(--display); font-stretch: 75%; text-align: right; font-variant-numeric: tabular-nums;
 }
@@ -446,7 +443,7 @@
 }
 .gaming-article .mem-row:last-child { border-bottom: 1px solid var(--seam-case);
 }
-.gaming-article .mem-row .when { font: 500 12px/1.3 var(--data); color: var(--stock-dim);
+.gaming-article .mem-row .when { font: 500 12px/1.3 var(--display); color: var(--stock-dim);
 }
 .gaming-article .mem-row .when b { display: block; color: var(--stock); font-weight: 700; font-size: 13px;
 }
@@ -518,8 +515,7 @@
 .gaming-article .receipt-foot b { color: var(--ink);
 }
 .gaming-article .colophon {
-      text-align: center; margin-top: 40px; font: 500 12px/1.6 var(--display);
-      letter-spacing: 0.14em; text-transform: uppercase; color: var(--stock-dim);
+      text-align: center; margin-top: 40px; font: 500 14px/1.6 var(--display); color: var(--stock-dim);
 }
 @media (max-width: 1100px) {
 .gaming-article .layout { grid-template-columns: minmax(0, 1fr); max-width: 760px; padding-top: 40px;
@@ -550,7 +546,7 @@
 @media (max-width: 560px) {
 .gaming-article { font-size: 18px;
 }
-.gaming-article .topbar { font-size: 10px; letter-spacing: 0.12em;
+.gaming-article .topbar { font-size: 14px;
 }
 .gaming-article .topbar .meta-long { display: none;
 }

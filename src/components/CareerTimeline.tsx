@@ -50,8 +50,16 @@ const TYPE_ICONS: Record<TimelineType, ReactNode> = {
 };
 
 const NAV_ICONS: Record<PanelAction, ReactNode> = {
-  prev: <Icon size={18}><path d="m18 15-6-6-6 6" /></Icon>,
-  next: <Icon size={18}><path d="m6 9 6 6 6-6" /></Icon>,
+  prev: (
+    <Icon size={18}>
+      <path d="m18 15-6-6-6 6" />
+    </Icon>
+  ),
+  next: (
+    <Icon size={18}>
+      <path d="m6 9 6 6 6-6" />
+    </Icon>
+  ),
   close: (
     <Icon size={18}>
       <path d="M18 6 6 18" />
@@ -121,7 +129,8 @@ export default function CareerTimeline() {
       <header className="ctl-header" data-reveal>
         <h2 className="sheet-h2">Timeline</h2>
         <p className="ctl-lede">
-          Where I'm headed, where I've worked and where I studied. Select any milestone to read more.
+          Where I'm headed, where I've worked and where I studied. Select any milestone to read
+          more.
         </p>
       </header>
 
@@ -163,10 +172,14 @@ export default function CareerTimeline() {
 
                 {selected && (
                   <div className="tl-panel-wrap">
-                    <section className="tl-panel blueprint" id={`tl-panel-${i}`} aria-label={`${it.title} details`}>
+                    <section
+                      className="tl-panel blueprint"
+                      id={`tl-panel-${i}`}
+                      aria-label={`${it.title} details`}
+                    >
                       <Corners />
                       <div className="tl-panel-bar">
-                        <span className="tl-tag tl-tag--fill">{it.typeLabel}</span>
+                        <span className="tl-type">{it.typeLabel}</span>
                         <div className="tl-panel-nav">
                           {(["prev", "next", "close"] as const).map((action) => (
                             <button
@@ -174,8 +187,12 @@ export default function CareerTimeline() {
                               type="button"
                               className="tl-panel-btn"
                               data-action={action}
-                              aria-label={action === "prev" ? "Newer" : action === "next" ? "Older" : "Close"}
-                              disabled={(action === "prev" && i === 0) || (action === "next" && i === last)}
+                              aria-label={
+                                action === "prev" ? "Newer" : action === "next" ? "Older" : "Close"
+                              }
+                              disabled={
+                                (action === "prev" && i === 0) || (action === "next" && i === last)
+                              }
                               onClick={() => onPanelAction(action, i)}
                             >
                               {NAV_ICONS[action]}
@@ -202,15 +219,7 @@ export default function CareerTimeline() {
                           </ul>
                         </div>
                       )}
-                      {it.tags.length > 0 && (
-                        <div className="tl-tags">
-                          {it.tags.map((t) => (
-                            <span key={t} className="tl-tag tl-tag--outline">
-                              {t}
-                            </span>
-                          ))}
-                        </div>
-                      )}
+                      {it.tags.length > 0 && <p className="tl-tags">{it.tags.join(", ")}</p>}
                     </section>
                   </div>
                 )}
