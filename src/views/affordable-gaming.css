@@ -166,11 +166,22 @@
 }
 .gaming-article .legend .l-up { width: 22px; height: 13px; transform: rotate(6deg); outline: 1px solid var(--paper); outline-offset: -3px;
 }
+.gaming-article .tag-was s, .gaming-article .pin.launch s { text-decoration: none; position: relative;
+}
+.gaming-article .tag-was s::after, .gaming-article .pin.launch s::after {
+      content: ""; position: absolute; left: -4px; right: -4px; top: 50%; height: 3px; margin-top: -1px;
+      background: var(--sticker); transform: rotate(-5deg); transform-origin: 0 50%;
+      transition: transform 0.32s var(--ease-out);
+}
+.gaming-article .pin.launch s::after { height: 2px;
+}
+.gaming-article .armed s::after { transform: rotate(-5deg) scaleX(0);
+}
+.gaming-article .armed.slapped s::after { transform: rotate(-5deg); transition-delay: var(--delay, 0s);
+}
 .gaming-article .armed .sticker { opacity: 0; transform: rotate(var(--rot, -8deg)) scale(1.55) translateY(-10px);
 }
-.gaming-article .armed.slapped .sticker { opacity: 1; transform: rotate(var(--rot, -8deg));
-}
-.gaming-article .armed.slapped .sticker { transition-delay: var(--delay, 0s);
+.gaming-article .armed.slapped .sticker { opacity: 1; transform: rotate(var(--rot, -8deg)); transition-delay: calc(var(--delay, 0s) + 0.2s);
 }
 .gaming-article .hero-shelf-wrap { max-width: 1440px; margin: 0 auto; padding: 28px 0 28px;
 }
@@ -351,17 +362,17 @@
       font: 700 12px/1 var(--data); color: var(--sticker-ink); letter-spacing: 0.02em;
       transition: opacity 0.3s;
 }
-.gaming-article .gen-shelf .tag-was s { transition: text-decoration-color 0.3s;
+.gaming-article .gen[data-show="now"] .gen-shelf .sticker { transition-delay: 0.18s;
 }
 .gaming-article [data-show="launch"] .gen-shelf .sticker { opacity: 0; transform: rotate(var(--rot)) scale(1.4) translate(14px, -14px); pointer-events: none;
 }
-.gaming-article [data-show="launch"] .gen-shelf .tag-was s { text-decoration-color: transparent;
+.gaming-article [data-show="launch"] .gen-shelf .tag-was s::after { transform: rotate(-5deg) scaleX(0);
 }
 .gaming-article [data-show="launch"] .gen-shelf .delta { opacity: 0;
 }
 .gaming-article .gen.scrolly .gen-shelf .tag:not(.on) .sticker { opacity: 0; transform: rotate(var(--rot)) scale(1.5) translateY(-12px);
 }
-.gaming-article .gen.scrolly .gen-shelf .tag:not(.on) .tag-was s { text-decoration-color: transparent;
+.gaming-article .gen.scrolly .gen-shelf .tag:not(.on) .tag-was s::after { transform: rotate(-5deg) scaleX(0);
 }
 .gaming-article .gen.scrolly .gen-shelf .tag:not(.on) .delta { opacity: 0;
 }
@@ -414,6 +425,12 @@
 .gaming-article .blocks.thin { width: calc(100% * 16 / 193.7); min-width: 14px;
 }
 .gaming-article .blocks.thin i { background: transparent; box-shadow: inset 0 0 0 1.5px var(--ink);
+}
+.gaming-article .blocks i { transform-origin: 50% 100%; transition: transform 0.4s var(--ease-out);
+}
+.gaming-article .armed-blocks .blocks i { transform: scaleY(0);
+}
+.gaming-article .armed-blocks.slapped .blocks i { transform: none; transition-delay: calc(var(--i, 0) * 45ms);
 }
 .gaming-article .mem-stack { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin-top: 30px;
 }
@@ -595,6 +612,6 @@
 }
 }
 @media (prefers-reduced-motion: reduce) {
-.gaming-article .sticker, .gaming-article .bar i, .gaming-article .gen-shelf .delta { transition: none !important;
+.gaming-article .sticker, .gaming-article .bar i, .gaming-article .gen-shelf .delta, .gaming-article .blocks i, .gaming-article .tag-was s::after, .gaming-article .pin.launch s::after { transition: none !important;
 }
 }
