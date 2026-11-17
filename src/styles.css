@@ -920,6 +920,38 @@ html:has(.sheet:not(.sheet--original)) {
   text-wrap: balance;
 }
 
+.article-stat .sheet-label a,
+.article-sources a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.article-sources ol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding-left: 1.4em;
+  max-width: 68ch;
+}
+
+.article-sources li {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+.article-sources li .sheet-label {
+  display: block;
+  margin-top: 4px;
+  color: var(--sheet-muted);
+}
+
+.article-sources .article-heading {
+  font-size: clamp(24px, 2.6cqw, 34px);
+}
+
 @media (max-width: 760px) {
   .article-section {
     grid-template-columns: minmax(0, 1fr);
