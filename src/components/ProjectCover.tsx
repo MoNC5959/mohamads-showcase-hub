@@ -207,48 +207,80 @@ function hangTag(x: number, y: number, w: number, h: number, cut = 40) {
   return `M${x + cut} ${y}H${x + w}V${y + h}H${x + cut}L${x} ${y + h - cut}V${y + cut}Z`;
 }
 
-function TagsOnRail() {
+/** Dollar signs that climb in size, set on one baseline like a price that keeps going up. */
+const DOLLARS = [
+  { size: 46, dx: 0 },
+  { size: 60, dx: 38 },
+  { size: 78, dx: 86 },
+  { size: 98, dx: 148 },
+];
+
+function ConsoleWithTag() {
   return (
     <>
-      <path d="M40 78H920" style={{ ...heavy, strokeWidth: 6 }} />
-      {/* the old console: a round markdown sticker over its price */}
-      <path d="M132 78V262" style={mid} />
-      <path d={hangTag(96, 196, 330, 190)} style={heavy} />
-      <circle cx={132} cy={291} r={11} style={mid} />
-      <path d="M186 268H350M186 312H300" style={{ ...mid, strokeWidth: 3 }} />
-      <path d="M178 286L366 252" style={{ ...mid, strokeWidth: 3 }} />
-      <circle cx={404} cy={378} r={66} style={{ fill: ACCENT }} />
-      <path
-        d="M368 384H440"
-        style={{ fill: "none", stroke: SHEET, strokeWidth: 8, strokeLinecap: "round" }}
-      />
-      {/* this generation: a square markup label slapped over a higher price */}
-      <path d="M572 78V214" style={mid} />
-      <path d={hangTag(536, 150, 360, 210)} style={heavy} />
-      <circle cx={572} cy={255} r={11} style={mid} />
-      <path d="M626 224H820M626 270H740" style={{ ...mid, strokeWidth: 3 }} />
-      <path d="M618 244L836 206" style={{ ...mid, strokeWidth: 3 }} />
-      <g transform="rotate(6 820 380)">
-        <rect
-          x={714}
-          y={320}
-          width={212}
-          height={118}
-          style={{ fill: ACCENT, stroke: SHEET, strokeWidth: 4 }}
-        />
+      {/* the store shelf the console sits on */}
+      <path d="M40 440H920" style={{ ...heavy, strokeWidth: 6 }} />
+
+      {/* a generic home console: vented top deck, disc slot, ports */}
+      <rect x={76} y={220} width={452} height={204} rx={14} style={heavy} />
+      <path d="M76 288H528" style={mid} />
+      {range(112, 274, 18).map((x) => (
+        <path key={x} d={`M${x} 242V268`} style={{ ...mid, strokeWidth: 3 }} />
+      ))}
+      <path d="M308 255H492" style={{ ...mid, strokeWidth: 5 }} />
+      <circle cx={124} cy={350} r={15} style={mid} />
+      <path d="M124 341V351" style={{ ...mid, strokeWidth: 3 }} />
+      <rect x={164} y={344} width={30} height={12} rx={2} style={mid} />
+      <rect x={204} y={344} width={30} height={12} rx={2} style={mid} />
+      <path d="M100 398H504" style={thin} />
+      <rect x={106} y={424} width={60} height={13} style={heavy} />
+      <rect x={438} y={424} width={60} height={13} style={heavy} />
+
+      {/* the controller, cabled to the console */}
+      <path d="M528 340C566 342 580 370 600 378" style={mid} />
+      <g transform="translate(16 16)">
         <path
-          d="M758 386H884"
-          style={{ fill: "none", stroke: SHEET, strokeWidth: 9, strokeLinecap: "round" }}
+          d="M584 362C584 348 596 340 612 340H724C740 340 752 348 752 362L770 398C776 414 758 424 746 412L724 394H612L590 412C578 424 560 414 566 398Z"
+          style={heavy}
         />
+        <path d="M612 368H636M624 356V380" style={{ ...mid, strokeWidth: 5 }} />
+        <circle cx={712} cy={356} r={5} style={{ fill: INK }} />
+        <circle cx={726} cy={368} r={5} style={{ fill: INK }} />
+        <circle cx={712} cy={380} r={5} style={{ fill: INK }} />
+        <circle cx={698} cy={368} r={5} style={{ fill: INK }} />
+        <circle cx={652} cy={384} r={10} style={mid} />
+        <circle cx={680} cy={384} r={10} style={mid} />
       </g>
-      <path d="M140 470C320 500 620 500 860 452" style={dashed} />
-      <Dimension x1={96} x2={896} y={506} />
+
+      {/* the price tag, tied to the console's corner */}
+      <path d="M492 220C498 180 548 146 612 152" style={mid} />
+      <g transform="rotate(-6 612 152)">
+        <path d={hangTag(574, 70, 316, 164, 44)} style={{ fill: ACCENT }} />
+        <circle cx={612} cy={152} r={12} style={{ fill: SHEET }} />
+        {DOLLARS.map(({ size, dx }) => (
+          <text
+            key={dx}
+            x={654 + dx}
+            y={204}
+            style={{
+              fill: SHEET,
+              fontFamily: "var(--font-heading)",
+              fontSize: size,
+              fontWeight: 400,
+            }}
+          >
+            $
+          </text>
+        ))}
+      </g>
+      <path d="M898 92C922 146 920 208 890 258" style={dashed} />
+      <Dimension x1={76} x2={528} y={490} />
     </>
   );
 }
 
 const DRAWINGS: Record<string, (props: { labelled: boolean }) => ReactNode> = {
-  "affordable-gaming": TagsOnRail,
+  "affordable-gaming": ConsoleWithTag,
   "cognitive-qa": Aircraft,
   fintech: VaultToPhone,
   tokenization: BuildingToTokens,
