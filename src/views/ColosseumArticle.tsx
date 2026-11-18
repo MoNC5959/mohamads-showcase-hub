@@ -1169,8 +1169,9 @@ export default function ColosseumArticle() {
                   <p className="amount">$880K</p>
                   <p>
                     Ad Age reported about $880,000 per 30-second spot, double Amazon's usual
-                    Thursday rate, and Amazon said the game sold out. It has not said how many spots
-                    it sold. At 58 thirty-second spots, ads alone would have brought in about $51
+                    Thursday rate, and Amazon said the game sold out. Amazon has not said how many
+                    spots it sold, so I watched the broadcast several times and counted 58
+                    thirty-second spots. At that price, those ads alone brought in about $51
                     million, roughly half the rights fee, before a single product was sold.
                   </p>
                 </div>
@@ -1219,7 +1220,7 @@ export default function ColosseumArticle() {
               </div>
               <div className="col-bar col-bar--ads">
                 <div className="col-bar-meta">
-                  <span>30-second ads, if 58 spots sold at $880K</span>
+                  <span>30-second ads: 58 spots counted in the broadcast × $880K</span>
                   <b>+$51.04M</b>
                 </div>
                 <div className="col-bar-track">
@@ -1246,8 +1247,8 @@ export default function ColosseumArticle() {
               </div>
               <p className="col-note" style={{ marginTop: 24 }}>
                 The last two bars show the argument, not data: Amazon has not disclosed these
-                amounts. The 58-spot count is an estimate; Amazon has not said how many spots it
-                sold.
+                amounts. The 58 spots are my own count from repeated viewings of the broadcast, and
+                cover 30-second spots only; Amazon has not published a number.
               </p>
             </div>
             <div className="col-pair">
