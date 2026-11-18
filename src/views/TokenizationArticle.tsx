@@ -821,7 +821,7 @@ export default function TokenizationArticle() {
           <div className="pl-8 md:pl-24 lg:pl-48 reveal">
             <div className="relative">
             <div className="timeline-progress" aria-hidden="true"><span /></div>
-            <div className="timeline-track pb-8">
+            <div className="timeline-track pb-8" data-lenis-prevent>
               {[
                 { year: '2015', title: 'Ethereum Launches', text: 'Smart contracts make it possible, at least in theory, to tokenize real-world assets.' },
                 { year: '2017', title: 'First STOs Emerge', text: 'Security Token Offerings give issuers a way to tokenize securities and equity stakes within existing securities law.' },
