@@ -1,726 +1,939 @@
-// @ts-nocheck -- imported code written for looser TypeScript settings
-import { useEffect } from 'react';
-import BackToTop from '@/components/BackToTop';
-import './colosseum.css';
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { ArrowRight, ChevronRight, CircleSlash, Minus, Plus } from "lucide-react";
+import BackToTop from "@/components/BackToTop";
+import "./colosseum.css";
+
+type Ink = "navy" | "sage" | "mustard" | "terra";
+
+const chapters = [
+  { id: "access", label: "Access" },
+  { id: "power", label: "Power Play" },
+  { id: "amazon", label: "Deals" },
+  { id: "victim", label: "The Victim" },
+  { id: "reckoning", label: "Reckoning" },
+];
+
+/* Streaming vs traditional TV, viewership index 2015–2025 */
+const years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
+const streaming = [8, 12, 18, 26, 36, 55, 67, 76, 84, 90, 95];
+const traditional = [95, 90, 84, 78, 70, 60, 52, 46, 40, 36, 32];
+const CH = { l: 48, r: 112, t: 16, b: 40, w: 800, h: 320 };
+const cx = (i: number) => CH.l + (i / (years.length - 1)) * (CH.w - CH.l - CH.r);
+const cy = (v: number) => CH.t + (CH.h - CH.t - CH.b) * (1 - v / 100);
+const line = (vals: number[]) =>
+  vals.map((v, i) => `${i ? "L" : "M"}${cx(i).toFixed(1)} ${cy(v).toFixed(1)}`).join(" ");
+
+function Opener({ ink, mark, children }: { ink: Ink; mark: ReactNode; children: ReactNode }) {
+  return (
+    <header className="col-opener" data-ink={ink}>
+      <div className="col-opener-inner">
+        <h2 className="col-h2">{children}</h2>
+        <div className="col-opener-mark" aria-hidden="true">
+          {mark}
+        </div>
+      </div>
+    </header>
+  );
+}
+
+/* Chapter emblems. Three ink slots (--em-a, --em-b, --em-c) are set per opener
+   colour so every drawing reads on its own ground; data-part drives playEra. */
+const A = "var(--em-a)";
+const B = "var(--em-b)";
+const C = "var(--em-c)";
+
+const MarkArena = () => (
+  <svg viewBox="0 0 180 120">
+    <path d="M14 112 V52 Q90 18 166 52 V112 Z" fill={A} />
+    {[0, 1, 2, 3, 4].map((i) => (
+      <path
+        key={i}
+        data-part="seat"
+        d={`M${30 + i * 26} 112 V92 a8 8 0 0 1 16 0 V112 Z`}
+        fill={B}
+      />
+    ))}
+    {[0, 1, 2, 3, 4].map((i) => (
+      <path
+        key={`u${i}`}
+        data-part="seat"
+        d={`M${30 + i * 26} 74 V62 a8 8 0 0 1 16 0 V74 Z`}
+        fill={B}
+      />
+    ))}
+  </svg>
+);
+
+const MarkDeal = () => (
+  <svg viewBox="0 0 180 120">
+    <circle data-part="play" cx="68" cy="60" r="44" fill={A} />
+    <circle data-part="play" cx="112" cy="60" r="44" fill={B} />
+    <path d="M90 22 A44 44 0 0 1 90 98 A44 44 0 0 1 90 22 Z" fill={C} />
+  </svg>
+);
+
+const MarkTV = () => (
+  <svg viewBox="0 0 180 120">
+    <path d="M70 6 L84 22 M110 6 L96 22" stroke={A} strokeWidth="6" strokeLinecap="round" />
+    <rect x="24" y="22" width="132" height="80" rx="10" fill={A} />
+    <rect data-part="screen" x="36" y="32" width="90" height="60" rx="6" fill={B} />
+    <circle data-part="knob" cx="142" cy="48" r="6" fill={C} />
+    <circle data-part="knob" cx="142" cy="70" r="6" fill={C} />
+  </svg>
+);
+
+const MarkBag = () => (
+  <svg viewBox="0 0 180 120">
+    <g data-part="bag">
+      <path
+        d="M68 44 V32 a22 22 0 0 1 44 0 V44"
+        fill="none"
+        stroke={A}
+        strokeWidth="8"
+        strokeLinecap="round"
+      />
+      <path d="M44 44 H136 L128 114 H52 Z" fill={B} />
+      <rect x="70" y="62" width="40" height="30" rx="4" fill={A} />
+      <path data-part="play" d="M85 68 V86 L99 77 Z" fill={C} />
+    </g>
+    <path
+      data-part="spark"
+      d="M154 16 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4 Z"
+      fill={A}
+    />
+  </svg>
+);
+
+const MarkBars = () => (
+  <svg viewBox="0 0 180 120">
+    <rect x="16" y="110" width="148" height="6" fill={A} />
+    <rect data-part="seat" x="28" y="34" width="28" height="76" fill={B} />
+    <rect data-part="seat" x="66" y="70" width="28" height="40" fill={A} />
+    <rect data-part="seat" x="104" y="80" width="28" height="30" fill={C} />
+    <rect data-part="seat" x="142" y="18" width="14" height="92" fill={A} />
+  </svg>
+);
+
+const MarkDominoes = () => (
+  <svg viewBox="0 0 180 120">
+    {[0, 1, 2, 3].map((i) => (
+      <g key={i} transform={`rotate(${i * 14} ${40 + i * 34} 112)`}>
+        <g data-part="seat">
+          <rect x={28 + i * 34} y="30" width="24" height="82" rx="3" fill={i % 2 ? B : A} />
+          <circle cx={40 + i * 34} cy="52" r="4" fill={i % 2 ? A : C} />
+          <circle cx={40 + i * 34} cy="90" r="4" fill={i % 2 ? A : C} />
+        </g>
+      </g>
+    ))}
+  </svg>
+);
+
+const MarkTicket = () => (
+  <svg viewBox="0 0 180 120">
+    <g data-part="bag">
+      <path d="M18 26 H162 V50 a10 10 0 0 0 0 20 V94 H18 V70 a10 10 0 0 0 0 -20 Z" fill={A} />
+      <rect x="114" y="34" width="4" height="52" fill={B} />
+      <rect x="32" y="40" width="64" height="10" rx="2" fill={B} />
+      <rect x="32" y="58" width="44" height="8" rx="2" fill={C} />
+      <rect x="32" y="72" width="54" height="8" rx="2" fill={C} />
+    </g>
+    <circle data-part="spark" cx="140" cy="60" r="12" fill={B} />
+  </svg>
+);
+
+const MarkScale = () => (
+  <svg viewBox="0 0 180 120">
+    <path d="M90 22 L104 112 H76 Z" fill={A} />
+    <rect x="86" y="10" width="8" height="16" rx="3" fill={A} />
+    <g data-part="knob">
+      <rect x="22" y="24" width="136" height="8" rx="4" fill={A} transform="rotate(-8 90 28)" />
+      <path d="M22 44 h44 a22 22 0 0 1 -44 0 Z" fill={B} />
+      <path d="M114 32 h44 a22 22 0 0 1 -44 0 Z" fill={C} />
+    </g>
+  </svg>
+);
+
+const MarkCloud = () => (
+  <svg viewBox="0 0 180 120">
+    <g data-part="bag">
+      <circle cx="62" cy="62" r="26" fill={A} />
+      <circle cx="96" cy="46" r="36" fill={A} />
+      <circle cx="132" cy="64" r="24" fill={A} />
+      <rect x="38" y="60" width="118" height="30" rx="15" fill={A} />
+    </g>
+  </svg>
+);
+
+function Count({
+  value,
+  prefix = "",
+  suffix = "",
+}: {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+}) {
+  return (
+    <span data-count={value} data-prefix={prefix} data-suffix={suffix}>
+      {prefix}
+      {value}
+      {suffix}
+    </span>
+  );
+}
+
+/* ─── Flat four-ink drawings ─────────────────────────── */
+function CoverEmblem() {
+  const arches = (y: number, h: number) =>
+    Array.from({ length: 7 }, (_, i) => {
+      const x = 92 + i * 56;
+      return <path key={`${y}-${i}`} d={`M${x} ${y} V${y - h + 18} a18 18 0 0 1 36 0 V${y} Z`} />;
+    });
+  return (
+    <svg
+      className="col-emblem"
+      viewBox="0 0 560 500"
+      role="img"
+      aria-label="A flat drawing of the Colosseum with a broadcast signal rising to a cloud"
+    >
+      <g className="col-plate col-plate--paper" fill="oklch(0.955 0.014 120)">
+        <g className="col-cloud">
+          <circle cx="222" cy="104" r="42" />
+          <circle cx="284" cy="78" r="58" />
+          <circle cx="346" cy="106" r="40" />
+          <rect x="182" y="100" width="204" height="48" rx="24" />
+        </g>
+      </g>
+      <g
+        className="col-plate col-plate--sage"
+        fill="none"
+        stroke="oklch(0.692 0.063 124)"
+        strokeWidth="10"
+        strokeLinecap="round"
+      >
+        <path className="col-arc" d="M254 196 Q280 180 306 196" />
+        <path className="col-arc" d="M236 182 Q280 154 324 182" />
+        <path className="col-arc" d="M218 168 Q280 128 342 168" />
+      </g>
+      <g className="col-plate col-plate--navy" fill="oklch(0.357 0.054 263)">
+        <path d="M60 470 V250 Q280 170 500 250 V470 Z" />
+        <rect x="36" y="466" width="488" height="16" rx="3" />
+      </g>
+      <g className="col-plate col-plate--terra" fill="oklch(0.687 0.109 49)">
+        {arches(462, 70)}
+        {arches(370, 62)}
+        <rect x="74" y="384" width="412" height="10" />
+        <rect x="84" y="290" width="392" height="10" />
+      </g>
+    </svg>
+  );
+}
+
+/* Each era drawing marks its moving parts with data-part; the era's own
+   motion switches the medium on (see playEra). */
+const EraArena = () => (
+  <svg viewBox="0 0 180 108" aria-hidden="true">
+    <path d="M14 100 V44 Q90 14 166 44 V100 Z" fill="oklch(0.357 0.054 263)" />
+    {[0, 1, 2, 3, 4].map((i) => (
+      <path
+        key={i}
+        data-part="seat"
+        d={`M${30 + i * 26} 100 V82 a8 8 0 0 1 16 0 V100 Z`}
+        fill="oklch(0.687 0.109 49)"
+      />
+    ))}
+    {[0, 1, 2, 3, 4].map((i) => (
+      <path
+        key={`u${i}`}
+        data-part="seat"
+        d={`M${30 + i * 26} 66 V54 a8 8 0 0 1 16 0 V66 Z`}
+        fill="oklch(0.687 0.109 49)"
+      />
+    ))}
+  </svg>
+);
+
+const EraRadio = () => (
+  <svg viewBox="0 0 180 108" aria-hidden="true">
+    <rect
+      x="62"
+      y="12"
+      width="6"
+      height="36"
+      rx="3"
+      transform="rotate(-20 65 30)"
+      fill="oklch(0.357 0.054 263)"
+    />
+    <rect x="30" y="40" width="96" height="62" rx="10" fill="oklch(0.687 0.109 49)" />
+    <circle cx="62" cy="71" r="18" fill="oklch(0.357 0.054 263)" />
+    <rect x="92" y="56" width="22" height="6" rx="3" fill="oklch(0.357 0.054 263)" />
+    <rect x="92" y="68" width="22" height="6" rx="3" fill="oklch(0.357 0.054 263)" />
+    <rect x="92" y="80" width="22" height="6" rx="3" fill="oklch(0.357 0.054 263)" />
+    <g fill="none" stroke="oklch(0.692 0.063 124)" strokeWidth="6" strokeLinecap="round">
+      <path data-part="wave" d="M138 56 Q148 70 138 84" />
+      <path data-part="wave" d="M150 48 Q166 70 150 92" />
+    </g>
+  </svg>
+);
+
+const EraTV = () => (
+  <svg viewBox="0 0 180 108" aria-hidden="true">
+    <path
+      d="M70 6 L84 20 M110 6 L96 20"
+      stroke="oklch(0.357 0.054 263)"
+      strokeWidth="5"
+      strokeLinecap="round"
+    />
+    <rect x="26" y="20" width="128" height="74" rx="10" fill="oklch(0.357 0.054 263)" />
+    <rect
+      data-part="screen"
+      x="38"
+      y="30"
+      width="86"
+      height="54"
+      rx="6"
+      fill="oklch(0.692 0.063 124)"
+    />
+    <circle data-part="knob" cx="140" cy="44" r="6" fill="oklch(0.687 0.109 49)" />
+    <circle data-part="knob" cx="140" cy="64" r="6" fill="oklch(0.687 0.109 49)" />
+    <rect x="44" y="92" width="8" height="14" rx="3" fill="oklch(0.357 0.054 263)" />
+    <rect x="128" y="92" width="8" height="14" rx="3" fill="oklch(0.357 0.054 263)" />
+  </svg>
+);
+
+const EraStream = () => (
+  <svg viewBox="0 0 180 108" aria-hidden="true">
+    <rect x="22" y="14" width="104" height="70" rx="8" fill="oklch(0.357 0.054 263)" />
+    <path data-part="play" d="M64 34 V64 L90 49 Z" fill="oklch(0.687 0.109 49)" />
+    <rect x="62" y="84" width="24" height="12" fill="oklch(0.357 0.054 263)" />
+    <rect x="46" y="96" width="56" height="8" rx="4" fill="oklch(0.357 0.054 263)" />
+    <g fill="none" stroke="oklch(0.692 0.063 124)" strokeWidth="6" strokeLinecap="round">
+      <path data-part="wave" d="M140 34 Q150 48 140 62" />
+      <path data-part="wave" d="M152 26 Q168 48 152 70" />
+    </g>
+  </svg>
+);
+
+const EraNext = () => (
+  <svg viewBox="0 0 180 108" aria-hidden="true">
+    <g data-part="bag">
+      <path
+        d="M70 40 V30 a20 20 0 0 1 40 0 V40"
+        fill="none"
+        stroke="oklch(0.357 0.054 263)"
+        strokeWidth="7"
+        strokeLinecap="round"
+      />
+      <path d="M48 40 H132 L124 104 H56 Z" fill="oklch(0.687 0.109 49)" />
+      <rect x="72" y="58" width="36" height="28" rx="4" fill="oklch(0.357 0.054 263)" />
+      <path data-part="play" d="M86 64 V80 L98 72 Z" fill="oklch(0.692 0.063 124)" />
+    </g>
+    <path
+      data-part="spark"
+      d="M150 18 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4 Z"
+      fill="oklch(0.692 0.063 124)"
+    />
+  </svg>
+);
+
+const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
+
+/* Switch one era's medium on: seats fill, waves ripple out, the tube warms,
+   the play mark pops, the sparkle turns. Content is already drawn; this only
+   replays it. */
+function playEra(era: Element, start: number) {
+  const parts = (name: string) =>
+    Array.from(era.querySelectorAll<SVGElement>(`[data-part="${name}"]`));
+  const run = (el: SVGElement, frames: Keyframe[], duration: number, delay: number) =>
+    el.animate(frames, { duration, delay: start + delay, easing: EASE, fill: "backwards" });
+
+  parts("seat").forEach((el, i) =>
+    run(
+      el,
+      [
+        { opacity: 0, transform: "translateY(8px)" },
+        { opacity: 1, transform: "none" },
+      ],
+      420,
+      i * 70,
+    ),
+  );
+  parts("wave").forEach((el, i) =>
+    run(
+      el,
+      [
+        { opacity: 0, transform: "scale(0.5)" },
+        { opacity: 1, transform: "scale(1.08)", offset: 0.6 },
+        { opacity: 1, transform: "none" },
+      ],
+      700,
+      200 + i * 180,
+    ),
+  );
+  parts("screen").forEach((el) =>
+    run(
+      el,
+      [
+        { opacity: 0, transform: "scale(0.5, 0.04)" },
+        { opacity: 1, transform: "scale(1, 0.04)", offset: 0.4 },
+        { opacity: 1, transform: "none" },
+      ],
+      760,
+      100,
+    ),
+  );
+  parts("knob").forEach((el, i) =>
+    run(el, [{ transform: "scale(0.4)" }, { transform: "none" }], 360, 600 + i * 90),
+  );
+  parts("play").forEach((el) =>
+    run(
+      el,
+      [
+        { opacity: 0, transform: "scale(0)" },
+        { opacity: 1, transform: "none" },
+      ],
+      520,
+      260,
+    ),
+  );
+  parts("bag").forEach((el) =>
+    run(
+      el,
+      [
+        { opacity: 0, transform: "translateY(-14px)" },
+        { opacity: 1, transform: "none" },
+      ],
+      600,
+      0,
+    ),
+  );
+  parts("spark").forEach((el) =>
+    run(
+      el,
+      [
+        { opacity: 0, transform: "scale(0) rotate(-90deg)" },
+        { opacity: 1, transform: "none" },
+      ],
+      620,
+      420,
+    ),
+  );
+}
+
+const eras = [
+  {
+    art: <EraArena />,
+    when: "Physical Presence",
+    title: "The Arena",
+    body: "The Colosseum held 80,000. Access was physical, hierarchical, and local. Your seat was social currency.",
+  },
+  {
+    art: <EraRadio />,
+    when: "Audio Access · 1920s",
+    title: "Radio",
+    body: "Radio broke geography. Millions heard the fight simultaneously. Attention became the commodity.",
+  },
+  {
+    art: <EraTV />,
+    when: "Visual Access · 1950s",
+    title: "Television",
+    body: "TV made sport spectacular at home. Rights deals ballooned. The Super Bowl became the most-watched event on Earth.",
+  },
+  {
+    art: <EraStream />,
+    when: "On-Demand · 2020s",
+    title: "Streaming",
+    body: "The internet unbundled everything, then rebundled it at a premium. Live sport anchors subscription growth.",
+  },
+  {
+    art: <EraNext />,
+    when: "Commerce + AI · 2030s",
+    title: "What's Next",
+    body: "Shoppable moments. Personalized feeds. Integrated betting. Sport as commerce infrastructure.",
+  },
+];
 
 export default function ColosseumArticle() {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState("");
+
   useEffect(() => {
-    /* ══════════════════════════════════════════════════════
-       PROGRESS BAR
-    ══════════════════════════════════════════════════════ */
-    const progressEl = document.getElementById('col-progress');
-    const scrollHandler = () => {
-      const p = window.scrollY / (document.documentElement.scrollHeight - innerHeight);
-      if (progressEl) progressEl.style.width = Math.min(p * 100, 100) + '%';
+    const root = rootRef.current;
+    if (!root) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Reading progress along the running head, and the chapter the reader is in:
+    // the last listed chapter whose opener has passed 40% of the viewport.
+    const chapterEls = chapters
+      .map((c) => document.getElementById(c.id))
+      .filter((el): el is HTMLElement => el !== null);
+    const onScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+      if (progressRef.current) progressRef.current.style.transform = `scaleX(${p})`;
+      const line = window.innerHeight * 0.4;
+      let current = "";
+      chapterEls.forEach((el) => {
+        if (el.getBoundingClientRect().top <= line) current = el.id;
+      });
+      setActive(current);
     };
-    window.addEventListener('scroll', scrollHandler, { passive: true });
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
 
-    /* ══════════════════════════════════════════════════════
-       SCROLL REVEAL
-    ══════════════════════════════════════════════════════ */
-    const revObs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('up'); revObs.unobserve(e.target); } });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.colosseum-article .reveal, .colosseum-article .reveal-l, .colosseum-article .reveal-r').forEach(el => revObs.observe(el));
-
-    /* ══════════════════════════════════════════════════════
-       SIDE NAV ACTIVE
-    ══════════════════════════════════════════════════════ */
-    const sections = document.querySelectorAll('.colosseum-article section[id]');
-    const dots = document.querySelectorAll('.colosseum-article .side-dot');
-    const sNavObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          dots.forEach(d => d.classList.remove('active'));
-          const hit = document.querySelector(`.colosseum-article .side-dot[data-s="${e.target.id}"]`);
-          if (hit) hit.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-    sections.forEach(s => sNavObs.observe(s));
-
-    /* ══════════════════════════════════════════════════════
-       ANIMATED COUNTERS (hero stats)
-    ══════════════════════════════════════════════════════ */
-    function animateCounter(el: Element) {
-      const dataset = (el as HTMLElement).dataset;
-      const target = parseFloat(dataset.count || dataset.countBig || '0');
-      const prefix = dataset.prefix || '';
-      const suffix = dataset.suffix || '';
-      const dur = 1600;
-      const start = performance.now();
-      function tick(now: number) {
-        const t = Math.min((now - start) / dur, 1);
-        const ease = 1 - Math.pow(1 - t, 3);
-        const val = ease * target;
-        el.textContent = prefix + (Number.isInteger(target) ? Math.round(val) : val.toFixed(1)) + suffix;
-        if (t < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    }
-    const counterObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        const dataset = (e.target as HTMLElement).dataset;
-        if (e.isIntersecting && (dataset.count || dataset.countBig)) {
-          animateCounter(e.target); counterObs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.6 });
-    document.querySelectorAll('.colosseum-article [data-count], .colosseum-article [data-count-big]').forEach(el => counterObs.observe(el));
-
-    /* ══════════════════════════════════════════════════════
-       STAT BARS
-    ══════════════════════════════════════════════════════ */
-    const barObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.bar-fill').forEach((f: Element) => {
-            const fill = f as HTMLElement;
-            if (fill.dataset.w) fill.style.width = fill.dataset.w + '%';
-          });
-          barObs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.4 });
-    const dataBars = document.getElementById('data-bars');
-    if (dataBars) barObs.observe(dataBars);
-
-    /* ══════════════════════════════════════════════════════
-       S-CURVE CHART
-    ══════════════════════════════════════════════════════ */
-    let resizeHandler2: () => void;
-    (function() {
-      const canvas = document.getElementById('scurve') as HTMLCanvasElement | null;
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d')!;
-      const years      = [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
-      const streaming  = [8, 12, 18, 26, 36, 55, 67, 76, 84, 90, 95];
-      const traditional= [95, 90, 84, 78, 70, 60, 52, 46, 40, 36, 32];
-
-      function drawChart() {
-        const dpr = window.devicePixelRatio || 1;
-        const rect = canvas.getBoundingClientRect();
-        canvas.width  = rect.width  * dpr;
-        canvas.height = rect.height * dpr;
-        ctx.scale(dpr, dpr);
-        const W = rect.width, H = rect.height;
-        const pL = 40, pR = 20, pT = 20, pB = 36;
-        const cW = W - pL - pR, cH = H - pT - pB;
-        const xP = (i: number) => pL + (i / (years.length - 1)) * cW;
-        const yP = (v: number) => pT + cH - (v / 100) * cH;
-
-        ctx.strokeStyle = 'rgba(255,255,255,0.04)'; ctx.lineWidth = 1;
-        [0,25,50,75,100].forEach(v => {
-          const y = yP(v);
-          ctx.beginPath(); ctx.moveTo(pL, y); ctx.lineTo(W - pR, y); ctx.stroke();
-        });
-
-        const cx = xP(5);
-        ctx.fillStyle = 'rgba(0,200,255,0.04)';
-        ctx.fillRect(cx - 16, pT, 32, cH);
-        ctx.strokeStyle = 'rgba(0,200,255,0.2)';
-        ctx.setLineDash([3,5]); ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(cx, pT); ctx.lineTo(cx, pT + cH); ctx.stroke();
-        ctx.setLineDash([]);
-
-        ctx.fillStyle = 'rgba(106,143,171,0.6)';
-        ctx.font = `11px Inter, sans-serif`;
-        ctx.textAlign = 'center';
-        years.forEach((y, i) => { if (i % 2 === 0 || i === years.length - 1) ctx.fillText(String(y), xP(i), H - 8); });
-
-        ctx.strokeStyle = 'rgba(58,85,112,0.8)'; ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        traditional.forEach((v, i) => i === 0 ? ctx.moveTo(xP(i), yP(v)) : ctx.lineTo(xP(i), yP(v)));
-        ctx.stroke();
-
-        ([[4,'rgba(0,200,255,0.08)'],[2,'rgba(0,200,255,0.2)'],[1.5,'rgba(0,200,255,0.9)']] as [number,string][]).forEach(([lw, color]) => {
-          ctx.strokeStyle = color; ctx.lineWidth = lw;
-          ctx.beginPath();
-          streaming.forEach((v, i) => i === 0 ? ctx.moveTo(xP(i), yP(v)) : ctx.lineTo(xP(i), yP(v)));
-          ctx.stroke();
-        });
-
-        ctx.fillStyle = 'rgba(0,200,255,0.2)'; ctx.strokeStyle = 'rgba(0,200,255,0.9)'; ctx.lineWidth = 1.5;
-        ctx.beginPath(); ctx.arc(cx, yP(55), 5, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-        ctx.strokeStyle = 'rgba(0,200,255,0.3)'; ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.arc(cx, yP(55), 9, 0, Math.PI * 2); ctx.stroke();
-
-        ctx.font = '12px Manrope, sans-serif'; ctx.textAlign = 'left';
-        ctx.fillStyle = 'rgba(0,200,255,0.7)'; ctx.fillText('Streaming', xP(10) + 6, yP(95) + 4);
-        ctx.fillStyle = 'rgba(58,85,112,0.9)'; ctx.fillText('Linear TV', xP(10) + 6, yP(32) + 4);
-      }
-
-      const chartObs = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting) { drawChart(); chartObs.disconnect(); }
-      }, { threshold: 0.3 });
-      chartObs.observe(canvas);
-
-      resizeHandler2 = () => { if (canvas.width > 0) drawChart(); };
-      window.addEventListener('resize', resizeHandler2);
-    })();
-
-    /* ══════════════════════════════════════════════════════
-       ERA TRACK: DRAG + WHEEL
-    ══════════════════════════════════════════════════════ */
-    let eraMouseDownHandler: (e: MouseEvent) => void;
-    let eraMouseLeaveHandler: () => void;
-    let eraMouseUpHandler: () => void;
-    let eraMouseMoveHandler: (e: MouseEvent) => void;
-    let eraWheelHandler: (e: WheelEvent) => void;
-    const track = document.querySelector('.colosseum-article .era-track') as HTMLElement | null;
-    if (track) {
-      let down = false, startX = 0, scrollLeft = 0;
-      eraMouseDownHandler = (e: MouseEvent) => { down = true; startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft; };
-      eraMouseLeaveHandler = () => { down = false; };
-      eraMouseUpHandler = () => { down = false; };
-      eraMouseMoveHandler = (e: MouseEvent) => { if (!down) return; e.preventDefault(); track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX); };
-      eraWheelHandler = (e: WheelEvent) => { e.preventDefault(); track.scrollLeft += e.deltaY * 0.8; };
-      track.addEventListener('mousedown', eraMouseDownHandler);
-      track.addEventListener('mouseleave', eraMouseLeaveHandler);
-      track.addEventListener('mouseup', eraMouseUpHandler);
-      track.addEventListener('mousemove', eraMouseMoveHandler);
-      track.addEventListener('wheel', eraWheelHandler, { passive: false });
+    if (reduce) {
+      return () => window.removeEventListener("scroll", onScroll);
     }
 
-    /* ══════════════════════════════════════════════════════
-       COLOSSEUM → CLOUD LINE-ART ANIMATION
-    ══════════════════════════════════════════════════════ */
-    let morphRafId: number | null = null;
-    let resizeHandler3: () => void;
-    (function() {
-      const canvas = document.getElementById('morph-canvas') as HTMLCanvasElement | null;
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d')!;
+    // Lines need their length before they can draw.
+    root
+      .querySelectorAll<SVGPathElement>(".col-chart .line-stream, .col-chart .line-tv")
+      .forEach((p) => {
+        p.style.setProperty("--len", String(Math.ceil(p.getTotalLength())));
+      });
 
-      let W: number, H: number, dpr: number;
-      let startTime: number | null = null;
+    // Anything already on screen stays put; only what is below the fold waits to arrive.
+    const animated = root.querySelectorAll<HTMLElement>(
+      ".col-opener, .col-bars, .col-board, .col-chart",
+    );
+    const onScreen = (el: Element) => {
+      const r = el.getBoundingClientRect();
+      return r.top < window.innerHeight && r.bottom > 0;
+    };
+    animated.forEach((el) => onScreen(el) && el.classList.add("is-in"));
+    root.classList.add("col-motion");
 
-      const PH = [0, 2600, 4000, 6600];
-      const PH_DUR = [2600, 1400, 2600, 1400];
-      const TOTAL = 8000;
+    // A clipped element never reports itself as visible, so watch an unclipped
+    // stand-in (the opener's section, or the element itself) and flag the element.
+    const watched = new Map<Element, HTMLElement>();
+    const arriveObs = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          const hit = watched.get(e.target);
+          hit?.classList.add("is-in");
+          if (hit?.classList.contains("col-opener")) playEra(hit, 450);
+          arriveObs.unobserve(e.target);
+        }),
+      { rootMargin: "0px 0px -15% 0px" },
+    );
+    animated.forEach((el) => {
+      if (el.classList.contains("is-in")) return;
+      const stand = el.classList.contains("col-opener") ? (el.parentElement ?? el) : el;
+      watched.set(stand, el);
+      arriveObs.observe(stand);
+    });
 
-      function eio(t: number) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
-
-      function drawColosseum(alpha: number, scale: number) {
-        const cx = W * 0.5, cy = H * 0.5;
-        const w = Math.min(W * 0.86, 370) * scale;
-        const h = Math.min(H * 0.74, 280) * scale;
-        const left = cx - w/2, right = cx + w/2;
-        const top  = cy - h/2, bot   = cy + h/2;
-
-        ctx.save();
-        ctx.globalAlpha = alpha;
-        ctx.strokeStyle = '#00c8ff';
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-
-        const stroke = (fn: () => void, lw = 1.2) => {
-          ctx.lineWidth = lw;
-          ctx.beginPath(); fn(); ctx.stroke();
-        };
-
-        stroke(() => {
-          ctx.moveTo(left, bot);
-          ctx.lineTo(left, top + h * 0.17);
-          ctx.bezierCurveTo(
-            left + w * 0.08, top,
-            right - w * 0.08, top,
-            right, top + h * 0.17
-          );
-          ctx.lineTo(right, bot);
-        }, 1.5);
-
-        stroke(() => {
-          ctx.moveTo(left  - w*0.015, bot);
-          ctx.lineTo(right + w*0.015, bot);
-        }, 1.5);
-
-        for (let i = 0; i < 4; i++) {
-          const y  = bot  - h * (i * 0.228);
-          const rw = w * (0.92 - i * 0.015);
-          stroke(() => {
-            ctx.moveTo(cx - rw/2, y);
-            ctx.lineTo(cx + rw/2, y);
-          }, i === 3 ? 1.0 : 0.9);
+    // A jump (restored scroll, an anchor link) can carry the reader past an
+    // element without it ever intersecting; anything above the fold counts as arrived.
+    let sweepFrame = 0;
+    const sweep = () => {
+      sweepFrame = 0;
+      watched.forEach((el, stand) => {
+        if (stand.getBoundingClientRect().top < window.innerHeight * 0.85) {
+          el.classList.add("is-in");
+          arriveObs.unobserve(stand);
+          watched.delete(stand);
         }
+      });
+    };
+    const onSweep = () => {
+      if (!sweepFrame) sweepFrame = requestAnimationFrame(sweep);
+    };
+    window.addEventListener("scroll", onSweep, { passive: true });
 
-        const nArches = 6;
-        for (let row = 0; row < 3; row++) {
-          const rBot = bot  - h * (row * 0.228);
-          const rTop = rBot - h * 0.195;
-          const rW   = w   * (0.88 - row * 0.015);
-          const aW   = rW  / nArches;
-          const rL   = cx  - rW / 2;
+    // Numbers tally up to the printed value when they come into view.
+    const frames = new Set<number>();
+    const countObs = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          countObs.unobserve(e.target);
+          const el = e.target as HTMLElement;
+          const target = Number(el.dataset["count"]);
+          const prefix = el.dataset["prefix"] ?? "";
+          const suffix = el.dataset["suffix"] ?? "";
+          const start = performance.now();
+          const tick = (now: number) => {
+            const t = Math.min((now - start) / 1300, 1);
+            el.textContent = prefix + Math.round((1 - Math.pow(1 - t, 4)) * target) + suffix;
+            if (t < 1) frames.add(requestAnimationFrame(tick));
+          };
+          frames.add(requestAnimationFrame(tick));
+        }),
+      { threshold: 0.6 },
+    );
+    root.querySelectorAll("[data-count]").forEach((el) => !onScreen(el) && countObs.observe(el));
 
-          for (let a = 0; a < nArches; a++) {
-            const ax = rL + a * aW + aW * 0.5;
-            const iw = aW * 0.50;
-            const archCY = rTop + iw * 0.5;
+    // The eras switch on in the order history did, once, as the lineup arrives.
+    const eraList = root.querySelector(".col-eras");
+    const eraItems = Array.from(root.querySelectorAll<HTMLElement>(".col-era"));
+    const eraObs = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          eraObs.disconnect();
+          eraItems.forEach((era, i) => playEra(era, i * 320));
+        }),
+      { threshold: 0.3 },
+    );
+    if (eraList) eraObs.observe(eraList);
 
-            stroke(() => {
-              ctx.moveTo(ax - iw/2, rBot);
-              ctx.lineTo(ax - iw/2, archCY);
-              ctx.arc(ax, archCY, iw/2, Math.PI, 0, false);
-              ctx.lineTo(ax + iw/2, rBot);
-            }, 0.85);
-          }
-        }
+    // Pointing at an era turns it on again, unless it is still playing.
+    const replay = (e: Event) => {
+      const era = e.currentTarget as HTMLElement;
+      const busy = era.getAnimations({ subtree: true }).some((a) => a.playState === "running");
+      if (!busy) playEra(era, 0);
+    };
+    eraItems.forEach((era) => era.addEventListener("pointerenter", replay));
 
-        const atticBot = bot - h * 0.228 * 3;
-        const atticTop = atticBot - h * 0.085;
-        const atticW   = w * 0.84;
-        const nAttic   = 7;
-        const awW      = atticW / nAttic;
-        for (let a = 0; a < nAttic; a++) {
-          const ax = (cx - atticW/2) + a * awW + awW/2;
-          const ww = awW * 0.38, wh = atticBot - atticTop - h*0.01;
-          stroke(() => { ctx.rect(ax - ww/2, atticTop, ww, wh); }, 0.75);
-        }
-
-        ctx.restore();
-      }
-
-      function drawCloud(alpha: number, scale: number) {
-        const cx = W * 0.5, cy = H * 0.49;
-        const s  = Math.min(W * 0.24, H * 0.24, 92) * scale;
-
-        ctx.save();
-        ctx.globalAlpha = alpha;
-
-        function cloudPath() {
-          ctx.beginPath();
-          ctx.moveTo(cx - s, cy + s * 0.5);
-
-          ctx.bezierCurveTo(
-            cx - s*1.30, cy + s*0.50,
-            cx - s*1.30, cy - s*0.10,
-            cx - s*0.85, cy - s*0.10
-          );
-          ctx.bezierCurveTo(
-            cx - s*0.85, cy - s*0.88,
-            cx - s*0.05, cy - s*0.88,
-            cx,          cy - s*0.42
-          );
-          ctx.bezierCurveTo(
-            cx,          cy - s*0.92,
-            cx + s*0.85, cy - s*0.92,
-            cx + s*0.85, cy - s*0.10
-          );
-          ctx.bezierCurveTo(
-            cx + s*1.30, cy - s*0.10,
-            cx + s*1.30, cy + s*0.50,
-            cx + s,      cy + s*0.50
-          );
-          ctx.lineTo(cx - s, cy + s*0.50);
-          ctx.closePath();
-        }
-
-        cloudPath();
-        ctx.fillStyle = 'rgba(0,200,255,0.05)';
-        ctx.fill();
-
-        cloudPath();
-        ctx.shadowColor = 'rgba(0,200,255,0.45)';
-        ctx.shadowBlur  = 10;
-        ctx.strokeStyle = 'rgba(0,200,255,0.25)';
-        ctx.lineWidth   = 4;
-        ctx.lineCap     = 'round';
-        ctx.lineJoin    = 'round';
-        ctx.stroke();
-
-        ctx.shadowBlur  = 0;
-        cloudPath();
-        ctx.strokeStyle = '#00c8ff';
-        ctx.lineWidth   = 1.6;
-        ctx.stroke();
-
-        ctx.globalAlpha = alpha * 0.18;
-        ctx.strokeStyle = '#00c8ff';
-        ctx.lineWidth   = 1.0;
-        ctx.beginPath();
-        ctx.bezierCurveTo(
-          cx - s*0.35, cy - s*0.55,
-          cx + s*0.35, cy - s*0.55,
-          cx + s*0.55, cy - s*0.05
-        );
-        ctx.moveTo(cx - s*0.55, cy - s*0.05);
-        ctx.bezierCurveTo(
-          cx - s*0.35, cy - s*0.55,
-          cx + s*0.35, cy - s*0.55,
-          cx + s*0.55, cy - s*0.05
-        );
-        ctx.stroke();
-
-        ctx.restore();
-      }
-
-      function draw(ts: number) {
-        if (!startTime) startTime = ts;
-        const elapsed = (ts - startTime) % TOTAL;
-        ctx.clearRect(0, 0, W, H);
-
-        let phase = 0;
-        for (let i = PH.length - 1; i >= 0; i--) {
-          if (elapsed >= PH[i]) { phase = i; break; }
-        }
-        const phT = (elapsed - PH[phase]) / PH_DUR[phase];
-        const et  = eio(phT);
-
-        let colA = 0, cloudA = 0, colS = 1, cloudS = 1;
-
-        if (phase === 0) {
-          colA = 0.82; colS = 1;
-        } else if (phase === 1) {
-          colA   = (1 - et) * 0.82; colS   = 1 + et * 0.04;
-          cloudA = et * 0.82;       cloudS = 0.96 + et * 0.04;
-        } else if (phase === 2) {
-          cloudA = 0.82; cloudS = 1;
-        } else {
-          cloudA = (1 - et) * 0.82; cloudS = 1 + et * 0.04;
-          colA   = et * 0.82;       colS   = 0.96 + et * 0.04;
-        }
-
-        if (colA   > 0.01) drawColosseum(colA,   colS);
-        if (cloudA > 0.01) drawCloud    (cloudA, cloudS);
-
-        morphRafId = requestAnimationFrame(draw);
-      }
-
-      function resize() {
-        dpr = window.devicePixelRatio || 1;
-        W   = canvas.offsetWidth;
-        H   = canvas.offsetHeight;
-        canvas.width  = W * dpr;
-        canvas.height = H * dpr;
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
-        ctx.scale(dpr, dpr);
-      }
-
-      resize();
-      startTime = null;
-      resizeHandler3 = () => { resize(); startTime = null; };
-      window.addEventListener('resize', resizeHandler3, { passive: true });
-      morphRafId = requestAnimationFrame(draw);
-    })();
+    // The cover keeps broadcasting only while it is on screen.
+    const cover = root.querySelector(".col-cover");
+    const coverObs = new IntersectionObserver((entries) =>
+      entries.forEach((e) => e.target.classList.toggle("is-live", e.isIntersecting)),
+    );
+    if (cover) coverObs.observe(cover);
 
     return () => {
-      window.removeEventListener('scroll', scrollHandler);
-      if (resizeHandler2) window.removeEventListener('resize', resizeHandler2);
-      if (resizeHandler3) window.removeEventListener('resize', resizeHandler3);
-      revObs.disconnect();
-      sNavObs.disconnect();
-      counterObs.disconnect();
-      barObs.disconnect();
-      if (morphRafId !== null) cancelAnimationFrame(morphRafId);
-      if (track) {
-        if (eraMouseDownHandler) track.removeEventListener('mousedown', eraMouseDownHandler);
-        if (eraMouseLeaveHandler) track.removeEventListener('mouseleave', eraMouseLeaveHandler);
-        if (eraMouseUpHandler) track.removeEventListener('mouseup', eraMouseUpHandler);
-        if (eraMouseMoveHandler) track.removeEventListener('mousemove', eraMouseMoveHandler);
-        if (eraWheelHandler) track.removeEventListener('wheel', eraWheelHandler);
-      }
+      window.removeEventListener("scroll", onScroll);
+      arriveObs.disconnect();
+      window.removeEventListener("scroll", onSweep);
+      cancelAnimationFrame(sweepFrame);
+      countObs.disconnect();
+      frames.forEach((f) => cancelAnimationFrame(f));
+      eraObs.disconnect();
+      coverObs.disconnect();
+      eraItems.forEach((era) => era.removeEventListener("pointerenter", replay));
     };
   }, []);
 
+  const activeLabel = chapters.find((c) => c.id === active)?.label;
+
   return (
-    <div className="colosseum-article">
-      {/* Progress bar */}
-      <div id="col-progress"></div>
-
-      {/* Nav */}
-      <nav className="col-nav">
-        <a href="/" className="nav-logo font-sans text-lg" style={{textDecoration:'none',color:'inherit',cursor:'pointer'}}>Mohamad Noor-Chowdhury</a>
-        <ul className="nav-links">
-          <li><a href="#access">Access</a></li>
-          <li><a href="#power">Power Play</a></li>
-          <li><a href="#amazon">Deals</a></li>
-          <li><a href="#victim">The Victim</a></li>
-          <li><a href="#reckoning">Reckoning</a></li>
-        </ul>
-      </nav>
-
-      {/* Side nav dots */}
-      <nav className="side-nav" aria-label="Section navigation">
-        <a href="#hero"      className="side-dot" data-s="hero"      title="Introduction"></a>
-        <a href="#access"    className="side-dot" data-s="access"    title="The Era Timeline"></a>
-        <a href="#power"     className="side-dot" data-s="power"     title="Power Play"></a>
-        <a href="#covid"     className="side-dot" data-s="covid"     title="COVID Accelerator"></a>
-        <a href="#amazon"    className="side-dot" data-s="amazon"    title="Amazon Blueprint"></a>
-        <a href="#data"      className="side-dot" data-s="data"      title="Data Payoff"></a>
-        <a href="#domino"    className="side-dot" data-s="domino"    title="Domino Effect"></a>
-        <a href="#victim"    className="side-dot" data-s="victim"    title="The Victim"></a>
-        <a href="#reckoning" className="side-dot" data-s="reckoning" title="Reckoning"></a>
-      </nav>
+    <div ref={rootRef} className="colosseum-article">
+      <div className="col-head">
+        <div className="col-head-inner">
+          <a href="/" className="col-home">
+            Mohamad Noor-Chowdhury
+          </a>
+          <nav aria-label="Chapters">
+            <ul className="col-chapters">
+              {chapters.map((c) => (
+                <li key={c.id}>
+                  <a href={`#${c.id}`} aria-current={active === c.id}>
+                    {c.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          {activeLabel && <span className="col-current">{activeLabel}</span>}
+        </div>
+        <div ref={progressRef} className="col-progress" aria-hidden="true" />
+      </div>
 
       <main>
-
-        {/* ═══════════════════════════════════════ HERO */}
-        <section id="hero">
-          <canvas id="morph-canvas" aria-hidden="true"></canvas>
-          <div className="hero-inner">
-
-            <h1 className="hero-title reveal d2">
-              From the<br/>
-              <span className="cyan">Colosseum</span><br/>
-              to the Cloud
-            </h1>
-
-            <p className="hero-sub reveal d3">
-              How leagues and streaming giants built a lucrative partnership, and left the fan holding the bill. A reckoning two millennia in the making.
-            </p>
-
-            <div className="hero-stats reveal d4">
-              <div className="hero-stat">
-                <span className="hero-stat-num" data-count="110" data-prefix="$" data-suffix="B+">$0B+</span>
-                <span className="hero-stat-label">Total streaming sports rights deals</span>
-              </div>
-              <div className="hero-stat">
-                <span className="hero-stat-num" data-count="70" data-suffix="%">0%</span>
-                <span className="hero-stat-label">18–44 yr-olds on streaming</span>
-              </div>
-              <div className="hero-stat">
-                <span className="hero-stat-num" data-count="137" data-prefix="$">$0</span>
-                <span className="hero-stat-label">Fan's monthly sports bill</span>
-              </div>
-              <div className="hero-stat">
-                <span className="hero-stat-num" data-count="60" data-suffix="%">0%</span>
-                <span className="hero-stat-label">Subscribe then cancel</span>
-              </div>
+        {/* ─── Cover ─── */}
+        <section className="col-cover" aria-labelledby="col-title">
+          <div className="col-cover-grid">
+            <div>
+              <h1 id="col-title" className="col-title">
+                <span className="col-title-line">From the</span>
+                <span className="col-title-line">
+                  <span className="col-title-mark">Colosseum</span>
+                </span>
+                <span className="col-title-line">to the Cloud</span>
+              </h1>
+              <p className="col-deck">
+                How leagues and streaming giants built a lucrative partnership, and left the fan
+                holding the bill. A reckoning two millennia in the making.
+              </p>
+              <p className="col-byline">Mo NC · The Future of Sports Media · 2025</p>
             </div>
-          </div>
-
-          <div className="hero-scroll-cue" aria-hidden="true">
-            <div className="scroll-line"></div>
-            <span className="scroll-label">Scroll</span>
-          </div>
-        </section>
-
-        <div className="glow-divider"></div>
-
-        {/* ═══════════════════════════ ERA TIMELINE */}
-        <section id="access">
-          <div className="section-inner">
-            <h2 className="h-section section-title reveal d1">
-              The Unstoppable<br/>
-              <span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>March of Access</span>
-            </h2>
-            <p className="section-lead reveal d2">Sport has always been inseparable from the dominant medium of its era. Each technological revolution broadened reach and inflated the prize.</p>
-
-            <div className="era-track reveal d3">
-              <div className="era-card">
-                <div className="era-num">I</div>
-                {/* Colosseum */}
-                <svg viewBox="0 0 120 72" xmlns="http://www.w3.org/2000/svg" style={{width:'120px',height:'72px',display:'block',marginBottom:'1.25rem'}}>
-                  <rect x="4" y="28" width="112" height="40" rx="1" fill="none" stroke="#006b8a" strokeWidth="1"/>
-                  <path d="M4,28 Q60,2 116,28" fill="none" stroke="#00c8ff" strokeWidth="1.2"/>
-                  <path d="M14,68 L14,44 Q20,36 26,44 L26,68" fill="rgba(0,200,255,0.06)" stroke="#006b8a" strokeWidth="0.8"/>
-                  <path d="M32,68 L32,44 Q38,36 44,44 L44,68" fill="rgba(0,200,255,0.06)" stroke="#006b8a" strokeWidth="0.8"/>
-                  <path d="M50,68 L50,44 Q56,36 62,44 L62,68" fill="rgba(0,200,255,0.08)" stroke="#00c8ff" strokeWidth="0.8"/>
-                  <path d="M68,68 L68,44 Q74,36 80,44 L80,68" fill="rgba(0,200,255,0.06)" stroke="#006b8a" strokeWidth="0.8"/>
-                  <path d="M86,68 L86,44 Q92,36 98,44 L98,68" fill="rgba(0,200,255,0.06)" stroke="#006b8a" strokeWidth="0.8"/>
-                  <path d="M20,44 L20,30 Q26,24 32,30 L32,44" fill="none" stroke="#006b8a" strokeWidth="0.6" strokeDasharray="2,2"/>
-                  <path d="M44,44 L44,30 Q50,24 56,30 L56,44" fill="none" stroke="#006b8a" strokeWidth="0.6" strokeDasharray="2,2"/>
-                  <path d="M62,44 L62,30 Q68,24 74,30 L74,44" fill="none" stroke="#00c8ff" strokeWidth="0.7" strokeDasharray="2,2"/>
-                  <path d="M80,44 L80,30 Q86,24 92,30 L92,44" fill="none" stroke="#006b8a" strokeWidth="0.6" strokeDasharray="2,2"/>
-                  <line x1="4" y1="68" x2="116" y2="68" stroke="#006b8a" strokeWidth="0.5"/>
-                </svg>
-                <div className="era-title">The Arena</div>
-                <div className="era-tag">Physical Presence</div>
-                <p className="era-desc">The Colosseum held 80,000. Access was physical, hierarchical, and local. Your seat was social currency.</p>
-              </div>
-              <div className="era-card">
-                <div className="era-num">II</div>
-                {/* Radio with sound waves */}
-                <svg viewBox="0 0 120 72" xmlns="http://www.w3.org/2000/svg" style={{width:'120px',height:'72px',display:'block',marginBottom:'1.25rem'}}>
-                  <rect x="28" y="26" width="44" height="34" rx="3" fill="rgba(0,200,255,0.05)" stroke="#006b8a" strokeWidth="1"/>
-                  <circle cx="43" cy="43" r="8" fill="none" stroke="#006b8a" strokeWidth="0.8"/>
-                  <circle cx="43" cy="43" r="4" fill="none" stroke="#006b8a" strokeWidth="0.6"/>
-                  <circle cx="43" cy="43" r="1.5" fill="#006b8a"/>
-                  <rect x="56" y="38" width="10" height="6" rx="1" fill="none" stroke="#006b8a" strokeWidth="0.7"/>
-                  <line x1="61" y1="38" x2="61" y2="41" stroke="#00c8ff" strokeWidth="1"/>
-                  <line x1="60" y1="26" x2="54" y2="10" stroke="#006b8a" strokeWidth="1" strokeLinecap="round"/>
-                  <path d="M78,36 Q85,43 78,50" fill="none" stroke="#00c8ff" strokeWidth="1.2" strokeLinecap="round" opacity="0.9"/>
-                  <path d="M84,30 Q96,43 84,56" fill="none" stroke="#00c8ff" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
-                  <path d="M90,24 Q107,43 90,62" fill="none" stroke="#00c8ff" strokeWidth="0.8" strokeLinecap="round" opacity="0.35"/>
-                </svg>
-                <div className="era-title">Radio</div>
-                <div className="era-tag">Audio Access · 1920s</div>
-                <p className="era-desc">Radio broke geography. Millions heard the fight simultaneously. Attention became the commodity.</p>
-              </div>
-              <div className="era-card">
-                <div className="era-num">III</div>
-                {/* Television */}
-                <svg viewBox="0 0 120 72" xmlns="http://www.w3.org/2000/svg" style={{width:'120px',height:'72px',display:'block',marginBottom:'1.25rem'}}>
-                  <rect x="14" y="10" width="82" height="52" rx="4" fill="rgba(0,200,255,0.05)" stroke="#006b8a" strokeWidth="1"/>
-                  <rect x="22" y="17" width="66" height="38" rx="2" fill="rgba(0,200,255,0.08)" stroke="#00c8ff" strokeWidth="0.8"/>
-                  <line x1="30" y1="28" x2="60" y2="28" stroke="#00c8ff" strokeWidth="0.7" opacity="0.5"/>
-                  <line x1="30" y1="33" x2="54" y2="33" stroke="#006b8a" strokeWidth="0.7" opacity="0.5"/>
-                  <line x1="30" y1="38" x2="58" y2="38" stroke="#006b8a" strokeWidth="0.7" opacity="0.5"/>
-                  <polygon points="66,27 66,45 80,36" fill="rgba(0,200,255,0.2)" stroke="#00c8ff" strokeWidth="0.8"/>
-                  <line x1="40" y1="62" x2="36" y2="70" stroke="#006b8a" strokeWidth="1.2" strokeLinecap="round"/>
-                  <line x1="70" y1="62" x2="74" y2="70" stroke="#006b8a" strokeWidth="1.2" strokeLinecap="round"/>
-                  <line x1="44" y1="10" x2="36" y2="2" stroke="#006b8a" strokeWidth="1" strokeLinecap="round"/>
-                  <line x1="66" y1="10" x2="74" y2="2" stroke="#006b8a" strokeWidth="1" strokeLinecap="round"/>
-                </svg>
-                <div className="era-title">Television</div>
-                <div className="era-tag">Visual Access · 1950s</div>
-                <p className="era-desc">TV made sport spectacular at home. Rights deals ballooned. The Super Bowl became the most-watched event on Earth.</p>
-              </div>
-              <div className="era-card">
-                <div className="era-num">IV</div>
-                {/* Streaming / screen + signal */}
-                <svg viewBox="0 0 120 72" xmlns="http://www.w3.org/2000/svg" style={{width:'120px',height:'72px',display:'block',marginBottom:'1.25rem'}}>
-                  <rect x="22" y="14" width="60" height="40" rx="3" fill="rgba(0,200,255,0.06)" stroke="#006b8a" strokeWidth="1"/>
-                  <rect x="28" y="19" width="48" height="30" rx="1.5" fill="rgba(0,200,255,0.1)" stroke="#00c8ff" strokeWidth="0.7"/>
-                  <polygon points="46,28 46,40 58,34" fill="#00c8ff" opacity="0.85"/>
-                  <path d="M90,18 Q100,28 90,38" fill="none" stroke="#00c8ff" strokeWidth="1.1" strokeLinecap="round" opacity="0.9"/>
-                  <path d="M95,12 Q110,28 95,44" fill="none" stroke="#00c8ff" strokeWidth="0.9" strokeLinecap="round" opacity="0.55"/>
-                  <path d="M100,6 Q120,28 100,50" fill="none" stroke="#00c8ff" strokeWidth="0.7" strokeLinecap="round" opacity="0.3"/>
-                  <line x1="52" y1="54" x2="52" y2="62" stroke="#006b8a" strokeWidth="1.2" strokeLinecap="round"/>
-                  <line x1="40" y1="62" x2="64" y2="62" stroke="#006b8a" strokeWidth="1.2" strokeLinecap="round"/>
-                </svg>
-                <div className="era-title">Streaming</div>
-                <div className="era-tag">On-Demand · 2020s</div>
-                <p className="era-desc">The internet unbundled everything, then rebundled it at a premium. Live sport anchors subscription growth.</p>
-              </div>
-              <div className="era-card">
-                <div className="era-num">V</div>
-                {/* AR / AI future */}
-                <svg viewBox="0 0 120 72" xmlns="http://www.w3.org/2000/svg" style={{width:'120px',height:'72px',display:'block',marginBottom:'1.25rem'}}>
-                  <path d="M18,32 Q18,22 30,22 L52,22 Q60,22 60,30 Q60,22 68,22 L90,22 Q102,22 102,32 L102,44 Q102,52 94,52 L72,52 Q64,52 60,46 Q56,52 48,52 L26,52 Q18,52 18,44 Z" fill="rgba(0,200,255,0.07)" stroke="#00c8ff" strokeWidth="1"/>
-                  <ellipse cx="42" cy="37" rx="16" ry="11" fill="rgba(0,200,255,0.1)" stroke="#006b8a" strokeWidth="0.8"/>
-                  <ellipse cx="78" cy="37" rx="16" ry="11" fill="rgba(0,200,255,0.1)" stroke="#006b8a" strokeWidth="0.8"/>
-                  <line x1="32" y1="37" x2="52" y2="37" stroke="#00c8ff" strokeWidth="0.5" opacity="0.5"/>
-                  <line x1="42" y1="28" x2="42" y2="46" stroke="#00c8ff" strokeWidth="0.5" opacity="0.5"/>
-                  <line x1="68" y1="37" x2="88" y2="37" stroke="#00c8ff" strokeWidth="0.5" opacity="0.5"/>
-                  <line x1="78" y1="28" x2="78" y2="46" stroke="#00c8ff" strokeWidth="0.5" opacity="0.5"/>
-                  <circle cx="42" cy="37" r="2.5" fill="#00c8ff" opacity="0.8"/>
-                  <circle cx="78" cy="37" r="2.5" fill="#00c8ff" opacity="0.8"/>
-                  <circle cx="20" cy="18" r="1.5" fill="#00c8ff" opacity="0.5"/>
-                  <line x1="20" y1="18" x2="30" y2="22" stroke="#00c8ff" strokeWidth="0.6" opacity="0.4"/>
-                  <circle cx="100" cy="18" r="1.5" fill="#00c8ff" opacity="0.5"/>
-                  <line x1="100" y1="18" x2="90" y2="22" stroke="#00c8ff" strokeWidth="0.6" opacity="0.4"/>
-                  <circle cx="60" cy="62" r="1.5" fill="#00c8ff" opacity="0.5"/>
-                  <line x1="60" y1="62" x2="60" y2="52" stroke="#00c8ff" strokeWidth="0.6" opacity="0.4"/>
-                </svg>
-                <div className="era-title">What's Next</div>
-                <div className="era-tag">Commerce + AI · 2030s</div>
-                <p className="era-desc">Shoppable moments. Personalized feeds. Integrated betting. Sport as commerce infrastructure.</p>
-              </div>
-            </div>
-
-            <div className="glass reveal d4" style={{padding:'2rem',marginTop:'2rem'}}>
-              <p style={{fontSize:'0.875rem',color:'var(--text-muted)',lineHeight:'1.75'}}>
-                <span className="label" style={{display:'block',marginBottom:'0.75rem'}}>The pattern</span>
-                Each era multiplied viewership and revenue. The transition is never smooth: incumbents resist, consumers adapt slowly, but the shift is always irreversible. We are mid-transition now.
+            <div className="col-emblem-wrap">
+              <CoverEmblem />
+              <p className="col-roundel">
+                <span>Fan's monthly bill</span>
+                <strong>$136.55</strong>
               </p>
             </div>
           </div>
         </section>
 
-        <div className="glow-divider"></div>
+        <section className="col-boxscore" aria-label="The story in four numbers">
+          <dl>
+            <div>
+              <dt>Total streaming sports rights deals</dt>
+              <dd>
+                <Count value={110} prefix="$" suffix="B+" />
+              </dd>
+            </div>
+            <div>
+              <dt>18–44 yr-olds on streaming</dt>
+              <dd>
+                <Count value={70} suffix="%" />
+              </dd>
+            </div>
+            <div>
+              <dt>Fan's monthly sports bill</dt>
+              <dd>
+                <Count value={137} prefix="$" />
+              </dd>
+            </div>
+            <div>
+              <dt>Subscribe then cancel</dt>
+              <dd>
+                <Count value={60} suffix="%" />
+              </dd>
+            </div>
+          </dl>
+        </section>
 
-        {/* ═══════════════════════════ POWER PLAY */}
-        <section id="power" style={{background:'var(--bg-2)'}}>
-          <div className="section-inner">
-            <h2 className="h-section section-title reveal d1">
-              A Mutually Beneficial<br/>
-              <span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>Power Play</span>
-            </h2>
-            <p className="section-lead reveal d2">The marriage between sports leagues and streaming platforms wasn't accidental. Each party held exactly what the other desperately needed.</p>
+        {/* ─── The march of access ─── */}
+        <section id="access" className="col-chapter" aria-label="The Unstoppable March of Access">
+          <Opener ink="terra" mark={<MarkArena />}>
+            The Unstoppable <span>March of Access</span>
+          </Opener>
+          <div className="col-page">
+            <p className="col-lead">
+              Sport has always been inseparable from the dominant medium of its era. Each
+              technological revolution broadened reach and inflated the prize.
+            </p>
+            <ol className="col-eras">
+              {eras.map((e) => (
+                <li key={e.title} className="col-era">
+                  {e.art}
+                  <h3>{e.title}</h3>
+                  <span className="col-era-when">{e.when}</span>
+                  <p>{e.body}</p>
+                </li>
+              ))}
+            </ol>
+            <div className="col-pattern">
+              <h3>The pattern</h3>
+              <p>
+                Each era multiplied viewership and revenue. The transition is never smooth:
+                incumbents resist, consumers adapt slowly, but the shift is always irreversible. We
+                are mid-transition now.
+              </p>
+            </div>
+          </div>
+        </section>
 
-            <div className="two-col" style={{marginBottom:'3rem'}}>
-              <div className="glass reveal reveal-l d2" style={{padding:'2.25rem'}}>
-                <div className="label" style={{marginBottom:'1.5rem'}}>What Leagues Gained</div>
-                <ul className="benefit-list">
-                  <li className="benefit-item"><div className="benefit-bar"></div><div><div className="benefit-title">Massive Rights Fees</div><div className="benefit-desc">Tech giants, flush with cash, bid higher than legacy broadcasters ever could or would.</div></div></li>
-                  <li className="benefit-item"><div className="benefit-bar"></div><div><div className="benefit-title">Global Distribution</div><div className="benefit-desc">Streaming platforms reach audiences throughout the world. A single deal is a global audience deal.</div></div></li>
-                  <li className="benefit-item"><div className="benefit-bar"></div><div><div className="benefit-title">Younger Demographics</div><div className="benefit-desc">Streaming reaches the 18–34 cohort that has abandoned linear TV.</div></div></li>
-                  <li className="benefit-item"><div className="benefit-bar"></div><div><div className="benefit-title">Production Innovation</div><div className="benefit-desc">Multi-angle cameras, real-time stats overlays, integrated betting odds.</div></div></li>
+        {/* ─── Power play ─── */}
+        <section id="power" className="col-chapter" aria-label="A Mutually Beneficial Power Play">
+          <Opener ink="sage" mark={<MarkDeal />}>
+            A Mutually Beneficial <span>Power Play</span>
+          </Opener>
+          <div className="col-page">
+            <p className="col-lead">
+              The marriage between sports leagues and streaming platforms wasn't accidental. Each
+              party held exactly what the other desperately needed.
+            </p>
+            <div className="col-teams">
+              <div className="col-team col-team--home">
+                <h3 className="col-team-head">What Leagues Gained</h3>
+                <ul>
+                  <li>
+                    <strong>Massive Rights Fees</strong>
+                    <span>
+                      Tech giants, flush with cash, bid higher than legacy broadcasters ever could
+                      or would.
+                    </span>
+                  </li>
+                  <li>
+                    <strong>Global Distribution</strong>
+                    <span>
+                      Streaming platforms reach audiences throughout the world. A single deal is a
+                      global audience deal.
+                    </span>
+                  </li>
+                  <li>
+                    <strong>Younger Demographics</strong>
+                    <span>Streaming reaches the 18–34 cohort that has abandoned linear TV.</span>
+                  </li>
+                  <li>
+                    <strong>Production Innovation</strong>
+                    <span>
+                      Multi-angle cameras, real-time stats overlays, integrated betting odds.
+                    </span>
+                  </li>
                 </ul>
               </div>
-              <div className="glass reveal reveal-r d2" style={{padding:'2.25rem'}}>
-                <div className="label" style={{marginBottom:'1.5rem',color:'var(--blue)'}}>What Streamers Gained</div>
-                <ul className="benefit-list">
-                  <li className="benefit-item"><div className="benefit-bar" style={{background:'linear-gradient(to bottom,var(--blue),transparent)'}}></div><div><div className="benefit-title">Subscriber Magnets</div><div className="benefit-desc">Live sport drives sign-ups on event nights and keeps churn low during the season.</div></div></li>
-                  <li className="benefit-item"><div className="benefit-bar" style={{background:'linear-gradient(to bottom,var(--blue),transparent)'}}></div><div><div className="benefit-title">Legitimate Premium Brand</div><div className="benefit-desc">Owning the rights to a major sports league signals that a streamer is a serious media company.</div></div></li>
-                  <li className="benefit-item"><div className="benefit-bar" style={{background:'linear-gradient(to bottom,var(--blue),transparent)'}}></div><div><div className="benefit-title">First-Party Data</div><div className="benefit-desc">Authenticated viewers reveal household income, purchase behavior, and preferences.</div></div></li>
-                  <li className="benefit-item"><div className="benefit-bar" style={{background:'linear-gradient(to bottom,var(--blue),transparent)'}}></div><div><div className="benefit-title">Commerce Integration</div><div className="benefit-desc">By following Amazon's lead, every ad slot is a shoppable moment. Sport is a purchase funnel.</div></div></li>
+              <div className="col-team col-team--away">
+                <h3 className="col-team-head">What Streamers Gained</h3>
+                <ul>
+                  <li>
+                    <strong>Subscriber Magnets</strong>
+                    <span>
+                      Live sport drives sign-ups on event nights and keeps churn low during the
+                      season.
+                    </span>
+                  </li>
+                  <li>
+                    <strong>Legitimate Premium Brand</strong>
+                    <span>
+                      Owning the rights to a major sports league signals that a streamer is a
+                      serious media company.
+                    </span>
+                  </li>
+                  <li>
+                    <strong>First-Party Data</strong>
+                    <span>
+                      Authenticated viewers reveal household income, purchase behavior, and
+                      preferences.
+                    </span>
+                  </li>
+                  <li>
+                    <strong>Commerce Integration</strong>
+                    <span>
+                      By following Amazon's lead, every ad slot is a shoppable moment. Sport is a
+                      purchase funnel.
+                    </span>
+                  </li>
                 </ul>
               </div>
             </div>
+            <div className="col-figure-strip">
+              <p className="col-big">
+                <Count value={70} suffix="%" />
+              </p>
+              <p>
+                of adults aged 18–44 subscribe to at least one streaming service, with an average of{" "}
+                <strong>8 active subscriptions</strong> per household. The audience has already
+                moved.
+              </p>
+            </div>
+          </div>
+        </section>
 
-            <div className="glass-glow reveal">
-              <div className="big-stat-block">
-                <div className="big-num" data-count-big="70" data-suffix="%">0%</div>
-                <p className="big-stat-text">of adults aged 18–44 subscribe to at least one streaming service, with an average of <strong style={{color:'var(--text)'}}>8 active subscriptions</strong> per household. The audience has already moved.</p>
+        {/* ─── COVID ─── */}
+        <section id="covid" className="col-chapter" aria-label="The COVID Accelerator">
+          <Opener ink="navy" mark={<MarkTV />}>
+            The COVID <span>Accelerator</span>
+          </Opener>
+          <div className="col-page">
+            <p className="col-lead">
+              The pandemic compressed a decade of change into eighteen months. Empty stadiums forced
+              every stakeholder's hand.
+            </p>
+            <figure className="col-chart">
+              <figcaption className="col-h3">
+                Streaming vs Traditional TV: Viewership Index 2015–2025
+              </figcaption>
+              <svg
+                viewBox={`0 0 ${CH.w} ${CH.h}`}
+                role="img"
+                aria-label="Chart showing streaming rising and linear TV falling with a crossover at 2020"
+              >
+                <g className="grid">
+                  {[0, 25, 50, 75, 100].map((v) => (
+                    <line key={v} x1={CH.l} x2={CH.w - CH.r} y1={cy(v)} y2={cy(v)} />
+                  ))}
+                </g>
+                <rect
+                  className="covid-band"
+                  x={cx(5) - 18}
+                  y={CH.t}
+                  width={36}
+                  height={CH.h - CH.t - CH.b}
+                />
+                <g className="axis">
+                  {[0, 50, 100].map((v) => (
+                    <text key={v} x={CH.l - 12} y={cy(v) + 4} textAnchor="end">
+                      {v}
+                    </text>
+                  ))}
+                  {years.map((y, i) =>
+                    i % 2 === 0 || i === years.length - 1 ? (
+                      <text key={y} x={cx(i)} y={CH.h - 10} textAnchor="middle">
+                        {y}
+                      </text>
+                    ) : null,
+                  )}
+                </g>
+                <path className="line-tv" d={line(traditional)} />
+                <path className="line-stream" d={line(streaming)} />
+                <circle className="covid-dot" cx={cx(5)} cy={cy(55)} r={8} />
+                <text
+                  className="end-label"
+                  x={cx(10) + 12}
+                  y={cy(95) + 5}
+                  fill="oklch(0.52 0.12 45)"
+                >
+                  Streaming
+                </text>
+                <text
+                  className="end-label"
+                  x={cx(10) + 12}
+                  y={cy(32) + 5}
+                  fill="oklch(0.357 0.054 263)"
+                >
+                  Linear TV
+                </text>
+              </svg>
+              <ul className="col-legend">
+                <li>
+                  <i style={{ background: "var(--terra-ink)" }} />
+                  Streaming
+                </li>
+                <li>
+                  <i style={{ background: "var(--navy)" }} />
+                  Linear TV
+                </li>
+                <li>
+                  <i className="dot" style={{ background: "var(--mustard)" }} />
+                  2020 COVID inflection
+                </li>
+              </ul>
+            </figure>
+            <div className="col-facts">
+              <div className="col-fact">
+                <p className="col-fact-num">+26M</p>
+                <h3>New US streaming subscribers in 2020</h3>
+                <p>
+                  Added in a single year as lockdowns made streaming the only live entertainment.
+                </p>
+              </div>
+              <div className="col-fact">
+                <p className="col-fact-num">–12%</p>
+                <h3>Linear TV viewership decline 2020–22</h3>
+                <p>
+                  Cord-cutting accelerated permanently. Households that cancelled rarely returned.
+                </p>
+              </div>
+              <div className="col-fact">
+                <p className="col-fact-num">2021</p>
+                <h3>First major sports rights shift to streaming</h3>
+                <p>
+                  Amazon had previously aired NFL games, but in 2021 signed the first exclusive
+                  streaming rights deal for Thursday Night Football, a watershed moment for the
+                  industry.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        <div className="glow-divider"></div>
-
-        {/* ═══════════════════════════ COVID */}
-        <section id="covid">
-          <div className="section-inner">
-            <h2 className="h-section section-title reveal d1">
-              The COVID<br/>
-              <span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>Accelerator</span>
-            </h2>
-            <p className="section-lead reveal d2">The pandemic compressed a decade of change into eighteen months. Empty stadiums forced every stakeholder's hand.</p>
-
-            {/* S-Curve Chart */}
-            <div className="glass reveal d3" style={{padding:'2.25rem',marginBottom:'2rem'}}>
-              <div className="label" style={{marginBottom:'1.5rem'}}>Streaming vs Traditional TV: Viewership Index 2015–2025</div>
-              <canvas id="scurve" height={300} aria-label="Chart showing streaming rising and linear TV falling with a crossover at 2020"></canvas>
-              <div style={{display:'flex',gap:'2rem',marginTop:'1.5rem',flexWrap:'wrap'}}>
-                <div style={{display:'flex',alignItems:'center',gap:'0.6rem'}}><div style={{width:'2rem',height:'2px',background:'var(--cyan)'}}></div><span style={{fontSize:'0.75rem',color:'var(--text-muted)'}}>Streaming</span></div>
-                <div style={{display:'flex',alignItems:'center',gap:'0.6rem'}}><div style={{width:'2rem',height:'2px',background:'var(--text-dim)'}}></div><span style={{fontSize:'0.75rem',color:'var(--text-muted)'}}>Linear TV</span></div>
-                <div style={{display:'flex',alignItems:'center',gap:'0.6rem'}}><div style={{width:'10px',height:'10px',borderRadius:'50%',background:'rgba(0,200,255,0.3)',border:'1px solid var(--cyan)'}}></div><span style={{fontSize:'0.75rem',color:'var(--text-muted)'}}>2020 COVID inflection</span></div>
-              </div>
-            </div>
-
-            <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'1rem'}}>
-              <div className="glass reveal d1" style={{padding:'1.75rem'}}>
-                <div style={{fontFamily:"'Newsreader',serif",fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>+26M</div>
-                <div style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:600,fontSize:'0.85rem',color:'var(--text)',marginBottom:'0.4rem'}}>New US streaming subscribers in 2020</div>
-                <div style={{fontSize:'0.78rem',color:'var(--text-muted)',lineHeight:'1.6'}}>Added in a single year as lockdowns made streaming the only live entertainment.</div>
-              </div>
-              <div className="glass reveal d2" style={{padding:'1.75rem'}}>
-                <div style={{fontFamily:"'Newsreader',serif",fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>–12%</div>
-                <div style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:600,fontSize:'0.85rem',color:'var(--text)',marginBottom:'0.4rem'}}>Linear TV viewership decline 2020–22</div>
-                <div style={{fontSize:'0.78rem',color:'var(--text-muted)',lineHeight:'1.6'}}>Cord-cutting accelerated permanently. Households that cancelled rarely returned.</div>
-              </div>
-              <div className="glass reveal d3" style={{padding:'1.75rem'}}>
-                <div style={{fontFamily:"'Newsreader',serif",fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>2021</div>
-                <div style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:600,fontSize:'0.85rem',color:'var(--text)',marginBottom:'0.4rem'}}>First major sports rights shift to streaming</div>
-                <div style={{fontSize:'0.78rem',color:'var(--text-muted)',lineHeight:'1.6'}}>Amazon had previously aired NFL games, but in 2021 signed the first exclusive streaming rights deal for Thursday Night Football, a watershed moment for the industry.</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div className="glow-divider"></div>
-
-        {/* ═══════════════════════════ AMAZON */}
-        <section id="amazon" style={{background:'var(--bg-2)'}}>
-          <div className="section-inner">
-            <h2 className="h-section section-title reveal d1">
-              The Amazon / NFL<br/>
-              <span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>Blueprint</span>
-            </h2>
-            <p className="section-lead reveal d2">When Amazon secured exclusive NFL Thursday Night Football rights in 2021, it didn't buy a broadcast slot; it bought a proof-of-concept for the entire industry.</p>
-
-            {/* Deal table */}
-            <div className="glass reveal d2" style={{overflow:'hidden',marginBottom:'2.5rem'}}>
-              <table className="deal-table" style={{width:'100%'}}>
+        {/* ─── Amazon ─── */}
+        <section id="amazon" className="col-chapter" aria-label="The Amazon / NFL Blueprint">
+          <Opener ink="mustard" mark={<MarkBag />}>
+            The Amazon / NFL <span>Blueprint</span>
+          </Opener>
+          <div className="col-page">
+            <p className="col-lead">
+              When Amazon secured exclusive NFL Thursday Night Football rights in 2021, it didn't
+              buy a broadcast slot; it bought a proof-of-concept for the entire industry.
+            </p>
+            <div className="col-table-wrap col-block">
+              <table className="col-table">
                 <thead>
                   <tr>
                     <th>Partner</th>
                     <th>Asset</th>
                     <th>Duration</th>
-                    <th>Value</th>
+                    <th className="num">Value</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -728,374 +941,631 @@ export default function ColosseumArticle() {
                     <td>Amazon Prime Video</td>
                     <td>Thursday Night Football (excl.)</td>
                     <td>11 years</td>
-                    <td><span className="deal-val">~$1B/yr</span></td>
+                    <td className="num">~$1B/yr</td>
+                  </tr>
+                  <tr className="sub">
+                    <td>Per-game cost</td>
+                    <td>15–17 games/season</td>
+                    <td>2022–2032</td>
+                    <td className="num">$58.8M/game</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="col-prose col-block">
+              <h3 className="col-h3">2023: The Black Friday Game</h3>
+              <p style={{ color: "var(--ink)" }}>
+                Building on the success of exclusive Thursday Night Football, Amazon paid $100M for
+                the exclusive rights to a single NFL game on Black Friday 2023. But this was never
+                just about football.
+              </p>
+              <p>
+                The move was a deliberate attempt to create a new commercial holiday tradition, one
+                that lived entirely within a digital ecosystem. Instead of heading out to stores on
+                Black Friday, Amazon wanted the shopping experience to come to viewers, while they
+                watched the most-watched sport in the United States.
+              </p>
+              <p>
+                By pairing targeted ads with live football, Amazon turned a single game into a
+                shoppable event, redefining what Black Friday could look like for a streaming-first
+                generation.
+              </p>
+            </div>
+
+            <div className="col-block">
+              <h3 className="col-h3">
+                The Black Friday Experiment: Acquire → Monetize → Integrate
+              </h3>
+              <div className="col-flow">
+                <div className="col-flow-step">
+                  <h4>Acquire</h4>
+                  <p className="amount">$100M</p>
+                  <p>
+                    Amazon paid ~$100M for exclusive Black Friday rights, a calculated loss-leader
+                    to prove the model.
+                  </p>
+                </div>
+                <ArrowRight
+                  className="col-flow-arrow"
+                  size={32}
+                  strokeWidth={2.5}
+                  aria-hidden="true"
+                />
+                <div className="col-flow-step">
+                  <h4>Monetize</h4>
+                  <p className="amount">$880K</p>
+                  <p>
+                    The only publicly available data covers 58 thirty-second ad slots, which alone
+                    generated approximately $51M. Shorter formats like 15-second ads were not
+                    disclosed, meaning the true ad revenue was almost certainly higher, and Amazon
+                    likely recouped well over half its $100M investment from ads before a single
+                    item was sold.
+                  </p>
+                </div>
+                <ArrowRight
+                  className="col-flow-arrow"
+                  size={32}
+                  strokeWidth={2.5}
+                  aria-hidden="true"
+                />
+                <div className="col-flow-step">
+                  <h4>Integrate</h4>
+                  <p className="amount">Shop</p>
+                  <p>
+                    Instead of going out and battling crowds, the shopping experience was brought
+                    directly to the customer's living room. Amazon converted its first-party data
+                    into a targeted ad experience tailored to each viewer. Many ads featured QR
+                    codes directing users straight to product pages. But every QR code scan sent
+                    behavioral data back to Amazon, giving the tech giant even richer targeting
+                    signals for future campaigns. The game was not just a commercial event, it was a
+                    data collection exercise at scale.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── Data ─── */}
+        <section id="data" className="col-chapter" aria-label="The Real Payoff Is Data">
+          <Opener ink="terra" mark={<MarkBars />}>
+            The Real Payoff <span>Is Data</span>
+          </Opener>
+          <div className="col-page">
+            <p className="col-lead">
+              The ad revenue is visible. The commerce integration is trackable. But the real prize,
+              why tech companies outbid legacy broadcasters, is first-party data from authenticated
+              viewers.
+            </p>
+            <div className="col-bars">
+              <h3 className="col-h3">Black Friday Game: Revenue Analysis</h3>
+              <div className="col-bar col-bar--cost">
+                <div className="col-bar-meta">
+                  <span>Rights Investment</span>
+                  <b>−$100M</b>
+                </div>
+                <div className="col-bar-track">
+                  <div className="col-bar-fill" style={{ ["--w" as string]: 100 }} />
+                </div>
+              </div>
+              <div className="col-bar col-bar--ads">
+                <div className="col-bar-meta">
+                  <span>Known Direct Ad Revenue (from 30 sec ads, 58 × $880K)</span>
+                  <b>+$51.04M</b>
+                </div>
+                <div className="col-bar-track">
+                  <div className="col-bar-fill" style={{ ["--w" as string]: 51 }} />
+                </div>
+              </div>
+              <div className="col-bar col-bar--unknown">
+                <div className="col-bar-meta">
+                  <span>Commerce / Shoppable Ads / Unknown Ad Revenue</span>
+                  <b>+Unmeasured</b>
+                </div>
+                <div className="col-bar-track">
+                  <div className="col-bar-fill" style={{ ["--w" as string]: 38 }} />
+                </div>
+              </div>
+              <div className="col-bar col-bar--data">
+                <div className="col-bar-meta">
+                  <span>First-Party Data Value (modelled)</span>
+                  <b>+Strategic</b>
+                </div>
+                <div className="col-bar-track">
+                  <div className="col-bar-fill" style={{ ["--w" as string]: 82 }} />
+                </div>
+              </div>
+              <p className="col-note" style={{ marginTop: 24 }}>
+                * 58 slots. Only accounts for 30 sec ads.
+              </p>
+            </div>
+            <div className="col-pair">
+              <div>
+                <strong>58</strong>
+                <span>30 sec ad slots per game (publicly known)</span>
+              </div>
+              <div>
+                <strong>$880K</strong>
+                <span>Per 30-second unit</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── Domino ─── */}
+        <section id="domino" className="col-chapter" aria-label="The Domino Effect">
+          <Opener ink="sage" mark={<MarkDominoes />}>
+            The Domino <span>Effect</span>
+          </Opener>
+          <div className="col-page">
+            <p className="col-lead">
+              Once Amazon proved the model, every major league renegotiated. The deals that followed
+              rewired the entire rights landscape.
+            </p>
+
+            <div className="col-table-wrap col-block">
+              <table className="col-table">
+                <caption>NFL: $26B Total Streaming Portfolio</caption>
+                <thead>
+                  <tr>
+                    <th>Platform</th>
+                    <th>Package</th>
+                    <th>Deal Signed</th>
+                    <th>Term</th>
+                    <th className="num">Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Amazon Prime</td>
+                    <td>Thursday Night (excl.)</td>
+                    <td>2021</td>
+                    <td>11 yr</td>
+                    <td className="num">$1.0B/yr</td>
                   </tr>
                   <tr>
-                    <td style={{color:'var(--text-muted)',fontSize:'0.8rem'}}>Per-game cost</td>
-                    <td style={{color:'var(--text-muted)',fontSize:'0.8rem'}}>15–17 games/season</td>
-                    <td style={{color:'var(--text-muted)',fontSize:'0.8rem'}}>2022–2032</td>
-                    <td><span className="deal-val" style={{fontSize:'1rem',color:'var(--text-muted)'}}>$58.8M/game</span></td>
+                    <td>YouTube TV</td>
+                    <td>Sunday Ticket</td>
+                    <td>2024</td>
+                    <td>7 yr</td>
+                    <td className="num">$2.5B/yr</td>
+                  </tr>
+                  <tr>
+                    <td>Peacock (NBC)</td>
+                    <td>Exclusive Playoff Game</td>
+                    <td>2023</td>
+                    <td>Ongoing</td>
+                    <td className="num">$110M</td>
+                  </tr>
+                  <tr>
+                    <td>Netflix</td>
+                    <td>Christmas Day Games</td>
+                    <td>2024</td>
+                    <td>3 yr</td>
+                    <td className="num">$150M/yr</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            {/* Black Friday intro */}
-            <div className="glass reveal d1" style={{padding:'2.25rem',marginBottom:'2.5rem'}}>
-              <div className="label" style={{marginBottom:'1rem',color:'var(--cyan)'}}>2023: The Black Friday Game</div>
-              <p style={{fontSize:'1.05rem',lineHeight:'1.8',color:'var(--text)',marginBottom:'1rem'}}>Building on the success of exclusive Thursday Night Football, Amazon paid $100M for the exclusive rights to a single NFL game on Black Friday 2023. But this was never just about football.</p>
-              <p style={{fontSize:'1rem',lineHeight:'1.8',color:'var(--text-muted)',marginBottom:'1rem'}}>The move was a deliberate attempt to create a new commercial holiday tradition, one that lived entirely within a digital ecosystem. Instead of heading out to stores on Black Friday, Amazon wanted the shopping experience to come to viewers, while they watched the most-watched sport in the United States.</p>
-              <p style={{fontSize:'1rem',lineHeight:'1.8',color:'var(--text-muted)'}}>By pairing targeted ads with live football, Amazon turned a single game into a shoppable event, redefining what Black Friday could look like for a streaming-first generation.</p>
-            </div>
-
-            {/* Black Friday flow */}
-            <div className="label reveal" style={{marginBottom:'1.25rem'}}>The Black Friday Experiment: Acquire → Monetize → Integrate</div>
-            <div className="flow-grid reveal d2">
-              <div className="flow-card">
-                <div className="flow-step">01</div>
-                <div className="flow-title">Acquire</div>
-                <div className="flow-amount">$100M</div>
-                <p className="flow-desc">Amazon paid ~$100M for exclusive Black Friday rights, a calculated loss-leader to prove the model.</p>
-              </div>
-              <div className="flow-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan-dim)" strokeWidth="1.5">
-                  <path d="M5 12h14M13 6l6 6-6 6"/>
-                </svg>
-              </div>
-              <div className="flow-card">
-                <div className="flow-step">02</div>
-                <div className="flow-title">Monetize</div>
-                <div className="flow-amount">$880K</div>
-                <p className="flow-desc">The only publicly available data covers 58 thirty-second ad slots, which alone generated approximately $51M. Shorter formats like 15-second ads were not disclosed, meaning the true ad revenue was almost certainly higher, and Amazon likely recouped well over half its $100M investment from ads before a single item was sold.</p>
-              </div>
-              <div className="flow-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan-dim)" strokeWidth="1.5">
-                  <path d="M5 12h14M13 6l6 6-6 6"/>
-                </svg>
-              </div>
-              <div className="flow-card">
-                <div className="flow-step">03</div>
-                <div className="flow-title">Integrate</div>
-                <div className="flow-amount">Shop</div>
-                <p className="flow-desc">Instead of going out and battling crowds, the shopping experience was brought directly to the customer's living room. Amazon converted its first-party data into a targeted ad experience tailored to each viewer. Many ads featured QR codes directing users straight to product pages. But every QR code scan sent behavioral data back to Amazon, giving the tech giant even richer targeting signals for future campaigns. The game was not just a commercial event, it was a data collection exercise at scale.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div className="glow-divider"></div>
-
-        {/* ═══════════════════════════ DATA PAYOFF */}
-        <section id="data">
-          <div className="section-inner">
-            <h2 className="h-section section-title reveal d1">
-              The Real Payoff<br/>
-              <span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>Is Data</span>
-            </h2>
-            <p className="section-lead reveal d2">The ad revenue is visible. The commerce integration is trackable. But the real prize, why tech companies outbid legacy broadcasters, is first-party data from authenticated viewers.</p>
-
-            <div className="glass reveal d2" style={{padding:'2.5rem',marginBottom:'2rem'}} id="data-bars">
-              <div className="label" style={{marginBottom:'2rem'}}>Black Friday Game: Revenue Analysis</div>
-              <div className="bar-row">
-                <div className="bar-meta"><span className="bar-label">Rights Investment</span><span className="bar-value" style={{color:'#ff6080'}}>−$100M</span></div>
-                <div className="bar-track"><div className="bar-fill" style={{background:'linear-gradient(90deg,#7f1d2a,#ff4060)'}} data-w="100"></div></div>
-              </div>
-              <div className="bar-row">
-                <div className="bar-meta"><span className="bar-label">Known Direct Ad Revenue (from 30 sec ads, 58 × $880K)</span><span className="bar-value" style={{color:'var(--cyan)'}}>+$51.04M</span></div>
-                <div className="bar-track"><div className="bar-fill" style={{background:'linear-gradient(90deg,var(--cyan-dim),var(--cyan))'}} data-w="51"></div></div>
-              </div>
-              <div className="bar-row">
-                <div className="bar-meta"><span className="bar-label">Commerce / Shoppable Ads / Unknown Ad Revenue</span><span className="bar-value" style={{color:'var(--cyan)'}}>+Unmeasured</span></div>
-                <div className="bar-track"><div className="bar-fill" style={{background:'linear-gradient(90deg,var(--cyan-dim),var(--blue))'}} data-w="38"></div></div>
-              </div>
-              <div className="bar-row" style={{marginBottom:0}}>
-                <div className="bar-meta"><span className="bar-label">First-Party Data Value (modelled)</span><span className="bar-value" style={{color:'#80e8ff'}}>+Strategic</span></div>
-                <div className="bar-track"><div className="bar-fill" style={{background:'linear-gradient(90deg,var(--blue),var(--cyan),#a0f0ff)'}} data-w="82"></div></div>
-              </div>
-              <p style={{fontSize:'0.75rem',color:'var(--text-dim)',marginTop:'1.75rem'}}>* 58 slots. Only accounts for 30 sec ads.</p>
-            </div>
-
-            <div className="mini-grid">
-              <div className="glass reveal d1"><div className="mini-stat"><div className="mini-num">58</div><div className="mini-label">30 sec ad slots per game (publicly known)</div></div></div>
-              <div className="glass reveal d2"><div className="mini-stat"><div className="mini-num">$880K</div><div className="mini-label">Per 30-second unit</div></div></div>
-            </div>
-          </div>
-        </section>
-
-        <div className="glow-divider"></div>
-
-        {/* ═══════════════════════════ DOMINO */}
-        <section id="domino" style={{background:'var(--bg-2)'}}>
-          <div className="section-inner">
-            <h2 className="h-section section-title reveal d1">
-              The Domino<br/>
-              <span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>Effect</span>
-            </h2>
-            <p className="section-lead reveal d2">Once Amazon proved the model, every major league renegotiated. The deals that followed rewired the entire rights landscape.</p>
-
-            {/* NFL table */}
-            <div className="label reveal" style={{marginBottom:'1rem'}}>NFL: $26B Total Streaming Portfolio</div>
-            <div className="glass reveal d1" style={{overflow:'hidden',marginBottom:'2.5rem'}}>
-              <table className="deal-table" style={{width:'100%'}}>
-                <thead><tr><th>Platform</th><th>Package</th><th>Deal Signed</th><th>Term</th><th>Value</th></tr></thead>
-                <tbody>
-                  <tr><td>Amazon Prime</td><td>Thursday Night (excl.)</td><td>2021</td><td>11 yr</td><td><span className="deal-val">$1.0B/yr</span></td></tr>
-                  <tr><td>YouTube TV</td><td>Sunday Ticket</td><td>2024</td><td>7 yr</td><td><span className="deal-val">$2.5B/yr</span></td></tr>
-                  <tr><td>Peacock (NBC)</td><td>Exclusive Playoff Game</td><td>2023</td><td>Ongoing</td><td><span className="deal-val">$110M</span></td></tr>
-                  <tr><td>Netflix</td><td>Christmas Day Games</td><td>2024</td><td>3 yr</td><td><span className="deal-val">$150M/yr</span></td></tr>
-                </tbody>
-              </table>
-            </div>
-
-            {/* NBA table */}
-            <div className="label reveal" style={{marginBottom:'1rem'}}>NBA: $76B Total Streaming Portfolio</div>
-            <p style={{fontSize:'0.82rem',color:'var(--text-muted)',marginBottom:'1rem'}} className="reveal d1">All deals below were signed as part of the NBA's new media rights agreement, covering the 2025-2026 season onwards.</p>
-            <div className="glass reveal d2" style={{overflow:'hidden',marginBottom:'2.5rem'}}>
-              <table className="deal-table" style={{width:'100%'}}>
-                <thead><tr><th>Platform</th><th>Package</th><th>Term</th><th>Value</th></tr></thead>
-                <tbody>
-                  <tr><td>Amazon Prime</td><td>Package C (excl. streaming)</td><td>11 yr</td><td><span className="deal-val">$1.8B/yr</span></td></tr>
-                  <tr><td>NBC / Peacock</td><td>Package A</td><td>11 yr</td><td><span className="deal-val">$2.5B/yr</span></td></tr>
-                  <tr><td>ESPN / ABC</td><td>Package B</td><td>11 yr</td><td><span className="deal-val">$2.6B/yr</span></td></tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:'1rem'}} className="reveal d3">
-              <div className="glass" style={{padding:'1.75rem'}}>
-                <div className="label" style={{marginBottom:'0.75rem'}}>MLS</div>
-                <div style={{fontFamily:"'Newsreader',serif",fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>$2.5B</div>
-                <div style={{fontSize:'0.8rem',color:'var(--text-muted)'}}>Apple TV+, 10-year exclusive. Full league package. Global rights.</div>
-              </div>
-              <div className="glass" style={{padding:'1.75rem'}}>
-                <div className="label" style={{marginBottom:'0.75rem'}}>MLB</div>
-                <div style={{fontFamily:"'Newsreader',serif",fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>$85M/yr</div>
-                <div style={{fontSize:'0.8rem',color:'var(--text-muted)'}}>Apple TV+ Friday games. First major broadcast-to-streaming shift in baseball.</div>
-              </div>
-              <div className="glass" style={{padding:'1.75rem'}}>
-                <div className="label" style={{marginBottom:'0.75rem'}}>WWE / Netflix</div>
-                <div style={{fontFamily:"'Newsreader',serif",fontSize:'2rem',color:'var(--cyan)',marginBottom:'0.5rem'}}>$5B</div>
-                <div style={{fontSize:'0.8rem',color:'var(--text-muted)'}}>10-year deal. RAW exclusively on Netflix. Combat sport goes mainstream streaming.</div>
+            <div className="col-block">
+              <p className="col-note" style={{ maxWidth: "var(--measure)" }}>
+                All deals below were signed as part of the NBA's new media rights agreement,
+                covering the 2025-2026 season onwards.
+              </p>
+              <div className="col-table-wrap">
+                <table className="col-table">
+                  <caption>NBA: $76B Total Streaming Portfolio</caption>
+                  <thead>
+                    <tr>
+                      <th>Platform</th>
+                      <th>Package</th>
+                      <th>Term</th>
+                      <th className="num">Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Amazon Prime</td>
+                      <td>Package C (excl. streaming)</td>
+                      <td>11 yr</td>
+                      <td className="num">$1.8B/yr</td>
+                    </tr>
+                    <tr>
+                      <td>NBC / Peacock</td>
+                      <td>Package A</td>
+                      <td>11 yr</td>
+                      <td className="num">$2.5B/yr</td>
+                    </tr>
+                    <tr>
+                      <td>ESPN / ABC</td>
+                      <td>Package B</td>
+                      <td>11 yr</td>
+                      <td className="num">$2.6B/yr</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
 
-            {/* Total committed */}
-            <div className="reveal d4" style={{marginTop:'2.5rem',border:'1px solid var(--cyan-dim)',borderRadius:'16px',padding:'2.5rem 3rem',background:'linear-gradient(135deg,rgba(0,200,255,0.04) 0%,rgba(0,200,255,0.01) 100%)',display:'flex',alignItems:'center',justifyContent:'space-between',gap:'2rem',flexWrap:'wrap'}}>
+            <div className="col-facts">
+              <div className="col-fact">
+                <h3 style={{ marginTop: 0 }}>MLS</h3>
+                <p className="col-fact-num" style={{ marginTop: 8 }}>
+                  $2.5B
+                </p>
+                <p>Apple TV+, 10-year exclusive. Full league package. Global rights.</p>
+              </div>
+              <div className="col-fact">
+                <h3 style={{ marginTop: 0 }}>MLB</h3>
+                <p className="col-fact-num" style={{ marginTop: 8 }}>
+                  $85M/yr
+                </p>
+                <p>Apple TV+ Friday games. First major broadcast-to-streaming shift in baseball.</p>
+              </div>
+              <div className="col-fact">
+                <h3 style={{ marginTop: 0 }}>WWE / Netflix</h3>
+                <p className="col-fact-num" style={{ marginTop: 8 }}>
+                  $5B
+                </p>
+                <p>
+                  10-year deal. RAW exclusively on Netflix. Combat sport goes mainstream streaming.
+                </p>
+              </div>
+            </div>
+
+            <div className="col-total">
               <div>
-                <div className="label" style={{marginBottom:'0.6rem',color:'var(--cyan-dim)'}}>Total Capital Committed to Streaming Rights</div>
-                <div style={{fontFamily:"'Newsreader',serif",lineHeight:'1',color:'var(--cyan)',fontSize:'clamp(3.5rem,7vw,6rem)'}}>
-                  <span data-count="110" data-prefix="$" data-suffix="B+">$0B+</span>
-                </div>
-                <div style={{fontSize:'0.75rem',color:'var(--text-dim)',marginTop:'0.6rem'}}>NFL · NBA · MLS · MLB · WWE and counting</div>
+                <h3>Total Capital Committed to Streaming Rights</h3>
+                <p className="col-big">
+                  <Count value={110} prefix="$" suffix="B+" />
+                </p>
+                <p className="who">NFL · NBA · MLS · MLB · WWE and counting</p>
               </div>
-              <div style={{flexShrink:0,maxWidth:'320px'}}>
-                <p style={{fontSize:'0.875rem',color:'var(--text-muted)',lineHeight:'1.75'}}>In just a few years, the four major American sports leagues collectively signed over <strong style={{color:'var(--text)'}}>$110 billion</strong> in streaming rights contracts. Television's century-long monopoly on live sport ended not with a whimper, but with a wire transfer.</p>
-              </div>
+              <p>
+                In just a few years, the four major American sports leagues collectively signed over{" "}
+                <strong>$110 billion</strong> in streaming rights contracts. Television's
+                century-long monopoly on live sport ended not with a whimper, but with a wire
+                transfer.
+              </p>
             </div>
-
           </div>
         </section>
 
-        <div className="glow-divider"></div>
+        {/* ─── The victim ─── */}
+        <section id="victim" className="col-chapter" aria-label="The Victim in the Room">
+          <Opener ink="navy" mark={<MarkTicket />}>
+            The Victim <span>in the Room</span>
+          </Opener>
+          <div className="col-page">
+            <p className="col-lead">
+              As leagues and platforms negotiated their mutual prosperity, one stakeholder was
+              absent from the table: the fan.
+            </p>
+            <ul className="col-pains">
+              <li>
+                <h3>À La Carte Chaos</h3>
+                <p>
+                  To watch a complete NFL season, a fan must now subscribe to YouTube TV, Amazon
+                  Prime, Peacock, ESPN+, and Netflix, each carrying a different package of games. No
+                  single service provides full coverage. The consumer must reconstruct the bundle
+                  they once had, at three times the price.
+                </p>
+              </li>
+              <li>
+                <h3>Subscription Fatigue</h3>
+                <p className="inline-stat">
+                  <b>60%</b> of subscribers cancel within 3 months of a major sporting event
+                </p>
+                <p>
+                  The subscribe-and-cancel cycle is now a documented consumer pattern. Fans sign up
+                  for the Super Bowl or the Finals, cancel after, and platforms spend the off-season
+                  buying them back with discounts. The economics are unstable.
+                </p>
+              </li>
+              <li>
+                <h3>Toll Road Mentality</h3>
+                <p>
+                  Individual playoff games are now paywalled behind specific streaming tiers. The
+                  2024 Wild Card game on Peacock required a paid upgrade, a game once available on
+                  free broadcast now has a cover charge. The public good of live sport is becoming a
+                  private toll road.
+                </p>
+              </li>
+            </ul>
 
-        {/* ═══════════════════════════ THE VICTIM */}
-        <section id="victim">
-          <div className="section-inner">
-            <h2 className="h-section section-title reveal d1">
-              The Victim<br/>
-              <span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>in the Room</span>
-            </h2>
-            <p className="section-lead reveal d2">As leagues and platforms negotiated their mutual prosperity, one stakeholder was absent from the table: the fan.</p>
-
-            <div style={{marginBottom:'3.5rem'}}>
-              <div className="pain-item reveal d1">
-                <div className="pain-inner">
-                  <div className="pain-index">01</div>
-                  <div>
-                    <div className="pain-title">À La Carte Chaos</div>
-                    <p className="pain-body">To watch a complete NFL season, a fan must now subscribe to YouTube TV, Amazon Prime, Peacock, ESPN+, and Netflix, each carrying a different package of games. No single service provides full coverage. The consumer must reconstruct the bundle they once had, at three times the price.</p>
-                  </div>
+            <div className="col-block">
+              <h3 className="col-h3">The True Cost: An NFL Fan's Monthly Bill</h3>
+              <div className="col-board">
+                <div className="col-board-head">
+                  <h4>Full NFL Season Access 2024/25</h4>
+                  <p>Monthly subscription breakdown</p>
+                </div>
+                <ul>
+                  <li>
+                    <span>YouTube TV (base package)</span>
+                    <b>$82.99</b>
+                  </li>
+                  <li>
+                    <span>YouTube Sunday Ticket</span>
+                    <b>$23.00</b>
+                  </li>
+                  <li>
+                    <span>Amazon Prime</span>
+                    <b>$11.58</b>
+                  </li>
+                  <li>
+                    <span>Peacock Premium</span>
+                    <b>$10.99</b>
+                  </li>
+                  <li>
+                    <span>Netflix (Standard)</span>
+                    <b>$7.99</b>
+                  </li>
+                </ul>
+                <div className="col-board-total">
+                  <span>Total Monthly</span>
+                  <b>$136.55</b>
                 </div>
               </div>
-              <div className="pain-item reveal d2">
-                <div className="pain-inner">
-                  <div className="pain-index">02</div>
-                  <div>
-                    <div className="pain-title">Subscription Fatigue</div>
-                    <div style={{display:'flex',alignItems:'baseline',gap:'0.75rem',marginBottom:'0.6rem'}}>
-                      <span style={{fontFamily:"'Newsreader',serif",fontSize:'2rem',color:'var(--cyan)'}}>60%</span>
-                      <span style={{fontSize:'0.85rem',color:'var(--text-muted)'}}>of subscribers cancel within 3 months of a major sporting event</span>
-                    </div>
-                    <p className="pain-body">The subscribe-and-cancel cycle is now a documented consumer pattern. Fans sign up for the Super Bowl or the Finals, cancel after, and platforms spend the off-season buying them back with discounts. The economics are unstable.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="pain-item reveal d3" style={{borderBottom:'none'}}>
-                <div className="pain-inner">
-                  <div className="pain-index">03</div>
-                  <div>
-                    <div className="pain-title">Toll Road Mentality</div>
-                    <p className="pain-body">Individual playoff games are now paywalled behind specific streaming tiers. The 2024 Wild Card game on Peacock required a paid upgrade, a game once available on free broadcast now has a cover charge. The public good of live sport is becoming a private toll road.</p>
-                  </div>
-                </div>
-              </div>
+              <p className="col-board-note">
+                vs. $50–60/month for the cable bundle that included all of the above a decade ago.
+              </p>
             </div>
-
-            {/* Bill card */}
-            <div className="label reveal" style={{marginBottom:'1.25rem'}}>The True Cost: An NFL Fan's Monthly Bill</div>
-            <div className="glass-glow bill-card reveal d2">
-              <div className="bill-header">
-                <div className="bill-header-label">Monthly subscription breakdown</div>
-                <div className="bill-header-title">Full NFL Season Access 2024/25</div>
-              </div>
-              <div className="bill-body">
-                <div className="bill-row"><span className="bill-service">YouTube TV (base package)</span><span className="bill-price">$82.99</span></div>
-                <div className="bill-row"><span className="bill-service">YouTube Sunday Ticket</span><span className="bill-price">$23.00</span></div>
-                <div className="bill-row"><span className="bill-service">Amazon Prime</span><span className="bill-price">$11.58</span></div>
-                <div className="bill-row"><span className="bill-service">Peacock Premium</span><span className="bill-price">$10.99</span></div>
-                <div className="bill-row" style={{borderBottom:'none'}}><span className="bill-service">Netflix (Standard)</span><span className="bill-price">$7.99</span></div>
-              </div>
-              <div className="bill-footer">
-                <div className="bill-total-label">Total Monthly</div>
-                <div className="bill-total-num">$136.55</div>
-              </div>
-            </div>
-            <p style={{fontSize:'0.75rem',color:'var(--text-dim)',marginTop:'1rem',maxWidth:'460px'}}>vs. $50–60/month for the cable bundle that included all of the above a decade ago.</p>
           </div>
         </section>
 
-        <div className="glow-divider"></div>
-
-        {/* ═══════════════════════════ TRADEOFF */}
-        <section style={{background:'var(--bg-2)'}}>
-          <div className="section-inner">
-            <h2 className="h-section section-title reveal d1">Innovation vs.<br/><span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>Accessibility</span></h2>
-
-            <div className="tradeoff-grid" style={{marginTop:'3rem'}}>
-              <div className="tradeoff-card positive reveal reveal-l d2">
-                <div className="tradeoff-head">
-                  <div className="tradeoff-dot" style={{background:'var(--cyan)',boxShadow:'0 0 8px var(--cyan)'}}></div>
-                  <span className="tradeoff-head-label" style={{color:'var(--cyan)'}}>What You Get</span>
-                </div>
-                <ul className="tradeoff-list">
-                  <li className="tradeoff-item"><span className="tradeoff-sign" style={{color:'var(--cyan)'}}>+</span><div><div className="tradeoff-item-title">Multi-angle cameras</div><div className="tradeoff-item-desc">Choose your view. Watch replays from any angle instantly.</div></div></li>
-                  <li className="tradeoff-item"><span className="tradeoff-sign" style={{color:'var(--cyan)'}}>+</span><div><div className="tradeoff-item-title">Personalized stats overlays</div><div className="tradeoff-item-desc">Real-time player tracking, fantasy data, predictive analytics.</div></div></li>
-                  <li className="tradeoff-item"><span className="tradeoff-sign" style={{color:'var(--cyan)'}}>+</span><div><div className="tradeoff-item-title">Integrated betting</div><div className="tradeoff-item-desc">Live odds in-stream. Place bets without leaving the feed.</div></div></li>
-                  <li className="tradeoff-item"><span className="tradeoff-sign" style={{color:'var(--cyan)'}}>+</span><div><div className="tradeoff-item-title">Global access</div><div className="tradeoff-item-desc">Any device, anywhere. Games no longer geography-locked.</div></div></li>
+        {/* ─── Trade-off ─── */}
+        <section className="col-chapter" aria-label="Innovation vs. Accessibility">
+          <Opener ink="mustard" mark={<MarkScale />}>
+            Innovation vs. <span>Accessibility</span>
+          </Opener>
+          <div className="col-page">
+            <div className="col-ledger">
+              <div className="col-team col-team--home">
+                <h3 className="col-team-head">What You Get</h3>
+                <ul>
+                  <li>
+                    <span className="sign" aria-hidden="true">
+                      <Plus size={20} strokeWidth={3} />
+                    </span>
+                    <span>
+                      <strong>Multi-angle cameras</strong>
+                      <span>Choose your view. Watch replays from any angle instantly.</span>
+                    </span>
+                  </li>
+                  <li>
+                    <span className="sign" aria-hidden="true">
+                      <Plus size={20} strokeWidth={3} />
+                    </span>
+                    <span>
+                      <strong>Personalized stats overlays</strong>
+                      <span>Real-time player tracking, fantasy data, predictive analytics.</span>
+                    </span>
+                  </li>
+                  <li>
+                    <span className="sign" aria-hidden="true">
+                      <Plus size={20} strokeWidth={3} />
+                    </span>
+                    <span>
+                      <strong>Integrated betting</strong>
+                      <span>Live odds in-stream. Place bets without leaving the feed.</span>
+                    </span>
+                  </li>
+                  <li>
+                    <span className="sign" aria-hidden="true">
+                      <Plus size={20} strokeWidth={3} />
+                    </span>
+                    <span>
+                      <strong>Global access</strong>
+                      <span>Any device, anywhere. Games no longer geography-locked.</span>
+                    </span>
+                  </li>
                 </ul>
               </div>
-              <div className="tradeoff-card negative reveal reveal-r d2">
-                <div className="tradeoff-head">
-                  <div className="tradeoff-dot" style={{background:'var(--red)',boxShadow:'0 0 8px var(--red)'}}></div>
-                  <span className="tradeoff-head-label" style={{color:'var(--red)'}}>What It Costs</span>
-                </div>
-                <ul className="tradeoff-list">
-                  <li className="tradeoff-item"><span className="tradeoff-sign" style={{color:'var(--red)'}}>−</span><div><div className="tradeoff-item-title">Financial burden</div><div className="tradeoff-item-desc">$137/month for one sport. This excludes all other entertainment.</div></div></li>
-                  <li className="tradeoff-item"><span className="tradeoff-sign" style={{color:'var(--red)'}}>−</span><div><div className="tradeoff-item-title">Navigational complexity</div><div className="tradeoff-item-desc">Six apps to manage. Different UIs, passwords, and billing cycles.</div></div></li>
-                  <li className="tradeoff-item"><span className="tradeoff-sign" style={{color:'var(--red)'}}>−</span><div><div className="tradeoff-item-title">Reduced accessibility</div><div className="tradeoff-item-desc">Lower-income households priced out. Sport becomes a luxury, not a right.</div></div></li>
-                  <li className="tradeoff-item"><span className="tradeoff-sign" style={{color:'var(--red)'}}>−</span><div><div className="tradeoff-item-title">Privacy erosion</div><div className="tradeoff-item-desc">The price of personalization is behavioral surveillance at scale.</div></div></li>
+              <div className="col-team col-team--away">
+                <h3 className="col-team-head">What It Costs</h3>
+                <ul>
+                  <li>
+                    <span className="sign" aria-hidden="true">
+                      <Minus size={20} strokeWidth={3} />
+                    </span>
+                    <span>
+                      <strong>Financial burden</strong>
+                      <span>$137/month for one sport. This excludes all other entertainment.</span>
+                    </span>
+                  </li>
+                  <li>
+                    <span className="sign" aria-hidden="true">
+                      <Minus size={20} strokeWidth={3} />
+                    </span>
+                    <span>
+                      <strong>Navigational complexity</strong>
+                      <span>Six apps to manage. Different UIs, passwords, and billing cycles.</span>
+                    </span>
+                  </li>
+                  <li>
+                    <span className="sign" aria-hidden="true">
+                      <Minus size={20} strokeWidth={3} />
+                    </span>
+                    <span>
+                      <strong>Reduced accessibility</strong>
+                      <span>
+                        Lower-income households priced out. Sport becomes a luxury, not a right.
+                      </span>
+                    </span>
+                  </li>
+                  <li>
+                    <span className="sign" aria-hidden="true">
+                      <Minus size={20} strokeWidth={3} />
+                    </span>
+                    <span>
+                      <strong>Privacy erosion</strong>
+                      <span>The price of personalization is behavioral surveillance at scale.</span>
+                    </span>
+                  </li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
 
-        <div className="glow-divider"></div>
+        {/* ─── Reckoning ─── */}
+        <section id="reckoning" className="col-chapter" aria-label="The Reckoning">
+          <Opener ink="terra" mark={<MarkCloud />}>
+            The <span>Reckoning</span>
+          </Opener>
+          <div className="col-page">
+            <p className="col-lead">
+              Consumer tolerance for fragmented access and escalating costs has limits. Two distinct
+              futures are emerging. The industry must choose.
+            </p>
 
-        {/* ═══════════════════════════ RECKONING */}
-        <section id="reckoning">
-          <div className="section-inner">
-            <h2 className="h-section section-title reveal d1">
-              The<br/>
-              <span className="serif" style={{fontSize:'0.9em',color:'var(--text-muted)'}}>Reckoning</span>
-            </h2>
-            <p className="section-lead reveal d2">Consumer tolerance for fragmented access and escalating costs has limits. Two distinct futures are emerging. The industry must choose.</p>
-
-            {/* Venu Sports */}
-            <div className="glass reveal d2" style={{padding:'2.5rem',marginBottom:'3rem',borderColor:'rgba(255,64,96,0.15)'}}>
-              <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:'1rem',marginBottom:'2rem'}}>
-                <div className="label">Cautionary Tale: Venu Sports</div>
-                <span className="blocked-badge"><span className="blocked-dot"></span>Blocked on antitrust grounds</span>
+            <div className="col-venu">
+              <div className="col-venu-head">
+                <h3>Cautionary Tale: Venu Sports</h3>
+                <span className="col-stamp">
+                  <CircleSlash size={18} strokeWidth={2.5} aria-hidden="true" />
+                  Blocked on antitrust grounds
+                </span>
               </div>
-              <div className="venu-grid">
+              <div className="col-venu-grid">
                 <div>
-                  <div style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:600,fontSize:'1rem',color:'var(--text)',marginBottom:'0.75rem'}}>The Proposed Solution</div>
-                  <p style={{fontSize:'0.875rem',color:'var(--text-muted)',lineHeight:'1.75',marginBottom:'1rem'}}>ESPN, Fox, and Warner Bros. Discovery proposed a joint streaming venture, "Venu Sports", to offer all major sports on a single platform. A genuine re-aggregation attempt. Industry collaboration over competition.</p>
-                  <div style={{fontFamily:"'Newsreader',serif",fontSize:'2rem',color:'var(--cyan)'}}>$42.99/mo</div>
-                  <div style={{fontSize:'0.75rem',color:'var(--text-dim)'}}>Proposed price point</div>
+                  <h4>The Proposed Solution</h4>
+                  <p>
+                    ESPN, Fox, and Warner Bros. Discovery proposed a joint streaming venture, "Venu
+                    Sports", to offer all major sports on a single platform. A genuine
+                    re-aggregation attempt. Industry collaboration over competition.
+                  </p>
+                  <p className="col-venu-price">$42.99/mo</p>
+                  <span>Proposed price point</span>
                 </div>
                 <div>
-                  <div style={{fontFamily:"'Space Grotesk',sans-serif",fontWeight:600,fontSize:'1rem',color:'var(--text)',marginBottom:'0.75rem'}}>The Regulatory Block</div>
-                  <p style={{fontSize:'0.875rem',color:'var(--text-muted)',lineHeight:'1.75'}}>A federal judge issued a preliminary injunction, ruling that three of the largest sports content owners creating a single bundle raised serious antitrust concerns. Venu Sports was shelved indefinitely.</p>
+                  <h4>The Regulatory Block</h4>
+                  <p>
+                    A federal judge issued a preliminary injunction, ruling that three of the
+                    largest sports content owners creating a single bundle raised serious antitrust
+                    concerns. Venu Sports was shelved indefinitely.
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* Two paths */}
-            <div className="label reveal" style={{marginBottom:'1.25rem'}}>Two Futures</div>
-            <div className="path-grid reveal d2">
-              <div className="path-card">
-                <div className="path-num">Path 01</div>
-                <div className="path-title">Re-Aggregation</div>
-                <p className="path-body">The industry consolidates. A single super-bundle emerges through regulatory approval or acquisition. The fan gets one bill, one interface. Convenient, but historically monopolistic.</p>
-                <ul className="path-points">
-                  <li className="path-point">Precedent: Cable TV bundle (pre-2015)</li>
-                  <li className="path-point">Risk: monopolistic pricing without competition</li>
-                  <li className="path-point">Blocker: antitrust regulators (see Venu Sports)</li>
-                </ul>
-              </div>
-              <div className="path-card">
-                <div className="path-num">Path 02</div>
-                <div className="path-title">Commerce-First</div>
-                <p className="path-body">Streaming becomes the wrapper around a commerce experience. Subscription fees are subsidized by purchase commissions and targeted advertising. The cost drops, and the data cost rises.</p>
-                <ul className="path-points">
-                  <li className="path-point">Precedent: Amazon Black Friday game</li>
-                  <li className="path-point">58% higher engagement for shoppable content</li>
-                  <li className="path-point">Privacy trade-off: data for reduced cost</li>
-                </ul>
+            <div className="col-block">
+              <h3 className="col-h3">Two Futures</h3>
+              <div className="col-paths">
+                <div className="col-path">
+                  <h4>Re-Aggregation</h4>
+                  <p>
+                    The industry consolidates. A single super-bundle emerges through regulatory
+                    approval or acquisition. The fan gets one bill, one interface. Convenient, but
+                    historically monopolistic.
+                  </p>
+                  <ul>
+                    <li>
+                      <ChevronRight size={16} strokeWidth={2.5} aria-hidden="true" />
+                      Precedent: Cable TV bundle (pre-2015)
+                    </li>
+                    <li>
+                      <ChevronRight size={16} strokeWidth={2.5} aria-hidden="true" />
+                      Risk: monopolistic pricing without competition
+                    </li>
+                    <li>
+                      <ChevronRight size={16} strokeWidth={2.5} aria-hidden="true" />
+                      Blocker: antitrust regulators (see Venu Sports)
+                    </li>
+                  </ul>
+                </div>
+                <div className="col-path">
+                  <h4>Commerce-First</h4>
+                  <p>
+                    Streaming becomes the wrapper around a commerce experience. Subscription fees
+                    are subsidized by purchase commissions and targeted advertising. The cost drops,
+                    and the data cost rises.
+                  </p>
+                  <ul>
+                    <li>
+                      <ChevronRight size={16} strokeWidth={2.5} aria-hidden="true" />
+                      Precedent: Amazon Black Friday game
+                    </li>
+                    <li>
+                      <ChevronRight size={16} strokeWidth={2.5} aria-hidden="true" />
+                      58% higher engagement for shoppable content
+                    </li>
+                    <li>
+                      <ChevronRight size={16} strokeWidth={2.5} aria-hidden="true" />
+                      Privacy trade-off: data for reduced cost
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
 
-            {/* Commerce stat */}
-            <div className="glass-glow reveal" style={{marginTop:'2rem'}}>
-              <div className="big-stat-block">
-                <div className="big-num">58%</div>
-                <p className="big-stat-text">higher viewer engagement with shoppable streaming content versus standard ad formats, the number that makes the commerce-first model commercially irresistible.</p>
-              </div>
+            <div className="col-figure-strip col-figure-strip--ruled">
+              <p className="col-big">58%</p>
+              <p>
+                higher viewer engagement with shoppable streaming content versus standard ad
+                formats, the number that makes the commerce-first model commercially irresistible.
+              </p>
             </div>
           </div>
         </section>
 
-        <div className="glow-divider"></div>
-
-        {/* ═══════════════════════════ CLOSING */}
-        <section id="closing" style={{background:'var(--bg-2)'}}>
-          <div className="section-inner" style={{textAlign:'left'}}>
-            <div className="closing-body reveal d1">
-              <p>The transformation of sports media is, on its surface, a story of progress. Better technology, broader access, richer content, global audiences. And those things are real.</p>
-              <p>But progress for whom? The leagues secured generational wealth through rights fees that no cable network could match. The platforms secured subscriber growth, brand legitimacy, and, most valuably, data at a scale previously unimaginable.</p>
-              <p>The fan, the person whose passion made all of this possible, who filled the stadium and bought the jersey and tuned in for fifty years, was the last consideration in every deal room. Their loyalty was assumed. Their tolerance was tested. Their wallet was the variable everyone planned around.</p>
-              <p>The reckoning will come, as it always does, when the audience decides it's had enough. What form that reckoning takes, whether re-aggregation, regulation, or a new commerce compact, will define the next era of sports media. But one thing is certain: <strong style={{color:'var(--text)'}}>whoever controls the access, controls the audience. And whoever controls the audience, controls the game.</strong></p>
+        {/* ─── Closing ─── */}
+        <section
+          id="closing"
+          className="col-chapter col-closing col-sheet-band"
+          aria-label="Closing"
+        >
+          <div className="col-page">
+            <div className="col-prose">
+              <p>
+                The transformation of sports media is, on its surface, a story of progress. Better
+                technology, broader access, richer content, global audiences. And those things are
+                real.
+              </p>
+              <p>
+                But progress for whom? The leagues secured generational wealth through rights fees
+                that no cable network could match. The platforms secured subscriber growth, brand
+                legitimacy, and, most valuably, data at a scale previously unimaginable.
+              </p>
+              <p>
+                The fan, the person whose passion made all of this possible, who filled the stadium
+                and bought the jersey and tuned in for fifty years, was the last consideration in
+                every deal room. Their loyalty was assumed. Their tolerance was tested. Their wallet
+                was the variable everyone planned around.
+              </p>
+              <p>
+                The reckoning will come, as it always does, when the audience decides it's had
+                enough. What form that reckoning takes, whether re-aggregation, regulation, or a new
+                commerce compact, will define the next era of sports media. But one thing is
+                certain:{" "}
+                <strong>
+                  whoever controls the access, controls the audience. And whoever controls the
+                  audience, controls the game.
+                </strong>
+              </p>
             </div>
-            <div className="closing-byline reveal d3">
-              <div className="byline-divider"></div>
-              <div style={{fontFamily:"'Space Grotesk',sans-serif",fontSize:'0.95rem',color:'var(--text-muted)',marginBottom:'0.35rem'}}>Mo NC</div>
-              <div style={{fontFamily:"'Newsreader',serif",fontSize:'0.9rem',color:'var(--text-dim)'}}>The Future of Sports Media · 2025</div>
-            </div>
+            <p className="col-sign">
+              <strong>Mo NC</strong>
+              The Future of Sports Media · 2025
+            </p>
           </div>
         </section>
-
       </main>
 
-      <footer>
-        <div className="footer-series">
-          <a href="#">The Future of FinTech</a>
-          <a href="#">Sports &amp; Media</a>
-          <a href="#">Technology &amp; Society</a>
+      <footer className="col-foot">
+        <div className="col-foot-inner">
+          <nav aria-label="Series">
+            <a href="/project/fintech">The Future of FinTech</a>
+            <a href="/colosseum">Sports &amp; Media</a>
+            <a href="/portfolio">Technology &amp; Society</a>
+          </nav>
+          <span>© 2025 Mo NC</span>
         </div>
-        <span className="footer-copy">© 2025 Mo NC</span>
       </footer>
-      <BackToTop ground="var(--cyan)" ink="var(--bg)" />
+      <BackToTop ground="oklch(0.357 0.054 263)" ink="oklch(0.806 0.142 89)" />
     </div>
   );
 }
