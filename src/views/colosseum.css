@@ -245,6 +245,83 @@ html:has(.colosseum-article) {
   }
 }
 
+/* Only the last scene, streaming under the cloud, shows by default; the
+   sequence script reveals the earlier ones in turn. */
+.col-scene:not([data-scene="3"]),
+.col-stage-step:not([data-step="3"]) {
+  opacity: 0;
+}
+
+.col-stage {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 44px;
+  margin-top: 12px;
+}
+
+.col-stage-caption {
+  display: grid;
+  margin: 0;
+  font-family: var(--label);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.col-stage-step {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+}
+
+/* On narrow screens the drawing is small, so the stamp shrinks and sits off
+   the screen's corner instead of covering it. */
+@media (max-width: 999px) {
+  .col-emblem-frame .col-roundel {
+    right: -18%;
+    bottom: 0;
+    width: 92px;
+  }
+
+  .col-emblem-frame .col-roundel span {
+    font-size: 11px;
+  }
+
+  .col-emblem-frame .col-roundel strong {
+    font-size: 20px;
+  }
+}
+
+.col-replay {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 2px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font: 700 15px/1 var(--label);
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.col-replay:hover {
+  background: var(--ink);
+  color: var(--mustard);
+}
+
+.col-replay[hidden] {
+  display: none;
+}
+
+/* The bill is stamped on the drawing, not on the caption row below it. */
+.col-emblem-frame {
+  position: relative;
+}
+
 .col-emblem {
   display: block;
   width: 100%;
@@ -1616,14 +1693,8 @@ html:has(.colosseum-article) {
   }
 }
 
-.col-motion .col-plate {
-  animation: col-register 900ms var(--ease) both;
-}
 
-.col-motion .col-plate--navy { --dx: -14px; --dy: 8px; animation-delay: 80ms; }
-.col-motion .col-plate--sage { --dx: 12px; --dy: -10px; animation-delay: 220ms; }
-.col-motion .col-plate--terra { --dx: -10px; --dy: -12px; animation-delay: 360ms; }
-.col-motion .col-plate--paper { --dx: 10px; --dy: 12px; animation-delay: 500ms; }
+
 
 @keyframes col-stamp {
   from {
@@ -1638,9 +1709,7 @@ html:has(.colosseum-article) {
   }
 }
 
-.col-motion .col-roundel {
-  animation: col-stamp 520ms var(--ease) 820ms both;
-}
+
 
 @keyframes col-line-up {
   from {
@@ -1767,20 +1836,20 @@ html:has(.colosseum-article) {
   }
 }
 
-.col-motion .col-cover.is-live .col-arc {
-  animation: col-arc 2400ms ease-in-out 1400ms infinite both;
+.col-motion .col-cover.is-live.is-landed .col-arc {
+  animation: col-arc 2400ms ease-in-out infinite both;
 }
 
-.col-motion .col-cover.is-live .col-arc:nth-child(2) {
-  animation-delay: 1700ms;
+.col-motion .col-cover.is-live.is-landed .col-arc:nth-child(2) {
+  animation-delay: 300ms;
 }
 
-.col-motion .col-cover.is-live .col-arc:nth-child(3) {
-  animation-delay: 2000ms;
+.col-motion .col-cover.is-live.is-landed .col-arc:nth-child(3) {
+  animation-delay: 600ms;
 }
 
-.col-motion .col-cover.is-live .col-cloud {
-  animation: col-drift 6s ease-in-out 1400ms infinite alternate both;
+.col-motion .col-cover.is-live.is-landed .col-cloud {
+  animation: col-drift 6s ease-in-out infinite alternate both;
 }
 
 /* Era drawings: parts scale and slide around their own box. */

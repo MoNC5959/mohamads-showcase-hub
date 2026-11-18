@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowRight, ChevronRight, CircleSlash, Minus, Plus } from "lucide-react";
+import { ArrowRight, ChevronRight, CircleSlash, Minus, Plus, RotateCcw } from "lucide-react";
 import BackToTop from "@/components/BackToTop";
 import "./colosseum.css";
 
@@ -354,6 +354,43 @@ function Count({
 }
 
 /* ─── Flat four-ink drawings ─────────────────────────── */
+const NAVY = "oklch(0.357 0.054 263)";
+const SAGE = "oklch(0.692 0.063 124)";
+const TERRA = "oklch(0.687 0.109 49)";
+const PAPER = "oklch(0.955 0.014 120)";
+
+/* A small arena, the same one each medium carries on its screen. */
+const MiniArena = ({ x, y, w }: { x: number; y: number; w: number }) => {
+  const h = w * 0.42;
+  const n = 5;
+  const aw = (w * 0.7) / n;
+  return (
+    <g>
+      <path
+        d={`M${x} ${y + h} V${y + h * 0.3} Q${x + w / 2} ${y - h * 0.15} ${x + w} ${y + h * 0.3} V${y + h} Z`}
+        fill={NAVY}
+      />
+      {Array.from({ length: n }, (_, i) => {
+        const ax = x + w * 0.15 + i * aw + aw * 0.18;
+        const aww = aw * 0.64;
+        return (
+          <path
+            key={i}
+            d={`M${ax} ${y + h} V${y + h * 0.62} a${aww / 2} ${aww / 2} 0 0 1 ${aww} 0 V${y + h} Z`}
+            fill={TERRA}
+          />
+        );
+      })}
+    </g>
+  );
+};
+
+const Ground = () => <rect x="36" y="466" width="488" height="16" rx="3" fill={NAVY} />;
+
+/* The cover plays the article's argument in four scenes: the arena, radio,
+   television, then streaming under the cloud, where the fan's bill lands.
+   Every scene prints plate by plate (see playHero). Without script, or with
+   reduced motion, only the last scene shows. */
 function CoverEmblem() {
   const arches = (y: number, h: number) =>
     Array.from({ length: 7 }, (_, i) => {
@@ -365,39 +402,175 @@ function CoverEmblem() {
       className="col-emblem"
       viewBox="0 0 560 500"
       role="img"
-      aria-label="A flat drawing of the Colosseum with a broadcast signal rising to a cloud"
+      aria-label="The Colosseum, then a radio, then a television showing the arena, then a streaming screen under a cloud, where the fan's monthly bill is $136.55"
     >
-      <g className="col-plate col-plate--paper" fill="oklch(0.955 0.014 120)">
-        <g className="col-cloud">
-          <circle cx="222" cy="104" r="42" />
-          <circle cx="284" cy="78" r="58" />
-          <circle cx="346" cy="106" r="40" />
-          <rect x="182" y="100" width="204" height="48" rx="24" />
+      {/* 1. The arena */}
+      <g className="col-scene" data-scene="0">
+        <g className="col-plate" fill={NAVY}>
+          <path d="M60 470 V250 Q280 170 500 250 V470 Z" />
+          <rect x="36" y="466" width="488" height="16" rx="3" />
+        </g>
+        <g className="col-plate" fill={TERRA}>
+          {arches(462, 70)}
+          {arches(370, 62)}
+          <rect x="74" y="384" width="412" height="10" />
+          <rect x="84" y="290" width="392" height="10" />
         </g>
       </g>
-      <g
-        className="col-plate col-plate--sage"
-        fill="none"
-        stroke="oklch(0.692 0.063 124)"
-        strokeWidth="10"
-        strokeLinecap="round"
-      >
-        <path className="col-arc" d="M254 196 Q280 180 306 196" />
-        <path className="col-arc" d="M236 182 Q280 154 324 182" />
-        <path className="col-arc" d="M218 168 Q280 128 342 168" />
+
+      {/* 2. Radio */}
+      <g className="col-scene" data-scene="1">
+        <g className="col-plate" fill={NAVY}>
+          <rect x="300" y="112" width="12" height="118" rx="6" transform="rotate(22 306 230)" />
+          <Ground />
+          <rect x="140" y="446" width="26" height="22" rx="4" />
+          <rect x="394" y="446" width="26" height="22" rx="4" />
+        </g>
+        <g className="col-plate" fill={TERRA}>
+          <rect x="110" y="220" width="340" height="230" rx="28" />
+        </g>
+        <g className="col-plate" fill={NAVY}>
+          <circle cx="212" cy="335" r="70" />
+          {[0, 1, 2, 3].map((i) => (
+            <rect key={i} x="312" y={276 + i * 36} width="104" height="16" rx="8" />
+          ))}
+        </g>
+        <g className="col-plate">
+          <circle cx="212" cy="335" r="14" fill={PAPER} />
+          <g fill="none" stroke={SAGE} strokeWidth="14" strokeLinecap="round">
+            <path d="M476 282 Q502 335 476 388" />
+            <path d="M506 252 Q548 335 506 418" />
+          </g>
+        </g>
       </g>
-      <g className="col-plate col-plate--navy" fill="oklch(0.357 0.054 263)">
-        <path d="M60 470 V250 Q280 170 500 250 V470 Z" />
-        <rect x="36" y="466" width="488" height="16" rx="3" />
+
+      {/* 3. Television, carrying the arena */}
+      <g className="col-scene" data-scene="2">
+        <g className="col-plate" fill={NAVY}>
+          <path
+            d="M232 80 L274 150 M328 80 L286 150"
+            stroke={NAVY}
+            strokeWidth="10"
+            strokeLinecap="round"
+          />
+          <rect x="90" y="148" width="380" height="282" rx="30" />
+          <rect x="150" y="428" width="22" height="40" rx="5" />
+          <rect x="388" y="428" width="22" height="40" rx="5" />
+          <Ground />
+        </g>
+        <g className="col-plate" fill={SAGE}>
+          <rect x="118" y="176" width="272" height="226" rx="20" />
+        </g>
+        <g className="col-plate">
+          <MiniArena x={150} y={262} w={208} />
+        </g>
+        <g className="col-plate" fill={TERRA}>
+          <circle cx="430" cy="226" r="18" />
+          <circle cx="430" cy="290" r="18" />
+        </g>
       </g>
-      <g className="col-plate col-plate--terra" fill="oklch(0.687 0.109 49)">
-        {arches(462, 70)}
-        {arches(370, 62)}
-        <rect x="74" y="384" width="412" height="10" />
-        <rect x="84" y="290" width="392" height="10" />
+
+      {/* 4. Streaming, under the cloud */}
+      <g className="col-scene" data-scene="3">
+        <g className="col-plate" fill={PAPER}>
+          <g className="col-cloud">
+            <circle cx="222" cy="104" r="42" />
+            <circle cx="284" cy="78" r="58" />
+            <circle cx="346" cy="106" r="40" />
+            <rect x="182" y="100" width="204" height="48" rx="24" />
+          </g>
+        </g>
+        <g className="col-plate" fill="none" stroke={SAGE} strokeWidth="10" strokeLinecap="round">
+          <path className="col-arc" d="M254 214 Q280 198 306 214" />
+          <path className="col-arc" d="M236 198 Q280 170 324 198" />
+          <path className="col-arc" d="M218 182 Q280 142 342 182" />
+        </g>
+        <g className="col-plate" fill={NAVY}>
+          <rect x="120" y="236" width="320" height="212" rx="24" />
+          <rect x="256" y="446" width="48" height="22" />
+          <Ground />
+        </g>
+        <g className="col-plate">
+          <rect x="140" y="256" width="280" height="172" rx="10" fill={SAGE} />
+          <MiniArena x={186} y={300} w={188} />
+          <rect x="164" y="404" width="232" height="8" rx="4" fill={PAPER} />
+          <rect x="164" y="404" width="150" height="8" rx="4" fill={TERRA} />
+        </g>
       </g>
     </svg>
   );
+}
+
+const heroSteps = ["The arena", "Radio, 1920s", "Television, 1950s", "Streaming, 2020s"];
+
+/* Print the four scenes in order, each plate slipping into register, then
+   stamp the fan's bill on the last one. Returns the total time it takes. */
+const HERO_STEP = 1600;
+const PLATE_OFFSETS: [number, number][] = [
+  [-14, 8],
+  [12, -10],
+  [-10, -12],
+  [10, 12],
+];
+
+function playHero(wrap: HTMLElement): number {
+  const scenes = Array.from(wrap.querySelectorAll<SVGGElement>(".col-scene"));
+  const captions = Array.from(wrap.querySelectorAll<HTMLElement>(".col-stage-step"));
+  const last = scenes.length - 1;
+  const easing = "cubic-bezier(0.16, 1, 0.3, 1)";
+
+  scenes.forEach((scene, k) => {
+    const start = k * HERO_STEP;
+    scene.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160, delay: start, fill: "both" });
+    Array.from(scene.querySelectorAll<SVGGElement>(":scope > .col-plate")).forEach((plate, j) => {
+      const [dx, dy] = PLATE_OFFSETS[j % PLATE_OFFSETS.length] ?? [0, 0];
+      plate.animate(
+        [
+          { opacity: 0, transform: `translate(${dx}px, ${dy}px)` },
+          { opacity: 1, offset: 0.55 },
+          { opacity: 1, transform: "none" },
+        ],
+        { duration: 760, delay: start + j * 110, easing, fill: "both" },
+      );
+    });
+    if (k < last) {
+      scene.animate(
+        [
+          { opacity: 1, filter: "blur(0px)", transform: "none" },
+          { opacity: 0, filter: "blur(4px)", transform: "translateY(-10px)" },
+        ],
+        { duration: 380, delay: start + HERO_STEP - 380, easing: "ease-in", fill: "forwards" },
+      );
+    }
+  });
+
+  captions.forEach((cap, k) => {
+    const start = k * HERO_STEP;
+    cap.animate(
+      [
+        { opacity: 0, transform: "translateY(6px)" },
+        { opacity: 1, transform: "none" },
+      ],
+      { duration: 400, delay: start + 120, easing, fill: "both" },
+    );
+    if (k < last) {
+      cap.animate([{ opacity: 1 }, { opacity: 0 }], {
+        duration: 240,
+        delay: start + HERO_STEP - 240,
+        fill: "forwards",
+      });
+    }
+  });
+
+  const total = last * HERO_STEP + 900;
+  wrap.querySelector(".col-roundel")?.animate(
+    [
+      { opacity: 0, transform: "scale(1.35) rotate(-12deg)" },
+      { opacity: 1, transform: "none" },
+    ],
+    { duration: 520, delay: total - 200, easing, fill: "both" },
+  );
+  return total + 400;
 }
 
 /* Each era drawing marks its moving parts with data-part; the era's own
@@ -677,6 +850,26 @@ export default function ColosseumArticle() {
     animated.forEach((el) => onScreen(el) && el.classList.add("is-in"));
     root.classList.add("col-motion");
 
+    // The cover plays arena, radio, television, then streaming, and lands on the bill.
+    const heroWrap = root.querySelector<HTMLElement>(".col-emblem-wrap");
+    const coverEl = root.querySelector<HTMLElement>(".col-cover");
+    const replayBtn = root.querySelector<HTMLButtonElement>(".col-replay");
+    let heroTimer = 0;
+    const runHero = () => {
+      if (!heroWrap) return;
+      heroWrap.getAnimations({ subtree: true }).forEach((a) => a.cancel());
+      coverEl?.classList.remove("is-landed");
+      if (replayBtn) replayBtn.hidden = true;
+      window.clearTimeout(heroTimer);
+      const total = playHero(heroWrap);
+      heroTimer = window.setTimeout(() => {
+        coverEl?.classList.add("is-landed");
+        if (replayBtn) replayBtn.hidden = false;
+      }, total);
+    };
+    runHero();
+    replayBtn?.addEventListener("click", runHero);
+
     // A clipped element never reports itself as visible, so watch an unclipped
     // stand-in (the opener's section, or the element itself) and flag the element.
     const watched = new Map<Element, HTMLElement>();
@@ -777,6 +970,8 @@ export default function ColosseumArticle() {
       frames.forEach((f) => cancelAnimationFrame(f));
       eraObs.disconnect();
       coverObs.disconnect();
+      window.clearTimeout(heroTimer);
+      replayBtn?.removeEventListener("click", runHero);
       eraItems.forEach((era) => era.removeEventListener("pointerenter", replay));
     };
   }, []);
@@ -825,11 +1020,26 @@ export default function ColosseumArticle() {
               <p className="col-byline">Mohamad Noor-Chowdhury · 2025, updated November 2026</p>
             </div>
             <div className="col-emblem-wrap">
-              <CoverEmblem />
-              <p className="col-roundel">
-                <span>Fan's monthly bill</span>
-                <strong>$136.55</strong>
-              </p>
+              <div className="col-emblem-frame">
+                <CoverEmblem />
+                <p className="col-roundel">
+                  <span>Fan's monthly bill</span>
+                  <strong>$136.55</strong>
+                </p>
+              </div>
+              <div className="col-stage">
+                <p className="col-stage-caption" aria-hidden="true">
+                  {heroSteps.map((step, i) => (
+                    <span key={step} className="col-stage-step" data-step={i}>
+                      {step}
+                    </span>
+                  ))}
+                </p>
+                <button type="button" className="col-replay" hidden>
+                  <RotateCcw size={16} strokeWidth={2.5} aria-hidden="true" />
+                  Replay
+                </button>
+              </div>
             </div>
           </div>
         </section>
