@@ -13,15 +13,186 @@ const chapters = [
   { id: "reckoning", label: "Reckoning" },
 ];
 
-/* Streaming vs traditional TV, viewership index 2015–2025 */
-const years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
-const streaming = [8, 12, 18, 26, 36, 55, 67, 76, 84, 90, 95];
-const traditional = [95, 90, 84, 78, 70, 60, 52, 46, 40, 36, 32];
-const CH = { l: 48, r: 112, t: 16, b: 40, w: 800, h: 320 };
-const cx = (i: number) => CH.l + (i / (years.length - 1)) * (CH.w - CH.l - CH.r);
-const cy = (v: number) => CH.t + (CH.h - CH.t - CH.b) * (1 - v / 100);
+/* Share of US TV viewing time, Nielsen's The Gauge: its first month (May 2021)
+   and the month streaming passed broadcast and cable combined (May 2025). */
+const gaugeYears = ["May 2021", "May 2025"];
+const gauge = {
+  streaming: [26, 44.8],
+  cable: [39, 24.1],
+  broadcast: [25, 20.1],
+};
+const gaugeEnd = { streaming: 44.8, cable: 24.1, broadcast: 20.1 };
+const CH = { l: 56, r: 150, t: 16, b: 40, w: 800, h: 320 };
+const cx = (i: number) => CH.l + (i / (gaugeYears.length - 1)) * (CH.w - CH.l - CH.r);
+const cy = (v: number) => CH.t + (CH.h - CH.t - CH.b) * (1 - v / 50);
 const line = (vals: number[]) =>
   vals.map((v, i) => `${i ? "L" : "M"}${cx(i).toFixed(1)} ${cy(v).toFixed(1)}`).join(" ");
+
+const sources = [
+  {
+    label: "Colosseum seating: about 50,000 spectators",
+    title: "Colosseum",
+    outlet: "Encyclopaedia Britannica",
+    href: "https://www.britannica.com/topic/Colosseum",
+  },
+  {
+    label: "Super Bowl LIX, 127.7 million viewers",
+    title: "Super Bowl LIX averages record audience of 127.7 million viewers",
+    outlet: "NFL.com",
+    href: "https://amp.nfl.com/news/super-bowl-lix-averages-record-audience-of-127-7-million-viewers",
+  },
+  {
+    label:
+      "Average streaming subscriber: four paid services, $69 a month; cable and satellite $125",
+    title: "Digital Media Trends 2025 press release",
+    outlet: "Deloitte",
+    href: "https://www.deloitte.com/us/en/about/press-room/digital-media-trends-consumption-habits-survey.html",
+  },
+  {
+    label: "39% cancelled a paid streaming service in six months; 24% cancelled and returned",
+    title: "Digital Media Trends, 19th edition",
+    outlet: "Deloitte",
+    href: "https://www.deloitte.com/us/en/insights/industry/technology/digital-media-trends-consumption-habits-survey/2025.html",
+  },
+  {
+    label: "Average subscriber held five services in late 2020, up from three",
+    title: "Streaming churn and the pandemic",
+    outlet: "Deloitte",
+    href: "https://www.deloitte.com/content/dam/assets-shared/legacy/docs/insights/2022/6960_TMT-streaming-churn.pdf",
+  },
+  {
+    label: "Pay TV lost nearly 7.2 million subscribers in 2020",
+    title: "Multichannel video subscribers dropped by 7.2 million: Kagan",
+    outlet: "Next TV",
+    href: "https://www.nexttv.com/news/multichannel-video-subscribers-dropped-by-72-million-kagan",
+  },
+  {
+    label: "The Gauge, May 2021: streaming 26%, broadcast 25%, cable 39%",
+    title: "New Nielsen metric finds streaming 26% of TV viewing time",
+    outlet: "MediaPost",
+    href: "https://www.mediapost.com/publications/article/364325/new-nielsen-metric-finds-streaming-26-of-all-view.html",
+  },
+  {
+    label: "The Gauge, May 2025: streaming 44.8%, cable 24.1%, broadcast 20.1%",
+    title: "Streaming eclipses cable and broadcast for first time",
+    outlet: "TheWrap",
+    href: "https://www.thewrap.com/streaming-cable-broadcast-tv-ratings-nielsen-the-gauge-may-2025/",
+  },
+  {
+    label: "Amazon Thursday Night Football, about $1 billion a year",
+    title: "NFL media rights deal: Amazon gets exclusive Thursday Night Football",
+    outlet: "CNBC",
+    href: "https://www.cnbc.com/2021/03/18/nfl-media-rights-deal-2023-2033-amazon-gets-exclusive-thursday-night.html",
+  },
+  {
+    label: "Thursday Night Football runs 11 seasons from 2022",
+    title: "Amazon NFL deal will begin a year early and run 11 seasons",
+    outlet: "GeekWire",
+    href: "https://www.geekwire.com/2021/amazon-nfl-deal-thursday-night-football-prime-video-will-begin-year-early-run-11-seasons/",
+  },
+  {
+    label: "Black Friday 2023: about $100 million for rights, about $880,000 per 30-second spot",
+    title: "Amazon to debut first-ever NFL Black Friday game",
+    outlet: "Yahoo Finance",
+    href: "https://finance.yahoo.com/news/amazon-to-debut-first-ever-nfl-black-friday-game--another-blow-to-traditional-tv-153415374.html",
+  },
+  {
+    label: "Black Friday 2023 game drew 9.61 million viewers",
+    title: "Amazon Prime's Black Friday NFL game drew 9.61 million viewers",
+    outlet: "Next TV",
+    href: "https://nexttv.com/news/amazon-primes-black-friday-nfl-game-drew-961-million-viewers",
+  },
+  {
+    label: "YouTube Sunday Ticket, about $2 billion a year for seven years",
+    title: "YouTube to pay $14 billion for NFL's Sunday Ticket rights",
+    outlet: "Bloomberg",
+    href: "https://www.bloomberg.com/news/articles/2022-12-22/youtube-googl-snags-nfl-s-sunday-ticket-rights-in-latest-shift-online",
+  },
+  {
+    label: "Peacock playoff game, about $110 million",
+    title: "Peacock signs $110 million deal for first exclusive streamed NFL playoff game",
+    outlet: "Next TV",
+    href: "https://www.nexttv.com/news/peacock-to-host-first-ever-exclusive-live-streamed-nfl-playoff-game",
+  },
+  {
+    label: "Peacock Wild Card game, about 23 million viewers",
+    title: "Dolphins-Chiefs playoff game on Peacock sets streaming record",
+    outlet: "Associated Press via WPTV",
+    href: "https://www.wptv.com/sports/football/dolphins/dolphins-chiefs-playoff-game-on-peacock-sets-streaming-record-with-average-of-23-million-viewers",
+  },
+  {
+    label: "Netflix Christmas games, about $75 million per game",
+    title: "Report: Netflix will pay about $75 million each for Christmas games",
+    outlet: "NBC Sports",
+    href: "https://www.nbcsports.com/nfl/profootballtalk/rumor-mill/news/report-netflix-will-pay-about-75-million-each-for-christmas-games",
+  },
+  {
+    label: "NBA deal: $76 billion, 11 years, Disney $2.6B and NBC $2.5B a year",
+    title: "NBA signs new 11-year media rights deal with Disney, NBC and Amazon",
+    outlet: "Indianapolis Business Journal (AP)",
+    href: "https://www.ibj.com/articles/nba-new-11-year-media-rights-deal-with-disney-nbc-and-amazon-worth-76b",
+  },
+  {
+    label: "Amazon NBA package, about $20 billion over 11 years",
+    title: "$20 billion says you're going to watch a lot of NBA on Amazon Prime",
+    outlet: "Tubefilter",
+    href: "https://www.tubefilter.com/2024/07/25/nba-wnba-amazon-prime-video-rights-deal/",
+  },
+  {
+    label: "Apple and MLS, $2.5 billion over 10 years from 2023",
+    title: "Apple and Major League Soccer streaming details",
+    outlet: "Front Office Sports",
+    href: "https://frontofficesports.com/apple-major-league-soccer-streaming-details",
+  },
+  {
+    label: "Apple and MLS deal now ends after 2028-29",
+    title: "MLS Apple TV deal ends in 2029, years ahead of schedule",
+    outlet: "AppleInsider",
+    href: "https://appleinsider.com/articles/25/11/14/mls-apple-tv-deal-ends-in-2029-years-ahead-of-schedule",
+  },
+  {
+    label: "Apple Friday Night Baseball, $85 million a year",
+    title: "Apple on the hook for $85 million over seven years for MLB streaming",
+    outlet: "AppleInsider (citing Forbes)",
+    href: "https://appleinsider.com/articles/22/03/09/apple-on-the-hook-for-85-million-over-seven-years-for-mlb-streaming",
+  },
+  {
+    label: "Netflix and WWE Raw, $5 billion over 10 years",
+    title: "Netflix pins exclusive rights to WWE Raw in 10-year, $5B deal",
+    outlet: "Sports Video Group",
+    href: "https://www.sportsvideo.org/2024/01/23/streamer-stunner-netflix-pins-exclusive-rights-to-wwe-monday-night-raw-in-landmark-10-year-5b-deal/",
+  },
+  {
+    label: "Streaming every NFL game in 2024: about $858 with YouTube TV",
+    title: "NFL cost breakdown: how much to stream every game in 2024",
+    outlet: "NBC Washington",
+    href: "https://www.nbcwashington.com/news/sports/nfl/nfl-cost-breakdown-stream-every-game-2024/",
+  },
+  {
+    label: "Average pay-TV bill in 2015: $99.10 a month",
+    title: "Average pay-TV bill up more than 9% in one year to $99.10",
+    outlet: "StreamTV Insider (Leichtman Research Group)",
+    href: "https://www.streamtvinsider.com/cable/average-pay-tv-bill-up-more-than-9-one-year-to-99-10-leichtman-says",
+  },
+  {
+    label: "Venu Sports injunction and $42.99 launch price",
+    title: "Judge blocks ESPN, Fox, Warner sports streaming venture Venu",
+    outlet: "ESPN",
+    href: "https://www.espn.com/espn/story/_/id/40884759/judge-blocks-espn-fox-warner-sports-streaming-venture-venu",
+  },
+  {
+    label: "Venu Sports dropped in January 2025",
+    title: "ESPN, Fox, Warner Bros. shut down joint streaming app Venu Sports",
+    outlet: "Mediaite",
+    href: "https://www.mediaite.com/media/sports/espn-fox-warner-bros-shut-down-joint-streaming-app-venu-sports/",
+  },
+  {
+    label: "79% of viewers found interactive ads more engaging (Amazon-commissioned)",
+    title: "Interactive video ads research with Publicis Media",
+    outlet: "Amazon Ads",
+    href: "https://advertising.amazon.com/library/expert-advice/publicismedia-iva-research",
+  },
+];
 
 function Opener({ ink, mark, children }: { ink: Ink; mark: ReactNode; children: ReactNode }) {
   return (
@@ -423,33 +594,33 @@ function playEra(era: Element, start: number) {
 const eras = [
   {
     art: <EraArena />,
-    when: "Physical Presence",
+    when: "Physical presence",
     title: "The Arena",
-    body: "The Colosseum held 80,000. Access was physical, hierarchical, and local. Your seat was social currency.",
+    body: "The Colosseum seated about 50,000 people. Access was physical, ranked, and local, and where you sat showed where you stood.",
   },
   {
     art: <EraRadio />,
-    when: "Audio Access · 1920s",
+    when: "Audio access · 1920s",
     title: "Radio",
-    body: "Radio broke geography. Millions heard the fight simultaneously. Attention became the commodity.",
+    body: "Radio broke geography. Millions could hear the same fight at once, and their attention became what broadcasters sold.",
   },
   {
     art: <EraTV />,
-    when: "Visual Access · 1950s",
+    when: "Visual access · 1950s",
     title: "Television",
-    body: "TV made sport spectacular at home. Rights deals ballooned. The Super Bowl became the most-watched event on Earth.",
+    body: "TV brought the spectacle home and rights fees ballooned. The 2025 Super Bowl drew 127.7 million US viewers, the largest audience in American TV history.",
   },
   {
     art: <EraStream />,
-    when: "On-Demand · 2020s",
+    when: "On demand · 2020s",
     title: "Streaming",
-    body: "The internet unbundled everything, then rebundled it at a premium. Live sport anchors subscription growth.",
+    body: "The internet unbundled TV, then rebundled it at a higher price, with live sport as the main reason to subscribe.",
   },
   {
     art: <EraNext />,
-    when: "Commerce + AI · 2030s",
+    when: "Commerce and AI · 2030s",
     title: "What's Next",
-    body: "Shoppable moments. Personalized feeds. Integrated betting. Sport as commerce infrastructure.",
+    body: "Shoppable ads, personalized feeds, and in-stream betting turn the broadcast into a place to buy things.",
   },
 ];
 
@@ -488,7 +659,9 @@ export default function ColosseumArticle() {
 
     // Lines need their length before they can draw.
     root
-      .querySelectorAll<SVGPathElement>(".col-chart .line-stream, .col-chart .line-tv")
+      .querySelectorAll<SVGPathElement>(
+        ".col-chart .line-stream, .col-chart .line-tv, .col-chart .line-bc",
+      )
       .forEach((p) => {
         p.style.setProperty("--len", String(Math.ceil(p.getTotalLength())));
       });
@@ -556,7 +729,7 @@ export default function ColosseumArticle() {
           const suffix = el.dataset["suffix"] ?? "";
           const start = performance.now();
           const tick = (now: number) => {
-            const t = Math.min((now - start) / 1300, 1);
+            const t = Math.min(Math.max((now - start) / 1300, 0), 1);
             el.textContent = prefix + Math.round((1 - Math.pow(1 - t, 4)) * target) + suffix;
             if (t < 1) frames.add(requestAnimationFrame(tick));
           };
@@ -647,9 +820,9 @@ export default function ColosseumArticle() {
               </h1>
               <p className="col-deck">
                 How leagues and streaming giants built a lucrative partnership, and left the fan
-                holding the bill. A reckoning two millennia in the making.
+                holding the bill.
               </p>
-              <p className="col-byline">Mo NC · The Future of Sports Media · 2025</p>
+              <p className="col-byline">Mohamad Noor-Chowdhury · 2025, updated November 2026</p>
             </div>
             <div className="col-emblem-wrap">
               <CoverEmblem />
@@ -664,27 +837,25 @@ export default function ColosseumArticle() {
         <section className="col-boxscore" aria-label="The story in four numbers">
           <dl>
             <div>
-              <dt>Total streaming sports rights deals</dt>
+              <dt>In rights deals since 2021 that put games on streaming</dt>
               <dd>
-                <Count value={110} prefix="$" suffix="B+" />
+                <Count value={110} prefix="~$" suffix="B" />
               </dd>
             </div>
             <div>
-              <dt>18–44 yr-olds on streaming</dt>
+              <dt>Paid streaming services the average subscriber pays for</dt>
               <dd>
-                <Count value={70} suffix="%" />
+                <Count value={4} />
               </dd>
             </div>
             <div>
-              <dt>Fan's monthly sports bill</dt>
-              <dd>
-                <Count value={137} prefix="$" />
-              </dd>
+              <dt>A month to follow one NFL season</dt>
+              <dd>$136.55</dd>
             </div>
             <div>
-              <dt>Subscribe then cancel</dt>
+              <dt>Cancelled a paid streaming service in the last six months</dt>
               <dd>
-                <Count value={60} suffix="%" />
+                <Count value={39} suffix="%" />
               </dd>
             </div>
           </dl>
@@ -697,8 +868,8 @@ export default function ColosseumArticle() {
           </Opener>
           <div className="col-page">
             <p className="col-lead">
-              Sport has always been inseparable from the dominant medium of its era. Each
-              technological revolution broadened reach and inflated the prize.
+              Sport has always followed the dominant medium of its era. Each new medium widened the
+              audience and raised the price of the rights.
             </p>
             <ol className="col-eras">
               {eras.map((e) => (
@@ -713,9 +884,9 @@ export default function ColosseumArticle() {
             <div className="col-pattern">
               <h3>The pattern</h3>
               <p>
-                Each era multiplied viewership and revenue. The transition is never smooth:
-                incumbents resist, consumers adapt slowly, but the shift is always irreversible. We
-                are mid-transition now.
+                Each era brought more viewers and more money. The handover is never smooth, because
+                incumbents resist and audiences adapt slowly, but no era has gone back to the one
+                before it. We are in the middle of one now.
               </p>
             </div>
           </div>
@@ -728,81 +899,82 @@ export default function ColosseumArticle() {
           </Opener>
           <div className="col-page">
             <p className="col-lead">
-              The marriage between sports leagues and streaming platforms wasn't accidental. Each
-              party held exactly what the other desperately needed.
+              Leagues and streaming platforms each had what the other wanted, and the deals that
+              followed served both sides.
             </p>
             <div className="col-teams">
               <div className="col-team col-team--home">
-                <h3 className="col-team-head">What Leagues Gained</h3>
+                <h3 className="col-team-head">What leagues gained</h3>
                 <ul>
                   <li>
-                    <strong>Massive Rights Fees</strong>
+                    <strong>Bigger rights fees</strong>
                     <span>
-                      Tech giants, flush with cash, bid higher than legacy broadcasters ever could
-                      or would.
+                      Tech companies with deep pockets could outbid the broadcasters, and did.
                     </span>
                   </li>
                   <li>
-                    <strong>Global Distribution</strong>
+                    <strong>Global distribution</strong>
                     <span>
-                      Streaming platforms reach audiences throughout the world. A single deal is a
-                      global audience deal.
+                      Streaming platforms reach viewers worldwide, so one deal can carry a game to a
+                      global audience.
                     </span>
                   </li>
                   <li>
-                    <strong>Younger Demographics</strong>
-                    <span>Streaming reaches the 18–34 cohort that has abandoned linear TV.</span>
+                    <strong>Younger viewers</strong>
+                    <span>
+                      Streaming reaches the 18 to 34 year-olds who have largely left cable and
+                      broadcast TV.
+                    </span>
                   </li>
                   <li>
-                    <strong>Production Innovation</strong>
+                    <strong>New production tools</strong>
                     <span>
-                      Multi-angle cameras, real-time stats overlays, integrated betting odds.
+                      Multi-angle cameras, real-time stats overlays, and betting odds built into the
+                      stream.
                     </span>
                   </li>
                 </ul>
               </div>
               <div className="col-team col-team--away">
-                <h3 className="col-team-head">What Streamers Gained</h3>
+                <h3 className="col-team-head">What streamers gained</h3>
                 <ul>
                   <li>
-                    <strong>Subscriber Magnets</strong>
+                    <strong>Subscribers</strong>
                     <span>
-                      Live sport drives sign-ups on event nights and keeps churn low during the
-                      season.
+                      Live sport drives sign-ups on game nights and keeps people subscribed through
+                      the season.
                     </span>
                   </li>
                   <li>
-                    <strong>Legitimate Premium Brand</strong>
+                    <strong>Credibility</strong>
                     <span>
-                      Owning the rights to a major sports league signals that a streamer is a
-                      serious media company.
+                      Carrying a major league tells the market a streamer is a serious media
+                      company.
                     </span>
                   </li>
                   <li>
-                    <strong>First-Party Data</strong>
+                    <strong>First-party data</strong>
                     <span>
-                      Authenticated viewers reveal household income, purchase behavior, and
-                      preferences.
+                      Signed-in viewers reveal their household, their buying habits, and what they
+                      like.
                     </span>
                   </li>
                   <li>
-                    <strong>Commerce Integration</strong>
+                    <strong>Commerce</strong>
                     <span>
-                      By following Amazon's lead, every ad slot is a shoppable moment. Sport is a
-                      purchase funnel.
+                      Following Amazon's lead, every ad break becomes a place to shop, and the game
+                      becomes a path to a purchase.
                     </span>
                   </li>
                 </ul>
               </div>
             </div>
             <div className="col-figure-strip">
-              <p className="col-big">
-                <Count value={70} suffix="%" />
-              </p>
+              <p className="col-big">$69</p>
               <p>
-                of adults aged 18–44 subscribe to at least one streaming service, with an average of{" "}
-                <strong>8 active subscriptions</strong> per household. The audience has already
-                moved.
+                a month is what the average US streaming subscriber pays across{" "}
+                <strong>four paid services</strong>, according to Deloitte's 2025 survey. Cable and
+                satellite customers in the same survey paid $125. The audience has already moved.
               </p>
             </div>
           </div>
@@ -815,62 +987,60 @@ export default function ColosseumArticle() {
           </Opener>
           <div className="col-page">
             <p className="col-lead">
-              The pandemic compressed a decade of change into eighteen months. Empty stadiums forced
-              every stakeholder's hand.
+              The pandemic sped all of this up. With stadiums empty and people stuck at home,
+              households dropped cable and signed up for streaming services in record numbers.
             </p>
             <figure className="col-chart">
-              <figcaption className="col-h3">
-                Streaming vs Traditional TV: Viewership Index 2015–2025
-              </figcaption>
+              <figcaption className="col-h3">Share of US TV viewing time, by source</figcaption>
               <svg
                 viewBox={`0 0 ${CH.w} ${CH.h}`}
                 role="img"
-                aria-label="Chart showing streaming rising and linear TV falling with a crossover at 2020"
+                aria-label="Streaming rose from 26% of US TV viewing in May 2021 to 44.8% in May 2025, while cable fell from 39% to 24.1% and broadcast from 25% to 20.1%"
               >
                 <g className="grid">
-                  {[0, 25, 50, 75, 100].map((v) => (
+                  {[0, 10, 20, 30, 40, 50].map((v) => (
                     <line key={v} x1={CH.l} x2={CH.w - CH.r} y1={cy(v)} y2={cy(v)} />
                   ))}
                 </g>
-                <rect
-                  className="covid-band"
-                  x={cx(5) - 18}
-                  y={CH.t}
-                  width={36}
-                  height={CH.h - CH.t - CH.b}
-                />
                 <g className="axis">
-                  {[0, 50, 100].map((v) => (
+                  {[0, 25, 50].map((v) => (
                     <text key={v} x={CH.l - 12} y={cy(v) + 4} textAnchor="end">
-                      {v}
+                      {v}%
                     </text>
                   ))}
-                  {years.map((y, i) =>
-                    i % 2 === 0 || i === years.length - 1 ? (
-                      <text key={y} x={cx(i)} y={CH.h - 10} textAnchor="middle">
-                        {y}
-                      </text>
-                    ) : null,
-                  )}
+                  {gaugeYears.map((y, i) => (
+                    <text key={y} x={cx(i)} y={CH.h - 10} textAnchor="middle">
+                      {y}
+                    </text>
+                  ))}
                 </g>
-                <path className="line-tv" d={line(traditional)} />
-                <path className="line-stream" d={line(streaming)} />
-                <circle className="covid-dot" cx={cx(5)} cy={cy(55)} r={8} />
+                <path className="line-tv" d={line(gauge.cable)} />
+                <path className="line-bc" d={line(gauge.broadcast)} />
+                <path className="line-stream" d={line(gauge.streaming)} />
+                <circle className="covid-dot" cx={cx(1)} cy={cy(gaugeEnd.streaming)} r={8} />
                 <text
                   className="end-label"
-                  x={cx(10) + 12}
-                  y={cy(95) + 5}
+                  x={cx(1) + 16}
+                  y={cy(gaugeEnd.streaming) + 5}
                   fill="oklch(0.52 0.12 45)"
                 >
-                  Streaming
+                  Streaming 44.8%
                 </text>
                 <text
                   className="end-label"
-                  x={cx(10) + 12}
-                  y={cy(32) + 5}
+                  x={cx(1) + 16}
+                  y={cy(gaugeEnd.cable) + 5}
                   fill="oklch(0.357 0.054 263)"
                 >
-                  Linear TV
+                  Cable 24.1%
+                </text>
+                <text
+                  className="end-label"
+                  x={cx(1) + 16}
+                  y={cy(gaugeEnd.broadcast) + 9}
+                  fill="oklch(0.47 0.07 126)"
+                >
+                  Broadcast 20.1%
                 </text>
               </svg>
               <ul className="col-legend">
@@ -880,36 +1050,45 @@ export default function ColosseumArticle() {
                 </li>
                 <li>
                   <i style={{ background: "var(--navy)" }} />
-                  Linear TV
+                  Cable
+                </li>
+                <li>
+                  <i style={{ background: "var(--sage-ink)" }} />
+                  Broadcast
                 </li>
                 <li>
                   <i className="dot" style={{ background: "var(--mustard)" }} />
-                  2020 COVID inflection
+                  Streaming passes cable and broadcast combined
                 </li>
               </ul>
+              <p className="col-note" style={{ marginTop: 16 }}>
+                Source: Nielsen, The Gauge. May 2021 was its first month; in May 2025 streaming took
+                44.8% of viewing against 44.2% for cable and broadcast together.
+              </p>
             </figure>
             <div className="col-facts">
               <div className="col-fact">
-                <p className="col-fact-num">+26M</p>
-                <h3>New US streaming subscribers in 2020</h3>
+                <p className="col-fact-num">7.2M</p>
+                <h3>Pay-TV subscriptions lost in 2020</h3>
                 <p>
-                  Added in a single year as lockdowns made streaming the only live entertainment.
+                  S&amp;P Global's Kagan counted nearly 7.2 million cable and satellite
+                  cancellations in a single year.
                 </p>
               </div>
               <div className="col-fact">
-                <p className="col-fact-num">–12%</p>
-                <h3>Linear TV viewership decline 2020–22</h3>
+                <p className="col-fact-num">3 → 5</p>
+                <h3>Streaming services per subscriber</h3>
                 <p>
-                  Cord-cutting accelerated permanently. Households that cancelled rarely returned.
+                  Deloitte found the average subscriber held five paid services by late 2020, up
+                  from three just before the pandemic.
                 </p>
               </div>
               <div className="col-fact">
                 <p className="col-fact-num">2021</p>
-                <h3>First major sports rights shift to streaming</h3>
+                <h3>The first exclusive national NFL package goes to a streamer</h3>
                 <p>
-                  Amazon had previously aired NFL games, but in 2021 signed the first exclusive
-                  streaming rights deal for Thursday Night Football, a watershed moment for the
-                  industry.
+                  Amazon had streamed NFL games before as a simulcast. In March 2021 it signed for
+                  Thursday Night Football outright.
                 </p>
               </div>
             </div>
@@ -923,8 +1102,8 @@ export default function ColosseumArticle() {
           </Opener>
           <div className="col-page">
             <p className="col-lead">
-              When Amazon secured exclusive NFL Thursday Night Football rights in 2021, it didn't
-              buy a broadcast slot; it bought a proof-of-concept for the entire industry.
+              When Amazon won exclusive rights to Thursday Night Football in 2021, it was testing a
+              model the rest of the industry would copy.
             </p>
             <div className="col-table-wrap col-block">
               <table className="col-table">
@@ -939,51 +1118,44 @@ export default function ColosseumArticle() {
                 <tbody>
                   <tr>
                     <td>Amazon Prime Video</td>
-                    <td>Thursday Night Football (excl.)</td>
-                    <td>11 years</td>
+                    <td>Thursday Night Football (exclusive)</td>
+                    <td>11 seasons, 2022 to 2032</td>
                     <td className="num">~$1B/yr</td>
                   </tr>
                   <tr className="sub">
-                    <td>Per-game cost</td>
-                    <td>15–17 games/season</td>
-                    <td>2022–2032</td>
-                    <td className="num">$58.8M/game</td>
+                    <td>Per game</td>
+                    <td>15 to 17 games a season</td>
+                    <td>Reported, not disclosed</td>
+                    <td className="num">$59M to $67M</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <div className="col-prose col-block">
-              <h3 className="col-h3">2023: The Black Friday Game</h3>
+              <h3 className="col-h3">2023: The Black Friday game</h3>
               <p style={{ color: "var(--ink)" }}>
-                Building on the success of exclusive Thursday Night Football, Amazon paid $100M for
-                the exclusive rights to a single NFL game on Black Friday 2023. But this was never
-                just about football.
+                In 2023 Amazon paid a reported $100 million for the rights to one more game, the
+                first NFL game ever played on Black Friday, between the Dolphins and the Jets.
+                Football was only part of the point.
               </p>
               <p>
-                The move was a deliberate attempt to create a new commercial holiday tradition, one
-                that lived entirely within a digital ecosystem. Instead of heading out to stores on
-                Black Friday, Amazon wanted the shopping experience to come to viewers, while they
-                watched the most-watched sport in the United States.
-              </p>
-              <p>
-                By pairing targeted ads with live football, Amazon turned a single game into a
-                shoppable event, redefining what Black Friday could look like for a streaming-first
-                generation.
+                Amazon wanted to start a new holiday habit inside its own app. Instead of heading to
+                the stores on Black Friday, viewers would shop while watching the most-watched sport
+                in the United States, with targeted ads running alongside the game. The broadcast
+                drew 9.61 million viewers.
               </p>
             </div>
 
             <div className="col-block">
-              <h3 className="col-h3">
-                The Black Friday Experiment: Acquire → Monetize → Integrate
-              </h3>
+              <h3 className="col-h3">How the Black Friday game paid for itself</h3>
               <div className="col-flow">
                 <div className="col-flow-step">
                   <h4>Acquire</h4>
                   <p className="amount">$100M</p>
                   <p>
-                    Amazon paid ~$100M for exclusive Black Friday rights, a calculated loss-leader
-                    to prove the model.
+                    Amazon reportedly paid about $100 million for exclusive rights, a loss leader
+                    meant to prove the model.
                   </p>
                 </div>
                 <ArrowRight
@@ -996,11 +1168,10 @@ export default function ColosseumArticle() {
                   <h4>Monetize</h4>
                   <p className="amount">$880K</p>
                   <p>
-                    The only publicly available data covers 58 thirty-second ad slots, which alone
-                    generated approximately $51M. Shorter formats like 15-second ads were not
-                    disclosed, meaning the true ad revenue was almost certainly higher, and Amazon
-                    likely recouped well over half its $100M investment from ads before a single
-                    item was sold.
+                    Ad Age reported about $880,000 per 30-second spot, double Amazon's usual
+                    Thursday rate, and Amazon said the game sold out. It has not said how many spots
+                    it sold. At 58 thirty-second spots, ads alone would have brought in about $51
+                    million, roughly half the rights fee, before a single product was sold.
                   </p>
                 </div>
                 <ArrowRight
@@ -1013,13 +1184,10 @@ export default function ColosseumArticle() {
                   <h4>Integrate</h4>
                   <p className="amount">Shop</p>
                   <p>
-                    Instead of going out and battling crowds, the shopping experience was brought
-                    directly to the customer's living room. Amazon converted its first-party data
-                    into a targeted ad experience tailored to each viewer. Many ads featured QR
-                    codes directing users straight to product pages. But every QR code scan sent
-                    behavioral data back to Amazon, giving the tech giant even richer targeting
-                    signals for future campaigns. The game was not just a commercial event, it was a
-                    data collection exercise at scale.
+                    Instead of fighting crowds, viewers could shop from the couch. Amazon used its
+                    own customer data to target the ads, and many carried QR codes that led straight
+                    to product pages. Every scan also sent data back to Amazon for its next
+                    campaign, so the game doubled as a data collection exercise.
                   </p>
                 </div>
               </div>
@@ -1034,15 +1202,15 @@ export default function ColosseumArticle() {
           </Opener>
           <div className="col-page">
             <p className="col-lead">
-              The ad revenue is visible. The commerce integration is trackable. But the real prize,
-              why tech companies outbid legacy broadcasters, is first-party data from authenticated
-              viewers.
+              The ad revenue is visible, and sales from shoppable ads can be tracked. The bigger
+              prize, and the reason tech companies outbid broadcasters, is first-party data about
+              viewers who are signed in.
             </p>
             <div className="col-bars">
-              <h3 className="col-h3">Black Friday Game: Revenue Analysis</h3>
+              <h3 className="col-h3">Black Friday game: what came in against the rights fee</h3>
               <div className="col-bar col-bar--cost">
                 <div className="col-bar-meta">
-                  <span>Rights Investment</span>
+                  <span>Rights fee (reported)</span>
                   <b>−$100M</b>
                 </div>
                 <div className="col-bar-track">
@@ -1051,7 +1219,7 @@ export default function ColosseumArticle() {
               </div>
               <div className="col-bar col-bar--ads">
                 <div className="col-bar-meta">
-                  <span>Known Direct Ad Revenue (from 30 sec ads, 58 × $880K)</span>
+                  <span>30-second ads, if 58 spots sold at $880K</span>
                   <b>+$51.04M</b>
                 </div>
                 <div className="col-bar-track">
@@ -1060,8 +1228,8 @@ export default function ColosseumArticle() {
               </div>
               <div className="col-bar col-bar--unknown">
                 <div className="col-bar-meta">
-                  <span>Commerce / Shoppable Ads / Unknown Ad Revenue</span>
-                  <b>+Unmeasured</b>
+                  <span>Shorter ads, shoppable ads, and product sales</span>
+                  <b>Not disclosed</b>
                 </div>
                 <div className="col-bar-track">
                   <div className="col-bar-fill" style={{ ["--w" as string]: 38 }} />
@@ -1069,25 +1237,27 @@ export default function ColosseumArticle() {
               </div>
               <div className="col-bar col-bar--data">
                 <div className="col-bar-meta">
-                  <span>First-Party Data Value (modelled)</span>
-                  <b>+Strategic</b>
+                  <span>Value of the first-party data</span>
+                  <b>Not measured</b>
                 </div>
                 <div className="col-bar-track">
                   <div className="col-bar-fill" style={{ ["--w" as string]: 82 }} />
                 </div>
               </div>
               <p className="col-note" style={{ marginTop: 24 }}>
-                * 58 slots. Only accounts for 30 sec ads.
+                The last two bars show the argument, not data: Amazon has not disclosed these
+                amounts. The 58-spot count is an estimate; Amazon has not said how many spots it
+                sold.
               </p>
             </div>
             <div className="col-pair">
               <div>
-                <strong>58</strong>
-                <span>30 sec ad slots per game (publicly known)</span>
+                <strong>$880K</strong>
+                <span>Reported price of a 30-second spot (Ad Age)</span>
               </div>
               <div>
-                <strong>$880K</strong>
-                <span>Per 30-second unit</span>
+                <strong>9.61M</strong>
+                <span>Average viewers (Nielsen)</span>
               </div>
             </div>
           </div>
@@ -1100,50 +1270,50 @@ export default function ColosseumArticle() {
           </Opener>
           <div className="col-page">
             <p className="col-lead">
-              Once Amazon proved the model, every major league renegotiated. The deals that followed
-              rewired the entire rights landscape.
+              Once Amazon showed the model worked, the NFL's other packages and the other leagues
+              followed it to streaming.
             </p>
 
             <div className="col-table-wrap col-block">
               <table className="col-table">
-                <caption>NFL: $26B Total Streaming Portfolio</caption>
+                <caption>NFL streaming deals: about $25B committed</caption>
                 <thead>
                   <tr>
                     <th>Platform</th>
                     <th>Package</th>
-                    <th>Deal Signed</th>
+                    <th>Signed</th>
                     <th>Term</th>
                     <th className="num">Value</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Amazon Prime</td>
-                    <td>Thursday Night (excl.)</td>
+                    <td>Amazon Prime Video</td>
+                    <td>Thursday Night Football (exclusive)</td>
                     <td>2021</td>
-                    <td>11 yr</td>
-                    <td className="num">$1.0B/yr</td>
+                    <td>11 seasons</td>
+                    <td className="num">~$1B/yr</td>
                   </tr>
                   <tr>
-                    <td>YouTube TV</td>
+                    <td>YouTube</td>
                     <td>Sunday Ticket</td>
-                    <td>2024</td>
-                    <td>7 yr</td>
-                    <td className="num">$2.5B/yr</td>
+                    <td>2022</td>
+                    <td>7 seasons</td>
+                    <td className="num">~$2B/yr</td>
                   </tr>
                   <tr>
                     <td>Peacock (NBC)</td>
-                    <td>Exclusive Playoff Game</td>
+                    <td>One exclusive Wild Card game</td>
                     <td>2023</td>
-                    <td>Ongoing</td>
-                    <td className="num">$110M</td>
+                    <td>1 game</td>
+                    <td className="num">~$110M</td>
                   </tr>
                   <tr>
                     <td>Netflix</td>
-                    <td>Christmas Day Games</td>
+                    <td>Christmas Day games</td>
                     <td>2024</td>
-                    <td>3 yr</td>
-                    <td className="num">$150M/yr</td>
+                    <td>3 seasons</td>
+                    <td className="num">~$75M/game</td>
                   </tr>
                 </tbody>
               </table>
@@ -1151,12 +1321,13 @@ export default function ColosseumArticle() {
 
             <div className="col-block">
               <p className="col-note" style={{ maxWidth: "var(--measure)" }}>
-                All deals below were signed as part of the NBA's new media rights agreement,
-                covering the 2025-2026 season onwards.
+                The NBA's 11-year, $76 billion agreement starts with the 2025-26 season. It pays for
+                games on ABC, ESPN and NBC as well as streaming; Amazon's package is the
+                streaming-only one.
               </p>
               <div className="col-table-wrap">
                 <table className="col-table">
-                  <caption>NBA: $76B Total Streaming Portfolio</caption>
+                  <caption>NBA media rights from 2025-26: $76B over 11 years</caption>
                   <thead>
                     <tr>
                       <th>Platform</th>
@@ -1167,22 +1338,22 @@ export default function ColosseumArticle() {
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Amazon Prime</td>
-                      <td>Package C (excl. streaming)</td>
-                      <td>11 yr</td>
-                      <td className="num">$1.8B/yr</td>
+                      <td>Amazon Prime Video</td>
+                      <td>Regular season, NBA Cup, play-in, playoffs</td>
+                      <td>11 seasons</td>
+                      <td className="num">~$1.8B/yr</td>
                     </tr>
                     <tr>
                       <td>NBC / Peacock</td>
-                      <td>Package A</td>
-                      <td>11 yr</td>
-                      <td className="num">$2.5B/yr</td>
+                      <td>Up to 100 regular-season games, playoffs</td>
+                      <td>11 seasons</td>
+                      <td className="num">~$2.5B/yr</td>
                     </tr>
                     <tr>
                       <td>ESPN / ABC</td>
-                      <td>Package B</td>
-                      <td>11 yr</td>
-                      <td className="num">$2.6B/yr</td>
+                      <td>80 regular-season games, the NBA Finals</td>
+                      <td>11 seasons</td>
+                      <td className="num">~$2.6B/yr</td>
                     </tr>
                   </tbody>
                 </table>
@@ -1195,39 +1366,41 @@ export default function ColosseumArticle() {
                 <p className="col-fact-num" style={{ marginTop: 8 }}>
                   $2.5B
                 </p>
-                <p>Apple TV+, 10-year exclusive. Full league package. Global rights.</p>
+                <p>
+                  Apple, 10 seasons from 2023, every match worldwide. In November 2025 the two sides
+                  agreed to end it early, after the 2028-29 season.
+                </p>
               </div>
               <div className="col-fact">
                 <h3 style={{ marginTop: 0 }}>MLB</h3>
                 <p className="col-fact-num" style={{ marginTop: 8 }}>
                   $85M/yr
                 </p>
-                <p>Apple TV+ Friday games. First major broadcast-to-streaming shift in baseball.</p>
+                <p>Apple TV+ Friday Night Baseball from 2022, as reported by Forbes.</p>
               </div>
               <div className="col-fact">
                 <h3 style={{ marginTop: 0 }}>WWE / Netflix</h3>
                 <p className="col-fact-num" style={{ marginTop: 8 }}>
                   $5B
                 </p>
-                <p>
-                  10-year deal. RAW exclusively on Netflix. Combat sport goes mainstream streaming.
-                </p>
+                <p>10 years. Raw left cable for Netflix in January 2025.</p>
               </div>
             </div>
 
             <div className="col-total">
               <div>
-                <h3>Total Capital Committed to Streaming Rights</h3>
+                <h3>Committed in the deals above</h3>
                 <p className="col-big">
-                  <Count value={110} prefix="$" suffix="B+" />
+                  <Count value={110} prefix="~$" suffix="B" />
                 </p>
-                <p className="who">NFL · NBA · MLS · MLB · WWE and counting</p>
+                <p className="who">NFL · NBA · MLS · MLB · WWE</p>
               </div>
               <p>
-                In just a few years, the four major American sports leagues collectively signed over{" "}
-                <strong>$110 billion</strong> in streaming rights contracts. Television's
-                century-long monopoly on live sport ended not with a whimper, but with a wire
-                transfer.
+                Since 2021 the NFL, NBA, MLS, MLB and WWE have signed deals worth about{" "}
+                <strong>$110 billion</strong> that put games on streaming services. The NBA's $76
+                billion is the largest piece and also pays for broadcast games, so the
+                streaming-only share is smaller. Live sport was the last big reason to keep cable,
+                and the leagues sold it to the highest bidders.
               </p>
             </div>
           </div>
@@ -1240,51 +1413,54 @@ export default function ColosseumArticle() {
           </Opener>
           <div className="col-page">
             <p className="col-lead">
-              As leagues and platforms negotiated their mutual prosperity, one stakeholder was
-              absent from the table: the fan.
+              Leagues and platforms negotiated with each other. The fan was not at the table.
             </p>
             <ul className="col-pains">
               <li>
-                <h3>À La Carte Chaos</h3>
+                <h3>À la carte chaos</h3>
                 <p>
-                  To watch a complete NFL season, a fan must now subscribe to YouTube TV, Amazon
-                  Prime, Peacock, ESPN+, and Netflix, each carrying a different package of games. No
-                  single service provides full coverage. The consumer must reconstruct the bundle
-                  they once had, at three times the price.
+                  To follow a full NFL season, a fan now needs YouTube TV with Sunday Ticket, Amazon
+                  Prime, Peacock, ESPN+, and Netflix, because each carries a different package of
+                  games and none carries them all. NBC's stations put the 2024 season at about $858
+                  through YouTube TV. The fan has to rebuild the bundle they used to get from one
+                  provider, and pay more for it.
                 </p>
               </li>
               <li>
-                <h3>Subscription Fatigue</h3>
+                <h3>Subscription fatigue</h3>
                 <p className="inline-stat">
-                  <b>60%</b> of subscribers cancel within 3 months of a major sporting event
+                  <b>39%</b> of US consumers cancelled a paid streaming service in the last six
+                  months (Deloitte, 2025)
                 </p>
                 <p>
-                  The subscribe-and-cancel cycle is now a documented consumer pattern. Fans sign up
-                  for the Super Bowl or the Finals, cancel after, and platforms spend the off-season
-                  buying them back with discounts. The economics are unstable.
+                  Fans sign up for the big game, cancel after it, and come back for the next one.
+                  Deloitte found 24% of consumers cancelled and resubscribed to the same service
+                  within six months, and platforms spend the off-season winning them back with
+                  discounts.
                 </p>
               </li>
               <li>
-                <h3>Toll Road Mentality</h3>
+                <h3>Toll road mentality</h3>
                 <p>
-                  Individual playoff games are now paywalled behind specific streaming tiers. The
-                  2024 Wild Card game on Peacock required a paid upgrade, a game once available on
-                  free broadcast now has a cover charge. The public good of live sport is becoming a
-                  private toll road.
+                  Playoff games now sit behind streaming subscriptions too. The January 2024 Wild
+                  Card game between the Dolphins and the Chiefs streamed only on Peacock, so a game
+                  that once would have aired free on broadcast TV required a paid subscription. It
+                  still drew about 23 million viewers. Live sport, once free over the air, is
+                  becoming a toll road.
                 </p>
               </li>
             </ul>
 
             <div className="col-block">
-              <h3 className="col-h3">The True Cost: An NFL Fan's Monthly Bill</h3>
+              <h3 className="col-h3">The true cost: an NFL fan's monthly bill</h3>
               <div className="col-board">
                 <div className="col-board-head">
-                  <h4>Full NFL Season Access 2024/25</h4>
-                  <p>Monthly subscription breakdown</p>
+                  <h4>Full NFL season access, 2025 list prices</h4>
+                  <p>Monthly cost, with yearly charges divided by 12</p>
                 </div>
                 <ul>
                   <li>
-                    <span>YouTube TV (base package)</span>
+                    <span>YouTube TV (base plan)</span>
                     <b>$82.99</b>
                   </li>
                   <li>
@@ -1300,17 +1476,19 @@ export default function ColosseumArticle() {
                     <b>$10.99</b>
                   </li>
                   <li>
-                    <span>Netflix (Standard)</span>
+                    <span>Netflix (Standard with ads)</span>
                     <b>$7.99</b>
                   </li>
                 </ul>
                 <div className="col-board-total">
-                  <span>Total Monthly</span>
+                  <span>Total monthly</span>
                   <b>$136.55</b>
                 </div>
               </div>
               <p className="col-board-note">
-                vs. $50–60/month for the cable bundle that included all of the above a decade ago.
+                Author's estimate. In 2015 the average pay-TV bill was $99.10 a month (Leichtman
+                Research Group), and a cable package then carried the networks that aired nearly
+                every NFL game except Sunday Ticket.
               </p>
             </div>
           </div>
@@ -1324,7 +1502,7 @@ export default function ColosseumArticle() {
           <div className="col-page">
             <div className="col-ledger">
               <div className="col-team col-team--home">
-                <h3 className="col-team-head">What You Get</h3>
+                <h3 className="col-team-head">What you get</h3>
                 <ul>
                   <li>
                     <span className="sign" aria-hidden="true">
@@ -1332,7 +1510,7 @@ export default function ColosseumArticle() {
                     </span>
                     <span>
                       <strong>Multi-angle cameras</strong>
-                      <span>Choose your view. Watch replays from any angle instantly.</span>
+                      <span>Pick your view and watch replays from any angle.</span>
                     </span>
                   </li>
                   <li>
@@ -1340,8 +1518,8 @@ export default function ColosseumArticle() {
                       <Plus size={20} strokeWidth={3} />
                     </span>
                     <span>
-                      <strong>Personalized stats overlays</strong>
-                      <span>Real-time player tracking, fantasy data, predictive analytics.</span>
+                      <strong>Personal stats overlays</strong>
+                      <span>Real-time player tracking, fantasy data, and predictions.</span>
                     </span>
                   </li>
                   <li>
@@ -1349,8 +1527,8 @@ export default function ColosseumArticle() {
                       <Plus size={20} strokeWidth={3} />
                     </span>
                     <span>
-                      <strong>Integrated betting</strong>
-                      <span>Live odds in-stream. Place bets without leaving the feed.</span>
+                      <strong>Betting in the stream</strong>
+                      <span>Live odds on screen, and bets placed without leaving the game.</span>
                     </span>
                   </li>
                   <li>
@@ -1358,22 +1536,22 @@ export default function ColosseumArticle() {
                       <Plus size={20} strokeWidth={3} />
                     </span>
                     <span>
-                      <strong>Global access</strong>
-                      <span>Any device, anywhere. Games no longer geography-locked.</span>
+                      <strong>Access anywhere</strong>
+                      <span>Any device, any place, with fewer games locked to a region.</span>
                     </span>
                   </li>
                 </ul>
               </div>
               <div className="col-team col-team--away">
-                <h3 className="col-team-head">What It Costs</h3>
+                <h3 className="col-team-head">What it costs</h3>
                 <ul>
                   <li>
                     <span className="sign" aria-hidden="true">
                       <Minus size={20} strokeWidth={3} />
                     </span>
                     <span>
-                      <strong>Financial burden</strong>
-                      <span>$137/month for one sport. This excludes all other entertainment.</span>
+                      <strong>Money</strong>
+                      <span>$136.55 a month for one sport, before any other entertainment.</span>
                     </span>
                   </li>
                   <li>
@@ -1381,18 +1559,10 @@ export default function ColosseumArticle() {
                       <Minus size={20} strokeWidth={3} />
                     </span>
                     <span>
-                      <strong>Navigational complexity</strong>
-                      <span>Six apps to manage. Different UIs, passwords, and billing cycles.</span>
-                    </span>
-                  </li>
-                  <li>
-                    <span className="sign" aria-hidden="true">
-                      <Minus size={20} strokeWidth={3} />
-                    </span>
-                    <span>
-                      <strong>Reduced accessibility</strong>
+                      <strong>Hassle</strong>
                       <span>
-                        Lower-income households priced out. Sport becomes a luxury, not a right.
+                        Five apps to manage, each with its own interface, password, and billing
+                        date.
                       </span>
                     </span>
                   </li>
@@ -1401,8 +1571,22 @@ export default function ColosseumArticle() {
                       <Minus size={20} strokeWidth={3} />
                     </span>
                     <span>
-                      <strong>Privacy erosion</strong>
-                      <span>The price of personalization is behavioral surveillance at scale.</span>
+                      <strong>Access</strong>
+                      <span>
+                        Lower-income households get priced out, and following your team becomes a
+                        luxury.
+                      </span>
+                    </span>
+                  </li>
+                  <li>
+                    <span className="sign" aria-hidden="true">
+                      <Minus size={20} strokeWidth={3} />
+                    </span>
+                    <span>
+                      <strong>Privacy</strong>
+                      <span>
+                        Personalization runs on tracking what each viewer watches and buys.
+                      </span>
                     </span>
                   </li>
                 </ul>
@@ -1418,58 +1602,58 @@ export default function ColosseumArticle() {
           </Opener>
           <div className="col-page">
             <p className="col-lead">
-              Consumer tolerance for fragmented access and escalating costs has limits. Two distinct
-              futures are emerging. The industry must choose.
+              Fans will only put up with so many apps and price rises. Two futures are emerging, and
+              the industry will have to pick one.
             </p>
 
             <div className="col-venu">
               <div className="col-venu-head">
-                <h3>Cautionary Tale: Venu Sports</h3>
+                <h3>Cautionary tale: Venu Sports</h3>
                 <span className="col-stamp">
                   <CircleSlash size={18} strokeWidth={2.5} aria-hidden="true" />
-                  Blocked on antitrust grounds
+                  Shut down before launch
                 </span>
               </div>
               <div className="col-venu-grid">
                 <div>
-                  <h4>The Proposed Solution</h4>
+                  <h4>The proposed fix</h4>
                   <p>
-                    ESPN, Fox, and Warner Bros. Discovery proposed a joint streaming venture, "Venu
-                    Sports", to offer all major sports on a single platform. A genuine
-                    re-aggregation attempt. Industry collaboration over competition.
+                    ESPN, Fox, and Warner Bros. Discovery planned a joint service, Venu Sports, to
+                    put most of their sports in one app: competitors rebuilding the bundle together.
                   </p>
                   <p className="col-venu-price">$42.99/mo</p>
-                  <span>Proposed price point</span>
+                  <span>Planned launch price</span>
                 </div>
                 <div>
-                  <h4>The Regulatory Block</h4>
+                  <h4>The regulators' answer</h4>
                   <p>
-                    A federal judge issued a preliminary injunction, ruling that three of the
-                    largest sports content owners creating a single bundle raised serious antitrust
-                    concerns. Venu Sports was shelved indefinitely.
+                    In August 2024 Judge Margaret Garnett granted Fubo a preliminary injunction,
+                    finding that a bundle from three of the largest sports rights holders likely
+                    broke antitrust law. In January 2025, after Disney settled with Fubo, the three
+                    companies dropped Venu without launching it.
                   </p>
                 </div>
               </div>
             </div>
 
             <div className="col-block">
-              <h3 className="col-h3">Two Futures</h3>
+              <h3 className="col-h3">Two futures</h3>
               <div className="col-paths">
                 <div className="col-path">
-                  <h4>Re-Aggregation</h4>
+                  <h4>Re-aggregation</h4>
                   <p>
-                    The industry consolidates. A single super-bundle emerges through regulatory
-                    approval or acquisition. The fan gets one bill, one interface. Convenient, but
-                    historically monopolistic.
+                    The industry consolidates into one large bundle, through regulators' approval or
+                    acquisitions. The fan gets one bill and one app. That is convenient, and it is
+                    also how the cable monopoly worked.
                   </p>
                   <ul>
                     <li>
                       <ChevronRight size={16} strokeWidth={2.5} aria-hidden="true" />
-                      Precedent: Cable TV bundle (pre-2015)
+                      Precedent: the cable bundle before 2015
                     </li>
                     <li>
                       <ChevronRight size={16} strokeWidth={2.5} aria-hidden="true" />
-                      Risk: monopolistic pricing without competition
+                      Risk: monopoly pricing without competition
                     </li>
                     <li>
                       <ChevronRight size={16} strokeWidth={2.5} aria-hidden="true" />
@@ -1478,24 +1662,24 @@ export default function ColosseumArticle() {
                   </ul>
                 </div>
                 <div className="col-path">
-                  <h4>Commerce-First</h4>
+                  <h4>Commerce-first</h4>
                   <p>
-                    Streaming becomes the wrapper around a commerce experience. Subscription fees
-                    are subsidized by purchase commissions and targeted advertising. The cost drops,
-                    and the data cost rises.
+                    Streaming becomes the wrapper around shopping, with subscription prices
+                    subsidized by sales commissions and targeted ads. The fan pays less in money and
+                    more in data.
                   </p>
                   <ul>
                     <li>
                       <ChevronRight size={16} strokeWidth={2.5} aria-hidden="true" />
-                      Precedent: Amazon Black Friday game
+                      Precedent: Amazon's Black Friday game
                     </li>
                     <li>
                       <ChevronRight size={16} strokeWidth={2.5} aria-hidden="true" />
-                      58% higher engagement for shoppable content
+                      Evidence: viewers rate interactive ads as more engaging
                     </li>
                     <li>
                       <ChevronRight size={16} strokeWidth={2.5} aria-hidden="true" />
-                      Privacy trade-off: data for reduced cost
+                      Trade-off: your data for a lower price
                     </li>
                   </ul>
                 </div>
@@ -1503,10 +1687,11 @@ export default function ColosseumArticle() {
             </div>
 
             <div className="col-figure-strip col-figure-strip--ruled">
-              <p className="col-big">58%</p>
+              <p className="col-big">79%</p>
               <p>
-                higher viewer engagement with shoppable streaming content versus standard ad
-                formats, the number that makes the commerce-first model commercially irresistible.
+                of 7,800 US viewers in a 2026 Amazon Ads and Publicis Media study said interactive
+                streaming ads are more engaging than standard ones. The study comes from the company
+                selling those ads, but it is the bet behind the commerce-first model.
               </p>
             </div>
           </div>
@@ -1521,36 +1706,49 @@ export default function ColosseumArticle() {
           <div className="col-page">
             <div className="col-prose">
               <p>
-                The transformation of sports media is, on its surface, a story of progress. Better
-                technology, broader access, richer content, global audiences. And those things are
-                real.
+                On the surface, the story of sports media is one of progress: better technology,
+                wider access, more content, and global audiences. Those gains are real.
               </p>
               <p>
-                But progress for whom? The leagues secured generational wealth through rights fees
-                that no cable network could match. The platforms secured subscriber growth, brand
-                legitimacy, and, most valuably, data at a scale previously unimaginable.
+                But who gained? The leagues secured rights fees no cable network could match. The
+                platforms got subscriber growth, credibility as serious media companies, and, most
+                valuable of all, data on a scale they never had before.
               </p>
               <p>
-                The fan, the person whose passion made all of this possible, who filled the stadium
-                and bought the jersey and tuned in for fifty years, was the last consideration in
-                every deal room. Their loyalty was assumed. Their tolerance was tested. Their wallet
-                was the variable everyone planned around.
+                The fan, whose passion made all of it possible, who filled the stadiums, bought the
+                jerseys and watched for fifty years, came last in every deal. Their loyalty was
+                assumed, their patience was tested, and their wallet was the number everyone planned
+                around.
               </p>
               <p>
-                The reckoning will come, as it always does, when the audience decides it's had
-                enough. What form that reckoning takes, whether re-aggregation, regulation, or a new
-                commerce compact, will define the next era of sports media. But one thing is
-                certain:{" "}
+                The reckoning will come when the audience decides it has had enough. Whether it
+                arrives as a new bundle, as regulation, or as a deal built on commerce will shape
+                the next era of sports media. One thing already looks settled:{" "}
                 <strong>
-                  whoever controls the access, controls the audience. And whoever controls the
-                  audience, controls the game.
+                  whoever controls the access controls the audience, and whoever controls the
+                  audience controls the game.
                 </strong>
               </p>
             </div>
             <p className="col-sign">
-              <strong>Mo NC</strong>
-              The Future of Sports Media · 2025
+              <strong>Mohamad Noor-Chowdhury</strong>
+              The Future of Sports Media · 2025, updated November 2026
             </p>
+
+            <div className="col-sources">
+              <h2 className="col-h3">Sources</h2>
+              <ol>
+                {sources.map((s) => (
+                  <li key={s.href}>
+                    <span className="what">{s.label}</span>
+                    <a href={s.href} target="_blank" rel="noopener noreferrer">
+                      {s.title}
+                    </a>
+                    <span className="outlet">{s.outlet}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
         </section>
       </main>
@@ -1562,7 +1760,7 @@ export default function ColosseumArticle() {
             <a href="/colosseum">Sports &amp; Media</a>
             <a href="/portfolio">Technology &amp; Society</a>
           </nav>
-          <span>© 2025 Mo NC</span>
+          <span>© 2025 Mohamad Noor-Chowdhury</span>
         </div>
       </footer>
       <BackToTop ground="oklch(0.357 0.054 263)" ink="oklch(0.806 0.142 89)" />

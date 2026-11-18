@@ -781,6 +781,14 @@ html:has(.colosseum-article) {
   stroke-linejoin: round;
 }
 
+.col-chart .line-bc {
+  fill: none;
+  stroke: var(--sage-ink);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .col-chart .covid-band {
   fill: oklch(0.806 0.142 89 / 0.35);
 }
@@ -1495,6 +1503,50 @@ html:has(.colosseum-article) {
   color: var(--ink);
 }
 
+/* ─── Sources ──────────────────────────────────────── */
+.col-sources {
+  max-width: var(--measure);
+  margin-top: clamp(48px, 6vw, 72px);
+  padding-top: 20px;
+  border-top: 2px solid var(--navy);
+}
+
+.col-sources ol {
+  margin: 16px 0 0;
+  padding: 0 0 0 1.4em;
+  font-family: var(--label);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.col-sources li {
+  padding: 8px 0;
+}
+
+.col-sources li + li {
+  border-top: 1px solid var(--rule);
+}
+
+.col-sources .what {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.col-sources a {
+  color: var(--ink);
+  text-decoration-color: var(--terra);
+}
+
+.col-sources a:hover {
+  color: var(--terra-ink);
+}
+
+.col-sources .outlet::before {
+  content: " · ";
+}
+
 .col-sign {
   margin-top: 48px;
   padding-top: 20px;
@@ -1659,18 +1711,24 @@ html:has(.colosseum-article) {
 
 /* The chart draws its two lines once. */
 .col-motion .col-chart:not(.is-in) .line-stream,
-.col-motion .col-chart:not(.is-in) .line-tv {
+.col-motion .col-chart:not(.is-in) .line-tv,
+.col-motion .col-chart:not(.is-in) .line-bc {
   stroke-dashoffset: var(--len);
 }
 
 .col-motion .col-chart .line-stream,
-.col-motion .col-chart .line-tv {
+.col-motion .col-chart .line-tv,
+.col-motion .col-chart .line-bc {
   stroke-dasharray: var(--len);
   transition: stroke-dashoffset 1600ms var(--ease);
 }
 
 .col-motion .col-chart .line-tv {
   transition-delay: 200ms;
+}
+
+.col-motion .col-chart .line-bc {
+  transition-delay: 350ms;
 }
 
 .col-motion .col-chart:not(.is-in) .covid-dot {
