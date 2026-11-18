@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-17T00:00:00Z",
+  "title": "Design System: Mohamad Noor-Chowdhury Showcase Hub",
+  "extensions": {
+    "scope": {
+      "note": "Per-surface worlds. Tokens in DESIGN.md frontmatter and this sidecar belong only to the Colosseum article (/colosseum, src/views/colosseum.css, scoped under .colosseum-article).",
+      "surfaces": [
+        { "name": "Hub pages (home, portfolio, about, contact)", "stylesheet": "src/styles.css", "world": "toffee, oat and strawberry sheet" },
+        { "name": "The Future of FinTech", "stylesheet": "src/styles.css", "world": "original blueprint sheet variant" },
+        { "name": "Tokenization", "stylesheet": "src/views/tokenization.css" },
+        { "name": "The Few Seconds That Move Your Money", "stylesheet": "src/views/few-seconds.css" },
+        { "name": "The Slow Death of Affordable Gaming", "stylesheet": "src/views/affordable-gaming.css" },
+        { "name": "Cognitive QA demo", "stylesheet": "src/views/cognitive-qa-amber.css, src/views/cognitive-qa-hud.css" },
+        { "name": "From the Colosseum to the Cloud", "stylesheet": "src/views/colosseum.css", "world": "Game-Day Program (recorded in full)" }
+      ]
+    },
+    "colorMeta": {
+      "navy": { "role": "primary", "displayName": "Program Navy", "canonical": "oklch(0.357 0.054 263)", "authorPin": "#2D3C59", "tonalRamp": ["oklch(0.2 0.035 263)", "oklch(0.255 0.045 263)", "oklch(0.357 0.054 263)", "oklch(0.42 0.045 263)", "oklch(0.55 0.045 263)", "oklch(0.7 0.035 263)", "oklch(0.85 0.02 263)", "oklch(0.95 0.01 263)"] },
+      "terracotta": { "role": "secondary", "displayName": "Terracotta", "canonical": "oklch(0.687 0.109 49)", "authorPin": "#D1855C", "tonalRamp": ["oklch(0.3 0.06 49)", "oklch(0.4 0.09 47)", "oklch(0.52 0.12 45)", "oklch(0.6 0.12 47)", "oklch(0.687 0.109 49)", "oklch(0.8 0.07 49)", "oklch(0.89 0.04 49)", "oklch(0.95 0.015 49)"] },
+      "mustard": { "role": "tertiary", "displayName": "Mustard", "canonical": "oklch(0.806 0.142 89)", "authorPin": "#E5BA41", "tonalRamp": ["oklch(0.35 0.06 89)", "oklch(0.45 0.08 89)", "oklch(0.58 0.11 89)", "oklch(0.7 0.135 89)", "oklch(0.806 0.142 89)", "oklch(0.87 0.11 89)", "oklch(0.93 0.06 89)", "oklch(0.97 0.025 89)"] },
+      "sage": { "role": "tertiary", "displayName": "Sage", "canonical": "oklch(0.692 0.063 124)", "authorPin": "#94A378", "tonalRamp": ["oklch(0.3 0.03 124)", "oklch(0.4 0.05 125)", "oklch(0.47 0.07 126)", "oklch(0.58 0.065 124)", "oklch(0.692 0.063 124)", "oklch(0.8 0.045 122)", "oklch(0.92 0.022 120)", "oklch(0.955 0.014 120)"] },
+      "terracotta-ink": { "role": "secondary", "displayName": "Terracotta Ink", "canonical": "oklch(0.52 0.12 45)", "purpose": "Terracotta text and figures on newsprint." },
+      "sage-ink": { "role": "tertiary", "displayName": "Sage Ink", "canonical": "oklch(0.47 0.07 126)", "purpose": "Sage text and signs on newsprint." },
+      "deep-navy-ink": { "role": "neutral", "displayName": "Deep Navy Ink", "canonical": "oklch(0.255 0.045 263)", "purpose": "Primary text; text on mustard, sage and terracotta fields." },
+      "navy-ink-soft": { "role": "neutral", "displayName": "Soft Navy Ink", "canonical": "oklch(0.42 0.045 263)", "purpose": "Running prose and secondary text on newsprint." },
+      "newsprint": { "role": "neutral", "displayName": "Sage-Washed Newsprint", "canonical": "oklch(0.955 0.014 120)" },
+      "newsprint-second-sheet": { "role": "neutral", "displayName": "Second Sheet", "canonical": "oklch(0.92 0.022 120)" },
+      "navy-hairline": { "role": "neutral", "displayName": "Navy Hairline", "canonical": "oklch(0.357 0.054 263 / 0.18)" },
+      "navy-rule-strong": { "role": "neutral", "displayName": "Strong Navy Rule", "canonical": "oklch(0.357 0.054 263 / 0.45)" },
+      "pale-on-navy": { "role": "neutral", "displayName": "Pale on Navy", "canonical": "oklch(0.88 0.02 110)", "purpose": "Labels on navy fields; running-head links use oklch(0.9 0.02 110)." }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Cover title only." },
+      "headline": { "displayName": "Chapter Headline", "purpose": "Chapter opener titles, two lines." },
+      "figure": { "displayName": "Big Figure", "purpose": "Figure strip and grand total numbers; smaller slab figures share the face and tabular numerals." },
+      "title": { "displayName": "Slab Title", "purpose": "Era names, pain points, path names, board head (26 to 30px)." },
+      "lead": { "displayName": "Lead", "purpose": "First paragraph of each chapter page." },
+      "body": { "displayName": "Reading", "purpose": "Prose at a 68ch measure." },
+      "label-heading": { "displayName": "Label Heading", "purpose": "In-chapter subheads; box heads at 17px." },
+      "label": { "displayName": "Label", "purpose": "Running head, bylines, notes, legends, table heads." },
+      "table": { "displayName": "Lineup Table", "purpose": "Table body text." }
+    },
+    "shadows": [
+      { "name": "column-hairline", "value": "inset 1px 0 0 oklch(1 0 0 / 0.14)", "purpose": "Box-score column divider on navy. A rule, not elevation; the world has no shadows." }
+    ],
+    "motion": [
+      { "name": "ease-print", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The single easing for all arrivals." },
+      { "name": "plate-register", "value": "900ms, stagger 80/220/360/500ms", "purpose": "Cover emblem plates snap from offset into register." },
+      { "name": "roundel-stamp", "value": "520ms, delay 820ms, scale 1.35 to 1, rotate -20deg to -8deg", "purpose": "Price roundel stamps onto the cover." },
+      { "name": "title-line-up", "value": "800ms, stagger 90ms, clip-path reveal", "purpose": "Cover title lines rise." },
+      { "name": "opener-roll", "value": "clip-path inset(0 100% 0 0) to inset(0), 900ms; headline 600 to 800ms after 250ms", "purpose": "Chapter ink page rolls on left to right." },
+      { "name": "tally", "value": "1300ms, ease-out quartic", "purpose": "Figures count to their printed value on view." },
+      { "name": "bar-fill", "value": "1100ms, stagger 120ms", "purpose": "Revenue bars fill from the left." },
+      { "name": "board-lines", "value": "400ms opacity, 500ms translate 8px, stagger 110ms, total at 600ms", "purpose": "Price board items arrive in order." },
+      { "name": "chart-draw", "value": "1600ms stroke-dashoffset, TV line +200ms, dot at 900ms", "purpose": "Chart lines draw once." },
+      { "name": "cover-broadcast", "value": "arcs 2400ms loop from 1400ms; cloud drift 6s alternate", "purpose": "Runs only while the cover is on screen." },
+      { "name": "nav-state", "value": "160ms ease", "purpose": "Chapter link hover." }
+    ],
+    "breakpoints": [
+      { "name": "eras-2col", "value": "700px" },
+      { "name": "facts-strips-tables", "value": "800px" },
+      { "name": "head-openers-lineups", "value": "900px" },
+      { "name": "cover-flow", "value": "1000px" },
+      { "name": "eras-5col", "value": "1100px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Running Head",
+      "kind": "nav",
+      "refersTo": "running-head",
+      "description": "Sticky navy band with author name, chapter links and a mustard progress rule.",
+      "html": "<div class=\"ds-col-head\"><div class=\"ds-col-head-inner\"><a href=\"#\" class=\"ds-col-home\">Mohamad Noor-Chowdhury</a><ul class=\"ds-col-chapters\"><li><a href=\"#\">Access</a></li><li><a href=\"#\" aria-current=\"true\">Power Play</a></li><li><a href=\"#\">COVID</a></li></ul></div><div class=\"ds-col-progress\"></div></div>",
+      "css": ".ds-col-head { background: oklch(0.357 0.054 263); color: oklch(0.955 0.014 120); } .ds-col-head-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 56px; padding: 0 24px; font-family: 'Libre Franklin', Arial, sans-serif; } .ds-col-home { font-size: 16px; font-weight: 700; text-decoration: none; color: oklch(0.806 0.142 89); } .ds-col-chapters { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; } .ds-col-chapters a { display: block; padding: 8px 12px; border-radius: 4px; font-size: 15px; font-weight: 500; text-decoration: none; color: oklch(0.9 0.02 110); transition: background 160ms ease, color 160ms ease; } .ds-col-chapters a:hover { background: oklch(1 0 0 / 0.08); color: oklch(0.955 0.014 120); } .ds-col-head a:focus-visible { outline: 3px solid oklch(0.687 0.109 49); outline-offset: 3px; } .ds-col-chapters a[aria-current='true'] { color: oklch(0.806 0.142 89); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; } .ds-col-progress { height: 4px; width: 40%; background: oklch(0.806 0.142 89); }"
+    },
+    {
+      "name": "Cover Title and Roundel",
+      "kind": "custom",
+      "refersTo": "cover",
+      "description": "Mustard cover: slab title with the middle word on a terracotta band, and the stamped price roundel.",
+      "html": "<section class=\"ds-col-cover\"><h1 class=\"ds-col-title\"><span>From the</span><span><span class=\"ds-col-title-mark\">Colosseum</span></span><span>to the Cloud</span></h1><p class=\"ds-col-roundel\"><span>Fan's monthly bill</span><strong>$136.55</strong></p></section>",
+      "css": ".ds-col-cover { display: flex; align-items: center; gap: 32px; padding: 40px; background: oklch(0.806 0.142 89); color: oklch(0.255 0.045 263); } .ds-col-title { margin: 0; font-family: 'Alfa Slab One', Rockwell, Georgia, serif; font-weight: 400; font-size: 56px; line-height: 0.98; } .ds-col-title > span { display: block; } .ds-col-title-mark { display: inline-block; padding: 0 0.14em 0.04em; margin: 0.04em 0; background: oklch(0.687 0.109 49); color: oklch(0.255 0.045 263); } .ds-col-roundel { display: grid; place-content: center; flex: none; width: 132px; aspect-ratio: 1; margin: 0; border-radius: 50%; background: oklch(0.687 0.109 49); color: oklch(0.255 0.045 263); text-align: center; rotate: -8deg; } .ds-col-roundel span { font-family: 'Libre Franklin', Arial, sans-serif; font-size: 13px; font-weight: 700; line-height: 1.2; } .ds-col-roundel strong { font-family: 'Alfa Slab One', Georgia, serif; font-weight: 400; font-size: 28px; line-height: 1.05; }"
+    },
+    {
+      "name": "Box Score",
+      "kind": "custom",
+      "refersTo": "box-score",
+      "description": "Navy line of four headline stats: mustard slab figure over a Franklin label.",
+      "html": "<dl class=\"ds-col-box\"><div><dt>Total streaming sports rights deals</dt><dd>$110B+</dd></div><div><dt>18–44 yr-olds on streaming</dt><dd>70%</dd></div><div><dt>Fan's monthly sports bill</dt><dd>$137</dd></div><div><dt>Subscribe then cancel</dt><dd>60%</dd></div></dl>",
+      "css": ".ds-col-box { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; padding: 0 24px; background: oklch(0.357 0.054 263); } .ds-col-box div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 6px; padding: 24px 20px 26px 0; } .ds-col-box div + div { padding-left: 20px; box-shadow: inset 1px 0 0 oklch(1 0 0 / 0.14); } .ds-col-box dt { font-family: 'Libre Franklin', Arial, sans-serif; font-size: 15px; font-weight: 500; line-height: 1.35; color: oklch(0.88 0.02 110); } .ds-col-box dd { margin: 0; font-family: 'Alfa Slab One', Georgia, serif; font-size: 44px; line-height: 1; color: oklch(0.806 0.142 89); font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Chapter Opener (sage)",
+      "kind": "custom",
+      "refersTo": "opener-sage",
+      "description": "Full-width ink page; the second line knocks out onto a navy band. Terracotta shares this device; mustard uses a terracotta band; navy prints the line in mustard.",
+      "html": "<header class=\"ds-col-opener\"><h2 class=\"ds-col-h2\">A Mutually Beneficial <span>Power Play</span></h2><svg viewBox=\"0 0 120 100\" width=\"120\" aria-hidden=\"true\"><rect x=\"10\" y=\"40\" width=\"100\" height=\"52\" fill=\"oklch(0.357 0.054 263)\"/><circle cx=\"60\" cy=\"34\" r=\"22\" fill=\"oklch(0.687 0.109 49)\"/><rect x=\"38\" y=\"58\" width=\"44\" height=\"12\" fill=\"oklch(0.955 0.014 120)\"/></svg></header>",
+      "css": ".ds-col-opener { display: flex; justify-content: space-between; align-items: end; gap: 24px; padding: 72px 32px 48px; background: oklch(0.692 0.063 124); color: oklch(0.255 0.045 263); } .ds-col-h2 { margin: 0; font-family: 'Alfa Slab One', Rockwell, Georgia, serif; font-weight: 400; font-size: 52px; line-height: 1; } .ds-col-h2 span { display: table; margin-top: 0.08em; padding: 0.02em 0.14em 0.08em; background: oklch(0.357 0.054 263); color: oklch(0.955 0.014 120); }"
+    },
+    {
+      "name": "Lineup Table",
+      "kind": "custom",
+      "refersTo": "lineup-table-head",
+      "description": "Program lineup: solid navy header band, hairline rows, slab tabular figures, 3px closing rule.",
+      "html": "<table class=\"ds-col-table\"><thead><tr><th>Partner</th><th>Asset</th><th>Duration</th><th class=\"num\">Value</th></tr></thead><tbody><tr><td>Amazon Prime Video</td><td>Thursday Night Football (excl.)</td><td>11 years</td><td class=\"num\">~$1B/yr</td></tr><tr class=\"sub\"><td>Per-game cost</td><td>15–17 games/season</td><td>2022–2032</td><td class=\"num\">$58.8M/game</td></tr></tbody></table>",
+      "css": ".ds-col-table { width: 100%; border-collapse: collapse; font-family: 'Libre Franklin', Arial, sans-serif; font-size: 17px; } .ds-col-table th { padding: 12px 16px; font-size: 15px; font-weight: 700; text-align: left; background: oklch(0.357 0.054 263); color: oklch(0.955 0.014 120); } .ds-col-table td { padding: 14px 16px; border-bottom: 1px solid oklch(0.357 0.054 263 / 0.18); color: oklch(0.42 0.045 263); } .ds-col-table td:first-child { font-weight: 600; color: oklch(0.255 0.045 263); } .ds-col-table .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; } .ds-col-table td.num { font-family: 'Alfa Slab One', Georgia, serif; font-size: 20px; color: oklch(0.52 0.12 45); } .ds-col-table tr.sub td { font-size: 15px; color: oklch(0.42 0.045 263); } .ds-col-table tr.sub td.num { font-size: 17px; color: oklch(0.42 0.045 263); } .ds-col-table tbody tr:last-child td { border-bottom: 3px solid oklch(0.357 0.054 263); }"
+    },
+    {
+      "name": "Team Lineups",
+      "kind": "card",
+      "refersTo": "team-head-home",
+      "description": "Two-team list: navy home head, terracotta away head, Franklin names over serif lines on hairlines.",
+      "html": "<div class=\"ds-col-teams\"><div><h3 class=\"ds-col-team-head\">What Leagues Gained</h3><ul><li><strong>Massive Rights Fees</strong><span>Tech giants, flush with cash, bid higher than legacy broadcasters ever could or would.</span></li></ul></div><div><h3 class=\"ds-col-team-head ds-away\">What Streamers Gained</h3><ul><li><strong>Subscriber Magnets</strong><span>Live sport drives sign-ups on event nights and keeps churn low during the season.</span></li></ul></div></div>",
+      "css": ".ds-col-teams { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; } .ds-col-team-head { margin: 0; padding: 12px 16px; font-family: 'Libre Franklin', Arial, sans-serif; font-size: 16px; font-weight: 700; background: oklch(0.357 0.054 263); color: oklch(0.955 0.014 120); } .ds-col-team-head.ds-away { background: oklch(0.687 0.109 49); color: oklch(0.255 0.045 263); } .ds-col-teams ul { margin: 0; padding: 0; list-style: none; } .ds-col-teams li { padding: 16px 16px 18px; border-bottom: 1px solid oklch(0.357 0.054 263 / 0.18); } .ds-col-teams strong { display: block; font-family: 'Libre Franklin', Arial, sans-serif; font-size: 17px; font-weight: 700; color: oklch(0.255 0.045 263); } .ds-col-teams span { display: block; margin-top: 4px; font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.55; color: oklch(0.42 0.045 263); }"
+    },
+    {
+      "name": "Program Box",
+      "kind": "card",
+      "refersTo": "program-box",
+      "description": "Square transparent box with a 2px navy frame; used for the pattern note, flow steps, number pairs, chart, bars and the Venu panel.",
+      "html": "<div class=\"ds-col-frame\"><h4>Acquire</h4><p class=\"amount\">$100M</p><p class=\"note\">Amazon paid ~$100M for exclusive Black Friday rights, a calculated loss-leader.</p></div>",
+      "css": ".ds-col-frame { max-width: 320px; padding: 24px; border: 2px solid oklch(0.357 0.054 263); border-radius: 0; background: transparent; color: oklch(0.255 0.045 263); } .ds-col-frame h4 { margin: 0; font-family: 'Libre Franklin', Arial, sans-serif; font-size: 17px; font-weight: 700; } .ds-col-frame .amount { margin: 6px 0 0; font-family: 'Alfa Slab One', Georgia, serif; font-size: 36px; line-height: 1; color: oklch(0.52 0.12 45); } .ds-col-frame .note { margin: 12px 0 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.55; color: oklch(0.42 0.045 263); }"
+    },
+    {
+      "name": "Figure Strip",
+      "kind": "custom",
+      "refersTo": "figure-strip",
+      "description": "Navy strip with one huge mustard slab figure beside a short paragraph.",
+      "html": "<div class=\"ds-col-strip\"><p class=\"big\">70%</p><p>of adults aged 18–44 subscribe to at least one streaming service, with an average of <strong>8 active subscriptions</strong> per household. The audience has already moved.</p></div>",
+      "css": ".ds-col-strip { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px 40px; align-items: center; padding: 36px; background: oklch(0.357 0.054 263); color: oklch(0.955 0.014 120); } .ds-col-strip p { margin: 0; max-width: 52ch; font-family: 'Source Serif 4', Georgia, serif; font-size: 20px; line-height: 1.5; } .ds-col-strip .big { font-family: 'Alfa Slab One', Georgia, serif; font-size: 80px; line-height: 0.9; color: oklch(0.806 0.142 89); font-variant-numeric: tabular-nums; } .ds-col-strip strong { color: oklch(0.806 0.142 89); }"
+    },
+    {
+      "name": "Concession Price Board",
+      "kind": "custom",
+      "refersTo": "price-board",
+      "description": "The fan's bill as a stadium price board: mustard band, dotted leaders, terracotta total bar.",
+      "html": "<div class=\"ds-col-board\"><div class=\"ds-col-board-head\"><h4>Full NFL Season Access 2024/25</h4><p>Monthly subscription breakdown</p></div><ul><li><span>YouTube TV (base package)</span><b>$82.99</b></li><li><span>YouTube Sunday Ticket</span><b>$23.00</b></li></ul><div class=\"ds-col-board-total\"><span>Total Monthly</span><b>$136.55</b></div></div>",
+      "css": ".ds-col-board { max-width: 820px; padding: 32px; border-top: 10px solid oklch(0.806 0.142 89); background: oklch(0.357 0.054 263); color: oklch(0.955 0.014 120); } .ds-col-board-head { padding-bottom: 16px; border-bottom: 3px solid oklch(0.806 0.142 89); } .ds-col-board-head h4 { margin: 0; font-family: 'Alfa Slab One', Georgia, serif; font-weight: 400; font-size: 26px; line-height: 1.1; } .ds-col-board-head p { margin: 6px 0 0; font-family: 'Libre Franklin', Arial, sans-serif; font-size: 15px; color: oklch(0.88 0.02 110); } .ds-col-board ul { margin: 8px 0 0; padding: 0; list-style: none; } .ds-col-board li { display: flex; align-items: baseline; gap: 12px; padding: 14px 0; font-family: 'Libre Franklin', Arial, sans-serif; font-size: 19px; } .ds-col-board li::after { content: ''; order: 2; flex: 1; border-bottom: 2px dotted oklch(1 0 0 / 0.3); } .ds-col-board li b { order: 3; font-family: 'Alfa Slab One', Georgia, serif; font-weight: 400; font-size: 26px; color: oklch(0.806 0.142 89); font-variant-numeric: tabular-nums; } .ds-col-board-total { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-top: 8px; padding: 18px 24px; white-space: nowrap; background: oklch(0.687 0.109 49); color: oklch(0.255 0.045 263); font-family: 'Libre Franklin', Arial, sans-serif; font-size: 17px; font-weight: 700; } .ds-col-board-total b { font-family: 'Alfa Slab One', Georgia, serif; font-weight: 400; font-size: 56px; line-height: 1; font-variant-numeric: tabular-nums; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Game-Day Program",
+    "overview": "This hub has no single house style. PRODUCT.md commits each article to a design that serves its subject, so every surface below owns its world and its stylesheet. A new surface does not inherit another surface's tokens; it either extends the world it belongs to or earns its own.\n\nThe Colosseum article is a 1970s stadium game-day program. Four flat inks chosen by the author (navy #2D3C59, sage #94A378, mustard #E5BA41, terracotta #D1855C) print onto sage-washed newsprint. A mustard cover carries a slab-serif title and a flat four-ink emblem of the arena with a cloud above it; a navy box-score line lists four headline numbers; each chapter opens on a full-width page printed in one ink, and reading settles back onto newsprint with lineup tables, square ink-ruled boxes and a concession price board. It is dense, warm and printed, the opposite of a dark streaming-tech long read with glow and glass.",
+    "keyCharacteristics": [
+      "Four author-pinned inks, printed flat; every other color is derived from them.",
+      "Sage-washed newsprint ground, with a second sheet one step down for alternating bands.",
+      "Alfa Slab One for display and every big number, Libre Franklin for heads, labels and tables, Source Serif 4 for reading.",
+      "Square corners and solid ink rules; no shadows, no blurs, no blended gradients.",
+      "Motion reads as printing: plates snap into register, ink pages roll on, figures tally up."
+    ],
+    "rules": [
+      { "name": "The Four Inks Rule", "body": "Every field, rule and emblem fill is one of the four inks, newsprint, or a ramp step derived from them. No other hue enters the page.", "section": "colors" },
+      { "name": "The Readable Ink Rule", "body": "Terracotta and sage print as fields; when they carry text or figures on newsprint they switch to Terracotta Ink and Sage Ink. Never set a bare terracotta or sage number on paper.", "section": "colors" },
+      { "name": "The Flat Print Rule", "body": "Inks are printed flat. The only patterned fill is the diagonal hatch on the \"unknown\" bar, a print screen in sage at full and half strength; it is a hatch, not a blend.", "section": "colors" },
+      { "name": "The Slab Numbers Rule", "body": "Every figure the reader is meant to remember is set in Alfa Slab One with tabular numerals. Body copy never carries a headline number in the serif.", "section": "typography" },
+      { "name": "The Three Voices Rule", "body": "Slab for names and numbers, Franklin for structure, serif for argument. A heading is never set in the reading serif, and prose is never set in Franklin.", "section": "typography" },
+      { "name": "The Printed Not Lifted Rule", "body": "Separate things with a field of ink, a solid rule or the second sheet, never with a shadow.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do print every field in one of the four inks or newsprint, and derive any new tone from those inks in OKLCH.",
+      "Do switch to Terracotta Ink or Sage Ink whenever those hues carry text or numbers on newsprint.",
+      "Do set every headline number in Alfa Slab One with tabular numerals.",
+      "Do frame boxes with a 2px navy rule at 0 radius, and open lists and fact rows with a 6px navy top rule.",
+      "Do keep the opener's second-line device: navy band on sage and terracotta, terracotta band on mustard, mustard type on navy.",
+      "Do draw emblems as flat filled shapes in the inks, using the three per-opener ink slots.",
+      "Do keep content visible without script and let reduced motion land on the final state."
+    ],
+    "donts": [
+      "Don't use drop shadows, glows, glass or backdrop blur.",
+      "Don't blend inks in gradients; a print hatch or a functional scroll fade is the limit.",
+      "Don't round boxes, strips, tables or fields.",
+      "Don't add hues outside the four inks, and don't change the author's four pins.",
+      "Don't set prose in Franklin or headings in the reading serif.",
+      "Don't apply these tokens to another surface in the hub; each surface keeps its own world."
+    ]
+  }
+}
