@@ -88,7 +88,7 @@ export default function CognitiveQAVision() {
     const closingObs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          ['cl1','cl2','cl3','cltag'].forEach((id, i) => {
+          ['cl1','cl2','cl3'].forEach((id, i) => {
             setTimeout(() => {
               const el = document.getElementById(id);
               if (el) el.classList.add('visible');
@@ -118,55 +118,42 @@ export default function CognitiveQAVision() {
       <CognitiveQANav />
 
       <header className="hero" aria-label="Vision Brief opening">
-        <div className="hero-bg-grid" aria-hidden="true"></div>
-        <div className="hero-bg-glow" aria-hidden="true"></div>
 
         <div className="hero-content">
-          <div className="hero-eyebrow">
-            <div className="hero-eyebrow-dot" aria-hidden="true"></div>
-            COGNITIVE QA / VISION BRIEF / 2025
-          </div>
+          <p className="hero-eyebrow">Cognitive QA vision brief, 2026</p>
 
-          <p className="hero-setup">The System Is</p>
-          <h1 className="hero-broken" aria-label="BROKEN.">BROKEN.</h1>
-          <span className="hero-suffix">It Has Been for Years.</span>
+          <h1 className="hero-title"><span className="hero-setup">The system is</span> <span className="hero-broken">broken</span></h1>
+          <p className="hero-suffix">It has been for years.</p>
 
           <div className="hero-body">
             <p>2024 was a difficult year for aviation. A door plug blew out mid-flight over Oregon. A Dreamliner suddenly plunged, injuring 50 passengers. And on December 29th, Jeju Air Flight 2216 crashed in South Korea, killing 179 of 181 people on board.</p>
             <p>Each incident was different. But each one pointed to the same underlying problem.</p>
           </div>
         </div>
-
-        <div className="hero-scroll-cue" aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path d="M6 1v10M2 7l4 4 4-4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          SCROLL
-        </div>
       </header>
 
       <div className="stats-band" role="region" aria-label="Key statistics">
         <div className="stat-cell">
-          <span className="stat-num" data-target="1.45" data-suffix="T" data-prefix="$" data-decimals="2">$0T</span>
-          <p className="stat-label">U.S. Aviation Economic Output</p>
+          <span className="stat-num" data-target="1.45" data-suffix="T" data-prefix="$" data-decimals="2">$1.45T</span>
+          <p className="stat-label">U.S. aviation economic output</p>
         </div>
         <div className="stat-cell">
-          <span className="stat-num" data-target="10" data-suffix="M" data-prefix="" data-decimals="0">0M</span>
-          <p className="stat-label">Jobs Supported</p>
+          <span className="stat-num" data-target="10" data-suffix="M" data-prefix="" data-decimals="0">10M</span>
+          <p className="stat-label">Jobs supported</p>
         </div>
         <div className="stat-cell">
-          <span className="stat-num" data-target="11.8" data-suffix="B" data-prefix="$" data-decimals="1">$0B</span>
-          <p className="stat-label">Boeing Loss in 2024</p>
+          <span className="stat-num" data-target="11.8" data-suffix="B" data-prefix="$" data-decimals="1">$11.8B</span>
+          <p className="stat-label">Boeing loss in 2024</p>
         </div>
         <div className="stat-cell">
-          <span className="stat-num" data-target="487" data-suffix="M" data-prefix="$" data-decimals="0">$0M</span>
-          <p className="stat-label">Federal Fraud Fine</p>
+          <span className="stat-num" data-target="487" data-suffix="M" data-prefix="$" data-decimals="0">$487M</span>
+          <p className="stat-label">Federal fraud fine</p>
         </div>
       </div>
 
       <section className="section reveal">
         <div className="section-inner">
-          <div className="section-label">Scale of the Stakes</div>
+          <div className="section-label">Scale of the stakes</div>
           <div className="body-text">
             <p>The U.S. commercial aviation industry represents <strong>$1.45 trillion in economic output</strong> and supports <strong>10 million jobs</strong>. Yet Boeing alone reported a loss of <strong>$11.8 billion in 2024</strong> due to operational failures and quality issues.</p>
             <p>And in July 2024, Boeing pleaded guilty to federal criminal fraud charges for deliberately deceiving the FAA during the certification of the 737 Max, agreeing to pay up to <strong>$487 million in fines</strong>.</p>
@@ -177,7 +164,7 @@ export default function CognitiveQAVision() {
 
       <section className="section">
         <div className="section-inner">
-          <div className="section-label reveal">The Human Cost</div>
+          <div className="section-label reveal">The human cost</div>
           <h2 className="section-heading reveal">Every defect that leaves a factory floor<br/>is the result of a <span className="red">missed step.</span></h2>
           <div className="body-text reveal">
             <p>A bolt not checked. A bracket not verified. A manual inspection process that was never designed to handle the scale and complexity of a modern commercial aircraft.</p>
@@ -185,21 +172,21 @@ export default function CognitiveQAVision() {
 
           <div className="incident-grid" role="list">
             <div className="incident-card reveal-up" role="listitem" style={{transitionDelay:'0ms'}}>
-              <span className="incident-badge badge-crit">CRITICAL</span>
+              <span className="incident-badge badge-crit">Critical</span>
               <p className="incident-flight">Alaska Airlines 1282</p>
-              <div className="incident-stat">4 BOLTS</div>
+              <div className="incident-stat">4 bolts</div>
               <p className="incident-desc">Left the factory missing four critical bolts. A door plug failed at altitude over Oregon.</p>
             </div>
             <div className="incident-card warn reveal-up" role="listitem" style={{transitionDelay:'80ms'}}>
-              <span className="incident-badge badge-warn">WARNING</span>
+              <span className="incident-badge badge-warn">Warning</span>
               <p className="incident-flight">LATAM Dreamliner</p>
-              <div className="incident-stat">50 INJURED</div>
+              <div className="incident-stat">50 injured</div>
               <p className="incident-desc">Dropped without warning mid-flight. No alert. No time to react.</p>
             </div>
             <div className="incident-card reveal-up" role="listitem" style={{transitionDelay:'160ms'}}>
-              <span className="incident-badge badge-crit">CRITICAL</span>
+              <span className="incident-badge badge-crit">Critical</span>
               <p className="incident-flight">Jeju Air 2216</p>
-              <div className="incident-stat">179 LIVES</div>
+              <div className="incident-stat">179 lives</div>
               <p className="incident-desc">Crashed in South Korea on December 29th, 2024. 179 people did not survive.</p>
             </div>
           </div>
@@ -210,14 +197,13 @@ export default function CognitiveQAVision() {
 
           <div className="pull-quote reveal">
             <p className="pull-quote-text">But what if the inspector <span className="hi">never missed a thing?</span> What if every bolt, fastener, and bracket was verified in real time, on the factory floor, before the aircraft ever left the ground?</p>
-            <p className="pull-quote-tagline">EVERY PART CHECKED AGAINST ITS BLUEPRINT, AS THE WORK HAPPENS</p>
           </div>
         </div>
       </section>
 
       <section className="section">
         <div className="section-inner">
-          <div className="section-label reveal">The Gaps in the Chain</div>
+          <div className="section-label reveal">The gaps in the chain</div>
           <h2 className="section-heading reveal">Four handoffs. <span className="red">Four opportunities to miss something.</span></h2>
           <div className="body-text reveal">
             <p>Right now, every party in the aviation supply chain has to reverify everything from scratch because they cannot fully trust what came before them.</p>
@@ -226,12 +212,12 @@ export default function CognitiveQAVision() {
           <div className="chain-wrap reveal" aria-label="Supply chain handoff diagram">
             <div className="chain-track" id="chainTrack">
               <div className="chain-node" id="cn1">
-                <p className="chain-node-party">BOEING</p>
+                <p className="chain-node-party">Boeing</p>
                 <p className="chain-node-action">Inspects during assembly</p>
               </div>
               <div className="chain-gap">
                 <div className="chain-gap-line"></div>
-                <span className="chain-gap-label">GAP 1</span>
+                <span className="chain-gap-label">Gap 1</span>
               </div>
               <div className="chain-node" id="cn2">
                 <p className="chain-node-party">FAA</p>
@@ -239,15 +225,15 @@ export default function CognitiveQAVision() {
               </div>
               <div className="chain-gap">
                 <div className="chain-gap-line"></div>
-                <span className="chain-gap-label">GAP 2</span>
+                <span className="chain-gap-label">Gap 2</span>
               </div>
               <div className="chain-node" id="cn3">
-                <p className="chain-node-party">AIRLINES</p>
+                <p className="chain-node-party">Airlines</p>
                 <p className="chain-node-action">Inspect on delivery</p>
               </div>
               <div className="chain-gap">
                 <div className="chain-gap-line"></div>
-                <span className="chain-gap-label">GAP 3</span>
+                <span className="chain-gap-label">Gap 3</span>
               </div>
               <div className="chain-node" id="cn4">
                 <p className="chain-node-party">MRO</p>
@@ -263,7 +249,7 @@ export default function CognitiveQAVision() {
 
       <section className="section">
         <div className="section-inner">
-          <div className="section-label reveal">How Cognitive QA Works</div>
+          <div className="section-label reveal">How Cognitive QA works</div>
           <h2 className="section-heading reveal">The inspector <span className="amber">sees it.</span><br/>In the moment it matters.</h2>
 
           <div className="reveal">
@@ -275,7 +261,7 @@ export default function CognitiveQAVision() {
                 aria-controls="tab-boeing"
                 id="btn-boeing"
                 onClick={() => setActiveTab('boeing')}
-              >ASSEMBLY LINE</button>
+              >Assembly line</button>
               <button
                 className={`tab-btn${activeTab === 'mro' ? ' active' : ''}`}
                 role="tab"
@@ -283,7 +269,7 @@ export default function CognitiveQAVision() {
                 aria-controls="tab-mro"
                 id="btn-mro"
                 onClick={() => setActiveTab('mro')}
-              >MRO COMPANIES</button>
+              >MRO companies</button>
               <button
                 className={`tab-btn${activeTab === 'chain' ? ' active' : ''}`}
                 role="tab"
@@ -291,7 +277,7 @@ export default function CognitiveQAVision() {
                 aria-controls="tab-chain"
                 id="btn-chain"
                 onClick={() => setActiveTab('chain')}
-              >THE CHAIN</button>
+              >The chain</button>
             </div>
 
             <div className={`tab-panel${activeTab === 'boeing' ? ' active' : ''}`} id="tab-boeing" role="tabpanel" aria-labelledby="btn-boeing">
@@ -325,35 +311,30 @@ export default function CognitiveQAVision() {
       </section>
 
       <div className="mission reveal" role="region" aria-label="Mission statement">
-        <p className="mission-kicker">OUR MISSION</p>
+        <p className="mission-kicker">Our mission</p>
         <p className="mission-text">
           Cognitive QA exists to make<br/>
           <span className="amber">defect-free aviation</span><br/>
           the global standard.
         </p>
-        <p className="mission-sub">VERIFIED AT EVERY STEP</p>
-        <p className="mission-tagline">EVERY PART CHECKED AGAINST ITS BLUEPRINT, AS THE WORK HAPPENS</p>
+        <p className="mission-sub">Verified at every step</p>
       </div>
 
       <section className="section">
         <div className="section-inner">
-          <div className="section-label reveal">The World We Are Building</div>
+          <div className="section-label reveal">The world we are building</div>
 
           <div className="world-grid reveal">
             <div className="world-card">
-              <span className="world-card-num">01</span>
               <p className="world-card-text">Every aircraft that leaves the factory floor carries a complete, verified record of its assembly.</p>
             </div>
             <div className="world-card">
-              <span className="world-card-num">02</span>
               <p className="world-card-text">Regulators have access to irrefutable proof of quality compliance.</p>
             </div>
             <div className="world-card">
-              <span className="world-card-num">03</span>
               <p className="world-card-text">Airlines can take delivery of an aircraft with full confidence in its history.</p>
             </div>
             <div className="world-card">
-              <span className="world-card-num">04</span>
               <p className="world-card-text">Passengers can board knowing that every component was checked, verified, and documented before the aircraft ever left the ground.</p>
             </div>
           </div>
@@ -362,7 +343,7 @@ export default function CognitiveQAVision() {
 
       <section className="section">
         <div className="section-inner">
-          <div className="section-label reveal">Why Now</div>
+          <div className="section-label reveal">Why now</div>
           <h2 className="section-heading reveal">The technology has finally <span className="amber">caught up with the problem.</span></h2>
 
           <div className="whynow-points reveal">
@@ -371,19 +352,19 @@ export default function CognitiveQAVision() {
               <p className="whynow-text"><strong>AI has matured.</strong> The models, the vision processing, the real-time inference: it all exists now in a form that can run on a wearable device on a factory floor.</p>
             </div>
             <div className="whynow-point">
-              <span className="whynow-tag">HOLOLENS</span>
+              <span className="whynow-tag">HoloLens</span>
               <p className="whynow-text"><strong>The Microsoft HoloLens 2</strong> has become a proven enterprise platform, already deployed in defense aircraft manufacturing. The hardware works today.</p>
             </div>
             <div className="whynow-point">
-              <span className="whynow-tag">PRECEDENT</span>
+              <span className="whynow-tag">Precedent</span>
               <p className="whynow-text">Boeing's own defense division already uses HoloLens for military aircraft. Airbus is moving toward AR-assisted inspection on the commercial side. <strong>The technology has been proven in adjacent contexts.</strong></p>
             </div>
             <div className="whynow-point">
-              <span className="whynow-tag">THE GAP</span>
+              <span className="whynow-tag">The gap</span>
               <p className="whynow-text">What does not yet exist is a <strong>purpose-built AI inspection layer for commercial aircraft manufacturing at scale.</strong> That is the gap Cognitive QA fills.</p>
             </div>
             <div className="whynow-point">
-              <span className="whynow-tag">THE COST</span>
+              <span className="whynow-tag">The cost</span>
               <p className="whynow-text">The cost of doing nothing has become impossible to ignore. This technology will come to commercial aviation. <strong>What's still open is who builds it first.</strong></p>
             </div>
           </div>
@@ -400,13 +381,10 @@ export default function CognitiveQAVision() {
           <p className="closing-line lit"  id="cl2">The failures keep happening.</p>
           <p className="closing-line amber" id="cl3">Nobody has built this layer yet.</p>
         </div>
-        <p className="closing-tagline" id="cltag">EVERY PART CHECKED AGAINST ITS BLUEPRINT, AS THE WORK HAPPENS</p>
       </footer>
 
       <div className="status-bar status-bar-sm">
-        <div className="status-dot"></div>
-        <span className="status-online">CONCEPT DEMO</span>
-        <span>COGNITIVE QA / VISION</span>
+        <span className="status-online">Concept demo</span>
       </div>
       <BackToTop ground="var(--amber)" ink="var(--w-bg)" />
     </div>

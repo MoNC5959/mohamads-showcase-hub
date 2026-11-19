@@ -70,18 +70,14 @@ export default function CognitiveQAHome() {
   return (
     <div className="cqa-amber" style={{ overflow: 'hidden' }}>
       <div className="top-bar spaced">
-        <Link to="/" className="brand" style={{ color: '#f5a623', letterSpacing: '0.12em', fontSize: '0.85rem', textTransform: 'uppercase' }}>
+        <Link to="/" className="brand" style={{ color: 'var(--amber)', fontSize: '0.95rem', fontWeight: 600 }}>
           Mohamad Noor-Chowdhury
         </Link>
-        <span className="top-bar-tag">AIRCRAFT INSPECTION CONCEPT</span>
+        <span className="top-bar-tag">Aircraft inspection concept</span>
       </div>
 
       <div className="home-wrap">
         <div className="scene" id="cqa-scene" aria-hidden="true">
-          <div className="scene-grid"></div>
-          <div className="scene-glow"></div>
-          <div className="scene-vignette"></div>
-          <div className="scene-scan"></div>
 
           <div className="plane-wrap" id="cqa-plane">
             <div className="vapor-trail" id="cqa-vapor"></div>
@@ -98,10 +94,6 @@ export default function CognitiveQAHome() {
             </svg>
           </div>
 
-          <div className="particle" style={{width:'3px',height:'3px',left:'22%',bottom:'35%',animation:'cqa-float1 7s ease-in-out 1s infinite'}}></div>
-          <div className="particle" style={{width:'2px',height:'2px',left:'55%',bottom:'28%',animation:'cqa-float2 9s ease-in-out 2.5s infinite'}}></div>
-          <div className="particle" style={{width:'4px',height:'4px',left:'75%',bottom:'40%',animation:'cqa-float3 8s ease-in-out 0.5s infinite'}}></div>
-          <div className="particle" style={{width:'2px',height:'2px',left:'38%',bottom:'22%',animation:'cqa-float1 10s ease-in-out 4s infinite'}}></div>
         </div>
 
         <div className="home-inner">
@@ -110,30 +102,24 @@ export default function CognitiveQAHome() {
             <span className="accent">QA</span>
           </h1>
 
-          <p className="home-desc">EVERY PART CHECKED AGAINST ITS BLUEPRINT, AS THE WORK HAPPENS</p>
+          <p className="home-desc">Every part checked against its blueprint, as the work happens</p>
 
           <div className="btn-row">
             <Link to="/cognitive-qa/vision" className="nav-btn">
-              <div className="nav-btn-shimmer"></div>
-              <span className="nav-btn-num">01</span>
-              <span className="nav-btn-label">VISION</span>
-              <span className="nav-btn-arrow">ENTER</span>
+              <span className="nav-btn-label">Vision</span>
+              <span className="nav-btn-arrow">Enter</span>
               <div className="nav-btn-bar"></div>
             </Link>
 
             <Link to="/cognitive-qa/strategy" className="nav-btn">
-              <div className="nav-btn-shimmer"></div>
-              <span className="nav-btn-num">02</span>
-              <span className="nav-btn-label">STRATEGY</span>
-              <span className="nav-btn-arrow">ENTER</span>
+              <span className="nav-btn-label">Strategy</span>
+              <span className="nav-btn-arrow">Enter</span>
               <div className="nav-btn-bar"></div>
             </Link>
 
             <Link to="/cognitive-qa/demo" className="nav-btn cta">
-              <div className="nav-btn-shimmer"></div>
-              <span className="nav-btn-num">03</span>
-              <span className="nav-btn-label">DEMO</span>
-              <span className="nav-btn-arrow">ENTER</span>
+              <span className="nav-btn-label">Demo</span>
+              <span className="nav-btn-arrow">Enter</span>
               <div className="nav-btn-bar"></div>
             </Link>
           </div>
@@ -141,8 +127,7 @@ export default function CognitiveQAHome() {
       </div>
 
       <div className="status-bar">
-        <div className="status-dot"></div>
-        <span className="status-online">CONCEPT DEMO</span>
+        <span className="status-online">Concept demo</span>
       </div>
     </div>
   );

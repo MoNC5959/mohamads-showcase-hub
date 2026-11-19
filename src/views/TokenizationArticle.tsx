@@ -1,6 +1,7 @@
 // @ts-nocheck -- imported code written for looser TypeScript settings
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import BackToTop from '@/components/BackToTop';
+import { Link } from '@/lib/router-compat';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { MintingSequence } from '@/components/article/MintingSequence';
 import './tokenization.css';
@@ -1000,24 +1001,10 @@ export default function TokenizationArticle() {
       </main>
 
       {/* FOOTER */}
-      <footer className="w-full border-t border-white/10 bg-[oklch(0.164_0_0)] text-zinc-400 font-sans text-[14px]">
-        <div className="max-w-[1920px] mx-auto px-12 pt-16 pb-12">
-          <div className="flex flex-col gap-4 mb-16 pb-16 border-b border-zinc-900">
-            <span className="text-zinc-400 text-[14px]">Series</span>
-            <div className="flex flex-wrap gap-8">
-              <a className="hover:text-white transition-colors" href="#">The Future of FinTech</a>
-              <a className="hover:text-white transition-colors" href="#">DeFi Architecture</a>
-              <a className="hover:text-white transition-colors" href="#">Central Bank Digital Currencies</a>
-              <a className="hover:text-white transition-colors" href="#">Climate Finance</a>
-            </div>
-          </div>
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex flex-wrap gap-8">
-              <a className="hover:text-white transition-colors" href="#">Privacy Policy</a>
-              <a className="hover:text-white transition-colors" href="#">Terms of Service</a>
-            </div>
-            <div className="text-zinc-400">© 2025 Mohamad Noor-Chowdhury. All rights reserved.</div>
-          </div>
+      <footer className="w-full border-t border-white/10 bg-[oklch(0.164_0_0)] text-zinc-400 font-sans text-[15px]">
+        <div className="max-w-[1920px] mx-auto px-6 md:px-12 py-10 flex flex-col sm:flex-row sm:justify-between gap-4">
+          <Link to="/portfolio" className="text-zinc-200 underline underline-offset-4 hover:text-white">Back to the portfolio</Link>
+          <span>© 2026 Mohamad Noor-Chowdhury</span>
         </div>
       </footer>
       <BackToTop ground="#f2dfd2" ink="#131313" />
