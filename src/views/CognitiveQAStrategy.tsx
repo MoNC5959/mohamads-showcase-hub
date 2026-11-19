@@ -159,8 +159,8 @@ export default function CognitiveQAStrategy() {
           <h1 className="hero-word">THE<br/>STRATEGY</h1>
           <span className="hero-subword">Built on proven technology. Designed for what comes next.</span>
           <div className="hero-statement">
-            <p>Cognitive QA is the first AI-powered inspection platform that creates a <span className="hi">verified, tamper-proof record</span> of aircraft quality at every stage of its life. From the assembly line to the maintenance hangar.</p>
-            <p>For the first time, quality does not have to be rediscovered at every handoff. It travels with the aircraft.</p>
+            <p>Cognitive QA is an AI inspection platform that keeps a <span className="hi">verified, tamper-proof record</span> of an aircraft's quality from the assembly line to the maintenance hangar.</p>
+            <p>Each party that receives the aircraft gets that record instead of re-checking everything from scratch.</p>
           </div>
         </div>
       </section>
@@ -169,19 +169,19 @@ export default function CognitiveQAStrategy() {
       <div className="stats-band" role="region" aria-label="Market statistics">
         <div className="stat-cell">
           <span className="stat-num" data-target="328" data-prefix="$" data-suffix="B">$328B</span>
-          <div className="stat-label">Aircraft manufacturing market (2024)</div>
+          <div className="stat-label">Commercial aircraft manufacturing market (2024)</div>
         </div>
         <div className="stat-cell">
           <span className="stat-num" data-target="135" data-prefix="$" data-suffix="B">$135B</span>
-          <div className="stat-label">Global MRO market</div>
+          <div className="stat-label">Aerospace and defense MRO market (2024)</div>
         </div>
         <div className="stat-cell">
           <span className="stat-num" data-target="471" data-prefix="$" data-suffix="B">$471B</span>
           <div className="stat-label">Combined addressable opportunity</div>
         </div>
         <div className="stat-cell">
-          <span className="stat-num" data-target="85" data-suffix="%">85%</span>
-          <div className="stat-label">Of operators already investing in AI</div>
+          <span className="stat-num" data-target="63" data-suffix="%">63%</span>
+          <div className="stat-label">Of airlines using AI in operations control</div>
         </div>
       </div>
 
@@ -191,12 +191,12 @@ export default function CognitiveQAStrategy() {
           <div className="section-label reveal">The problem we are solving</div>
           <h2 className="section-heading reveal">Aviation has a <span className="red">process problem.</span><br/>Everyone already wants safety.</h2>
           <div className="body-text reveal">
-            <p>Boeing, MRO companies, airlines, and regulators all want the same outcome. An aircraft that is safe to fly. But each of them has to verify that independently, from scratch, because no shared, trustworthy record of quality has ever existed.</p>
+            <p>Boeing, MRO companies, airlines, and regulators all want an aircraft that is safe to fly, but each has to verify that from scratch because there is no shared record of quality they can trust.</p>
           </div>
 
           <div className="gap-callout reveal">
             <div className="gap-callout-label">The structural failure</div>
-            <div className="gap-callout-text"><span>Four handoffs.</span> Four gaps. Four opportunities to miss something.</div>
+            <div className="gap-callout-text"><span>Four parties check the same aircraft,</span> and every handoff is a chance to miss something.</div>
           </div>
 
           <div className="incident-row" role="list">
@@ -210,7 +210,7 @@ export default function CognitiveQAStrategy() {
               <span className="inc-badge badge-warn">Warning</span>
               <p className="inc-flight">LATAM Dreamliner</p>
               <div className="inc-stat">50 injured</div>
-              <p className="inc-desc">Dropped without warning mid-flight. No alert. No time to react.</p>
+              <p className="inc-desc">Dropped suddenly mid-flight, with no warning to anyone on board.</p>
             </div>
             <div className="incident-card reveal-up" role="listitem" style={{ transitionDelay: '160ms' }}>
               <span className="inc-badge badge-crit">Critical</span>
@@ -221,8 +221,7 @@ export default function CognitiveQAStrategy() {
           </div>
 
           <div className="body-text reveal">
-            <p>These incidents did not happen because people stopped caring. They happened because <strong>the process was not built to catch what human eyes can miss.</strong> The current approach to commercial aircraft inspection is built on manual processes, paper checklists, and individual sign-offs. It has no mechanism for creating a continuous, verifiable record of quality across the full lifecycle of an aircraft.</p>
-            <p>That is the gap Cognitive QA was built to close.</p>
+            <p>The process behind these incidents was not built to catch what human eyes can miss. Commercial aircraft inspection still runs on manual checks, paper checklists, and individual sign-offs, and it keeps no continuous record of quality across an aircraft's life. Cognitive QA is built to close that gap.</p>
           </div>
         </div>
       </section>
@@ -231,7 +230,7 @@ export default function CognitiveQAStrategy() {
       <section className="section">
         <div className="section-inner">
           <div className="section-label reveal">What Cognitive QA replaces</div>
-          <h2 className="section-heading reveal"><span className="amber">This replaces the old process.</span></h2>
+          <h2 className="section-heading reveal">A live check against the blueprint <span className="amber">replaces the paper checklist.</span></h2>
           <div className="body-text reveal">
             <p>Today, inspectors work from printed or digital checklists, verify components by eye, and sign off based on training and experience. When the aircraft moves from one party to the next, that record does not move with it. Cognitive QA replaces that process entirely.</p>
           </div>
@@ -262,10 +261,10 @@ export default function CognitiveQAStrategy() {
       {/* ── THE PLATFORM ── */}
       <section className="section">
         <div className="section-inner">
-          <div className="section-label reveal">The Platform</div>
+          <div className="section-label reveal">The platform</div>
           <h2 className="section-heading reveal">An inspector that checks<br/><span className="amber">every part, every time.</span></h2>
           <div className="body-text reveal">
-            <p>Cognitive QA is a platform built on two enterprise technologies. Together, they create something the aviation industry has never had before.</p>
+            <p>Cognitive QA runs on two Microsoft products, Copilot and HoloLens 2, and adds a shared inspection record on top.</p>
           </div>
 
           <div className="platform-grid reveal">
@@ -274,27 +273,24 @@ export default function CognitiveQAStrategy() {
               <div className="platform-num">Intelligence</div>
               <div className="platform-title">Microsoft<br/>Copilot</div>
               <div className="platform-tech">AI core</div>
-              <div className="platform-body">Pre-loaded with the complete blueprint library of an aircraft before a single inspection begins. Every measurement. Every specification. Every component mapped and understood. During inspection, Copilot reads the aircraft in real time, comparing what it sees against what should be there.</div>
+              <div className="platform-body">Copilot is loaded with the aircraft's full blueprint library, every measurement, specification, and component, before the first inspection. During an inspection it compares what it sees in real time against what the blueprint says should be there.</div>
             </div>
             <div className="platform-card">
               <div className="platform-card-bg"></div>
               <div className="platform-num">Delivery</div>
               <div className="platform-title">Microsoft<br/>HoloLens 2</div>
               <div className="platform-tech">Augmented reality</div>
-              <div className="platform-body">Purpose-built for industrial quality control. Gives the inspector a live augmented view of the aircraft during assembly. Every deviation flagged. Every variance logged. Every component verified against the digital twin in real time. The inspector sees not just the aircraft, but the truth about the aircraft.</div>
+              <div className="platform-body">The headset is built for industrial work. It gives the inspector a live augmented view of the aircraft during assembly, and each deviation is flagged and logged against the digital twin as it happens.</div>
             </div>
             <div className="platform-card">
               <div className="platform-card-bg"></div>
               <div className="platform-num">The record</div>
               <div className="platform-title">Verified<br/>audit trail</div>
               <div className="platform-tech">Tamper-proof</div>
-              <div className="platform-body">Every inspection generates a tamper-proof digital record, spatially anchored to the exact components checked, verified against original specification, stored in a format every downstream party can trust. Boeing, airlines, MRO, regulators. One record. Irrefutable proof at every stage.</div>
+              <div className="platform-body">Every inspection produces a tamper-proof digital record tied to the exact components checked and to the original specification. Boeing, airlines, MRO shops, and regulators all read from the same record.</div>
             </div>
           </div>
 
-          <div className="body-text reveal">
-            <p>Quality does not have to be rediscovered at every handoff. <strong>It travels with the aircraft.</strong></p>
-          </div>
         </div>
       </section>
 
@@ -310,12 +306,12 @@ export default function CognitiveQAStrategy() {
       <section className="section">
         <div className="section-inner">
           <div className="section-label reveal">Proven where it matters most</div>
-          <h2 className="section-heading reveal">Defense grade.<br/><span className="amber">Commercial scale.</span></h2>
+          <h2 className="section-heading reveal">Defense-grade inspection<br/><span className="amber">for commercial production.</span></h2>
           <div className="body-text reveal">
-            <p>The Microsoft HoloLens 2 is already proven in aviation. <strong>Boeing has already deployed it in partnership with the government</strong> to improve defense aircraft manufacturing. Airbus is moving toward AR-assisted inspection on the commercial side. The technology has proven itself in the most demanding, high-stakes environments the industry has to offer.</p>
-            <p>But there is a gap. That same proven technology has never been applied to commercial aircraft manufacturing. The aircraft that carry millions of passengers every single day are still being inspected with manual processes that defense aviation left behind years ago.</p>
-            <p>Defense aircraft operate under some of the strictest quality standards in the world. Every component verified. Every system tested. Every deviation documented. Commercial aviation deserves that same standard. Not because regulators require it. Because the public depends on it.</p>
-            <p><strong>Cognitive QA brings the rigor of defense-grade quality control to the commercial manufacturing floor for the first time.</strong></p>
+            <p>The Microsoft HoloLens 2 is already used in aviation. Boeing uses it to guide wiring work on the military version of its 767 tanker, and Airbus has used it on its commercial production lines since 2019.</p>
+            <p>No one has yet used it for live inspection against the blueprint on commercial aircraft. The jets that carry millions of passengers a day are still inspected largely by hand, with paper checklists and individual sign-offs.</p>
+            <p>Defense aircraft are built to some of the strictest quality standards in the world, with every component verified, every system tested, and every deviation documented. Commercial aviation should meet the same standard, because the public flies on it every day.</p>
+            <p>Cognitive QA brings defense-grade quality control to the commercial manufacturing floor.</p>
           </div>
         </div>
       </section>
@@ -326,7 +322,7 @@ export default function CognitiveQAStrategy() {
           <div className="section-label reveal">Go-to-market</div>
           <h2 className="section-heading reveal">A deliberately <span className="amber">sequenced</span> strategy.</h2>
           <div className="body-text reveal">
-            <p>Cognitive QA operates as a B2B enterprise platform. The strategy starts at the source and expands outward.</p>
+            <p>Cognitive QA is sold to businesses as an enterprise platform. It starts where aircraft are built and moves outward from there.</p>
           </div>
 
           <div className="phases-track reveal" id="phasesTrack">
@@ -337,8 +333,8 @@ export default function CognitiveQAStrategy() {
               </div>
               <div className="phase-content">
                 <div className="phase-tag">Beachhead</div>
-                <div className="phase-heading">Boeing Assembly Line</div>
-                <div className="phase-body">The primary target and the reference customer that changes every conversation that follows. Defects caught before a panel is sealed cost a fraction of what they cost to fix after the fact, and a fraction of a fraction of what they cost if they reach a passenger. Winning Boeing unlocks every door in the industry.</div>
+                <div className="phase-heading">Boeing assembly line</div>
+                <div className="phase-body">Boeing is the first target and the reference customer every later sale would point to. Defects caught before a panel is sealed cost a fraction of what they cost to fix after the fact, and a fraction of a fraction of what they cost if they reach a passenger. A Boeing contract would open doors across the industry.</div>
               </div>
             </div>
             <div className="phase-row" id="ph2">
@@ -348,8 +344,8 @@ export default function CognitiveQAStrategy() {
               </div>
               <div className="phase-content">
                 <div className="phase-tag">Expansion</div>
-                <div className="phase-heading">MRO Companies</div>
-                <div className="phase-body">The second critical window of quality control. MRO inspectors certify aircraft already in service, under time pressure, working from documentation and experience rather than real-time spatial intelligence. Cognitive QA gives every MRO inspector, regardless of experience level, the capability of the most senior one on the team.</div>
+                <div className="phase-heading">MRO companies</div>
+                <div className="phase-body">Maintenance is the second point where quality gets checked. MRO inspectors certify aircraft already in service, under time pressure, working from documentation and experience. Cognitive QA gives every MRO inspector, whatever their experience, the knowledge of the most senior one on the team.</div>
               </div>
             </div>
             <div className="phase-row" id="ph3">
@@ -359,8 +355,8 @@ export default function CognitiveQAStrategy() {
               </div>
               <div className="phase-content">
                 <div className="phase-tag">Scale</div>
-                <div className="phase-heading">Defense and Government</div>
-                <div className="phase-body">Building on the existing relationship between the HoloLens platform and defense procurement workflows. Full audit trail support embedded from day one, meeting the documentation requirements of government contracts from the ground up.</div>
+                <div className="phase-heading">Defense and government</div>
+                <div className="phase-body">HoloLens already has a place in defense procurement. Cognitive QA adds a full audit trail from day one, built to meet the documentation requirements of government contracts.</div>
               </div>
             </div>
             <div className="phase-row" id="ph4">
@@ -370,8 +366,8 @@ export default function CognitiveQAStrategy() {
               </div>
               <div className="phase-content">
                 <div className="phase-tag">Platform</div>
-                <div className="phase-heading">Beyond Aviation</div>
-                <div className="phase-body">Aviation is the proof of concept. Once Cognitive QA has established the standard, the platform scales into any industry where a single defect can have catastrophic consequences. Automotive. Maritime. Spacecraft. The foundation built in aviation becomes the entry point into every precision-critical industry that follows.</div>
+                <div className="phase-heading">Beyond aviation</div>
+                <div className="phase-body">Once Cognitive QA sets the standard in aviation, the platform can move into other industries where a single defect can be catastrophic, such as automotive, maritime, and spacecraft.</div>
               </div>
             </div>
           </div>
@@ -384,14 +380,14 @@ export default function CognitiveQAStrategy() {
           <div className="section-label reveal">Total addressable market</div>
           <h2 className="section-heading reveal">A <span className="amber">$471 billion</span> opportunity<br/>that no one has addressed.</h2>
           <div className="body-text reveal">
-            <p>The combined opportunity across commercial aircraft manufacturing, global MRO, and MRO software is real. These are active markets under pressure, with operators already investing in AI and regulators demanding higher standards.</p>
+            <p>The figure combines commercial aircraft manufacturing, aerospace and defense MRO, and MRO software. All three markets are under pressure, with operators already investing in AI and regulators demanding higher standards.</p>
           </div>
 
           <div className="tam-rows reveal" id="tamRows">
             <div className="tam-row" style={{ ['--bar-w' as string]: '100%' }}>
               <div className="tam-amount">$328B</div>
               <div>
-                <div className="tam-label">Commercial Aircraft Manufacturing</div>
+                <div className="tam-label">Commercial aircraft manufacturing</div>
                 <div className="tam-bar-wrap"><div className="tam-bar"></div></div>
               </div>
               <div style={{ fontSize: '0.875rem', color: 'var(--muted-w)', whiteSpace: 'nowrap' }}>2024 market</div>
@@ -399,7 +395,7 @@ export default function CognitiveQAStrategy() {
             <div className="tam-row" style={{ ['--bar-w' as string]: '41%' }}>
               <div className="tam-amount">$135B</div>
               <div>
-                <div className="tam-label">Global MRO Market</div>
+                <div className="tam-label">Aerospace and defense MRO market</div>
                 <div className="tam-bar-wrap"><div className="tam-bar"></div></div>
               </div>
               <div style={{ fontSize: '0.875rem', color: 'var(--muted-w)', whiteSpace: 'nowrap' }}>Total MRO</div>
@@ -407,7 +403,7 @@ export default function CognitiveQAStrategy() {
             <div className="tam-row" style={{ ['--bar-w' as string]: '2.3%' }}>
               <div className="tam-amount">$7.7B</div>
               <div>
-                <div className="tam-label">MRO Software Segment: projected $11.68B by 2032</div>
+                <div className="tam-label">MRO software segment, projected to reach $11.68B by 2032</div>
                 <div className="tam-bar-wrap"><div className="tam-bar"></div></div>
               </div>
               <div style={{ fontSize: '0.875rem', color: 'var(--muted-w)', whiteSpace: 'nowrap' }}>To $11.68B</div>
@@ -415,7 +411,7 @@ export default function CognitiveQAStrategy() {
             <div className="tam-row highlight" style={{ ['--bar-w' as string]: '100%' }}>
               <div className="tam-amount">$471B</div>
               <div>
-                <div className="tam-label">Combined Addressable Opportunity</div>
+                <div className="tam-label">Combined addressable opportunity</div>
                 <div className="tam-bar-wrap"><div className="tam-bar" style={{ background: 'linear-gradient(90deg,var(--amber),var(--orange))' }}></div></div>
               </div>
               <div style={{ fontSize: '0.875rem', color: 'var(--amber)', whiteSpace: 'nowrap' }}>Total</div>
@@ -423,7 +419,7 @@ export default function CognitiveQAStrategy() {
           </div>
 
           <div className="tam-insight reveal">
-            <strong>85% of operators</strong> and nearly half of all MRO companies are already actively investing in AI. The demand is there. The market is ready. <strong>The solution has not existed until now.</strong>
+            <strong>63% of airlines</strong> already use AI in operations control, and 64% of respondents to Oliver Wyman's 2025 MRO survey said they had adopted AI. No inspection product like Cognitive QA exists yet.
           </div>
         </div>
       </section>
@@ -434,7 +430,7 @@ export default function CognitiveQAStrategy() {
           <div className="section-label reveal">The path beyond aviation</div>
           <h2 className="section-heading reveal">Aviation is the proof of concept.<br/><span className="amber">The platform is universal.</span></h2>
           <div className="body-text reveal">
-            <p>The same framework that verifies a bolt on a 737 can verify a weld on a naval vessel, a component in an armored vehicle, or a part on a spacecraft. The foundation being built in aviation becomes the entry point into every precision-critical industry that follows.</p>
+            <p>The same framework that verifies a bolt on a 737 can verify a weld on a naval vessel, a component in an armored vehicle, or a part on a spacecraft.</p>
           </div>
 
           <div className="beyond-grid" id="beyondGrid" aria-label="Industries beyond aviation">
@@ -445,7 +441,7 @@ export default function CognitiveQAStrategy() {
                 </svg>
               </div>
               <div className="beyond-name">Aviation</div>
-              <div className="beyond-desc">The beachhead. Commercial manufacturing. The proof.</div>
+              <div className="beyond-desc">The starting market: commercial aircraft manufacturing.</div>
             </div>
             <div className="beyond-card" id="bc2">
               <div className="beyond-icon" aria-hidden="true">
@@ -475,7 +471,7 @@ export default function CognitiveQAStrategy() {
                 </svg>
               </div>
               <div className="beyond-name">Defense</div>
-              <div className="beyond-desc">Where the standard was set. Where the scale now follows.</div>
+              <div className="beyond-desc">Where the inspection standard was first set.</div>
             </div>
             <div className="beyond-card" id="bc5">
               <div className="beyond-icon" aria-hidden="true">
@@ -484,7 +480,7 @@ export default function CognitiveQAStrategy() {
                 </svg>
               </div>
               <div className="beyond-name">Spacecraft</div>
-              <div className="beyond-desc">Zero tolerance. Every component. Every time.</div>
+              <div className="beyond-desc">Zero tolerance for a defect in any component.</div>
             </div>
           </div>
         </div>
@@ -496,33 +492,33 @@ export default function CognitiveQAStrategy() {
           <div className="section-label reveal">Why now</div>
           <h2 className="section-heading reveal">This is coming to commercial aviation.<br/>The open question is <span className="red">who builds it.</span></h2>
           <div className="body-text reveal">
-            <p>There is a reason this solution exists now and not ten years ago. The convergence of technology, regulatory pressure, and industry failure has created a window that did not exist before.</p>
+            <p>Ten years ago this could not have been built. Better AI, more regulatory pressure, and a run of industry failures have opened a window that did not exist before.</p>
           </div>
 
           <div className="why-items reveal">
             <div className="why-item">
               <span className="why-tag">AI</span>
-              <div className="why-text">Artificial intelligence has matured to the point where real-time spatial inspection against a digital twin is now a deployable enterprise system.</div>
+              <div className="why-text">AI can now run real-time spatial inspection against a digital twin as a system an enterprise can actually deploy.</div>
             </div>
             <div className="why-item">
               <span className="why-tag">HoloLens</span>
-              <div className="why-text">The Microsoft HoloLens 2 has become a proven enterprise platform. Boeing's own defense division is already using it. Airbus is moving in this direction on the commercial side.</div>
+              <div className="why-text">The Microsoft HoloLens 2 is an established enterprise headset. Boeing uses it for wiring work on a military tanker, and Airbus has used it on commercial production lines since 2019.</div>
             </div>
             <div className="why-item">
               <span className="why-tag danger">Precedent</span>
-              <div className="why-text">The incidents of 2024 are not flukes. They are the direct outcome of a process that was never designed for the scale and complexity of modern commercial aircraft. Regulators have noticed. The public has noticed.</div>
+              <div className="why-text">The 2024 incidents came out of a process that was never designed for the scale and complexity of modern commercial aircraft, and both regulators and the public have noticed.</div>
             </div>
             <div className="why-item">
               <span className="why-tag danger">Boeing</span>
-              <div className="why-text"><span className="red">Boeing reported an $11.8 billion loss in 2024</span> and pleaded guilty to federal criminal fraud charges for deceiving the FAA. The industry is under regulatory, financial, and public pressure that it has never faced at this scale before.</div>
+              <div className="why-text"><span className="red">Boeing reported an $11.8 billion loss in 2024.</span> In 2025 it resolved the federal case over deceiving the FAA about the 737 MAX with a non-prosecution agreement that includes a $487 million criminal fine. The industry is under more regulatory, financial, and public pressure than it has ever faced.</div>
             </div>
             <div className="why-item">
               <span className="why-tag">The gap</span>
-              <div className="why-text">The same proven technology used in defense aircraft manufacturing has never been applied to commercial aviation. That gap is the opportunity. And it has a closing window.</div>
+              <div className="why-text">No one has yet applied AR inspection against the blueprint to commercial aircraft production. That gap is the opportunity, and it will not stay open for long.</div>
             </div>
             <div className="why-item">
               <span className="why-tag">First mover</span>
-              <div className="why-text">This is coming to commercial aviation. The open question is who builds it first. The company that establishes this standard owns the network effect, the data flywheel, and the regulatory relationship that follows.</div>
+              <div className="why-text">The company that sets this standard first gets the network effect, the inspection data that improves the product, and the working relationship with regulators.</div>
             </div>
           </div>
         </div>
@@ -536,6 +532,31 @@ export default function CognitiveQAStrategy() {
           <p className="closing-line amber" id="cl3">Nobody has built this layer yet.</p>
         </div>
       </footer>
+
+      <section className="sources" aria-label="Sources">
+        <div className="sources-inner">
+          <h2>Sources</h2>
+          <ol>
+            {[
+              {"pre": "Fact.MR, ", "link": "Commercial Aircraft Manufacturing Market Outlook (2024 to 2034)", "href": "https://www.factmr.com/report/commercial-aircraft-manufacturing-market", "post": ". $328.32 billion in 2024."},
+              {"pre": "Kaiso Research and Consulting, ", "link": "Global Aerospace and Defense MRO Market", "href": "https://www.marketresearch.com/Kaiso-Research-and-Consulting-v4350/Global-Aerospace-Defense-MRO-Size-43296356", "post": ". $135.7 billion in 2024."},
+              {"pre": "Fortune Business Insights, ", "link": "Aviation MRO Software Market", "href": "https://www.fortunebusinessinsights.com/aviation-mro-software-market-101798", "post": ". $7.70 billion in 2024, projected to reach $11.68 billion by 2032."},
+              {"pre": "SITA, ", "link": "Air Transport IT Insights 2025", "href": "https://www.sita.aero/resources/surveys-reports/air-transport-it-insights-2025/", "post": ". 63% of airlines use AI in operations control."},
+              {"pre": "Oliver Wyman, ", "link": "The MRO demand challenge", "href": "https://www.oliverwyman.com/our-expertise/insights/2025/apr/mro-industry-sees-growth-amid-supply-and-labor-pressure.html", "post": " (April 2025). AI adoption at 64% of survey respondents, up from 58% in 2024."},
+              {"pre": "NTSB, ", "link": "Boeing's inadequate training, guidance and oversight led to mid-exit door plug blowout", "href": "https://www.ntsb.gov/news/press-releases/Pages/NR20250624.aspx", "post": " (June 2025). The four missing bolts on Alaska Airlines 1282."},
+              {"pre": "Khaleej Times, ", "link": "At least 50 injured as Boeing 787 plane drops mid-flight", "href": "https://www.khaleejtimes.com/aviation/at-least-50-injured-as-boeing-787-plane-drops-mid-flight", "post": " (March 2024). LATAM flight LA800."},
+              {"pre": "NBC News, ", "link": "South Korea plane crash: what we know", "href": "https://www.nbcnews.com/news/world/south-korea-plane-crash-what-we-know-rcna185718", "post": " (December 2024). Jeju Air 2216, 179 of 181 people killed."},
+              {"pre": "Boeing, ", "link": "Boeing Reports Fourth Quarter Results", "href": "https://www.nasdaq.com/press-release/boeing-reports-fourth-quarter-results-2025-01-28", "post": " (January 2025). 2024 net loss of $11.8 billion and its causes."},
+              {"pre": "Claims Journal, ", "link": "Boeing avoids US criminal charge in 737 Max jet crash case", "href": "https://www.claimsjournal.com/news/national/2025/11/06/333951.htm", "post": " (November 2025). The dismissal and the $487.2 million criminal fine."},
+              {"pre": "AR Insider, ", "link": "Case study: Boeing streamlines aircraft assembly with AR", "href": "https://arinsider.co/2022/08/23/case-study-boeing-streamlines-aircraft-assembly-with-ar/", "post": " (2022). HoloLens 2 in Boeing wiring and assembly work."},
+              {"pre": "George Washington University, ", "link": "thesis on HoloLens use in wiring work on Boeing's military 767 tanker", "href": "https://scholarspace.library.gwu.edu/concern/gw_etds/jq085k56b", "post": "."},
+              {"pre": "Microsoft, ", "link": "Airbus reaches new heights with the help of Microsoft mixed reality technology", "href": "https://news.microsoft.com/source/features/digital-transformation/airbus-reaches-new-heights-with-the-help-of-microsoft-mixed-reality-technology", "post": " (June 2019)."},
+            ].map((s, i) => (
+              <li key={i}>{s.pre}<a href={s.href} target="_blank" rel="noopener noreferrer">{s.link}</a>{s.post}</li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
       {/* ── STATUS BAR ── */}
       <div className="status-bar" style={{ marginTop: 'auto' }}>

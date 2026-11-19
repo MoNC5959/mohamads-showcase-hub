@@ -126,20 +126,20 @@ export default function CognitiveQAVision() {
           <p className="hero-suffix">It has been for years.</p>
 
           <div className="hero-body">
-            <p>2024 was a difficult year for aviation. A door plug blew out mid-flight over Oregon. A Dreamliner suddenly plunged, injuring 50 passengers. And on December 29th, Jeju Air Flight 2216 crashed in South Korea, killing 179 of 181 people on board.</p>
-            <p>Each incident was different. But each one pointed to the same underlying problem.</p>
+            <p>In January 2024, a door plug blew out of an Alaska Airlines 737 MAX 9 over Oregon. In March, a LATAM Dreamliner dropped suddenly mid-flight, injuring 50 people. On December 29th, Jeju Air Flight 2216 crashed in South Korea, killing 179 of the 181 people on board.</p>
+            <p>The causes were different, but each one points to the same underlying problem.</p>
           </div>
         </div>
       </header>
 
       <div className="stats-band" role="region" aria-label="Key statistics">
         <div className="stat-cell">
-          <span className="stat-num" data-target="1.45" data-suffix="T" data-prefix="$" data-decimals="2">$1.45T</span>
-          <p className="stat-label">U.S. aviation economic output</p>
+          <span className="stat-num" data-target="1.8" data-suffix="T" data-prefix="$" data-decimals="1">$1.8T</span>
+          <p className="stat-label">U.S. civil aviation economic activity (2022)</p>
         </div>
         <div className="stat-cell">
-          <span className="stat-num" data-target="10" data-suffix="M" data-prefix="" data-decimals="0">10M</span>
-          <p className="stat-label">Jobs supported</p>
+          <span className="stat-num" data-target="9.4" data-suffix="M" data-prefix="" data-decimals="1">9.4M</span>
+          <p className="stat-label">Jobs supported by civil aviation (2022)</p>
         </div>
         <div className="stat-cell">
           <span className="stat-num" data-target="11.8" data-suffix="B" data-prefix="$" data-decimals="1">$11.8B</span>
@@ -147,7 +147,7 @@ export default function CognitiveQAVision() {
         </div>
         <div className="stat-cell">
           <span className="stat-num" data-target="487" data-suffix="M" data-prefix="$" data-decimals="0">$487M</span>
-          <p className="stat-label">Federal fraud fine</p>
+          <p className="stat-label">Boeing criminal fine, 737 MAX case</p>
         </div>
       </div>
 
@@ -155,9 +155,9 @@ export default function CognitiveQAVision() {
         <div className="section-inner">
           <div className="section-label">Scale of the stakes</div>
           <div className="body-text">
-            <p>The U.S. commercial aviation industry represents <strong>$1.45 trillion in economic output</strong> and supports <strong>10 million jobs</strong>. Yet Boeing alone reported a loss of <strong>$11.8 billion in 2024</strong> due to operational failures and quality issues.</p>
-            <p>And in July 2024, Boeing pleaded guilty to federal criminal fraud charges for deliberately deceiving the FAA during the certification of the 737 Max, agreeing to pay up to <strong>$487 million in fines</strong>.</p>
-            <p>These are not isolated events. They are symptoms of a system that has not kept pace with the complexity of modern aircraft manufacturing.</p>
+            <p>U.S. civil aviation supported <strong>$1.8 trillion in economic activity</strong> and <strong>9.4 million jobs</strong> in 2022, according to the FAA. Boeing alone lost <strong>$11.8 billion in 2024</strong>, a year that included a machinists' strike and charges on the 737 MAX and its defense programs.</p>
+            <p>In July 2024, Boeing agreed to plead guilty to a federal fraud charge for deceiving the FAA during the certification of the 737 MAX. A judge rejected that deal in December, and in November 2025 the case was dismissed under a non-prosecution agreement that includes a <strong>$487 million criminal fine</strong>.</p>
+            <p>Together they describe a system that has not kept pace with the complexity of modern aircraft manufacturing.</p>
           </div>
         </div>
       </section>
@@ -167,7 +167,7 @@ export default function CognitiveQAVision() {
           <div className="section-label reveal">The human cost</div>
           <h2 className="section-heading reveal">Every defect that leaves a factory floor<br/>is the result of a <span className="red">missed step.</span></h2>
           <div className="body-text reveal">
-            <p>A bolt not checked. A bracket not verified. A manual inspection process that was never designed to handle the scale and complexity of a modern commercial aircraft.</p>
+            <p>A bolt goes unchecked or a bracket unverified because manual inspection was never designed for the scale and complexity of a modern commercial aircraft.</p>
           </div>
 
           <div className="incident-grid" role="list">
@@ -181,7 +181,7 @@ export default function CognitiveQAVision() {
               <span className="incident-badge badge-warn">Warning</span>
               <p className="incident-flight">LATAM Dreamliner</p>
               <div className="incident-stat">50 injured</div>
-              <p className="incident-desc">Dropped without warning mid-flight. No alert. No time to react.</p>
+              <p className="incident-desc">Dropped suddenly mid-flight, with no warning to anyone on board.</p>
             </div>
             <div className="incident-card reveal-up" role="listitem" style={{transitionDelay:'160ms'}}>
               <span className="incident-badge badge-crit">Critical</span>
@@ -192,11 +192,11 @@ export default function CognitiveQAVision() {
           </div>
 
           <div className="body-text reveal">
-            <p>These incidents did not happen because people stopped caring. They happened because the process was not built to catch what human eyes can miss.</p>
+            <p>The process behind them was not built to catch what human eyes can miss.</p>
           </div>
 
           <div className="pull-quote reveal">
-            <p className="pull-quote-text">But what if the inspector <span className="hi">never missed a thing?</span> What if every bolt, fastener, and bracket was verified in real time, on the factory floor, before the aircraft ever left the ground?</p>
+            <p className="pull-quote-text">What if the inspector <span className="hi">never missed a thing?</span> Every bolt, fastener, and bracket would be verified in real time on the factory floor, before the aircraft left the ground.</p>
           </div>
         </div>
       </section>
@@ -204,9 +204,9 @@ export default function CognitiveQAVision() {
       <section className="section">
         <div className="section-inner">
           <div className="section-label reveal">The gaps in the chain</div>
-          <h2 className="section-heading reveal">Four handoffs. <span className="red">Four opportunities to miss something.</span></h2>
+          <h2 className="section-heading reveal">Four parties check the same aircraft. <span className="red">Every handoff is a chance to miss something.</span></h2>
           <div className="body-text reveal">
-            <p>Right now, every party in the aviation supply chain has to reverify everything from scratch because they cannot fully trust what came before them.</p>
+            <p>Every party in the aviation supply chain re-verifies the aircraft from scratch because it cannot fully trust the checks that came before.</p>
           </div>
 
           <div className="chain-wrap reveal" aria-label="Supply chain handoff diagram">
@@ -241,7 +241,7 @@ export default function CognitiveQAVision() {
               </div>
             </div>
             <div className="chain-summary">
-              <strong>Four handoffs. Four gaps.</strong> Each party starts from zero because the last verification cannot be trusted.
+              <strong>Three handoffs, three gaps.</strong> At each one, the next party starts from zero.
             </div>
           </div>
         </div>
@@ -250,7 +250,7 @@ export default function CognitiveQAVision() {
       <section className="section">
         <div className="section-inner">
           <div className="section-label reveal">How Cognitive QA works</div>
-          <h2 className="section-heading reveal">The inspector <span className="amber">sees it.</span><br/>In the moment it matters.</h2>
+          <h2 className="section-heading reveal">The inspector <span className="amber">sees the defect</span><br/>while the work is happening.</h2>
 
           <div className="reveal">
             <div className="tabs-row" role="tablist" aria-label="Use case selector">
@@ -281,29 +281,28 @@ export default function CognitiveQAVision() {
             </div>
 
             <div className={`tab-panel${activeTab === 'boeing' ? ' active' : ''}`} id="tab-boeing" role="tabpanel" aria-labelledby="btn-boeing">
-              <p className="tab-panel-heading">Boeing / Assembly Line</p>
+              <p className="tab-panel-heading">Boeing assembly line</p>
               <div className="tab-panel-body">
-                <p>Cognitive QA puts a HoloLens on the engineer and overlays a live digital twin of the aircraft blueprint onto the physical plane in front of them. The AI scans in real time and flags deviations, damage, and defects spatially anchored to the exact part of the aircraft where the issue exists.</p>
-                <p>The inspector does not have to guess or cross-reference a paper checklist. <strong>They see it.</strong></p>
-                <p>Defects caught before a panel is sealed cost a fraction of what they cost to fix after the fact, and a fraction of a fraction of what they cost if they reach a passenger. Cognitive QA catches those defects in the moment the work is happening, not after a sign-off, not after an audit, not after an incident.</p>
+                <p>Cognitive QA puts a HoloLens on the engineer and overlays a live digital twin of the aircraft blueprint onto the physical plane in front of them. The AI scans in real time and flags deviations, damage, and defects, each pinned to the exact part of the aircraft where it was found.</p>
+                <p>The inspector no longer has to guess or cross-reference a paper checklist, because the problem shows up on the part itself.</p>
+                <p>Defects caught before a panel is sealed cost a fraction of what they cost to fix after the fact, and a fraction of a fraction of what they cost if they reach a passenger. Cognitive QA catches them while the work is still happening, before anyone signs off.</p>
               </div>
             </div>
 
             <div className={`tab-panel${activeTab === 'mro' ? ' active' : ''}`} id="tab-mro" role="tabpanel" aria-labelledby="btn-mro">
-              <p className="tab-panel-heading">MRO Companies / Maintenance</p>
+              <p className="tab-panel-heading">MRO maintenance</p>
               <div className="tab-panel-body">
-                <p>For MRO companies, the value is speed, consistency, and certainty.</p>
-                <p><strong>Every inspector, regardless of experience level, performs at the level of your most senior one.</strong></p>
-                <p>The HoloLens overlay eliminates the gap between a 30-year veteran and a technician on their second year. The AI carries the institutional knowledge. The human executes with full confidence.</p>
+                <p>For MRO companies, the gain is faster and more consistent inspections.</p>
+                <p>Every inspector, whatever their experience, works at the level of your most senior one.</p>
+                <p>The HoloLens overlay closes the gap between a 30-year veteran and a technician in their second year, because the AI carries the institutional knowledge the veteran would otherwise supply.</p>
               </div>
             </div>
 
             <div className={`tab-panel${activeTab === 'chain' ? ' active' : ''}`} id="tab-chain" role="tabpanel" aria-labelledby="btn-chain">
-              <p className="tab-panel-heading">The Unbroken Chain</p>
+              <p className="tab-panel-heading">The unbroken chain</p>
               <div className="tab-panel-body">
-                <p>Cognitive QA closes those gaps with a <strong>single, unbroken, tamper-proof chain of verified truth</strong> that every party in that chain can rely on.</p>
-                <p>Boeing's verification travels to the FAA. The FAA's record travels to the airline. The airline's history travels to MRO. For the first time, quality does not have to be rediscovered at every step.</p>
-                <p><strong>It travels with the aircraft.</strong></p>
+                <p>Cognitive QA closes those gaps with <strong>one tamper-proof inspection record</strong> that every party can rely on.</p>
+                <p>Boeing's verification goes to the FAA, the FAA's record goes to the airline, and the airline's history goes to the MRO shop. The record travels with the aircraft, so nobody has to start over at the next step.</p>
               </div>
             </div>
           </div>
@@ -329,13 +328,13 @@ export default function CognitiveQAVision() {
               <p className="world-card-text">Every aircraft that leaves the factory floor carries a complete, verified record of its assembly.</p>
             </div>
             <div className="world-card">
-              <p className="world-card-text">Regulators have access to irrefutable proof of quality compliance.</p>
+              <p className="world-card-text">Regulators can see verified proof of quality compliance.</p>
             </div>
             <div className="world-card">
               <p className="world-card-text">Airlines can take delivery of an aircraft with full confidence in its history.</p>
             </div>
             <div className="world-card">
-              <p className="world-card-text">Passengers can board knowing that every component was checked, verified, and documented before the aircraft ever left the ground.</p>
+              <p className="world-card-text">Passengers can board knowing every component was checked and documented before the aircraft left the ground.</p>
             </div>
           </div>
         </div>
@@ -349,28 +348,28 @@ export default function CognitiveQAVision() {
           <div className="whynow-points reveal">
             <div className="whynow-point">
               <span className="whynow-tag">AI</span>
-              <p className="whynow-text"><strong>AI has matured.</strong> The models, the vision processing, the real-time inference: it all exists now in a form that can run on a wearable device on a factory floor.</p>
+              <p className="whynow-text">AI models, vision processing, and real-time inference can now run on a wearable device on a factory floor.</p>
             </div>
             <div className="whynow-point">
               <span className="whynow-tag">HoloLens</span>
-              <p className="whynow-text"><strong>The Microsoft HoloLens 2</strong> has become a proven enterprise platform, already deployed in defense aircraft manufacturing. The hardware works today.</p>
+              <p className="whynow-text">The Microsoft HoloLens 2 is an established enterprise headset and is already used in defense aircraft manufacturing.</p>
             </div>
             <div className="whynow-point">
               <span className="whynow-tag">Precedent</span>
-              <p className="whynow-text">Boeing's own defense division already uses HoloLens for military aircraft. Airbus is moving toward AR-assisted inspection on the commercial side. <strong>The technology has been proven in adjacent contexts.</strong></p>
+              <p className="whynow-text">Boeing uses HoloLens to guide wiring work on its military 767 tanker, and Airbus has used HoloLens 2 on its commercial production lines since 2019.</p>
             </div>
             <div className="whynow-point">
               <span className="whynow-tag">The gap</span>
-              <p className="whynow-text">What does not yet exist is a <strong>purpose-built AI inspection layer for commercial aircraft manufacturing at scale.</strong> That is the gap Cognitive QA fills.</p>
+              <p className="whynow-text">No one has built an AI inspection layer for commercial aircraft manufacturing at scale. Cognitive QA is designed to fill that gap.</p>
             </div>
             <div className="whynow-point">
               <span className="whynow-tag">The cost</span>
-              <p className="whynow-text">The cost of doing nothing has become impossible to ignore. This technology will come to commercial aviation. <strong>What's still open is who builds it first.</strong></p>
+              <p className="whynow-text">After 2024, the cost of doing nothing is hard to ignore. This technology will reach commercial aviation, and the open question is who builds it first.</p>
             </div>
           </div>
 
           <div className="body-text reveal">
-            <p>Cognitive QA gives the people who build and maintain aircraft the tools they actually need to do their jobs with complete confidence.</p>
+            <p>Cognitive QA gives the people who build and maintain aircraft a way to check their work against the blueprint as they go.</p>
           </div>
         </div>
       </section>
@@ -382,6 +381,28 @@ export default function CognitiveQAVision() {
           <p className="closing-line amber" id="cl3">Nobody has built this layer yet.</p>
         </div>
       </footer>
+
+      <section className="sources" aria-label="Sources">
+        <div className="sources-inner">
+          <h2>Sources</h2>
+          <ol>
+            {[
+              {"pre": "FAA, ", "link": "The Economic Impact of Civil Aviation on the U.S. Economy", "href": "https://www.faa.gov/2024-economic-impact-report", "post": " (2024 report). $1.8 trillion in economic activity and 9.4 million jobs in 2022."},
+              {"pre": "Boeing, ", "link": "Boeing Reports Fourth Quarter Results", "href": "https://www.nasdaq.com/press-release/boeing-reports-fourth-quarter-results-2025-01-28", "post": " (January 2025). 2024 net loss of $11.8 billion and its causes."},
+              {"pre": "HeraldNet, ", "link": "Boeing agrees to plead guilty to felony in deal with Justice Department", "href": "https://www.heraldnet.com/news/boeing-agrees-to-plead-guilty-to-felony-in-deal-with-justice-department", "post": " (July 2024)."},
+              {"pre": "Claims Journal, ", "link": "Boeing avoids US criminal charge in 737 Max jet crash case", "href": "https://www.claimsjournal.com/news/national/2025/11/06/333951.htm", "post": " (November 2025). The dismissal and the $487.2 million criminal fine."},
+              {"pre": "NTSB, ", "link": "Boeing's inadequate training, guidance and oversight led to mid-exit door plug blowout", "href": "https://www.ntsb.gov/news/press-releases/Pages/NR20250624.aspx", "post": " (June 2025). The four missing bolts on Alaska Airlines 1282."},
+              {"pre": "Khaleej Times, ", "link": "At least 50 injured as Boeing 787 plane drops mid-flight", "href": "https://www.khaleejtimes.com/aviation/at-least-50-injured-as-boeing-787-plane-drops-mid-flight", "post": " (March 2024). LATAM flight LA800."},
+              {"pre": "NBC News, ", "link": "South Korea plane crash: what we know", "href": "https://www.nbcnews.com/news/world/south-korea-plane-crash-what-we-know-rcna185718", "post": " (December 2024). Jeju Air 2216, 179 of 181 people killed."},
+              {"pre": "AR Insider, ", "link": "Case study: Boeing streamlines aircraft assembly with AR", "href": "https://arinsider.co/2022/08/23/case-study-boeing-streamlines-aircraft-assembly-with-ar/", "post": " (2022). HoloLens 2 in Boeing wiring and assembly work."},
+              {"pre": "George Washington University, ", "link": "thesis on HoloLens use in wiring work on Boeing's military 767 tanker", "href": "https://scholarspace.library.gwu.edu/concern/gw_etds/jq085k56b", "post": "."},
+              {"pre": "Microsoft, ", "link": "Airbus reaches new heights with the help of Microsoft mixed reality technology", "href": "https://news.microsoft.com/source/features/digital-transformation/airbus-reaches-new-heights-with-the-help-of-microsoft-mixed-reality-technology", "post": " (June 2019)."},
+            ].map((s, i) => (
+              <li key={i}>{s.pre}<a href={s.href} target="_blank" rel="noopener noreferrer">{s.link}</a>{s.post}</li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
       <div className="status-bar status-bar-sm">
         <span className="status-online">Concept demo</span>
