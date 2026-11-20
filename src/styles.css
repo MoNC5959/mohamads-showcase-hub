@@ -960,6 +960,31 @@ html:has(.sheet:not(.sheet--original)) {
   }
 }
 
+/* A page's opening zone: title plus lead, with an optional backdrop painted behind both. */
+.sheet-lead {
+  position: relative;
+  isolation: isolate;
+}
+
+/* About: the starfield runs edge to edge behind the title and intro,
+   from the header line down into the gap above the timeline, where it fades out. */
+.about-sky {
+  position: absolute;
+  z-index: -1;
+  top: calc(-1 * clamp(20px, 4vw, 48px));
+  bottom: calc(-1 * clamp(56px, 8cqw, 112px));
+  inset-inline: calc(50% - 50vw);
+  pointer-events: none;
+  isolation: isolate;
+  background: var(--color-bg);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 180px), transparent);
+}
+
+/* The stars render on black; screen drops the black and adds only their light to the toffee. */
+.about-sky .galaxy-canvas {
+  mix-blend-mode: screen;
+}
+
 /* About */
 .about-intro {
   display: grid;

@@ -9,20 +9,33 @@ interface PageShellProps {
   title: string;
   /** Sets the page title in the accent color. */
   accentTitle?: boolean;
+  /** Opening block that shares the title's zone, e.g. the About intro. */
+  lead?: ReactNode;
+  /** Decoration painted behind the title and lead only. */
+  backdrop?: ReactNode;
   children?: ReactNode;
 }
 
 /**
  * Shared "drafting sheet" layout for every page that isn't the home scene.
  */
-export default function PageShell({ sheetRef, title, accentTitle = false, children }: PageShellProps) {
+export default function PageShell({ sheetRef, title, accentTitle = false, lead, backdrop, children }: PageShellProps) {
   const navigate = useNavigate();
+  const heading = <h1 className={accentTitle ? "sheet-title sheet-title--accent" : "sheet-title"}>{title}</h1>;
 
   return (
     <div className="sheet">
       <NavBar />
       <main className="sheet-main">
-        <h1 className={accentTitle ? "sheet-title sheet-title--accent" : "sheet-title"}>{title}</h1>
+        {lead || backdrop ? (
+          <div className="sheet-lead">
+            {backdrop}
+            {heading}
+            {lead}
+          </div>
+        ) : (
+          heading
+        )}
 
         {children ?? (
           <p className="sheet-body">Sunnah is still asleep in the box. This sheet is ready for your content.</p>

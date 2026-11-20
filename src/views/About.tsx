@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import PageShell from "../components/PageShell";
+import Galaxy from "../components/Galaxy";
 import Carousel from "../components/Carousel";
 import CareerTimeline from "../components/CareerTimeline";
 import { photographerInfo as person } from "../data/photographer";
@@ -42,11 +44,41 @@ const CATS = [
   { src: modu2, alt: "Modu the cat", caption: "Modu" },
 ];
 
+/* Oat, strawberry and a light honey: the hub's own inks, lit. */
+const STAR_INKS = ["#faf2d1", "#eaa6a1", "#f1c189"];
+
 export default function About() {
   useScrollReveal();
+  // Warp on click only with a real mouse; on touch, every scroll would set it off.
+  const [finePointer, setFinePointer] = useState(false);
+  useEffect(() => {
+    setFinePointer(window.matchMedia("(pointer: fine)").matches);
+  }, []);
+
+  const sky = (
+    <div className="about-sky" aria-hidden="true">
+      <Galaxy
+        starColors={STAR_INKS}
+        density={0.9}
+        glowIntensity={0.28}
+        starSize={0.5}
+        flareIntensity={0.8}
+        twinkleIntensity={0.4}
+        starSpeed={0.35}
+        rotationSpeed={0.04}
+        focal={[0.7, 0.62]}
+        mouseRepulsion
+        repulsionStrength={2}
+        clickWarp={finePointer}
+        transparent={false}
+        backgroundColor="#000000"
+        dpr={1.5}
+      />
+    </div>
+  );
 
   return (
-    <PageShell sheetRef="Box 01 / Sheet 02 of 04" title="About">
+    <PageShell sheetRef="Box 01 / Sheet 02 of 04" title="About" backdrop={sky} lead={
       <div className="about-intro">
         <div className="blueprint" data-reveal="photo">
           <i className="corner tl" />
@@ -77,7 +109,7 @@ export default function About() {
           </div>
         </div>
       </div>
-
+    }>
       <section className="about-section">
         <CareerTimeline />
       </section>
