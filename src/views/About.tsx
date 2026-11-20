@@ -62,6 +62,7 @@ export default function About() {
         density={0.9}
         glowIntensity={0.28}
         starSize={0.5}
+        layers={2}
         flareIntensity={0.8}
         twinkleIntensity={0.4}
         starSpeed={0.35}
